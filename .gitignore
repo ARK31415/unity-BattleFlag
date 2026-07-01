@@ -10,6 +10,9 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+.agents/
+.claude/
+.vscode/
 *.log
 
 # MemoryCaptures can get excessive in size.
