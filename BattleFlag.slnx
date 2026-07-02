@@ -1,10 +1,13 @@
 ﻿<Solution>
   <Project Path="AstarPathfindingProject.csproj" />
   <Project Path="AstarPathfindingProjectEditor.csproj" />
+  <Project Path="BF.Game.Tests.EditMode.csproj" />
   <Project Path="Drawing.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="AstarPackageToolsEditor.csproj" />
+  <Project Path="BF.Framework.Core.csproj" />
   <Project Path="andywiecko.BurstTriangulator.csproj" />
+  <Project Path="BF.Framework.UI.csproj" />
   <Project Path="PackageTools.csproj" />
   <Project Path="DrawingEditor.csproj" />
   <Project Path="DrawingPackageToolsEditor.csproj" />

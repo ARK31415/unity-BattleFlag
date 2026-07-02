@@ -1,5 +1,3 @@
-using BF.Framework.UI.Runtime.Pages;
-using BF.Framework.UI.Runtime.Windows;
 using UnityEngine;
 
 namespace BF.Framework.UI.Runtime
@@ -12,38 +10,25 @@ namespace BF.Framework.UI.Runtime
         private readonly BFUILoader _loader;
         private readonly BFUIRoot _uiRoot;
 
-        public BFUIManager(BFUIRegistry registry)
-            : this(registry, null, null)
+        public BFUIManager(BFUIRegistry registry, BFUIRoot uiRoot = null)
         {
-        }
-
-        public BFUIManager(BFUIRegistry registry, BFUIRoot uiRoot, BFUILoader loader = null)
-        {
-            _loader = loader ?? new BFUILoader(registry);
+            _loader = new BFUILoader(registry);
             _uiRoot = uiRoot;
         }
 
         public GameObject OpenPage(string panelId)
-        {
-            return OpenPanel<BFPage>(panelId, _uiRoot != null ? _uiRoot.PageLayer : null);
-        }
+            => OpenPanel(panelId, _uiRoot != null ? _uiRoot.PageLayer : null);
 
         public GameObject OpenWindow(string panelId)
-        {
-            return OpenPanel<BFWindow>(panelId, _uiRoot != null ? _uiRoot.WindowLayer : null);
-        }
+            => OpenPanel(panelId, _uiRoot != null ? _uiRoot.WindowLayer : null);
 
-        private GameObject OpenPanel<TPanel>(string panelId, Transform parent)
-            where TPanel : MonoBehaviour
-        {
-            GameObject instance = _loader.Load(panelId, parent);
-            if (instance == null)
-            {
-                return null;
-            }
+        public GameObject OpenWidget(string panelId)
+            => OpenPanel(panelId, _uiRoot != null ? _uiRoot.WidgetLayer : null);
 
-            instance.GetComponent<TPanel>();
-            return instance;
-        }
+        public GameObject OpenToast(string panelId)
+            => OpenPanel(panelId, _uiRoot != null ? _uiRoot.ToastLayer : null);
+
+        private GameObject OpenPanel(string panelId, Transform parent)
+            => _loader.Load(panelId, parent);
     }
 }
