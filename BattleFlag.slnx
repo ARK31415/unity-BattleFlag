@@ -8,6 +8,7 @@
   <Project Path="BF.Framework.Core.csproj" />
   <Project Path="andywiecko.BurstTriangulator.csproj" />
   <Project Path="BF.Framework.UI.csproj" />
+  <Project Path="BF.Game.Runtime.csproj" />
   <Project Path="PackageTools.csproj" />
   <Project Path="DrawingEditor.csproj" />
   <Project Path="DrawingPackageToolsEditor.csproj" />
