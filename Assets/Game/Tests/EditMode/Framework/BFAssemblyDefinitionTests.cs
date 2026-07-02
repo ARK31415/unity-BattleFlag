@@ -14,7 +14,9 @@ namespace BF.Game.Tests.EditMode.Framework
                 "Assets/Game/Scripts/Framework/Core/BF.Framework.Core.asmdef",
                 "Assets/Game/Scripts/Framework/SaveMission/BF.Framework.SaveMission.asmdef",
                 "Assets/Game/Scripts/Framework/Inventory/BF.Framework.Inventory.asmdef",
-                "Assets/Game/Scripts/BattleFlag/Runtime/BF.Game.Runtime.asmdef"
+                "Assets/Game/Scripts/BattleFlag/Runtime/BF.Game.Runtime.asmdef",
+                "Assets/Game/Scripts/BattleFlag/Editor/BF.Game.Editor.asmdef",
+                "Assets/Game/Tests/EditMode/BF.Game.Tests.EditMode.asmdef"
             };
 
             foreach (string file in files)
