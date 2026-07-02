@@ -1,0 +1,15 @@
+{
+    "name": "BF.Game.Runtime",
+    "rootNamespace": "BF.Game.Runtime",
+    "references": [
+        "GUID:2160358ae2e94709aebd930b131595b4",
+        "GUID:07c9774c18ee4a8d90ed4a6802138a02",
+        "GUID:e5e1b630e7254877bf9b20b99b9c1423",
+        "GUID:174a803077ae498a88da21939b4cf4fe"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "autoReferenced": true,
+    "noEngineReferences": false
+}

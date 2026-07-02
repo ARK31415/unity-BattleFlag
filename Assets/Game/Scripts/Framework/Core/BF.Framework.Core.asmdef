@@ -1,0 +1,12 @@
+{
+    "name": "BF.Framework.Core",
+    "rootNamespace": "BF.Framework.Core",
+    "references": [
+        "GUID:2160358ae2e94709aebd930b131595b4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "autoReferenced": true,
+    "noEngineReferences": false
+}
