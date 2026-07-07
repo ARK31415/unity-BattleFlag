@@ -1,34 +1,68 @@
-using BF.Framework.Core.Scene;
+using System;
+using UnityEngine;
 
 namespace BF.Game.Runtime.Battle
 {
     /// <summary>
-    /// 战斗场景入口，派生自 BFSceneEntry。
+    /// 战斗场景入口，挂载在战斗场景的入口 GameObject 上。
     /// 负责战斗场景的初始化流程，完成后通知场景就绪。
     /// </summary>
-    public class BFBattleSceneEntry : BFSceneEntry
+    public class BFBattleSceneEntry : MonoBehaviour
     {
-        /// <summary>
-        /// 是否已完成初始化。
-        /// </summary>
         public bool IsInitialized { get; private set; }
 
-        /// <summary>
-        /// 执行场景初始化流程。
-        /// </summary>
-        public void InitializeScene()
+        [SerializeField] private BFBattleRoot _battleRoot;
+
+        public BFBattleContext Context { get; private set; }
+
+        public event Action OnReady;
+
+        private void Awake()
         {
+            if (!IsInitialized)
+            {
+                InitializeScene();
+            }
+        }
+
+        public void InitializeScene(BFBattleContext context = null)
+        {
+            if (IsInitialized)
+            {
+                Debug.LogWarning("[BFBattleSceneEntry] 场景已初始化，跳过重复调用。");
+                return;
+            }
+
+            Context = context ?? new BFBattleContext();
+
+            if (_battleRoot == null)
+            {
+                _battleRoot = GetComponent<BFBattleRoot>();
+                if (_battleRoot == null)
+                {
+                    _battleRoot = FindAnyObjectByType<BFBattleRoot>();
+                }
+            }
+
+            if (_battleRoot != null)
+            {
+                _battleRoot.Initialize(Context);
+            }
+            else
+            {
+                Debug.LogError("[BFBattleSceneEntry] 场景中未找到 BFBattleRoot！");
+            }
+
             IsInitialized = true;
+            Debug.Log($"[BFBattleSceneEntry] 战斗场景初始化完成: {Context.BattleId}");
+
             NotifyReady();
         }
 
-        /// <summary>
-        /// 通知上层场景已就绪。
-        /// </summary>
-        public override void NotifyReady()
+        public void NotifyReady()
         {
-            // 父类 BFSceneEntry 的 NotifyReady 是抽象方法，
-            // 后续由 BFSceneService 订阅具体通知逻辑。
+            Debug.Log("[BFBattleSceneEntry] 战斗场景就绪通知。");
+            OnReady?.Invoke();
         }
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5d35747228648448ae00e4c03be071, type: 3}
+  m_Name: BFMission_DefeatEnemies
+  m_EditorClassIdentifier: BF.Framework.SaveMission::BF.Framework.SaveMission.MissionDefinition
+  _missionId: Mission_DefeatEnemies
+  _title: "\u51FB\u8D25\u654C\u4EBA"
+  _description: "\u51FB\u8D25 2 \u540D\u654C\u4EBA\u3002"
+  _objectiveType: 0
+  _targetId: Enemy
+  _targetCount: 2
+  _rewardGold: 100
+  _rewardItems: []
