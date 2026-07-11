@@ -1,5 +1,4 @@
 using System;
-using BF.Framework.Core.Events;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -33,7 +32,7 @@ namespace BF.Game.Runtime.Battle.Events
     /// 广播回合开始、玩家回合、敌方回合、回合结束等阶段变化。
     /// </summary>
     [CreateAssetMenu(fileName = "BFTurnEventSO", menuName = "BF/Events/Turn Event SO")]
-    public class BFTurnEventSO : BFBaseEventSO
+    public class BFTurnEventSO : BFEventSO
     {
         [Serializable]
         private class BFTurnUnityEvent : UnityEvent<BFTurnEventData> { }

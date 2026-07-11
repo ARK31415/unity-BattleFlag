@@ -18,6 +18,12 @@ namespace BF.Game.Runtime.Battle.Units
         [field: SerializeField] public int Attack { get; set; } = 5;
         [field: SerializeField] public int AttackRange { get; set; } = 1;
 
+        /// <summary>单位职业（战士/法师）。</summary>
+        [field: SerializeField] public BFUnitRole Role { get; set; } = BFUnitRole.Warrior;
+
+        /// <summary>攻击消耗的行动点数（战士 2、法师 3，Spec 第 5 节）。</summary>
+        [field: SerializeField] public int AttackCost { get; set; } = 2;
+
         /// <summary>每回合最大行动点数。</summary>
         [field: SerializeField] public int MaxActionPoints { get; set; } = 5;
 

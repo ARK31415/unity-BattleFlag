@@ -1,18 +1,23 @@
-using BF.Game.Runtime.Battle.Commands;
-using BF.Game.Runtime.Battle.Flow;
-using BF.Game.Runtime.Battle.Grid;
+using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BF.Game.Runtime.Battle.PlayerInput
 {
+    /// <summary>
+    /// 玩家输入控制器。仅解释玩家输入（选中/移动/攻击/结束回合），
+    /// 调用三个 Manager 的公开合同。自身不持有核心逻辑。
+    /// </summary>
     [DisallowMultipleComponent]
     public class BFBattleInputController : MonoBehaviour
     {
-        [SerializeField] private BattleCommandService _commandService;
-        [SerializeField] private BattleStateController _stateController;
-        [SerializeField] private BFGridManager _gridManager;
+        [Header("Managers")]
+        [SerializeField] private BFBattleTurnManager _turnManager;
+        [SerializeField] private BFBattleBoardManager _boardManager;
+        [SerializeField] private BFBattleUnitManager _unitManager;
+
+        [Header("Camera")]
         [SerializeField] private Camera _camera;
 
         private bool _isMoveMode;
@@ -24,8 +29,8 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void Update()
         {
-            if (_stateController == null || _commandService == null) return;
-            if (_stateController.CurrentPhase != BattlePhase.PlayerTurn) return;
+            if (_turnManager == null || _unitManager == null) return;
+            if (_turnManager.CurrentPhase != BattlePhase.PlayerTurn) return;
 
             var mouse = Mouse.current;
             if (mouse == null) return;
@@ -70,9 +75,9 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             {
                 if (unit.Faction == UnitFaction.Enemy)
                 {
-                    _commandService.TryAttack(unit);
+                    _unitManager.TryAttack(unit);
                     _isMoveMode = false;
-                    _gridManager.ResetCellColors();
+                    _boardManager?.ResetCellColors();
                 }
                 else
                 {
@@ -90,51 +95,48 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             if (unit.Faction != UnitFaction.Player || !unit.IsAlive) return;
             if (unit.HasActed) return;
 
-            _commandService.TrySelectUnit(unit);
+            _unitManager.TrySelectUnit(unit);
 
-            var reachable = _commandService.GetReachableCellsForSelected();
-            Debug.Log($"[Input] 选中 {unit.DisplayName}, 可达格: {reachable.Count}");
+            var reachable = _unitManager.GetReachableCellsForSelected();
+            Debug.Log($"[Input] Selected {unit.DisplayName}, reachable: {reachable.Count}");
 
-            _gridManager.ResetCellColors();
-            _gridManager.HighlightCells(reachable, new Color(1f, 0.92f, 0.2f, 0.75f));
+            _boardManager?.ResetCellColors();
+            _boardManager?.HighlightCells(reachable,
+                _boardManager != null ? _boardManager.ReachableColor : new Color(1f, 0.92f, 0.2f, 0.75f));
             _isMoveMode = true;
         }
 
         private void TryMoveToWorld(Vector3 worldPos)
         {
-            if (!_isMoveMode || _commandService.SelectedUnit == null) return;
+            if (!_isMoveMode || _unitManager.SelectedUnit == null) return;
 
-            Vector2Int targetCell = _gridManager.WorldToCell(worldPos);
-            var reachable = _commandService.GetReachableCellsForSelected();
+            Vector2Int targetCell = _boardManager.WorldToCell(worldPos);
+            var reachable = _unitManager.GetReachableCellsForSelected();
             if (!reachable.Contains(targetCell)) return;
 
-            _commandService.TryMoveUnit(targetCell);
+            _unitManager.TryMoveUnit(targetCell);
             _isMoveMode = false;
-            _gridManager.ResetCellColors();
+            _boardManager?.ResetCellColors();
             HighlightAttackTargets();
         }
 
         private void HighlightAttackTargets()
         {
-            var targets = _commandService.GetAttackableTargets();
-            foreach (var t in targets)
-            {
-                var cells = new System.Collections.Generic.List<Vector2Int> { t.GridPosition };
-                _gridManager.HighlightCells(cells, new Color(1f, 0.2f, 0.2f, 0.75f));
-            }
+            var targets = _unitManager.GetAttackableTargets();
+            _boardManager?.HighlightAttackTargets(targets);
         }
 
         public void CancelSelection()
         {
-            _commandService.DeselectUnit();
+            _unitManager?.DeselectUnit();
             _isMoveMode = false;
-            if (_gridManager != null) _gridManager.ResetCellColors();
+            _boardManager?.ResetCellColors();
         }
 
         public void OnEndTurnClicked()
         {
             CancelSelection();
-            _commandService.EndTurn();
+            _turnManager?.EndTurn();
         }
     }
 }

@@ -1,17 +1,12 @@
 ﻿<Solution>
   <Project Path="AstarPathfindingProject.csproj" />
   <Project Path="AstarPathfindingProjectEditor.csproj" />
-  <Project Path="BF.Game.Tests.EditMode.csproj" />
   <Project Path="Drawing.csproj" />
   <Project Path="BF.Game.Runtime.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="AstarPackageToolsEditor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="BF.Framework.Inventory.csproj" />
-  <Project Path="BF.Framework.Core.csproj" />
   <Project Path="andywiecko.BurstTriangulator.csproj" />
-  <Project Path="BF.Framework.UI.csproj" />
-  <Project Path="BF.Framework.SaveMission.csproj" />
   <Project Path="PackageTools.csproj" />
   <Project Path="DrawingEditor.csproj" />
   <Project Path="DrawingPackageToolsEditor.csproj" />

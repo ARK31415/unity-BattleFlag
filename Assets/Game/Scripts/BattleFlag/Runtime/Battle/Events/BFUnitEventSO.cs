@@ -1,5 +1,4 @@
 using System;
-using BF.Framework.Core.Events;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,7 +36,7 @@ namespace BF.Game.Runtime.Battle.Events
     /// 广播单位移动、攻击、受伤、阵亡、选中等事件。
     /// </summary>
     [CreateAssetMenu(fileName = "BFUnitEventSO", menuName = "BF/Events/Unit Event SO")]
-    public class BFUnitEventSO : BFBaseEventSO
+    public class BFUnitEventSO : BFEventSO
     {
         [Serializable]
         private class BFUnitUnityEvent : UnityEvent<BFUnitEventData> { }
