@@ -22,16 +22,13 @@ namespace BF.Game.Runtime.Battle.Managers
         [SerializeField] private Color _reachableColor = new Color(1f, 0.92f, 0.2f, 0.75f);
         [SerializeField] private Color _attackRangeColor = new Color(1f, 0.2f, 0.2f, 0.75f);
 
-        public const int DefaultWidth = 10;
-        public const int DefaultHeight = 8;
-
         private GridGraph _grid;
         private Seeker _seeker;
         private readonly List<GameObject> _cellVisuals = new();
 
         public GridGraph Grid => _grid;
-        public int Width => _grid != null ? _grid.Width : DefaultWidth;
-        public int Height => _grid != null ? _grid.Depth : DefaultHeight;
+        public int Width => _grid?.Width ?? 0;
+        public int Height => _grid?.Depth ?? 0;
 
         // ============================================================
         // 初始化
@@ -42,38 +39,57 @@ namespace BF.Game.Runtime.Battle.Managers
             var astar = AstarPath.active;
             if (astar == null)
             {
-                astar = gameObject.AddComponent<AstarPath>();
-                astar.logPathResults = PathLog.OnlyErrors;
+                Debug.LogError("[BFBattleBoardManager] Scene is missing an AstarPath component.");
+                enabled = false;
+                return;
             }
 
             _grid = astar.data.gridGraph;
             if (_grid == null)
             {
-                _grid = astar.data.AddGraph(typeof(GridGraph)) as GridGraph;
-                ConfigGrid();
-                astar.Scan();
-                Debug.Log($"[BFBattleBoardManager] Created A*: {_grid.Width}x{_grid.Depth}");
-            }
-            else
-            {
-                bool rescan = ConfigGrid();
-                if (rescan)
-                {
-                    astar.Scan();
-                    Debug.Log($"[BFBattleBoardManager] Reconfigured A*: {_grid.Width}x{_grid.Depth}");
-                }
-                else
-                {
-                    Debug.Log($"[BFBattleBoardManager] Reusing A*: {_grid.Width}x{_grid.Depth}");
-                }
+                Debug.LogError("[BFBattleBoardManager] Scene AstarPath has no GridGraph.");
+                enabled = false;
+                return;
             }
 
-            _seeker = GetComponent<Seeker>();
-            if (_seeker == null) _seeker = gameObject.AddComponent<Seeker>();
+            if (!TryGetComponent(out _seeker))
+            {
+                _seeker = gameObject.AddComponent<Seeker>();
+            }
         }
 
         private void Start()
         {
+            if (_grid == null)
+            {
+                var astar = AstarPath.active;
+                if (astar != null && astar.data != null)
+                {
+                    _grid = astar.data.gridGraph;
+                }
+            }
+
+            if (_grid == null)
+            {
+                Debug.LogError("[BFBattleBoardManager] GridGraph not available after Start.");
+                enabled = false;
+                return;
+            }
+
+            if (!_grid.isScanned)
+            {
+                AstarPath.active.Scan();
+            }
+
+            if (!_grid.isScanned)
+            {
+                Debug.LogError("[BFBattleBoardManager] Scene GridGraph could not be scanned.");
+                enabled = false;
+                return;
+            }
+
+            Debug.Log($"[BFBattleBoardManager] Using scene A*: {_grid.Width}x{_grid.Depth}");
+
             GenerateVisuals();
             Debug.Log($"[BFBattleBoardManager] Ready: {Width}x{Height}");
         }
@@ -92,53 +108,6 @@ namespace BF.Game.Runtime.Battle.Managers
                 OccupyCell(cell, unit.UnitId);
             }
             Debug.Log($"[BFBattleBoardManager] Snapped {units.Count} units to grid");
-        }
-
-        // ============================================================
-        // A* 配置
-        // ============================================================
-
-        private bool ConfigGrid()
-        {
-            bool changed = false;
-            if (_grid.Width != DefaultWidth || _grid.Depth != DefaultHeight)
-            {
-                _grid.SetDimensions(DefaultWidth, DefaultHeight, 1f);
-                changed = true;
-            }
-
-            if (!_grid.is2D)
-            {
-                _grid.is2D = true;
-                changed = true;
-            }
-
-            if (!_grid.collision.use2D)
-            {
-                _grid.collision.use2D = true;
-                changed = true;
-            }
-
-            if (_grid.neighbours != NumNeighbours.Four)
-            {
-                _grid.neighbours = NumNeighbours.Four;
-                changed = true;
-            }
-
-            if (_grid.cutCorners)
-            {
-                _grid.cutCorners = false;
-                changed = true;
-            }
-
-            var targetCenter = new Vector3(5f, 4f, 0f);
-            if (_grid.center != targetCenter)
-            {
-                _grid.center = targetCenter;
-                changed = true;
-            }
-
-            return changed;
         }
 
         // ============================================================

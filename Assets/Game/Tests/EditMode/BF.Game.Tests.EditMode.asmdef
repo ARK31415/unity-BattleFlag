@@ -2,7 +2,10 @@
     "name": "BF.Game.Tests.EditMode",
     "rootNamespace": "BF.Game.Tests.EditMode",
     "references": [
-        "GUID:3733a389b72c4e4bb36ab2fa4c98f7e6"
+        "GUID:3733a389b72c4e4bb36ab2fa4c98f7e6",
+        "AstarPathfindingProject",
+        "PackageTools",
+        "Drawing"
     ],
     "includePlatforms": [
         "Editor"
