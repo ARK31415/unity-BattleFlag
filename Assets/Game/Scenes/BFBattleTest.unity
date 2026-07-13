@@ -222,6 +222,8 @@ GameObject:
   - component: {fileID: 34048088}
   - component: {fileID: 34048087}
   - component: {fileID: 34048090}
+  - component: {fileID: 34048092}
+  - component: {fileID: 34048091}
   m_Layer: 0
   m_Name: Unit_Player_Warrior
   m_TagString: Untagged
@@ -370,6 +372,44 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &34048091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34048086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1444eb983340ff94cba5b7779e44acaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Presentation.BFUnitAnimationPresenter
+  _runtime: {fileID: 34048088}
+  _animator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _resolutionManager: {fileID: 282620382}
+--- !u!95 &34048092
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34048086}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5211b10c6bcf897418d5041598aa12ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &38994024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1126,8 @@ GameObject:
   - component: {fileID: 128874082}
   - component: {fileID: 128874081}
   - component: {fileID: 128874084}
+  - component: {fileID: 128874086}
+  - component: {fileID: 128874085}
   m_Layer: 0
   m_Name: Unit_Enemy_Mage
   m_TagString: Untagged
@@ -1234,6 +1276,44 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &128874085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128874080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1444eb983340ff94cba5b7779e44acaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Presentation.BFUnitAnimationPresenter
+  _runtime: {fileID: 128874082}
+  _animator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _resolutionManager: {fileID: 282620382}
+--- !u!95 &128874086
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128874080}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 129679f22c7d21d45a77d56f50eab1c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &136338256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1781,7 @@ GameObject:
   - component: {fileID: 282620379}
   - component: {fileID: 282620378}
   - component: {fileID: 282620377}
+  - component: {fileID: 282620382}
   m_Layer: 0
   m_Name: BFBattleRoot
   m_TagString: Untagged
@@ -1744,7 +1825,7 @@ MonoBehaviour:
   _unitATKText: {fileID: 0}
   _unitAPText: {fileID: 0}
   _endTurnButton: {fileID: 0}
-  _endTurnNormalColor: {r: 1, g: 1, b: 1, a: 1}
+  _endTurnNormalColor: {r: 0, g: 1, b: 1, a: 1}
   _endTurnHighlightColor: {r: 1, g: 0.8, b: 0, a: 1}
   _resultPopup: {fileID: 0}
   _resultText: {fileID: 0}
@@ -1786,6 +1867,7 @@ MonoBehaviour:
   _unitEventChannel: {fileID: 11400000, guid: 12cf428f9e16f68448e0e37e2aa8a394, type: 2}
   _boardManager: {fileID: 1133210495}
   _turnManager: {fileID: 282620380}
+  _resolutionManager: {fileID: 0}
 --- !u!114 &282620380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,8 +1898,22 @@ MonoBehaviour:
   _boardManager: {fileID: 1133210495}
   _unitManager: {fileID: 282620379}
   _turnManager: {fileID: 282620380}
+  _resolutionManager: {fileID: 0}
   _inputController: {fileID: 282620378}
   _hud: {fileID: 282620377}
+--- !u!114 &282620382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282620373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ab982903504334f8bebcb1b1fb89ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Managers.BFBattleResolutionManager
+  _unitManager: {fileID: 0}
 --- !u!1 &287589363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3400,6 +3496,8 @@ GameObject:
   - component: {fileID: 682676953}
   - component: {fileID: 682676952}
   - component: {fileID: 682676955}
+  - component: {fileID: 682676957}
+  - component: {fileID: 682676956}
   m_Layer: 0
   m_Name: Unit_Enemy_Warrior
   m_TagString: Untagged
@@ -3548,6 +3646,44 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &682676956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682676951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1444eb983340ff94cba5b7779e44acaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Presentation.BFUnitAnimationPresenter
+  _runtime: {fileID: 682676953}
+  _animator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _resolutionManager: {fileID: 282620382}
+--- !u!95 &682676957
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682676951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5908aeb44b4066f45a51247e9681bc61, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &738006199
 GameObject:
   m_ObjectHideFlags: 0
@@ -8993,7 +9129,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -11402,6 +11538,8 @@ GameObject:
   - component: {fileID: 1856406419}
   - component: {fileID: 1856406418}
   - component: {fileID: 1856406421}
+  - component: {fileID: 1856406423}
+  - component: {fileID: 1856406422}
   m_Layer: 0
   m_Name: Unit_Player_Mage
   m_TagString: Untagged
@@ -11550,6 +11688,44 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1856406422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856406417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1444eb983340ff94cba5b7779e44acaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Presentation.BFUnitAnimationPresenter
+  _runtime: {fileID: 1856406419}
+  _animator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _resolutionManager: {fileID: 282620382}
+--- !u!95 &1856406423
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856406417}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5211b10c6bcf897418d5041598aa12ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1862044143
 GameObject:
   m_ObjectHideFlags: 0

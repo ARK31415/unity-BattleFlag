@@ -19,6 +19,7 @@ namespace BF.Game.Runtime.Battle.Managers
         [Header("Dependencies")]
         [SerializeField] private BFBattleBoardManager _boardManager;
         [SerializeField] private BFBattleTurnManager _turnManager;
+        [SerializeField] private BFBattleResolutionManager _resolutionManager;
 
         /// <summary>战场上所有单位。</summary>
         public List<UnitRuntime> AllUnits { get; private set; } = new();
@@ -194,8 +195,18 @@ namespace BF.Game.Runtime.Battle.Managers
                 return false;
             }
 
-            int damage = SelectedUnit.Attack;
-            target.TakeDamage(damage);
+            if (_resolutionManager == null)
+            {
+                Debug.LogError("[BFBattleUnitManager] ResolutionManager 未绑定。");
+                return false;
+            }
+
+            if (!_resolutionManager.TryQueueAttack(SelectedUnit, target))
+            {
+                Debug.LogWarning("[BFBattleUnitManager] 攻击登记失败。");
+                return false;
+            }
+
             SelectedUnit.ConsumeActionPoints(attackCost);
 
             _unitEventChannel?.Raise(new BFUnitEventData
@@ -203,28 +214,14 @@ namespace BF.Game.Runtime.Battle.Managers
                 UnitId = SelectedUnit.UnitId,
                 EventType = "Attacked",
                 TargetId = target.UnitId,
-                Value = damage
+                Value = attackCost
             });
-            _unitEventChannel?.Raise(new BFUnitEventData
-            {
-                UnitId = target.UnitId,
-                EventType = "Damaged",
-                TargetId = SelectedUnit.UnitId,
-                Value = damage
-            });
-            if (!target.IsAlive)
-            {
-                _unitEventChannel?.Raise(new BFUnitEventData
-                {
-                    UnitId = target.UnitId,
-                    EventType = "Killed"
-                });
-            }
 
-            Debug.Log($"[BFBattleUnitManager] {SelectedUnit.DisplayName} attacked {target.DisplayName} for {damage}, AP left: {SelectedUnit.RemainingActionPoints}");
+            Debug.Log($"[BFBattleUnitManager] {SelectedUnit.DisplayName} 发起攻击 -> {target.DisplayName}，AP 剩余: {SelectedUnit.RemainingActionPoints}");
+
+            SelectedUnit.BeginQueuedAttack(target);
 
             if (SelectedUnit.HasActed) DeselectUnit();
-            CheckBattleEndCondition();
             _turnManager?.RefreshPlayerLegalActions();
             return true;
         }
@@ -428,24 +425,58 @@ namespace BF.Game.Runtime.Battle.Managers
                          + Mathf.Abs(target.GridPosition.y - enemy.GridPosition.y);
             if (distance > enemy.AttackRange) return false;
 
-            // 敌人使用其 AttackCost AP，若不足则用剩余全部
             int cost = Mathf.Min(enemy.AttackCost, enemy.RemainingActionPoints);
             if (cost <= 0) return false;
 
-            enemy.ConsumeActionPoints(cost);
-            target.TakeDamage(enemy.Attack);
-            Debug.Log($"[BattleAI] {enemy.DisplayName} attacked {target.DisplayName} for {enemy.Attack}");
+            if (_resolutionManager == null)
+            {
+                Debug.LogError("[BFBattleUnitManager] ResolutionManager 未绑定。");
+                return false;
+            }
 
-            if (!target.IsAlive)
+            if (!_resolutionManager.TryQueueAttack(enemy, target))
+            {
+                Debug.LogWarning("[BFBattleUnitManager] 敌方攻击登记失败。");
+                return false;
+            }
+
+            enemy.ConsumeActionPoints(cost);
+            enemy.BeginQueuedAttack(target);
+
+            Debug.Log($"[BattleAI] {enemy.DisplayName} 发起攻击 -> {target.DisplayName}");
+
+            return true;
+        }
+
+        /// <summary>
+        /// 处理攻击结算完成后的事件（由 BFBattleResolutionManager 调用）。
+        /// </summary>
+        public void HandleAttackResolved(BF.Game.Runtime.Battle.Commands.BFAttackResolveResult result)
+        {
+            if (result.Attacker == null || result.Target == null) return;
+
+            _unitEventChannel?.Raise(new BFUnitEventData
+            {
+                UnitId = result.Target.UnitId,
+                EventType = "Damaged",
+                TargetId = result.Attacker.UnitId,
+                Value = result.FinalDamage
+            });
+
+            if (result.TargetWasKilled)
             {
                 _unitEventChannel?.Raise(new BFUnitEventData
                 {
-                    UnitId = target.UnitId,
+                    UnitId = result.Target.UnitId,
                     EventType = "Killed"
                 });
             }
 
-            return true;
+            result.Attacker.NotifyAttackResolved();
+
+            Debug.Log($"[BFBattleUnitManager] 攻击结算完成：{result.Attacker.DisplayName} -> {result.Target.DisplayName}，伤害 {result.FinalDamage}，目标剩余 HP {result.TargetRemainingHp}");
+
+            CheckBattleEndCondition();
         }
     }
 }
