@@ -16,6 +16,11 @@ namespace BF.Game.Runtime.Battle.Units
             Debug.Log($"[UnitAttackState] {Owner.DisplayName} 进入攻击状态。");
             
             var presenter = Owner.GetComponent<Presentation.BFUnitAnimationPresenter>();
+            if (_targetUnit != null)
+            {
+                presenter?.FaceTarget(Owner.GridPosition, _targetUnit.GridPosition);
+            }
+
             presenter?.PlayAttack();
         }
 

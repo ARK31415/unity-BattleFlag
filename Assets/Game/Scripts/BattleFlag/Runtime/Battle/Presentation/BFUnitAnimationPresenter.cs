@@ -10,6 +10,7 @@ namespace BF.Game.Runtime.Battle.Presentation
     /// </summary>
     [RequireComponent(typeof(UnitRuntime))]
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(SpriteRenderer))]
     public class BFUnitAnimationPresenter : MonoBehaviour
     {
         [Header("Dependencies")]
@@ -30,6 +31,8 @@ namespace BF.Game.Runtime.Battle.Presentation
             if (_runtime == null) _runtime = GetComponent<UnitRuntime>();
             if (_animator == null) _animator = GetComponent<Animator>();
             if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
+
+            ApplyInitialFacing();
         }
 
         private void OnEnable()
@@ -64,6 +67,48 @@ namespace BF.Game.Runtime.Battle.Presentation
         public void SetResolutionManager(BFBattleResolutionManager resolutionManager)
         {
             _resolutionManager = resolutionManager;
+        }
+
+        /// <summary>
+        /// 初始化兜底朝向：玩家面朝右，敌人面朝左。
+        /// </summary>
+        public void ApplyInitialFacing()
+        {
+            if (_runtime == null || _spriteRenderer == null) return;
+
+            SetFacingRight(_runtime.Faction != UnitFaction.Enemy);
+        }
+
+        /// <summary>
+        /// 按移动分段设置朝向；纯上下移动保持当前朝向。
+        /// </summary>
+        public void FaceMovementStep(Vector2Int fromCell, Vector2Int toCell)
+        {
+            if (_spriteRenderer == null) return;
+            if (toCell.x > fromCell.x)
+            {
+                SetFacingRight(true);
+            }
+            else if (toCell.x < fromCell.x)
+            {
+                SetFacingRight(false);
+            }
+        }
+
+        /// <summary>
+        /// 攻击前面向目标；同列目标保持当前朝向。
+        /// </summary>
+        public void FaceTarget(Vector2Int attackerCell, Vector2Int targetCell)
+        {
+            if (_spriteRenderer == null) return;
+            if (targetCell.x > attackerCell.x)
+            {
+                SetFacingRight(true);
+            }
+            else if (targetCell.x < attackerCell.x)
+            {
+                SetFacingRight(false);
+            }
         }
 
         private void OnHurtReceived(UnitRuntime unit)
@@ -133,6 +178,14 @@ namespace BF.Game.Runtime.Battle.Presentation
 
             _animator.SetBool(IsMoving, _runtime.CurrentState is UnitMoveState);
             _animator.SetBool(IsDead, !_runtime.IsAlive);
+        }
+
+        private void SetFacingRight(bool isFacingRight)
+        {
+            if (_spriteRenderer != null)
+            {
+                _spriteRenderer.flipX = !isFacingRight;
+            }
         }
     }
 }

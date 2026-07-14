@@ -23,8 +23,14 @@ namespace BF.Game.Runtime.Battle.Managers
         [SerializeField] private Color _attackRangeColor = new Color(1f, 0.2f, 0.2f, 0.75f);
 
         private GridGraph _grid;
-        private Seeker _seeker;
         private readonly List<GameObject> _cellVisuals = new();
+        private static readonly Vector2Int[] NeighborOffsets =
+        {
+            new(1, 0),
+            new(-1, 0),
+            new(0, 1),
+            new(0, -1)
+        };
 
         public GridGraph Grid => _grid;
         public int Width => _grid?.Width ?? 0;
@@ -51,14 +57,37 @@ namespace BF.Game.Runtime.Battle.Managers
                 enabled = false;
                 return;
             }
-
-            if (!TryGetComponent(out _seeker))
-            {
-                _seeker = gameObject.AddComponent<Seeker>();
-            }
         }
 
         private void Start()
+        {
+            if (!EnsureGridReady()) return;
+
+            Debug.Log($"[BFBattleBoardManager] Using scene A*: {_grid.Width}x{_grid.Depth}");
+
+            GenerateVisuals();
+            Debug.Log($"[BFBattleBoardManager] Ready: {Width}x{Height}");
+        }
+
+        /// <summary>
+        /// 将场景中的单位对齐到棋盘格子上（由 BFBattleRoot 在初始化流程中调用）。
+        /// </summary>
+        public void SnapUnitsToGrid(List<UnitRuntime> units)
+        {
+            if (!EnsureGridReady()) return;
+
+            foreach (var unit in units)
+            {
+                Vector2Int cell = WorldToCell(unit.transform.position);
+                unit.GridPosition = cell;
+                unit.transform.position = (Vector3)CellToWorld(cell);
+                unit.MovementHandler = this;
+                OccupyCell(cell, unit.UnitId);
+            }
+            Debug.Log($"[BFBattleBoardManager] Snapped {units.Count} units to grid");
+        }
+
+        private bool EnsureGridReady()
         {
             if (_grid == null)
             {
@@ -73,7 +102,7 @@ namespace BF.Game.Runtime.Battle.Managers
             {
                 Debug.LogError("[BFBattleBoardManager] GridGraph not available after Start.");
                 enabled = false;
-                return;
+                return false;
             }
 
             if (!_grid.isScanned)
@@ -81,33 +110,11 @@ namespace BF.Game.Runtime.Battle.Managers
                 AstarPath.active.Scan();
             }
 
-            if (!_grid.isScanned)
-            {
-                Debug.LogError("[BFBattleBoardManager] Scene GridGraph could not be scanned.");
-                enabled = false;
-                return;
-            }
+            if (_grid.isScanned) return true;
 
-            Debug.Log($"[BFBattleBoardManager] Using scene A*: {_grid.Width}x{_grid.Depth}");
-
-            GenerateVisuals();
-            Debug.Log($"[BFBattleBoardManager] Ready: {Width}x{Height}");
-        }
-
-        /// <summary>
-        /// 将场景中的单位对齐到棋盘格子上（由 BFBattleRoot 在初始化流程中调用）。
-        /// </summary>
-        public void SnapUnitsToGrid(List<UnitRuntime> units)
-        {
-            foreach (var unit in units)
-            {
-                Vector2Int cell = WorldToCell(unit.transform.position);
-                unit.GridPosition = cell;
-                unit.transform.position = (Vector3)CellToWorld(cell);
-                unit.MovementHandler = this;
-                OccupyCell(cell, unit.UnitId);
-            }
-            Debug.Log($"[BFBattleBoardManager] Snapped {units.Count} units to grid");
+            Debug.LogError("[BFBattleBoardManager] Scene GridGraph could not be scanned.");
+            enabled = false;
+            return false;
         }
 
         // ============================================================
@@ -175,6 +182,8 @@ namespace BF.Game.Runtime.Battle.Managers
         public List<Vector2Int> GetReachableCells(Vector2Int pos, int range, string uid)
         {
             var cells = new List<Vector2Int>();
+            if (range <= 0 || !IsCellInBounds(pos)) return cells;
+
             for (int dx = -range; dx <= range; dx++)
             {
                 for (int dy = -range; dy <= range; dy++)
@@ -185,16 +194,25 @@ namespace BF.Game.Runtime.Battle.Managers
                     var cell = new Vector2Int(pos.x + dx, pos.y + dy);
                     if (!IsCellInBounds(cell) || IsCellOccupied(cell)) continue;
 
-                    cells.Add(cell);
+                    var path = FindPath(pos, cell, uid);
+                    if (path.Count > 0 && path.Count <= range)
+                    {
+                        cells.Add(cell);
+                    }
                 }
             }
             return cells;
         }
 
         public bool IsCellReachable(Vector2Int from, Vector2Int to, int range, string uid)
-            => Mathf.Abs(to.x - from.x) + Mathf.Abs(to.y - from.y) <= range
-               && IsCellInBounds(to)
-               && !IsCellOccupied(to);
+        {
+            if (range <= 0 || from == to) return false;
+            if (!IsCellInBounds(from) || !IsCellInBounds(to)) return false;
+            if (IsCellOccupied(to)) return false;
+
+            var path = FindPath(from, to, uid);
+            return path.Count > 0 && path.Count <= range;
+        }
 
         // ============================================================
         // A* 寻路
@@ -203,32 +221,92 @@ namespace BF.Game.Runtime.Battle.Managers
         public List<Vector2Int> FindPath(Vector2Int from, Vector2Int to, string uid)
         {
             var result = new List<Vector2Int>();
-            if (_seeker == null || _grid == null) return result;
+            if (_grid == null) return result;
+            if (!IsCellInBounds(from) || !IsCellInBounds(to)) return result;
+            if (from == to || IsCellOccupied(to)) return result;
 
-            var fromNode = _grid.GetNode(from.x, from.y);
-            var toNode = _grid.GetNode(to.x, to.y);
-            bool fromWalkable = fromNode != null && fromNode.Walkable;
-            bool toWalkable = toNode != null && toNode.Walkable;
-
-            if (fromNode != null) fromNode.Walkable = true;
-            if (toNode != null) toNode.Walkable = true;
-
-            var path = _seeker.StartPath((Vector3)CellToWorld(from), (Vector3)CellToWorld(to));
-            path.BlockUntilCalculated();
-
-            if (fromNode != null) fromNode.Walkable = fromWalkable;
-            if (toNode != null) toNode.Walkable = toWalkable;
-
-            if (!path.error && path.vectorPath != null)
+            var open = new List<Vector2Int> { from };
+            var cameFrom = new Dictionary<Vector2Int, Vector2Int>();
+            var gScore = new Dictionary<Vector2Int, int>
             {
-                foreach (var waypoint in path.vectorPath)
+                [from] = 0
+            };
+
+            while (open.Count > 0)
+            {
+                var current = GetLowestScoreCell(open, gScore, to);
+                if (current == to)
                 {
-                    result.Add(WorldToCell(waypoint));
+                    return ReconstructPath(cameFrom, current, from);
                 }
-                if (result.Count > 0 && result[0] == from) result.RemoveAt(0);
+
+                open.Remove(current);
+
+                foreach (var offset in NeighborOffsets)
+                {
+                    var neighbor = current + offset;
+                    if (!CanTraverseCell(neighbor, from)) continue;
+
+                    int tentativeScore = gScore[current] + 1;
+                    if (gScore.TryGetValue(neighbor, out int knownScore) && tentativeScore >= knownScore)
+                        continue;
+
+                    cameFrom[neighbor] = current;
+                    gScore[neighbor] = tentativeScore;
+                    if (!open.Contains(neighbor))
+                    {
+                        open.Add(neighbor);
+                    }
+                }
             }
 
             return result;
+        }
+
+        private bool CanTraverseCell(Vector2Int cell, Vector2Int startCell)
+        {
+            if (!IsCellInBounds(cell)) return false;
+            if (cell == startCell) return true;
+
+            var node = _grid.GetNode(cell.x, cell.y);
+            return node != null && node.Walkable;
+        }
+
+        private static Vector2Int GetLowestScoreCell(List<Vector2Int> open, Dictionary<Vector2Int, int> gScore, Vector2Int target)
+        {
+            var best = open[0];
+            int bestScore = GetEstimatedTotalScore(best, gScore, target);
+
+            for (int i = 1; i < open.Count; i++)
+            {
+                var candidate = open[i];
+                int score = GetEstimatedTotalScore(candidate, gScore, target);
+                if (score >= bestScore) continue;
+
+                best = candidate;
+                bestScore = score;
+            }
+
+            return best;
+        }
+
+        private static int GetEstimatedTotalScore(Vector2Int cell, Dictionary<Vector2Int, int> gScore, Vector2Int target)
+        {
+            return gScore[cell] + Mathf.Abs(target.x - cell.x) + Mathf.Abs(target.y - cell.y);
+        }
+
+        private static List<Vector2Int> ReconstructPath(Dictionary<Vector2Int, Vector2Int> cameFrom, Vector2Int current, Vector2Int start)
+        {
+            var path = new List<Vector2Int> { current };
+            while (cameFrom.TryGetValue(current, out var previous))
+            {
+                current = previous;
+                if (current == start) break;
+                path.Add(current);
+            }
+
+            path.Reverse();
+            return path;
         }
 
         // ============================================================

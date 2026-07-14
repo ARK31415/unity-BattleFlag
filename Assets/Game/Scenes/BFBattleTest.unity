@@ -280,12 +280,12 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2820824893170756309, guid: 08ab5110200c6bd48924248d1097e7cd, type: 3}
-  m_Color: {r: 0.3, g: 0.5, b: 0.9, a: 1}
+  m_Sprite: {fileID: -3858063850402955622, guid: 154d8ea5265de834284f783d0ff85680, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -320,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 34048086}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.61, y: -2.24, z: 0}
+  m_LocalPosition: {x: -5.52, y: -2.22, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -364,8 +364,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 0.16, y: 0.18}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1184,9 +1184,9 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2820824893170756309, guid: 08ab5110200c6bd48924248d1097e7cd, type: 3}
+  m_Sprite: {fileID: 8159891127022863514, guid: 02d23cf4f131a8b4aba1d1113ff1bb63, type: 3}
   m_Color: {r: 0.9, g: 0.25, b: 0.25, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -1268,7 +1268,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1302,7 +1302,7 @@ Animator:
   m_GameObject: {fileID: 128874080}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 129679f22c7d21d45a77d56f50eab1c2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 55aac628ce671b84b85eb8cb8b2c20e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1867,7 +1867,8 @@ MonoBehaviour:
   _unitEventChannel: {fileID: 11400000, guid: 12cf428f9e16f68448e0e37e2aa8a394, type: 2}
   _boardManager: {fileID: 1133210495}
   _turnManager: {fileID: 282620380}
-  _resolutionManager: {fileID: 0}
+  _resolutionManager: {fileID: 282620382}
+  _secondsPerMoveCell: 0.2
 --- !u!114 &282620380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1913,7 +1914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab982903504334f8bebcb1b1fb89ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Managers.BFBattleResolutionManager
-  _unitManager: {fileID: 0}
+  _unitManager: {fileID: 282620379}
 --- !u!1 &287589363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,9 +3555,9 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2820824893170756309, guid: 08ab5110200c6bd48924248d1097e7cd, type: 3}
+  m_Sprite: {fileID: -3858063850402955622, guid: 154d8ea5265de834284f783d0ff85680, type: 3}
   m_Color: {r: 0.9, g: 0.25, b: 0.25, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -3638,7 +3639,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3672,7 +3673,7 @@ Animator:
   m_GameObject: {fileID: 682676951}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5908aeb44b4066f45a51247e9681bc61, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5211b10c6bcf897418d5041598aa12ff, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5138,7 +5139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::AstarPath
   version: 1073741824
   data:
-    dataString: UEsDBBQAAAgIAABAIexfwd0p3wIAABsGAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VNtu4jAQ/RXk5wXlwiXdt12gdB/aotJVH5Y+mHhCLIwd2U6BVvz7jp2EBFYrVcI9cz1nZvJFuDQFpFbphebsUTEg33vEvcm3Xmt8gCPdKrnin9D4vHFmc+dEvc8LtVwhHrowo/ZgNU9/yK1wzgGCpeSZ0vs528JUGWsQzqgwgCatrIuWCH31yBF/+ncu5ISvaOJen/i6C3pnfKYgLejWNRhEYRRMRlEc1yGITJIwHo/qwP54MB6NojAcjef9YOKzlDIVdF8Ac5TaZGFTNvFeErnWDo5XqoTgpm6U2FPhhZjSwpRIEx0Yp0jcd+f8c+Db3DoS3eDnLDNga1U0Pc24Rv2qrOSnqkTdU7Or2vqgovQa+o6qlI//WPuhN2da7R+aqmHgKticp7sXekqpsR3Nu/Dsuu1SHqjY0Y2Atxzkk1poVUqGRqtLF1oaiGbtvxdi0xzSXYtXrd6AZdGZXDPiQZwMw2Qc+/E0Q0NCZy/EcWWhuJAKBsMW/W3ArITyc6gLOEuN+B0CjTP8heT8hpm6LKKuY4x/pdvuKtaGe66NRVOtSI063yUOCxjIFOoh9J2DdO1tVKldLnKPDzfEtLRTpSXoboUCJBX2tMSM9nYbbmz/j7qn7irr7mpbc2w3IR5u/YPgxrRUh8vkNe6x8cvdvP68uyGYXB0eweTPpRVcdtR2hicUeKqkrJa4S7UJW5U6o2knzMLRlhpm1FJfDdvBbWPdUJTQR8hSCLfYnoDvCAm4v3cncE6xrvAweVLSH+HVr29/W3J2fS7kLsmG6YSlSTahQRxt+lEWT2AzTIZJlgZhPCT+nrhEualYVnrVU8Ltki0XibfTfDN7C00Lf79M08OCf+6VaT25zNQq1QDyucpwIQsai+B3hs0ZR5orsJZLv5fka02ESnfA1pdEay/s/Gg1XbdZ1qTgH8o6ZE2m/iO5Jg6+3Ceu7geHgyt+lQwEjg7YKxewp4UzBWdy/gtQSwMEFAAACAgAAEAh7D0hWttsAAAAdwAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw1TPRM9NRUEovSizIKAYKGII4pZkpIHa0kqVFmkmyeUqyRZp5ooGxUZKuUZqxeWqSiYWJRVqygaGxiVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAQCHsX8HdKd8CAAAbBgAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAQCHsPSFa22wAAAB3AAAACQAkAAAAAAAAAAAAAAAsAwAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAOMDAAAAAA==
+    dataString: UEsDBBQAAAgIAABAIexl3Psx0wIAAA4GAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1v4jAQ/SvI56VKCC10b7tA6R7aotJVD0sPJp4QC2NH/ijQqv99x45DAquVKuG+mTczbz7ySbg0FeRW6bnm7EExIN97xL/Jt15rvIcD3Si55B/Q+LxyZkvvRIPPM7VcIZ56mlE7sJrnP+RGeOcEQSd5ofRuxjYwUcYahAsqDKBJK+vZEqHPHjngT//WU474Goz86wNft0nvC585SAu6dU2uBukgGV0PsixSEBmN0+zmOhJrnpO5oLsKmBfR0tMmUVq7SZQXPbyUXAnBTayN2GMVtE9oZRwqQwfGKWoNBXn/EvimtL7uLvmpKAzY2AhNj1OusWV1VPJT1X3cUbOt63qnwsGp8Drkwz/WfhrMhVa7+yZrmvgMtuT59pkec2psp81deHpetpN7KrZ0LeC1BPmo5lo5ydBotfNUZ2Awbf89CZuUkG9bvC71AnRVZ1jNVK+y8TAd32Q3s34yinPygr5CIw5LC9VJVHI1bNHfBsxSqDCHmMBbIhLWBjTO8BeKC0tlYlpEfcXIf6Gb7vZFwx3XxqIpdiSi3neBwwIGMoc4hL53kL68tXLaxyJ3+PBDzJ2dKC1BdzNUIKmwxwVGtJfbcGH7P+uO+kOM1UVbc18XlAC3/klyYVqo/WnyGvfYhOVuXn/e/BBMqfYPYMonZwWXnW57wyM2eKKkrJe4K7WhLZ0uaN6hWThYp2FKLQ3ZsBzcNtalYgsDQzoh/GIHAaEiFOD/3nyDS4p5RYDJo5LhCM9+Q/kbx9n5uZDbcTHMRywfFyOaZIN1f1BkI1gPx8NxkSdpNiThnrjEdlOxqPsVp4TbJVstEm+n+Uz25ppW4X6Zpvs5/9gp03pyWahlrgHkUx3hJBY0JsHvDJsxjjKXYC2XYS/J54oIlW+BrU6BVqGxs4PVdNVGWZGKvyvrkRWZhO/iinj4dJ+4uu8c9j75WTAQODpgL1zAjlbelHyRr79QSwMEFAAACAgAAEAh7D0hWttsAAAAdwAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw1TPRM9NRUEovSizIKAYKGII4pZkpIHa0kqVFmkmyeUqyRZp5ooGxUZKuUZqxeWqSiYWJRVqygaGxiVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAQCHsZdz7MdMCAAAOBgAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAQCHsPSFa22wAAAB3AAAACQAkAAAAAAAAAAAAAAAgAwAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAANcDAAAAAA==
     file_cachedStartup: {fileID: 0}
     cacheStartup: 0
   showNavGraphs: 1
@@ -11596,8 +11597,8 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2820824893170756309, guid: 08ab5110200c6bd48924248d1097e7cd, type: 3}
-  m_Color: {r: 0.3, g: 0.5, b: 0.9, a: 1}
+  m_Sprite: {fileID: 8159891127022863514, guid: 02d23cf4f131a8b4aba1d1113ff1bb63, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11680,7 +11681,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -11714,7 +11715,7 @@ Animator:
   m_GameObject: {fileID: 1856406417}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5211b10c6bcf897418d5041598aa12ff, type: 2}
+  m_Controller: {fileID: 9100000, guid: 55aac628ce671b84b85eb8cb8b2c20e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

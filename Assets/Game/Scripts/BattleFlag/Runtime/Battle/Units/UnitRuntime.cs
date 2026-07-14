@@ -147,8 +147,8 @@ namespace BF.Game.Runtime.Battle.Units
             _hasQueuedAttack = true;
             _hasResolvedQueuedAttack = false;
 
-            ChangeState(_attackState);
             _attackState.SetTarget(target);
+            ChangeState(_attackState);
 
             Debug.Log($"[UnitRuntime] {DisplayName} 开始待结算攻击 -> {target.DisplayName}");
             return true;

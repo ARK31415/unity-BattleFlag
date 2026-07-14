@@ -105,7 +105,7 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             var result = _attackResolver.Resolve(context);
-            _pendingAttacks[attacker] = context.AsConsumed();
+            _pendingAttacks.Remove(attacker);
 
             Debug.Log($"[BFBattleResolutionManager] 攻击结算：{result.Attacker.DisplayName} -> {result.Target.DisplayName}，伤害 {result.FinalDamage}，目标剩余 HP {result.TargetRemainingHp}");
 

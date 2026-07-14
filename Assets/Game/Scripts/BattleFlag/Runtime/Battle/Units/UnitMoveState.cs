@@ -8,12 +8,10 @@ namespace BF.Game.Runtime.Battle.Units
     /// </summary>
     public class UnitMoveState : BaseUnitState
     {
-        private Vector2Int _targetCell;
-        private bool _isMoving;
+        public Vector2Int TargetCell { get; private set; }
 
         public override void OnEnter()
         {
-            _isMoving = false;
         }
 
         public override void LogicUpdate()
@@ -28,7 +26,6 @@ namespace BF.Game.Runtime.Battle.Units
 
         public override void OnExit()
         {
-            _isMoving = false;
         }
 
         /// <summary>
@@ -36,8 +33,7 @@ namespace BF.Game.Runtime.Battle.Units
         /// </summary>
         public void SetTarget(Vector2Int targetCell)
         {
-            _targetCell = targetCell;
-            _isMoving = true;
+            TargetCell = targetCell;
         }
     }
 }

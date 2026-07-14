@@ -22,14 +22,28 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private bool _isMoveMode;
 
+        private void OnDestroy()
+        {
+            if (_unitManager != null)
+            {
+                _unitManager.OnUnitMoveCompleted -= UnitManager_OnUnitMoveCompleted;
+            }
+        }
+
         private void Start()
         {
             if (_camera == null) _camera = Camera.main;
+
+            if (_unitManager != null)
+            {
+                _unitManager.OnUnitMoveCompleted += UnitManager_OnUnitMoveCompleted;
+            }
         }
 
         private void Update()
         {
             if (_turnManager == null || _unitManager == null) return;
+            if (_unitManager.IsActionLocked) return;
             if (_turnManager.CurrentPhase != BattlePhase.PlayerTurn) return;
 
             var mouse = Mouse.current;
@@ -114,10 +128,10 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             var reachable = _unitManager.GetReachableCellsForSelected();
             if (!reachable.Contains(targetCell)) return;
 
-            _unitManager.TryMoveUnit(targetCell);
+            if (!_unitManager.TryMoveUnit(targetCell)) return;
+
             _isMoveMode = false;
             _boardManager?.ResetCellColors();
-            HighlightAttackTargets();
         }
 
         private void HighlightAttackTargets()
@@ -126,8 +140,20 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             _boardManager?.HighlightAttackTargets(targets);
         }
 
+        private void UnitManager_OnUnitMoveCompleted(UnitRuntime unit)
+        {
+            if (_turnManager == null || _unitManager == null) return;
+            if (_turnManager.CurrentPhase != BattlePhase.PlayerTurn) return;
+            if (_unitManager.SelectedUnit != unit) return;
+
+            _boardManager?.ResetCellColors();
+            HighlightAttackTargets();
+        }
+
         public void CancelSelection()
         {
+            if (_unitManager != null && _unitManager.IsActionLocked) return;
+
             _unitManager?.DeselectUnit();
             _isMoveMode = false;
             _boardManager?.ResetCellColors();
@@ -135,6 +161,8 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         public void OnEndTurnClicked()
         {
+            if (_unitManager != null && _unitManager.IsActionLocked) return;
+
             CancelSelection();
             _turnManager?.EndTurn();
         }

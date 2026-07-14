@@ -1,15 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using BF.Game.Runtime.Battle.Events;
+using BF.Game.Runtime.Battle.Presentation;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
 
 namespace BF.Game.Runtime.Battle.Managers
 {
     /// <summary>
-    /// 单位管理器。维护单位列表、管理选中状态、执行玩家命令、
-    /// 驱动敌方 AI、判定胜负、判断玩家是否仍有合法操作（Spec 第 3-6 节）。
-    /// 不负责棋盘绘制、阶段切换、玩家输入处理。
+    /// 单位管理器。维护单位列表、玩家选择、移动/攻击命令、敌方 AI 行动与胜负判定。
     /// </summary>
     public class BFBattleUnitManager : MonoBehaviour
     {
@@ -21,51 +21,72 @@ namespace BF.Game.Runtime.Battle.Managers
         [SerializeField] private BFBattleTurnManager _turnManager;
         [SerializeField] private BFBattleResolutionManager _resolutionManager;
 
+        [Header("Movement")]
+        [SerializeField] private float _secondsPerMoveCell = 0.2f;
+
+        private Coroutine _activeMoveCoroutine;
+        private Coroutine _enemyTurnCoroutine;
+        private UnitRuntime _activeMovingUnit;
+        private bool _isActionLocked;
+
         /// <summary>战场上所有单位。</summary>
         public List<UnitRuntime> AllUnits { get; private set; } = new();
 
         /// <summary>当前选中的玩家单位。</summary>
         public UnitRuntime SelectedUnit { get; private set; }
 
-        /// <summary>战斗结果（全灭后设置）。</summary>
+        /// <summary>战斗结果。</summary>
         public BattleResult Result { get; private set; }
 
-        /// <summary>选中事件。</summary>
+        /// <summary>是否有移动或行动表现正在执行。</summary>
+        public bool IsActionLocked => _isActionLocked;
+
         public event Action<UnitRuntime> OnUnitSelected;
-        /// <summary>取消选中事件。</summary>
         public event Action<UnitRuntime> OnUnitDeselected;
-        /// <summary>战斗结束事件。</summary>
+        public event Action<UnitRuntime> OnUnitMoveCompleted;
         public event Action<BattleResult> OnBattleEnded;
 
-        // ============================================================
-        // 单位注册
-        // ============================================================
+        private void OnDisable()
+        {
+            if (_activeMoveCoroutine != null)
+            {
+                StopCoroutine(_activeMoveCoroutine);
+                _activeMoveCoroutine = null;
+            }
 
-        /// <summary>注册单位到管理器。</summary>
+            if (_enemyTurnCoroutine != null)
+            {
+                StopCoroutine(_enemyTurnCoroutine);
+                _enemyTurnCoroutine = null;
+            }
+
+            RestoreInterruptedMove();
+            _isActionLocked = false;
+        }
+
         public void RegisterUnit(UnitRuntime unit)
         {
             if (unit == null || AllUnits.Contains(unit)) return;
+
             AllUnits.Add(unit);
+            unit.GetComponent<BFUnitAnimationPresenter>()?.ApplyInitialFacing();
             Debug.Log($"[BFBattleUnitManager] Registered: {unit.DisplayName} ({unit.Faction})");
         }
 
-        // ============================================================
-        // 阵营查询
-        // ============================================================
-
-        /// <summary>获取指定阵营的存活单位列表。</summary>
         public List<UnitRuntime> GetAliveUnitsByFaction(UnitFaction faction)
         {
             var result = new List<UnitRuntime>();
-            foreach (var u in AllUnits)
+            foreach (var unit in AllUnits)
             {
-                if (u != null && u.Faction == faction && u.IsAlive)
-                    result.Add(u);
+                if (unit != null && unit.Faction == faction && unit.IsAlive)
+                {
+                    result.Add(unit);
+                }
             }
+
             return result;
         }
 
-        /// <summary>重置所有单位回合行动点。</summary>
         public void ResetAllUnitsForNewTurn()
         {
             foreach (var unit in AllUnits)
@@ -74,13 +95,9 @@ namespace BF.Game.Runtime.Battle.Managers
             }
         }
 
-        // ============================================================
-        // 选中管理
-        // ============================================================
-
-        /// <summary>尝试选中单位。</summary>
         public bool TrySelectUnit(UnitRuntime unit)
         {
+            if (_isActionLocked) return false;
             if (unit == null || !unit.IsAlive) return false;
             if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.PlayerTurn) return false;
             if (unit.Faction != UnitFaction.Player) return false;
@@ -94,14 +111,16 @@ namespace BF.Game.Runtime.Battle.Managers
                 UnitId = unit.UnitId,
                 EventType = "Selected"
             });
+
             Debug.Log($"[BFBattleUnitManager] Selected: {unit.DisplayName}, AP: {unit.RemainingActionPoints}");
             return true;
         }
 
-        /// <summary>取消选中。</summary>
         public void DeselectUnit()
         {
+            if (_isActionLocked) return;
             if (SelectedUnit == null) return;
+
             var old = SelectedUnit;
             SelectedUnit = null;
             OnUnitDeselected?.Invoke(old);
@@ -112,159 +131,71 @@ namespace BF.Game.Runtime.Battle.Managers
             });
         }
 
-        // ============================================================
-        // 玩家命令：移动
-        // ============================================================
-
-        /// <summary>
-        /// 尝试将选中单位移动到目标格子。
-        /// 每格消耗 1 行动点。
-        /// </summary>
         public bool TryMoveUnit(Vector2Int targetCell)
         {
+            if (_isActionLocked) return false;
             if (SelectedUnit == null || SelectedUnit.HasActed) return false;
             if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.PlayerTurn) return false;
-            if (_boardManager == null)
-            {
-                Debug.LogError("[BFBattleUnitManager] BoardManager 未绑定。");
-                return false;
-            }
+            if (!TryGetMovePath(SelectedUnit, targetCell, out var path)) return false;
 
-            int dist = Mathf.Abs(targetCell.x - SelectedUnit.GridPosition.x)
-                     + Mathf.Abs(targetCell.y - SelectedUnit.GridPosition.y);
+            _activeMoveCoroutine = StartCoroutine(MoveUnitAlongPathCoroutine(
+                SelectedUnit,
+                path,
+                refreshPlayerLegalActions: true,
+                clearSelectionWhenActed: true,
+                manageActionLock: true));
 
-            if (dist > SelectedUnit.RemainingActionPoints)
-            {
-                Debug.LogWarning($"[BFBattleUnitManager] 距离 {dist} 超过剩余 AP {SelectedUnit.RemainingActionPoints}");
-                return false;
-            }
-
-            if (!_boardManager.IsCellReachable(SelectedUnit.GridPosition, targetCell,
-                    SelectedUnit.RemainingActionPoints, SelectedUnit.UnitId))
-            {
-                Debug.LogWarning($"[BFBattleUnitManager] 目标格子 {targetCell} 不可达。");
-                return false;
-            }
-
-            _boardManager.ReleaseCell(SelectedUnit.GridPosition, SelectedUnit.UnitId);
-            _boardManager.OccupyCell(targetCell, SelectedUnit.UnitId);
-            SelectedUnit.GridPosition = targetCell;
-            SelectedUnit.transform.position = (Vector3)_boardManager.CellToWorld(targetCell);
-            SelectedUnit.ConsumeActionPoints(dist);
-
-            _unitEventChannel?.Raise(new BFUnitEventData
-            {
-                UnitId = SelectedUnit.UnitId,
-                EventType = "Moved",
-                TargetId = $"{targetCell.x},{targetCell.y}",
-                Value = dist
-            });
-            Debug.Log($"[BFBattleUnitManager] {SelectedUnit.DisplayName} moved {dist} to {targetCell}, AP left: {SelectedUnit.RemainingActionPoints}");
-
-            if (SelectedUnit.HasActed) DeselectUnit();
-            _turnManager?.RefreshPlayerLegalActions();
             return true;
         }
 
-        // ============================================================
-        // 玩家命令：攻击
-        // ============================================================
-
-        /// <summary>
-        /// 尝试用选中单位攻击目标。
-        /// 攻击消耗按职业：战士 2 点，法师 3 点（Spec 第 5 节）。
-        /// </summary>
         public bool TryAttack(UnitRuntime target)
         {
+            if (_isActionLocked) return false;
             if (SelectedUnit == null || SelectedUnit.HasActed) return false;
             if (target == null || !target.IsAlive || target.Faction == SelectedUnit.Faction) return false;
             if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.PlayerTurn) return false;
 
-            int dist = Mathf.Abs(target.GridPosition.x - SelectedUnit.GridPosition.x)
-                     + Mathf.Abs(target.GridPosition.y - SelectedUnit.GridPosition.y);
-            if (dist > SelectedUnit.AttackRange)
+            if (!TryStartAttack(SelectedUnit, target, allowPartialCost: false, out var attackCost))
             {
-                Debug.LogWarning($"[BFBattleUnitManager] 目标不在攻击范围内（距离: {dist}）。");
                 return false;
             }
 
-            int attackCost = SelectedUnit.AttackCost;
-            if (SelectedUnit.RemainingActionPoints < attackCost)
-            {
-                Debug.LogWarning($"[BFBattleUnitManager] AP 不足：需 {attackCost}，剩余 {SelectedUnit.RemainingActionPoints}");
-                return false;
-            }
-
-            if (_resolutionManager == null)
-            {
-                Debug.LogError("[BFBattleUnitManager] ResolutionManager 未绑定。");
-                return false;
-            }
-
-            if (!_resolutionManager.TryQueueAttack(SelectedUnit, target))
-            {
-                Debug.LogWarning("[BFBattleUnitManager] 攻击登记失败。");
-                return false;
-            }
-
-            SelectedUnit.ConsumeActionPoints(attackCost);
-
-            _unitEventChannel?.Raise(new BFUnitEventData
-            {
-                UnitId = SelectedUnit.UnitId,
-                EventType = "Attacked",
-                TargetId = target.UnitId,
-                Value = attackCost
-            });
-
-            Debug.Log($"[BFBattleUnitManager] {SelectedUnit.DisplayName} 发起攻击 -> {target.DisplayName}，AP 剩余: {SelectedUnit.RemainingActionPoints}");
-
-            SelectedUnit.BeginQueuedAttack(target);
-
-            if (SelectedUnit.HasActed) DeselectUnit();
-            _turnManager?.RefreshPlayerLegalActions();
+            _isActionLocked = true;
+            RaiseUnitActionEvent(SelectedUnit, "Attacked", target.UnitId, attackCost);
+            Debug.Log($"[BFBattleUnitManager] {SelectedUnit.DisplayName} 发起攻击 -> {target.DisplayName}, AP 剩余: {SelectedUnit.RemainingActionPoints}");
             return true;
         }
 
-        // ============================================================
-        // 可达格 / 可攻击目标查询
-        // ============================================================
-
-        /// <summary>获取选中单位的可达格列表。</summary>
         public List<Vector2Int> GetReachableCellsForSelected()
         {
             if (SelectedUnit == null || _boardManager == null) return new List<Vector2Int>();
+
             return _boardManager.GetReachableCells(
                 SelectedUnit.GridPosition,
                 SelectedUnit.RemainingActionPoints,
                 SelectedUnit.UnitId);
         }
 
-        /// <summary>获取选中单位的可攻击目标列表。</summary>
         public List<UnitRuntime> GetAttackableTargets()
         {
             var targets = new List<UnitRuntime>();
             if (SelectedUnit == null) return targets;
 
-            foreach (var u in AllUnits)
+            foreach (var unit in AllUnits)
             {
-                if (u == null || !u.IsAlive || u == SelectedUnit || u.Faction == SelectedUnit.Faction)
+                if (unit == null || !unit.IsAlive || unit == SelectedUnit || unit.Faction == SelectedUnit.Faction)
                     continue;
-                int d = Mathf.Abs(u.GridPosition.x - SelectedUnit.GridPosition.x)
-                      + Mathf.Abs(u.GridPosition.y - SelectedUnit.GridPosition.y);
-                if (d <= SelectedUnit.AttackRange)
-                    targets.Add(u);
+
+                int distance = GetManhattanDistance(unit.GridPosition, SelectedUnit.GridPosition);
+                if (distance <= SelectedUnit.AttackRange)
+                {
+                    targets.Add(unit);
+                }
             }
+
             return targets;
         }
 
-        // ============================================================
-        // 合法操作检测（Spec 第 6 节）
-        // ============================================================
-
-        /// <summary>
-        /// 判断玩家方是否仍有合法操作（任何存活单位还有可达格 或 可攻击目标）。
-        /// </summary>
         public bool PlayerHasLegalAction()
         {
             var players = GetAliveUnitsByFaction(UnitFaction.Player);
@@ -277,31 +208,23 @@ namespace BF.Game.Runtime.Battle.Managers
             {
                 if (unit.RemainingActionPoints <= 0) continue;
 
-                // 检查是否有可达格
                 var reachable = _boardManager.GetReachableCells(
-                    unit.GridPosition, unit.RemainingActionPoints, unit.UnitId);
+                    unit.GridPosition,
+                    unit.RemainingActionPoints,
+                    unit.UnitId);
                 if (reachable.Count > 0) return true;
 
-                // 检查是否有攻击目标在范围内 且 AP 足够发动攻击
-                if (unit.RemainingActionPoints >= unit.AttackCost)
+                if (unit.RemainingActionPoints < unit.AttackCost) continue;
+                foreach (var enemy in enemies)
                 {
-                    foreach (var enemy in enemies)
-                    {
-                        int d = Mathf.Abs(enemy.GridPosition.x - unit.GridPosition.x)
-                              + Mathf.Abs(enemy.GridPosition.y - unit.GridPosition.y);
-                        if (d <= unit.AttackRange) return true;
-                    }
+                    int distance = GetManhattanDistance(enemy.GridPosition, unit.GridPosition);
+                    if (distance <= unit.AttackRange) return true;
                 }
             }
 
             return false;
         }
 
-        // ============================================================
-        // 胜负判定
-        // ============================================================
-
-        /// <summary>检查战斗结束条件。</summary>
         public void CheckBattleEndCondition()
         {
             if (Result != null && Result.HasResult) return;
@@ -323,134 +246,12 @@ namespace BF.Game.Runtime.Battle.Managers
             }
         }
 
-        // ============================================================
-        // 敌方 AI（Spec 第 3 节）
-        // ============================================================
-
-        /// <summary>
-        /// 执行敌方回合。每个敌方单位按列表顺序行动：
-        /// 1. 优先攻击范围内的玩家目标
-        /// 2. 否则向最近玩家目标移动
-        /// 任一方全灭 → 判定胜负。
-        /// </summary>
         public void ExecuteEnemyTurn()
         {
-            var enemies = GetAliveUnitsByFaction(UnitFaction.Enemy);
-            var players = GetAliveUnitsByFaction(UnitFaction.Player);
-
-            if (enemies.Count == 0 || players.Count == 0)
-            {
-                CheckBattleEndCondition();
-                return;
-            }
-
-            foreach (var enemy in enemies)
-            {
-                if (!enemy.IsAlive) continue;
-
-                var nearest = FindNearestPlayer(enemy, players);
-                if (nearest == null) break;
-
-                // 优先攻击
-                if (TryEnemyAttack(enemy, nearest))
-                    continue;
-
-                // 否则移动靠近
-                if (enemy.MovementHandler == null) continue;
-
-                var reachable = enemy.MovementHandler.GetReachableCells(
-                    enemy.GridPosition, enemy.MaxActionPoints, enemy.UnitId);
-                if (reachable.Count == 0) continue;
-
-                Vector2Int start = enemy.GridPosition;
-                Vector2Int best = FindBestReachableCell(reachable, nearest.GridPosition);
-
-                enemy.MovementHandler.ReleaseCell(enemy.GridPosition, enemy.UnitId);
-                enemy.MovementHandler.OccupyCell(best, enemy.UnitId);
-                enemy.GridPosition = best;
-                enemy.transform.position = (Vector3)_boardManager.CellToWorld(best);
-
-                int moveDistance = Mathf.Abs(best.x - start.x) + Mathf.Abs(best.y - start.y);
-                enemy.ConsumeActionPoints(moveDistance);
-                Debug.Log($"[BattleAI] {enemy.DisplayName} moved {moveDistance} cells to {best}");
-
-                // 移动后再尝试攻击
-                TryEnemyAttack(enemy, nearest);
-            }
-
-            CheckBattleEndCondition();
-            if (Result == null || !Result.HasResult)
-                _turnManager?.EndTurn();
+            if (_enemyTurnCoroutine != null || _isActionLocked) return;
+            _enemyTurnCoroutine = StartCoroutine(ExecuteEnemyTurnCoroutine());
         }
 
-        private UnitRuntime FindNearestPlayer(UnitRuntime enemy, List<UnitRuntime> players)
-        {
-            UnitRuntime nearest = null;
-            float minDistance = float.MaxValue;
-
-            foreach (var player in players)
-            {
-                if (!player.IsAlive) continue;
-                float distance = Vector2Int.Distance(enemy.GridPosition, player.GridPosition);
-                if (distance >= minDistance) continue;
-                minDistance = distance;
-                nearest = player;
-            }
-
-            return nearest;
-        }
-
-        private Vector2Int FindBestReachableCell(List<Vector2Int> reachable, Vector2Int target)
-        {
-            Vector2Int best = reachable[0];
-            float bestDistance = float.MaxValue;
-
-            foreach (var cell in reachable)
-            {
-                float distance = Vector2Int.Distance(cell, target);
-                if (distance >= bestDistance) continue;
-                bestDistance = distance;
-                best = cell;
-            }
-
-            return best;
-        }
-
-        private bool TryEnemyAttack(UnitRuntime enemy, UnitRuntime target)
-        {
-            if (enemy == null || target == null || !enemy.IsAlive || !target.IsAlive)
-                return false;
-
-            int distance = Mathf.Abs(target.GridPosition.x - enemy.GridPosition.x)
-                         + Mathf.Abs(target.GridPosition.y - enemy.GridPosition.y);
-            if (distance > enemy.AttackRange) return false;
-
-            int cost = Mathf.Min(enemy.AttackCost, enemy.RemainingActionPoints);
-            if (cost <= 0) return false;
-
-            if (_resolutionManager == null)
-            {
-                Debug.LogError("[BFBattleUnitManager] ResolutionManager 未绑定。");
-                return false;
-            }
-
-            if (!_resolutionManager.TryQueueAttack(enemy, target))
-            {
-                Debug.LogWarning("[BFBattleUnitManager] 敌方攻击登记失败。");
-                return false;
-            }
-
-            enemy.ConsumeActionPoints(cost);
-            enemy.BeginQueuedAttack(target);
-
-            Debug.Log($"[BattleAI] {enemy.DisplayName} 发起攻击 -> {target.DisplayName}");
-
-            return true;
-        }
-
-        /// <summary>
-        /// 处理攻击结算完成后的事件（由 BFBattleResolutionManager 调用）。
-        /// </summary>
         public void HandleAttackResolved(BF.Game.Runtime.Battle.Commands.BFAttackResolveResult result)
         {
             if (result.Attacker == null || result.Target == null) return;
@@ -473,10 +274,336 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             result.Attacker.NotifyAttackResolved();
+            if (SelectedUnit != null && SelectedUnit.HasActed)
+            {
+                DeselectUnitIgnoringLock();
+            }
 
-            Debug.Log($"[BFBattleUnitManager] 攻击结算完成：{result.Attacker.DisplayName} -> {result.Target.DisplayName}，伤害 {result.FinalDamage}，目标剩余 HP {result.TargetRemainingHp}");
+            _isActionLocked = _enemyTurnCoroutine != null;
+            _turnManager?.RefreshPlayerLegalActions();
+
+            Debug.Log($"[BFBattleUnitManager] 攻击结算完成：{result.Attacker.DisplayName} -> {result.Target.DisplayName}, 伤害 {result.FinalDamage}, 目标剩余 HP {result.TargetRemainingHp}");
+            CheckBattleEndCondition();
+        }
+
+        private IEnumerator ExecuteEnemyTurnCoroutine()
+        {
+            _isActionLocked = true;
+
+            var enemies = GetAliveUnitsByFaction(UnitFaction.Enemy);
+            var players = GetAliveUnitsByFaction(UnitFaction.Player);
+
+            if (enemies.Count == 0 || players.Count == 0)
+            {
+                CheckBattleEndCondition();
+                FinishEnemyTurn();
+                yield break;
+            }
+
+            foreach (var enemy in enemies)
+            {
+                if (enemy == null || !enemy.IsAlive) continue;
+
+                var nearest = FindNearestPlayer(enemy, players);
+                if (nearest == null) break;
+
+                if (TryStartAttack(enemy, nearest, allowPartialCost: true, out _))
+                {
+                    yield return WaitForAttackToFinishCoroutine(enemy);
+                    continue;
+                }
+
+                var reachable = _boardManager.GetReachableCells(
+                    enemy.GridPosition,
+                    enemy.RemainingActionPoints,
+                    enemy.UnitId);
+                if (reachable.Count > 0)
+                {
+                    var best = FindBestReachableCell(reachable, nearest.GridPosition);
+                    var path = _boardManager.FindPath(enemy.GridPosition, best, enemy.UnitId);
+                    if (path.Count > 0)
+                    {
+                        yield return MoveUnitAlongPathCoroutine(
+                            enemy,
+                            path,
+                            refreshPlayerLegalActions: false,
+                            clearSelectionWhenActed: false,
+                            manageActionLock: false);
+                    }
+                }
+
+                if (enemy.IsAlive && nearest.IsAlive && TryStartAttack(enemy, nearest, allowPartialCost: true, out _))
+                {
+                    yield return WaitForAttackToFinishCoroutine(enemy);
+                }
+            }
 
             CheckBattleEndCondition();
+            FinishEnemyTurn();
+        }
+
+        private IEnumerator MoveUnitAlongPathCoroutine(
+            UnitRuntime unit,
+            List<Vector2Int> path,
+            bool refreshPlayerLegalActions,
+            bool clearSelectionWhenActed,
+            bool manageActionLock)
+        {
+            if (unit == null || path == null || path.Count == 0) yield break;
+
+            if (manageActionLock)
+            {
+                _isActionLocked = true;
+            }
+
+            var startCell = unit.GridPosition;
+            var presenter = unit.GetComponent<BFUnitAnimationPresenter>();
+            _activeMovingUnit = unit;
+            unit.GetMoveState().SetTarget(path[^1]);
+            unit.ChangeState(unit.GetMoveState());
+
+            var previousCell = startCell;
+            for (int i = 0; i < path.Count; i++)
+            {
+                if (unit == null || !unit.IsAlive || !unit.gameObject.activeInHierarchy) break;
+
+                var nextCell = path[i];
+                presenter?.FaceMovementStep(previousCell, nextCell);
+
+                Vector3 fromWorld = unit.transform.position;
+                Vector3 toWorld = (Vector3)_boardManager.CellToWorld(nextCell);
+                float elapsed = 0f;
+
+                while (elapsed < _secondsPerMoveCell)
+                {
+                    if (unit == null || !unit.IsAlive || !unit.gameObject.activeInHierarchy) break;
+
+                    elapsed += Time.deltaTime;
+                    float t = _secondsPerMoveCell <= 0f ? 1f : Mathf.Clamp01(elapsed / _secondsPerMoveCell);
+                    unit.transform.position = Vector3.Lerp(fromWorld, toWorld, t);
+                    yield return null;
+                }
+
+                if (unit == null || !unit.IsAlive || !unit.gameObject.activeInHierarchy) break;
+
+                unit.transform.position = toWorld;
+                previousCell = nextCell;
+            }
+
+            bool completed = unit != null && unit.IsAlive && unit.gameObject.activeInHierarchy && previousCell == path[^1];
+            if (completed)
+            {
+                CompleteMove(unit, startCell, previousCell, path.Count, refreshPlayerLegalActions, clearSelectionWhenActed);
+            }
+            else if (unit != null && unit.IsAlive)
+            {
+                unit.ChangeState(unit.GetIdleState());
+            }
+
+            if (manageActionLock)
+            {
+                _isActionLocked = false;
+                _activeMoveCoroutine = null;
+            }
+
+            if (_activeMovingUnit == unit)
+            {
+                _activeMovingUnit = null;
+            }
+        }
+
+        private IEnumerator WaitForAttackToFinishCoroutine(UnitRuntime unit)
+        {
+            const float timeoutSeconds = 10f;
+            float elapsed = 0f;
+
+            while (unit != null
+                   && unit.IsAlive
+                   && (unit.CurrentState is UnitAttackState || unit.HasQueuedAttack || (_resolutionManager != null && _resolutionManager.HasPendingAttack(unit)))
+                   && elapsed < timeoutSeconds)
+            {
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            if (elapsed >= timeoutSeconds)
+            {
+                Debug.LogWarning($"[BFBattleUnitManager] {unit.DisplayName} 攻击表现等待超时，请检查动画事件。");
+            }
+        }
+
+        private bool TryGetMovePath(UnitRuntime unit, Vector2Int targetCell, out List<Vector2Int> path)
+        {
+            path = null;
+            if (unit == null || _boardManager == null) return false;
+
+            path = _boardManager.FindPath(unit.GridPosition, targetCell, unit.UnitId);
+            if (path.Count == 0)
+            {
+                Debug.LogWarning($"[BFBattleUnitManager] 目标格子 {targetCell} 不可达。");
+                return false;
+            }
+
+            if (path.Count > unit.RemainingActionPoints)
+            {
+                Debug.LogWarning($"[BFBattleUnitManager] 路径成本 {path.Count} 超过剩余 AP {unit.RemainingActionPoints}");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool TryStartAttack(UnitRuntime attacker, UnitRuntime target, bool allowPartialCost, out int cost)
+        {
+            cost = 0;
+            if (attacker == null || target == null || !attacker.IsAlive || !target.IsAlive) return false;
+
+            int distance = GetManhattanDistance(target.GridPosition, attacker.GridPosition);
+            if (distance > attacker.AttackRange) return false;
+
+            cost = allowPartialCost
+                ? Mathf.Min(attacker.AttackCost, attacker.RemainingActionPoints)
+                : attacker.AttackCost;
+            if (cost <= 0 || attacker.RemainingActionPoints < cost) return false;
+
+            if (_resolutionManager == null)
+            {
+                Debug.LogError("[BFBattleUnitManager] ResolutionManager 未绑定。");
+                return false;
+            }
+
+            if (!_resolutionManager.TryQueueAttack(attacker, target))
+            {
+                Debug.LogWarning("[BFBattleUnitManager] 攻击登记失败。");
+                return false;
+            }
+
+            if (!attacker.BeginQueuedAttack(target))
+            {
+                _resolutionManager.ClearPendingAttack(attacker);
+                return false;
+            }
+
+            attacker.ConsumeActionPoints(cost);
+            return true;
+        }
+
+        private void CompleteMove(
+            UnitRuntime unit,
+            Vector2Int startCell,
+            Vector2Int targetCell,
+            int moveCost,
+            bool refreshPlayerLegalActions,
+            bool clearSelectionWhenActed)
+        {
+            _boardManager.ReleaseCell(startCell, unit.UnitId);
+            _boardManager.OccupyCell(targetCell, unit.UnitId);
+            unit.GridPosition = targetCell;
+            unit.transform.position = (Vector3)_boardManager.CellToWorld(targetCell);
+            unit.ConsumeActionPoints(moveCost);
+            unit.ChangeState(unit.GetIdleState());
+
+            RaiseUnitActionEvent(unit, "Moved", $"{targetCell.x},{targetCell.y}", moveCost);
+            Debug.Log($"[BFBattleUnitManager] {unit.DisplayName} moved {moveCost} cells to {targetCell}, AP left: {unit.RemainingActionPoints}");
+
+            if (clearSelectionWhenActed && SelectedUnit == unit && unit.HasActed)
+            {
+                DeselectUnitIgnoringLock();
+            }
+
+            if (refreshPlayerLegalActions)
+            {
+                _turnManager?.RefreshPlayerLegalActions();
+            }
+
+            OnUnitMoveCompleted?.Invoke(unit);
+        }
+
+        private void RestoreInterruptedMove()
+        {
+            if (_activeMovingUnit == null || _boardManager == null) return;
+            if (!_activeMovingUnit.IsAlive) return;
+
+            _activeMovingUnit.transform.position = (Vector3)_boardManager.CellToWorld(_activeMovingUnit.GridPosition);
+            _activeMovingUnit.ChangeState(_activeMovingUnit.GetIdleState());
+            _activeMovingUnit = null;
+        }
+
+        private void FinishEnemyTurn()
+        {
+            _enemyTurnCoroutine = null;
+            _isActionLocked = false;
+
+            if (Result == null || !Result.HasResult)
+            {
+                _turnManager?.EndTurn();
+            }
+        }
+
+        private UnitRuntime FindNearestPlayer(UnitRuntime enemy, List<UnitRuntime> players)
+        {
+            UnitRuntime nearest = null;
+            float minDistance = float.MaxValue;
+
+            foreach (var player in players)
+            {
+                if (player == null || !player.IsAlive) continue;
+
+                float distance = Vector2Int.Distance(enemy.GridPosition, player.GridPosition);
+                if (distance >= minDistance) continue;
+
+                minDistance = distance;
+                nearest = player;
+            }
+
+            return nearest;
+        }
+
+        private Vector2Int FindBestReachableCell(List<Vector2Int> reachable, Vector2Int target)
+        {
+            Vector2Int best = reachable[0];
+            float bestDistance = float.MaxValue;
+
+            foreach (var cell in reachable)
+            {
+                float distance = Vector2Int.Distance(cell, target);
+                if (distance >= bestDistance) continue;
+
+                bestDistance = distance;
+                best = cell;
+            }
+
+            return best;
+        }
+
+        private void RaiseUnitActionEvent(UnitRuntime unit, string eventType, string targetId, int value)
+        {
+            _unitEventChannel?.Raise(new BFUnitEventData
+            {
+                UnitId = unit.UnitId,
+                EventType = eventType,
+                TargetId = targetId,
+                Value = value
+            });
+        }
+
+        private void DeselectUnitIgnoringLock()
+        {
+            if (SelectedUnit == null) return;
+
+            var old = SelectedUnit;
+            SelectedUnit = null;
+            OnUnitDeselected?.Invoke(old);
+            _unitEventChannel?.Raise(new BFUnitEventData
+            {
+                UnitId = old.UnitId,
+                EventType = "Deselected"
+            });
+        }
+
+        private static int GetManhattanDistance(Vector2Int a, Vector2Int b)
+        {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
         }
     }
 }
