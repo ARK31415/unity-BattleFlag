@@ -17,6 +17,7 @@ namespace BF.Game.Runtime.Battle.Managers
         [SerializeField] private BFBattleBoardManager _boardManager;
         [SerializeField] private BFBattleUnitManager _unitManager;
         [SerializeField] private BFBattleTurnManager _turnManager;
+        [SerializeField] private BFBattleResolutionManager _resolutionManager;
 
         [Header("Input / UI")]
         [SerializeField] private BFBattleInputController _inputController;
@@ -37,6 +38,7 @@ namespace BF.Game.Runtime.Battle.Managers
             if (_boardManager == null) _boardManager = GetComponentInChildren<BFBattleBoardManager>();
             if (_unitManager == null) _unitManager = GetComponentInChildren<BFBattleUnitManager>();
             if (_turnManager == null) _turnManager = GetComponentInChildren<BFBattleTurnManager>();
+            if (_resolutionManager == null) _resolutionManager = GetComponentInChildren<BFBattleResolutionManager>();
             if (_inputController == null) _inputController = GetComponentInChildren<BFBattleInputController>();
             if (_hud == null) _hud = GetComponentInChildren<BFBattleHUD>();
         }
@@ -67,7 +69,13 @@ namespace BF.Game.Runtime.Battle.Managers
                 _unitManager?.RegisterUnit(unit);
             }
 
-            // Step 4: 启动回合循环
+            // Step 4: 确保结算层能访问 UnitManager
+            if (_resolutionManager != null && _unitManager != null)
+            {
+                _resolutionManager.SetUnitManager(_unitManager);
+            }
+
+            // Step 5: 启动回合循环
             _turnManager?.StartBattle();
 
             Debug.Log($"[BFBattleRoot] Battle initialized: {units.Count} units, " +
