@@ -1768,6 +1768,7 @@ GameObject:
   - component: {fileID: 942396856}
   - component: {fileID: 942396855}
   - component: {fileID: 942396854}
+  - component: {fileID: 942396857}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1853,6 +1854,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &942396857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942396853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6412ceff73430d04fafa354e3e1f611b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Cameras.BFBattleCameraController
+  _cinemachineCamera: {fileID: 942396855}
+  _confiner2D: {fileID: 942396854}
+  _inputContextManager: {fileID: 929349725}
+  _eventSystem: {fileID: 298831109}
+  _moveSpeed: 8
+  _zoomSpeed: 2
+  _minOrthographicSize: 4
+  _maxOrthographicSize: 12
+  _smoothTime: 0.08
+  _blockInputWhenPointerOverUI: 1
 --- !u!1 &980847279
 GameObject:
   m_ObjectHideFlags: 0

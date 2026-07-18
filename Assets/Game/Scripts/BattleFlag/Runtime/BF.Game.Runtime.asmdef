@@ -4,6 +4,7 @@
     "references": [
         "GUID:d613186e105949f1ac37a2b4ee2c1d9e",
         "GUID:75469ad4d38634e559750d17036d5f7c",
+        "Unity.Cinemachine",
         "AstarPathfindingProject",
         "PackageTools",
         "Drawing"
