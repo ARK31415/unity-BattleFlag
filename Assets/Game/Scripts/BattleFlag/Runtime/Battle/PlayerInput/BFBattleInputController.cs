@@ -1,5 +1,6 @@
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
+using BF.Game.Runtime.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +21,25 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         [Header("Camera")]
         [SerializeField] private Camera _camera;
 
+        [Header("Input")]
+        [SerializeField] private BFInputContextManager _inputContextManager;
+
+        private BFInputActionSubscription _selectSubscription;
+        private BFInputActionSubscription _cancelSubscription;
+        private BFInputActionSubscription _endTurnSubscription;
+        private InputAction _pointAction;
+        private Vector2 _lastPointerPosition;
         private bool _isMoveMode;
+
+        private void OnEnable()
+        {
+            RegisterInputActions();
+        }
+
+        private void OnDisable()
+        {
+            DisposeInputSubscriptions();
+        }
 
         private void OnDestroy()
         {
@@ -38,31 +57,69 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             {
                 _unitManager.OnUnitMoveCompleted += UnitManager_OnUnitMoveCompleted;
             }
+
+            if (_selectSubscription == null)
+                RegisterInputActions();
         }
 
-        private void Update()
+        private void RegisterInputActions()
         {
-            if (_turnManager == null || _unitManager == null) return;
-            if (_unitManager.IsActionLocked) return;
-            if (_turnManager.CurrentPhase != BattlePhase.PlayerTurn) return;
+            _inputContextManager ??= BFInputContextManager.Instance;
+            if (_inputContextManager == null) return;
 
-            var mouse = Mouse.current;
-            if (mouse == null) return;
+            _inputContextManager.TryGetAction(BFInputActionId.BattlePoint, out _pointAction);
+            _inputContextManager.TryRegisterPerformed(
+                BFInputActionId.BattleSelect,
+                _ => HandleClick(),
+                out _selectSubscription);
+            _inputContextManager.TryRegisterPerformed(
+                BFInputActionId.BattleCancel,
+                _ => HandleCancelInput(),
+                out _cancelSubscription);
+            _inputContextManager.TryRegisterPerformed(
+                BFInputActionId.BattleEndTurn,
+                _ => OnEndTurnClicked(),
+                out _endTurnSubscription);
+        }
 
-            if (mouse.leftButton.wasPressedThisFrame)
-                HandleClick();
+        private void DisposeInputSubscriptions()
+        {
+            _selectSubscription?.Dispose();
+            _cancelSubscription?.Dispose();
+            _endTurnSubscription?.Dispose();
+            _selectSubscription = null;
+            _cancelSubscription = null;
+            _endTurnSubscription = null;
+            _pointAction = null;
+        }
 
-            if (mouse.rightButton.wasPressedThisFrame)
-                CancelSelection();
+        private bool CanHandleBattleInput()
+        {
+            if (_turnManager == null || _unitManager == null) return false;
+            if (_unitManager.IsActionLocked) return false;
+            return _turnManager.CurrentPhase == BattlePhase.PlayerTurn;
+        }
+
+        private void HandleCancelInput()
+        {
+            if (!CanHandleBattleInput()) return;
+
+            CancelSelection();
         }
 
         private void HandleClick()
         {
-            var mouse = Mouse.current;
-            if (mouse == null) return;
+            if (!CanHandleBattleInput()) return;
+            if (_camera == null) _camera = Camera.main;
+            if (_camera == null) return;
+
+            Vector2 screenPosition = _pointAction != null
+                ? _pointAction.ReadValue<Vector2>()
+                : _lastPointerPosition;
+            _lastPointerPosition = screenPosition;
 
             Vector3 mouseWorld = _camera.ScreenToWorldPoint(
-                new Vector3(mouse.position.x.ReadValue(), mouse.position.y.ReadValue(), 0f));
+                new Vector3(screenPosition.x, screenPosition.y, 0f));
             mouseWorld.z = 0f;
 
             RaycastHit2D hit = Physics2D.Raycast(mouseWorld, Vector2.zero);
