@@ -3,6 +3,7 @@ using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Wit.Framework.Input;
 
 namespace BF.Game.Runtime.Battle.PlayerInput
 {
@@ -22,11 +23,11 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         [SerializeField] private Camera _camera;
 
         [Header("Input")]
-        [SerializeField] private BFInputContextManager _inputContextManager;
+        [SerializeField] private WitInputContextManager _inputContextManager;
 
-        private BFInputActionSubscription _selectSubscription;
-        private BFInputActionSubscription _cancelSubscription;
-        private BFInputActionSubscription _endTurnSubscription;
+        private WitInputActionSubscription _selectSubscription;
+        private WitInputActionSubscription _cancelSubscription;
+        private WitInputActionSubscription _endTurnSubscription;
         private InputAction _pointAction;
         private Vector2 _lastPointerPosition;
         private bool _isMoveMode;
@@ -64,20 +65,20 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void RegisterInputActions()
         {
-            _inputContextManager ??= BFInputContextManager.Instance;
+            _inputContextManager ??= WitInputContextManager.Instance;
             if (_inputContextManager == null) return;
 
-            _inputContextManager.TryGetAction(BFInputActionId.BattlePoint, out _pointAction);
+            _inputContextManager.TryGetAction(BFBattleFlagInputKeys.BattlePoint, out _pointAction);
             _inputContextManager.TryRegisterPerformed(
-                BFInputActionId.BattleSelect,
+                BFBattleFlagInputKeys.BattleSelect,
                 _ => HandleClick(),
                 out _selectSubscription);
             _inputContextManager.TryRegisterPerformed(
-                BFInputActionId.BattleCancel,
+                BFBattleFlagInputKeys.BattleCancel,
                 _ => HandleCancelInput(),
                 out _cancelSubscription);
             _inputContextManager.TryRegisterPerformed(
-                BFInputActionId.BattleEndTurn,
+                BFBattleFlagInputKeys.BattleEndTurn,
                 _ => OnEndTurnClicked(),
                 out _endTurnSubscription);
         }

@@ -1,20 +1,16 @@
 using System;
 using UnityEngine.InputSystem;
 
-namespace BF.Game.Runtime.Input
+namespace Wit.Framework.Input
 {
-    /// <summary>
-    /// 输入动作订阅句柄。业务脚本持有该对象，并在禁用或销毁时 Dispose，
-    /// 避免跨场景或对象销毁后继续响应输入回调。
-    /// </summary>
-    public sealed class BFInputActionSubscription : IDisposable
+    public sealed class WitInputActionSubscription : IDisposable
     {
         private readonly InputAction _action;
         private readonly Action<InputAction.CallbackContext> _performed;
         private readonly Action<InputAction.CallbackContext> _canceled;
         private bool _isDisposed;
 
-        public BFInputActionSubscription(
+        public WitInputActionSubscription(
             InputAction action,
             Action<InputAction.CallbackContext> performed,
             Action<InputAction.CallbackContext> canceled)

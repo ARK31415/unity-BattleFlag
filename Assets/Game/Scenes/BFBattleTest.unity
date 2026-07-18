@@ -1721,7 +1721,7 @@ GameObject:
   - component: {fileID: 929349726}
   - component: {fileID: 929349725}
   m_Layer: 0
-  m_Name: BFInputContextManager
+  m_Name: WitInputContextManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1736,11 +1736,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 929349724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a88243cd849b0334b9b92b902dc1e895, type: 3}
+  m_Script: {fileID: 11500000, guid: f48ef9f756384eb4b6e49ee5dd93fc28, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Input.BFInputContextManager
-  _inputActions: {fileID: -944628639613478452, guid: b0ab10bce18d05e499fb8ceb89fac4f7, type: 3}
-  _initializeDefaultBattleContextsOnAwake: 1
+  m_EditorClassIdentifier: Wit.Framework.Input::Wit.Framework.Input.WitInputContextManager
+  _config: {fileID: 11400000, guid: 15632e16fed345beb0ff74ed63fcca5a, type: 2}
+  _startupProfileKey: battle.test
+  _applyStartupProfileOnAwake: 1
 --- !u!4 &929349726
 Transform:
   m_ObjectHideFlags: 0
@@ -10520,6 +10521,8 @@ SceneRoots:
   - {fileID: 311201806}
   - {fileID: 1887207280}
   - {fileID: 282620375}
+  - {fileID: 929349726}
+  - {fileID: 298831110}
   - {fileID: 304222120}
   - {fileID: 942396856}
   - {fileID: 1259758397}
@@ -10530,5 +10533,3 @@ SceneRoots:
   - {fileID: 128874083}
   - {fileID: 1133210493}
   - {fileID: 273236437}
-  - {fileID: 298831110}
-  - {fileID: 929349726}

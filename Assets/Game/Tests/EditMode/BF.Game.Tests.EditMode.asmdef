@@ -3,6 +3,7 @@
     "rootNamespace": "BF.Game.Tests.EditMode",
     "references": [
         "GUID:3733a389b72c4e4bb36ab2fa4c98f7e6",
+        "GUID:d613186e105949f1ac37a2b4ee2c1d9e",
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "AstarPathfindingProject",
         "PackageTools",

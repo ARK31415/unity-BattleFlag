@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd98ee548894ae297653f61a22a4eed, type: 3}
+  m_Name: WitInputContextConfig
+  m_EditorClassIdentifier: 
+  _inputActions: {fileID: -944628639613478452, guid: b0ab10bce18d05e499fb8ceb89fac4f7, type: 3}
+  _baseContexts:
+  - _key: battle
+    _actionMap: Battle
+  _overlayContexts:
+  - _key: global
+    _actionMap: Global
+  - _key: battle_camera
+    _actionMap: BattleCamera
+  - _key: ui
+    _actionMap: UI
+  _actions:
+  - _key: battle.point
+    _actionMap: Battle
+    _action: Point
+  - _key: battle.select
+    _actionMap: Battle
+    _action: Select
+  - _key: battle.cancel
+    _actionMap: Battle
+    _action: Cancel
+  - _key: battle.end_turn
+    _actionMap: Battle
+    _action: EndTurn
+  - _key: battle_camera.move
+    _actionMap: BattleCamera
+    _action: Move
+  - _key: battle_camera.zoom
+    _actionMap: BattleCamera
+    _action: Zoom
+  - _key: global.pause
+    _actionMap: Global
+    _action: Pause
+  _startupProfiles:
+  - _key: battle.test
+    _baseContextKey: battle
+    _overlayContextKeys:
+    - global
+    - battle_camera
+    - ui
