@@ -1,0 +1,4992 @@
+fileFormatVersion: 2
+guid: c1bcd63f5292d9b47b2d5021fceb708c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5282917248919328669
+    second: UI_WizardBook_Spritesheet01a_0
+  - first:
+      213: -3052485533690427210
+    second: UI_WizardBook_Spritesheet01a_1
+  - first:
+      213: 4986923548820519322
+    second: UI_WizardBook_Spritesheet01a_2
+  - first:
+      213: 2966774856760497998
+    second: UI_WizardBook_Spritesheet01a_3
+  - first:
+      213: -4471838076831866628
+    second: UI_WizardBook_Spritesheet01a_4
+  - first:
+      213: 9139604438616492304
+    second: UI_WizardBook_Spritesheet01a_5
+  - first:
+      213: 5176154485449344771
+    second: UI_WizardBook_Spritesheet01a_6
+  - first:
+      213: -7030567218791137428
+    second: UI_WizardBook_Spritesheet01a_7
+  - first:
+      213: 4492675656407060546
+    second: UI_WizardBook_Spritesheet01a_8
+  - first:
+      213: -2886942365243975760
+    second: UI_WizardBook_Spritesheet01a_9
+  - first:
+      213: 3924810825208249166
+    second: UI_WizardBook_Spritesheet01a_10
+  - first:
+      213: 4177601774768809264
+    second: UI_WizardBook_Spritesheet01a_11
+  - first:
+      213: 4460164635023875132
+    second: UI_WizardBook_Spritesheet01a_12
+  - first:
+      213: 7104434400107385546
+    second: UI_WizardBook_Spritesheet01a_13
+  - first:
+      213: -8458270846720757849
+    second: UI_WizardBook_Spritesheet01a_14
+  - first:
+      213: 6994228704237005220
+    second: UI_WizardBook_Spritesheet01a_15
+  - first:
+      213: 694155966717094958
+    second: UI_WizardBook_Spritesheet01a_16
+  - first:
+      213: 1439061747644183818
+    second: UI_WizardBook_Spritesheet01a_17
+  - first:
+      213: 9138628874154390385
+    second: UI_WizardBook_Spritesheet01a_18
+  - first:
+      213: -2640760201108119816
+    second: UI_WizardBook_Spritesheet01a_19
+  - first:
+      213: -8858622808320867695
+    second: UI_WizardBook_Spritesheet01a_20
+  - first:
+      213: -6818741883582048315
+    second: UI_WizardBook_Spritesheet01a_21
+  - first:
+      213: 2391354057948093523
+    second: UI_WizardBook_Spritesheet01a_22
+  - first:
+      213: 6942968261019411172
+    second: UI_WizardBook_Spritesheet01a_23
+  - first:
+      213: 5076169260917246598
+    second: UI_WizardBook_Spritesheet01a_24
+  - first:
+      213: -6917739813096199821
+    second: UI_WizardBook_Spritesheet01a_25
+  - first:
+      213: -3699000768139789236
+    second: UI_WizardBook_Spritesheet01a_26
+  - first:
+      213: -5463045915014754536
+    second: UI_WizardBook_Spritesheet01a_27
+  - first:
+      213: 5098714243505270379
+    second: UI_WizardBook_Spritesheet01a_28
+  - first:
+      213: -2223027754547145356
+    second: UI_WizardBook_Spritesheet01a_29
+  - first:
+      213: 4438906366773364016
+    second: UI_WizardBook_Spritesheet01a_30
+  - first:
+      213: 58562943566998496
+    second: UI_WizardBook_Spritesheet01a_31
+  - first:
+      213: -8452199124498684543
+    second: UI_WizardBook_Spritesheet01a_32
+  - first:
+      213: -714607314209188206
+    second: UI_WizardBook_Spritesheet01a_33
+  - first:
+      213: -1312582995500767569
+    second: UI_WizardBook_Spritesheet01a_34
+  - first:
+      213: 4821652430594817125
+    second: UI_WizardBook_Spritesheet01a_35
+  - first:
+      213: -2122378509516291245
+    second: UI_WizardBook_Spritesheet01a_36
+  - first:
+      213: -7639880711028469373
+    second: UI_WizardBook_Spritesheet01a_37
+  - first:
+      213: -2626815833812136245
+    second: UI_WizardBook_Spritesheet01a_38
+  - first:
+      213: 7968639715985002726
+    second: UI_WizardBook_Spritesheet01a_39
+  - first:
+      213: 5786894879436029551
+    second: UI_WizardBook_Spritesheet01a_40
+  - first:
+      213: -3585286431694907430
+    second: UI_WizardBook_Spritesheet01a_41
+  - first:
+      213: 9114978239357008307
+    second: UI_WizardBook_Spritesheet01a_42
+  - first:
+      213: 8014407655455707797
+    second: UI_WizardBook_Spritesheet01a_43
+  - first:
+      213: 466290474661251931
+    second: UI_WizardBook_Spritesheet01a_44
+  - first:
+      213: 6511743484662886232
+    second: UI_WizardBook_Spritesheet01a_45
+  - first:
+      213: -2097823274918833299
+    second: UI_WizardBook_Spritesheet01a_46
+  - first:
+      213: 8388512132102414151
+    second: UI_WizardBook_Spritesheet01a_47
+  - first:
+      213: -3756233972418768632
+    second: UI_WizardBook_Spritesheet01a_48
+  - first:
+      213: -6564468335268574684
+    second: UI_WizardBook_Spritesheet01a_49
+  - first:
+      213: -2617471285222661530
+    second: UI_WizardBook_Spritesheet01a_50
+  - first:
+      213: 5775055990646186161
+    second: UI_WizardBook_Spritesheet01a_51
+  - first:
+      213: -624922541346211151
+    second: UI_WizardBook_Spritesheet01a_52
+  - first:
+      213: 2227623984562572451
+    second: UI_WizardBook_Spritesheet01a_53
+  - first:
+      213: 5409711370166640508
+    second: UI_WizardBook_Spritesheet01a_54
+  - first:
+      213: -5014366700006855873
+    second: UI_WizardBook_Spritesheet01a_55
+  - first:
+      213: -1335443986456029462
+    second: UI_WizardBook_Spritesheet01a_56
+  - first:
+      213: -8802999373311784491
+    second: UI_WizardBook_Spritesheet01a_57
+  - first:
+      213: -9188985409105053321
+    second: UI_WizardBook_Spritesheet01a_58
+  - first:
+      213: 1472244620733775719
+    second: UI_WizardBook_Spritesheet01a_59
+  - first:
+      213: 6114673794869725913
+    second: UI_WizardBook_Spritesheet01a_60
+  - first:
+      213: -1591262004705517197
+    second: UI_WizardBook_Spritesheet01a_61
+  - first:
+      213: 737203131549081061
+    second: UI_WizardBook_Spritesheet01a_62
+  - first:
+      213: 4083227819017835360
+    second: UI_WizardBook_Spritesheet01a_63
+  - first:
+      213: -4651210737637437639
+    second: UI_WizardBook_Spritesheet01a_64
+  - first:
+      213: -6079876546288684995
+    second: UI_WizardBook_Spritesheet01a_65
+  - first:
+      213: -5431146731247186507
+    second: UI_WizardBook_Spritesheet01a_66
+  - first:
+      213: -8837279646835278773
+    second: UI_WizardBook_Spritesheet01a_67
+  - first:
+      213: -7019299547756179132
+    second: UI_WizardBook_Spritesheet01a_68
+  - first:
+      213: 2170940452509415497
+    second: UI_WizardBook_Spritesheet01a_69
+  - first:
+      213: -6944905830712627247
+    second: UI_WizardBook_Spritesheet01a_70
+  - first:
+      213: 7776034670349431965
+    second: UI_WizardBook_Spritesheet01a_71
+  - first:
+      213: -7124050384203911154
+    second: UI_WizardBook_Spritesheet01a_72
+  - first:
+      213: 4015553640227087068
+    second: UI_WizardBook_Spritesheet01a_73
+  - first:
+      213: 3977019257987942831
+    second: UI_WizardBook_Spritesheet01a_74
+  - first:
+      213: 7290606248853287431
+    second: UI_WizardBook_Spritesheet01a_75
+  - first:
+      213: 1817777134398074744
+    second: UI_WizardBook_Spritesheet01a_76
+  - first:
+      213: -6672491018460363942
+    second: UI_WizardBook_Spritesheet01a_77
+  - first:
+      213: 6930082925527302560
+    second: UI_WizardBook_Spritesheet01a_78
+  - first:
+      213: 712698354532471964
+    second: UI_WizardBook_Spritesheet01a_79
+  - first:
+      213: 8070930757073921584
+    second: UI_WizardBook_Spritesheet01a_80
+  - first:
+      213: -8223257529214300210
+    second: UI_WizardBook_Spritesheet01a_81
+  - first:
+      213: 8443633898555456288
+    second: UI_WizardBook_Spritesheet01a_82
+  - first:
+      213: -5398133780892998749
+    second: UI_WizardBook_Spritesheet01a_83
+  - first:
+      213: 7286032719201767555
+    second: UI_WizardBook_Spritesheet01a_84
+  - first:
+      213: -2624635838625189790
+    second: UI_WizardBook_Spritesheet01a_85
+  - first:
+      213: 7265219628875241222
+    second: UI_WizardBook_Spritesheet01a_86
+  - first:
+      213: 7309895259557105120
+    second: UI_WizardBook_Spritesheet01a_87
+  - first:
+      213: 3110767167215832186
+    second: UI_WizardBook_Spritesheet01a_88
+  - first:
+      213: 3008553262288748741
+    second: UI_WizardBook_Spritesheet01a_89
+  - first:
+      213: -7492449706678709812
+    second: UI_WizardBook_Spritesheet01a_90
+  - first:
+      213: -7512491294566619045
+    second: UI_WizardBook_Spritesheet01a_91
+  - first:
+      213: -6667296717977519823
+    second: UI_WizardBook_Spritesheet01a_92
+  - first:
+      213: 3693445304174375682
+    second: UI_WizardBook_Spritesheet01a_93
+  - first:
+      213: 7461905283817525537
+    second: UI_WizardBook_Spritesheet01a_94
+  - first:
+      213: 4560179499350923654
+    second: UI_WizardBook_Spritesheet01a_95
+  - first:
+      213: 1703163781249454096
+    second: UI_WizardBook_Spritesheet01a_96
+  - first:
+      213: -962127137702494696
+    second: UI_WizardBook_Spritesheet01a_97
+  - first:
+      213: 314435275354776818
+    second: UI_WizardBook_Spritesheet01a_98
+  - first:
+      213: 8363013137648568670
+    second: UI_WizardBook_Spritesheet01a_99
+  - first:
+      213: -2072745182298104683
+    second: UI_WizardBook_Spritesheet01a_100
+  - first:
+      213: 1025365575589537477
+    second: UI_WizardBook_Spritesheet01a_101
+  - first:
+      213: 586176820363108157
+    second: UI_WizardBook_Spritesheet01a_102
+  - first:
+      213: -4367887055962211834
+    second: UI_WizardBook_Spritesheet01a_103
+  - first:
+      213: -7101051907421079324
+    second: UI_WizardBook_Spritesheet01a_104
+  - first:
+      213: -6434091301070275381
+    second: UI_WizardBook_Spritesheet01a_105
+  - first:
+      213: 5462923404226033647
+    second: UI_WizardBook_Spritesheet01a_106
+  - first:
+      213: 2745605881001471666
+    second: UI_WizardBook_Spritesheet01a_107
+  - first:
+      213: -6932071839228706207
+    second: UI_WizardBook_Spritesheet01a_108
+  - first:
+      213: 449498880714118408
+    second: UI_WizardBook_Spritesheet01a_109
+  - first:
+      213: 2850960793369221580
+    second: UI_WizardBook_Spritesheet01a_110
+  - first:
+      213: 6671139787163370466
+    second: UI_WizardBook_Spritesheet01a_111
+  - first:
+      213: 3287740853156946855
+    second: UI_WizardBook_Spritesheet01a_112
+  - first:
+      213: 1045244683442661377
+    second: UI_WizardBook_Spritesheet01a_113
+  - first:
+      213: -4061860374770250363
+    second: UI_WizardBook_Spritesheet01a_114
+  - first:
+      213: 6447523840665233594
+    second: UI_WizardBook_Spritesheet01a_115
+  - first:
+      213: -5783208929486638965
+    second: UI_WizardBook_Spritesheet01a_116
+  - first:
+      213: 4681521501273646968
+    second: UI_WizardBook_Spritesheet01a_117
+  - first:
+      213: 7703219118056781148
+    second: UI_WizardBook_Spritesheet01a_118
+  - first:
+      213: -7291011339446244173
+    second: UI_WizardBook_Spritesheet01a_119
+  - first:
+      213: 3072927688620005946
+    second: UI_WizardBook_Spritesheet01a_120
+  - first:
+      213: 7324158018680089216
+    second: UI_WizardBook_Spritesheet01a_121
+  - first:
+      213: -3166857838959337622
+    second: UI_WizardBook_Spritesheet01a_122
+  - first:
+      213: 5112100211111623430
+    second: UI_WizardBook_Spritesheet01a_123
+  - first:
+      213: -1941098705576838517
+    second: UI_WizardBook_Spritesheet01a_124
+  - first:
+      213: -7845329813469082623
+    second: UI_WizardBook_Spritesheet01a_125
+  - first:
+      213: -1780719696452825138
+    second: UI_WizardBook_Spritesheet01a_126
+  - first:
+      213: -4530205091869591101
+    second: UI_WizardBook_Spritesheet01a_127
+  - first:
+      213: -5151518757124831303
+    second: UI_WizardBook_Spritesheet01a_128
+  - first:
+      213: -3425284810436829651
+    second: UI_WizardBook_Spritesheet01a_129
+  - first:
+      213: 4035320256665968275
+    second: UI_WizardBook_Spritesheet01a_130
+  - first:
+      213: 1352878248233037589
+    second: UI_WizardBook_Spritesheet01a_131
+  - first:
+      213: -1071585688558824511
+    second: UI_WizardBook_Spritesheet01a_132
+  - first:
+      213: -8301917015476990739
+    second: UI_WizardBook_Spritesheet01a_133
+  - first:
+      213: 919254073834251552
+    second: UI_WizardBook_Spritesheet01a_134
+  - first:
+      213: -5274553987700274317
+    second: UI_WizardBook_Spritesheet01a_135
+  - first:
+      213: 8386073277381726264
+    second: UI_WizardBook_Spritesheet01a_136
+  - first:
+      213: 4517886709652872057
+    second: UI_WizardBook_Spritesheet01a_137
+  - first:
+      213: -7773706113362141414
+    second: UI_WizardBook_Spritesheet01a_138
+  - first:
+      213: 8512248423843412332
+    second: UI_WizardBook_Spritesheet01a_139
+  - first:
+      213: -5242636932167106197
+    second: UI_WizardBook_Spritesheet01a_140
+  - first:
+      213: -967218495907593160
+    second: UI_WizardBook_Spritesheet01a_141
+  - first:
+      213: 605069343122554392
+    second: UI_WizardBook_Spritesheet01a_142
+  - first:
+      213: 8391832109834620032
+    second: UI_WizardBook_Spritesheet01a_143
+  - first:
+      213: 9007121261907724115
+    second: UI_WizardBook_Spritesheet01a_144
+  - first:
+      213: -2455035855749419135
+    second: UI_WizardBook_Spritesheet01a_145
+  - first:
+      213: 8856142468136334135
+    second: UI_WizardBook_Spritesheet01a_146
+  - first:
+      213: -499368939226318910
+    second: UI_WizardBook_Spritesheet01a_147
+  - first:
+      213: -1120761427064341834
+    second: UI_WizardBook_Spritesheet01a_148
+  - first:
+      213: -4111562024788598246
+    second: UI_WizardBook_Spritesheet01a_149
+  - first:
+      213: -7663895418964719437
+    second: UI_WizardBook_Spritesheet01a_150
+  - first:
+      213: -5097126374264631500
+    second: UI_WizardBook_Spritesheet01a_151
+  - first:
+      213: -7447707810247871632
+    second: UI_WizardBook_Spritesheet01a_152
+  - first:
+      213: -2961446808888193575
+    second: UI_WizardBook_Spritesheet01a_153
+  - first:
+      213: -7453223113127494664
+    second: UI_WizardBook_Spritesheet01a_154
+  - first:
+      213: -7442517927965256501
+    second: UI_WizardBook_Spritesheet01a_155
+  - first:
+      213: -1040426142659929598
+    second: UI_WizardBook_Spritesheet01a_156
+  - first:
+      213: -5151821756679455298
+    second: UI_WizardBook_Spritesheet01a_157
+  - first:
+      213: 6250750346584234037
+    second: UI_WizardBook_Spritesheet01a_158
+  - first:
+      213: 4218301822544517805
+    second: UI_WizardBook_Spritesheet01a_159
+  - first:
+      213: -416370053089594146
+    second: UI_WizardBook_Spritesheet01a_160
+  - first:
+      213: -3866051720524078635
+    second: UI_WizardBook_Spritesheet01a_161
+  - first:
+      213: 1521216107726375864
+    second: UI_WizardBook_Spritesheet01a_162
+  - first:
+      213: -3491440820916315621
+    second: UI_WizardBook_Spritesheet01a_163
+  - first:
+      213: -2630930034291902817
+    second: UI_WizardBook_Spritesheet01a_164
+  - first:
+      213: -3039861632135798839
+    second: UI_WizardBook_Spritesheet01a_165
+  - first:
+      213: 3491755925897870624
+    second: UI_WizardBook_Spritesheet01a_166
+  - first:
+      213: 1343745258862895942
+    second: UI_WizardBook_Spritesheet01a_167
+  - first:
+      213: -4591542732834544364
+    second: UI_WizardBook_Spritesheet01a_168
+  - first:
+      213: 5083042446813968404
+    second: UI_WizardBook_Spritesheet01a_169
+  - first:
+      213: 7215925817158882380
+    second: UI_WizardBook_Spritesheet01a_170
+  - first:
+      213: 2341467080158798522
+    second: UI_WizardBook_Spritesheet01a_171
+  - first:
+      213: -7754343143450072800
+    second: UI_WizardBook_Spritesheet01a_172
+  - first:
+      213: 7786321187141031880
+    second: UI_WizardBook_Spritesheet01a_173
+  - first:
+      213: -4922681132868897225
+    second: UI_WizardBook_Spritesheet01a_174
+  - first:
+      213: -3302999132162868182
+    second: UI_WizardBook_Spritesheet01a_175
+  - first:
+      213: -1825871913843466451
+    second: UI_WizardBook_Spritesheet01a_176
+  - first:
+      213: 6924867104271072514
+    second: UI_WizardBook_Spritesheet01a_177
+  - first:
+      213: 1509561525795605900
+    second: UI_WizardBook_Spritesheet01a_178
+  - first:
+      213: -459101754455859802
+    second: UI_WizardBook_Spritesheet01a_179
+  - first:
+      213: 150523783852531904
+    second: UI_WizardBook_Spritesheet01a_180
+  - first:
+      213: -1272145529913306359
+    second: UI_WizardBook_Spritesheet01a_181
+  - first:
+      213: -7447691780501401364
+    second: UI_WizardBook_Spritesheet01a_182
+  - first:
+      213: -5767360504468437881
+    second: UI_WizardBook_Spritesheet01a_183
+  - first:
+      213: -3209168841696972149
+    second: UI_WizardBook_Spritesheet01a_184
+  - first:
+      213: 5952504733237119852
+    second: UI_WizardBook_Spritesheet01a_185
+  - first:
+      213: -1641886735534465075
+    second: UI_WizardBook_Spritesheet01a_186
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 564
+        width: 322
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97de9f6f31b05940800000000000000
+      internalID: 5282917248919328669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_1
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 590
+        width: 149
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b80d52749463a5d0800000000000000
+      internalID: -3052485533690427210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_2
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 590
+        width: 149
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a993a79bb8c153540800000000000000
+      internalID: 4986923548820519322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 517
+        width: 170
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4715c9730a1c2920800000000000000
+      internalID: 2966774856760497998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_4
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 532
+        width: 59
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf0ee5146f6d0f1c0800000000000000
+      internalID: -4471838076831866628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_5
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 490
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 019c15f20d566de70800000000000000
+      internalID: 9139604438616492304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_6
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 490
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 307c0cf741565d740800000000000000
+      internalID: 5176154485449344771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_7
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6fb2723d586e6e90800000000000000
+      internalID: -7030567218791137428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_8
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 240103fc4b0395e30800000000000000
+      internalID: 4492675656407060546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_9
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b75b98e6358fe7d0800000000000000
+      internalID: -2886942365243975760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_10
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4b3527a6aab77630800000000000000
+      internalID: 3924810825208249166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_11
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 035e2262ea2d9f930800000000000000
+      internalID: 4177601774768809264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_12
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c9b56ca10b5ed30800000000000000
+      internalID: 4460164635023875132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_13
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac2577c2275089260800000000000000
+      internalID: 7104434400107385546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_14
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7afaa2f8a7f2e9a80800000000000000
+      internalID: -8458270846720757849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_15
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a923e113fd701160800000000000000
+      internalID: 6994228704237005220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_16
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2ce3e68c2322a900800000000000000
+      internalID: 694155966717094958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_17
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a053f26f80398f310800000000000000
+      internalID: 1439061747644183818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_18
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 173b912ea8ee2de70800000000000000
+      internalID: 9138628874154390385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_19
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 400
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fe16f3a6922a5bd0800000000000000
+      internalID: -2640760201108119816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 400
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1928cd6ad79df0580800000000000000
+      internalID: -8858622808320867695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_21
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 400
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c793065266fe51a0800000000000000
+      internalID: -6818741883582048315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_22
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 400
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35c5f2488dbcf2120800000000000000
+      internalID: 2391354057948093523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_23
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 418
+        width: 62
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e2afd419d06a5060800000000000000
+      internalID: 6942968261019411172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_24
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 418
+        width: 62
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68acab05c0d227640800000000000000
+      internalID: 5076169260917246598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_25
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 418
+        width: 62
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 379e2dfaa404fff90800000000000000
+      internalID: -6917739813096199821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_26
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 423
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4c712746628aacc0800000000000000
+      internalID: -3699000768139789236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_27
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 435
+        width: 32
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81f85eb4fac5f24b0800000000000000
+      internalID: -5463045915014754536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_28
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 418
+        width: 32
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6e2b5f179542c640800000000000000
+      internalID: 5098714243505270379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_29
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 401
+        width: 62
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 475126c09083621e0800000000000000
+      internalID: -2223027754547145356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_30
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 401
+        width: 62
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0350fbe72d92a9d30800000000000000
+      internalID: 4438906366773364016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_31
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 401
+        width: 62
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ebef48dfae00d000800000000000000
+      internalID: 58562943566998496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_32
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 400
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 185636d8da1c3ba80800000000000000
+      internalID: -8452199124498684543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_33
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 387
+        width: 48
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2965aa21f643516f0800000000000000
+      internalID: -714607314209188206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_34
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 387
+        width: 45
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa665fe48b4c8cde0800000000000000
+      internalID: -1312582995500767569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_35
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 387
+        width: 48
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56cb004e653f9e240800000000000000
+      internalID: 4821652430594817125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_36
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 389
+        width: 46
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 353cb5d8dfbcb82e0800000000000000
+      internalID: -2122378509516291245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_37
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 385
+        width: 62
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3811acc98f0b9f590800000000000000
+      internalID: -7639880711028469373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_38
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 385
+        width: 62
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bce8147aaecab8bd0800000000000000
+      internalID: -2626815833812136245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_39
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 385
+        width: 62
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e01b5e1a9b469e60800000000000000
+      internalID: 7968639715985002726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_40
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 384
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ebf498b3e2f4050800000000000000
+      internalID: 5786894879436029551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_41
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 372
+        width: 48
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad71ccc6cf08e3ec0800000000000000
+      internalID: -3585286431694907430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_42
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 357
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b93a4c5a68ee7e70800000000000000
+      internalID: 9114978239357008307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_43
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 355
+        width: 39
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 592db9cec45e83f60800000000000000
+      internalID: 8014407655455707797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_44
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 372
+        width: 48
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b055857b8987600800000000000000
+      internalID: 466290474661251931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_45
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 355
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85fabc7d23c5e5a50800000000000000
+      internalID: 6511743484662886232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_46
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 355
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d639ae0a8d803e2e0800000000000000
+      internalID: -2097823274918833299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_47
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 355
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74fd404075bf96470800000000000000
+      internalID: 8388512132102414151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_48
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 355
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80199bc7a1d2fdbc0800000000000000
+      internalID: -3756233972418768632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_49
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 355
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a440144d256e4a0800000000000000
+      internalID: -6564468335268574684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_50
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 370
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 662a48aebbfdcabd0800000000000000
+      internalID: -2617471285222661530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_51
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 358
+        width: 39
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b0257073de152050800000000000000
+      internalID: 5775055990646186161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_52
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 370
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1babce67244d357f0800000000000000
+      internalID: -624922541346211151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_53
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 370
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac0ef4263c1aee10800000000000000
+      internalID: 2227623984562572451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_54
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 370
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7f9c2c44d7231b40800000000000000
+      internalID: 5409711370166640508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_55
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 370
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b2b88bd04696ab0800000000000000
+      internalID: -5014366700006855873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_56
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 359
+        width: 46
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae65bd115cc877de0800000000000000
+      internalID: -1335443986456029462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_57
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 326
+        width: 64
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d9c3c3d5b675d580800000000000000
+      internalID: -8802999373311784491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_58
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 326
+        width: 64
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 779bb0ca47a2a7080800000000000000
+      internalID: -9188985409105053321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_59
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 307
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76ff059aea67e6410800000000000000
+      internalID: 1472244620733775719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_60
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 307
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9da89946b6fabd450800000000000000
+      internalID: 6114673794869725913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_61
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 307
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 371a3f833a3bae9e0800000000000000
+      internalID: -1591262004705517197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_62
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 306
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5edd94f97521b3a00800000000000000
+      internalID: 737203131549081061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_63
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 305
+        width: 21
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0631d89411a8aa830800000000000000
+      internalID: 4083227819017835360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_64
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 291
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f43af2a74937fb0800000000000000
+      internalID: -4651210737637437639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_65
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 291
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d30fb346e70ff9ba0800000000000000
+      internalID: -6079876546288684995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_66
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 291
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bdccf8c2d0b0a4b0800000000000000
+      internalID: -5431146731247186507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_67
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 290
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4cf79dabfcab5580800000000000000
+      internalID: -8837279646835278773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_68
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 290
+        width: 21
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 441deeb4040769e90800000000000000
+      internalID: -7019299547756179132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_69
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 275
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9487954e6dab02e10800000000000000
+      internalID: 2170940452509415497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_70
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 275
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dfa5d151fcbe9f90800000000000000
+      internalID: -6944905830712627247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_71
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 269
+        width: 47
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d94bc4f55560aeb60800000000000000
+      internalID: 7776034670349431965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_72
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 256
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e007a8f9be9422d90800000000000000
+      internalID: -7124050384203911154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_73
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 240
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd2234ea2cc1ab730800000000000000
+      internalID: 4015553640227087068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_74
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 256
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa94249a1f5313730800000000000000
+      internalID: 3977019257987942831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_75
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 240
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 702b42c81cf6d2560800000000000000
+      internalID: 7290606248853287431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_76
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 256
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87fef983caa0a3910800000000000000
+      internalID: 1817777134398074744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_77
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 240
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a538fa565cc8663a0800000000000000
+      internalID: -6672491018460363942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_78
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 250
+        width: 47
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a10e0024b99c2060800000000000000
+      internalID: 6930082925527302560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_79
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 227
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c94d9ed906304e900800000000000000
+      internalID: 712698354532471964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_80
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 227
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0366a2e03c4b10070800000000000000
+      internalID: 8070930757073921584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_81
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 227
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf00aa88de11ed80800000000000000
+      internalID: -8223257529214300210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_82
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 227
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02b38d06b40dd2570800000000000000
+      internalID: 8443633898555456288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_83
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 227
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a326d34de9f515b0800000000000000
+      internalID: -5398133780892998749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_84
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 227
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38015e1b7203d1560800000000000000
+      internalID: 7286032719201767555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_85
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 225
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2607cf55c9b639bd0800000000000000
+      internalID: -2624635838625189790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_86
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 225
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 607dd4a72ce33d460800000000000000
+      internalID: 7265219628875241222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_87
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 211
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed86335207f17560800000000000000
+      internalID: 7309895259557105120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_88
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 211
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7c09dcc14aab2b20800000000000000
+      internalID: 3110767167215832186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_89
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 211
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c04096804780c920800000000000000
+      internalID: 3008553262288748741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_90
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 211
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc19fef30b8750890800000000000000
+      internalID: -7492449706678709812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_91
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 211
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b58642178f44eb790800000000000000
+      internalID: -7512491294566619045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_92
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 211
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13972d8b5f00973a0800000000000000
+      internalID: -6667296717977519823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_93
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 209
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 203f5a87fe0c14330800000000000000
+      internalID: 3693445304174375682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_94
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 209
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 121dd8d12530e8760800000000000000
+      internalID: 7461905283817525537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_95
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 182
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68994d20813094f30800000000000000
+      internalID: 4560179499350923654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_96
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 182
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0105faf6f6ad2a710800000000000000
+      internalID: 1703163781249454096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_97
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 182
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81eba704776d5a2f0800000000000000
+      internalID: -962127137702494696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_98
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 182
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4af5c87391d5400800000000000000
+      internalID: 314435275354776818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_99
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 163
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e59c779b3246f0470800000000000000
+      internalID: 8363013137648568670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_100
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 161
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59c18331d312c33e0800000000000000
+      internalID: -2072745182298104683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_101
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 163
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c6ade1fe84da3e00800000000000000
+      internalID: 1025365575589537477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_102
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 161
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f9f4166b4822800800000000000000
+      internalID: 586176820363108157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_103
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60a785a5dd52263c0800000000000000
+      internalID: -4367887055962211834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_104
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e87e86c9eef37d90800000000000000
+      internalID: -7101051907421079324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_105
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcc764b0d0485b6a0800000000000000
+      internalID: -6434091301070275381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_106
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe77f0074e330db40800000000000000
+      internalID: 5462923404226033647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_107
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bee05e700a5a1620800000000000000
+      internalID: 2745605881001471666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_108
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 162c841d3655ccf90800000000000000
+      internalID: -6932071839228706207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_109
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 162
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80596e7b9d0fc3600800000000000000
+      internalID: 449498880714118408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_110
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 162
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc9965d8cb5a09720800000000000000
+      internalID: 2850960793369221580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_111
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 163
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e309dc8a46a49c50800000000000000
+      internalID: 6671139787163370466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_112
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 163
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a3a5f103e660ad20800000000000000
+      internalID: 3287740853156946855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_113
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 163
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10827fb6084718e00800000000000000
+      internalID: 1045244683442661377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_114
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 163
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58d8592828f51a7c0800000000000000
+      internalID: -4061860374770250363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_115
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab8a6bbc5c43a7950800000000000000
+      internalID: 6447523840665233594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_116
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b80f4109e1aedbfa0800000000000000
+      internalID: -5783208929486638965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_117
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 877e4cb600b18f040800000000000000
+      internalID: 4681521501273646968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_118
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 145
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c55b5c679f457ea60800000000000000
+      internalID: 7703219118056781148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_119
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 145
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bc26f2f0df11da90800000000000000
+      internalID: -7291011339446244173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_120
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 148
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a58a4a37b35aa20800000000000000
+      internalID: 3072927688620005946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_121
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 148
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08a6146b9e2a4a560800000000000000
+      internalID: 7324158018680089216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_122
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 148
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6fdaaef29f0d04d0800000000000000
+      internalID: -3166857838959337622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_123
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 147
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60bf1839e04d1f640800000000000000
+      internalID: 5112100211111623430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_124
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 147
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8a3f1cf205df05e0800000000000000
+      internalID: -1941098705576838517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_125
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 147
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10cc46ad91acf1390800000000000000
+      internalID: -7845329813469082623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_126
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 147
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf4368eedc9947e0800000000000000
+      internalID: -1780719696452825138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_127
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 145
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c97273987a7121c0800000000000000
+      internalID: -4530205091869591101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_128
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 146
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b700dbfbf02288b0800000000000000
+      internalID: -5151518757124831303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_129
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 147
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2e1f53ec91f670d0800000000000000
+      internalID: -3425284810436829651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_130
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 146
+        width: 27
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39e5385b466500830800000000000000
+      internalID: 4035320256665968275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_131
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 146
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51f6842599366c210800000000000000
+      internalID: 1352878248233037589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_132
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 143
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c31f076e76f021f0800000000000000
+      internalID: -1071585688558824511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_133
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 143
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dec09b9b57aa9cc80800000000000000
+      internalID: -8301917015476990739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_134
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 143
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 025a831b5b8d1cc00800000000000000
+      internalID: 919254073834251552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_135
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 143
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37b418e08150dc6b0800000000000000
+      internalID: -5274553987700274317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_136
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 114
+        width: 11
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 830dbb6e631516470800000000000000
+      internalID: 8386073277381726264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_137
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 131
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97b51509602c2be30800000000000000
+      internalID: 4517886709652872057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_138
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 131
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f54cc0a7f3e1490800000000000000
+      internalID: -7773706113362141414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_139
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 131
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c69b01777d4912670800000000000000
+      internalID: 8512248423843412332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_140
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 131
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6106d3ac796e37b0800000000000000
+      internalID: -5242636932167106197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_141
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 131
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8348d3b07efb392f0800000000000000
+      internalID: -967218495907593160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_142
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 131
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81e7c4d9c53a56800800000000000000
+      internalID: 605069343122554392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_143
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 130
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08cc86197d6c57470800000000000000
+      internalID: 8391832109834620032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_144
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 129
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 357c0e0e019bffc70800000000000000
+      internalID: 9007121261907724115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_145
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 133
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18f653385e5fdedd0800000000000000
+      internalID: -2455035855749419135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_146
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 128
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 733748527a657ea70800000000000000
+      internalID: 8856142468136334135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_147
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 129
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c73d857892e119f0800000000000000
+      internalID: -499368939226318910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_148
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 131
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6babedd8b614270f0800000000000000
+      internalID: -1120761427064341834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_149
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 115
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a126d785f1cc0f6c0800000000000000
+      internalID: -4111562024788598246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_150
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 115
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b84dd4b8bf54a590800000000000000
+      internalID: -7663895418964719437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_151
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 115
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f8eae719e5349b0800000000000000
+      internalID: -5097126374264631500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_152
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 116
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 073f54bc43d64a890800000000000000
+      internalID: -7447707810247871632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_153
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 116
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dd410751d3d6e6d0800000000000000
+      internalID: -2961446808888193575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_154
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 116
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fbfd464115d09890800000000000000
+      internalID: -7453223113127494664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_155
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 112
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc4972d606dd6b890800000000000000
+      internalID: -7442517927965256501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_156
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 113
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a99b78fe9af81f0800000000000000
+      internalID: -1040426142659929598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_157
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 115
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebdfdf6686d0188b0800000000000000
+      internalID: -5151821756679455298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_158
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 101
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5389dc382502fb650800000000000000
+      internalID: 6250750346584234037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_159
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 101
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daa1628782b6a8a30800000000000000
+      internalID: 4218301822544517805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_160
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 82
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed4fb7a84a1c83af0800000000000000
+      internalID: -416370053089594146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_161
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 82
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1efd28176095ac0800000000000000
+      internalID: -3866051720524078635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_162
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 71
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bb02af7df17c1510800000000000000
+      internalID: 1521216107726375864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_163
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 60
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1a1cf26219eb8fc0800000000000000
+      internalID: -3491440820916315621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_164
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 60
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f96ff15b21f0d7bd0800000000000000
+      internalID: -2630930034291902817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_165
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 60
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cfd43293fd30d5d0800000000000000
+      internalID: -3039861632135798839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_166
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 63
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02df185b385357030800000000000000
+      internalID: 3491755925897870624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_167
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 69
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64363278131f5a210800000000000000
+      internalID: 1343745258862895942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_168
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 62
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 415ee5626309740c0800000000000000
+      internalID: -4591542732834544364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_169
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 68
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 418349c9c289a8640800000000000000
+      internalID: 5083042446813968404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_170
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 70
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4453519c4e142460800000000000000
+      internalID: 7215925817158882380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_171
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 63
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab2e22e57ef8e7020800000000000000
+      internalID: 2341467080158798522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_172
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 65
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0292c2ccef9036490800000000000000
+      internalID: -7754343143450072800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_173
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 65
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c793a2bdd19e0c60800000000000000
+      internalID: 7786321187141031880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_174
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 46
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 736f4d4579f1fabb0800000000000000
+      internalID: -4922681132868897225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_175
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 35
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2c32021ac36922d0800000000000000
+      internalID: -3302999132162868182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_176
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 35
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2f5ff11b2339a6e0800000000000000
+      internalID: -1825871913843466451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_177
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 38
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20d7dda11f11a1060800000000000000
+      internalID: 6924867104271072514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_178
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 44
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8dc4afa53a03f410800000000000000
+      internalID: 1509561525795605900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_179
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 43
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ad56e10361f0a9f0800000000000000
+      internalID: -459101754455859802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_180
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 46
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c027ca7594c61200800000000000000
+      internalID: 150523783852531904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_181
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 39
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9039ae2716e685ee0800000000000000
+      internalID: -1272145529913306359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_182
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 49
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce01e9209cb74a890800000000000000
+      internalID: -7447691780501401364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_183
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 49
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7848a8f8d2836ffa0800000000000000
+      internalID: -5767360504468437881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_184
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 35
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82766ef0fdb673d0800000000000000
+      internalID: -3209168841696972149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_185
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 37
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b0e64648b8b9250800000000000000
+      internalID: 5952504733237119852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_WizardBook_Spritesheet01a_186
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 36
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcfda0f86b8d639e0800000000000000
+      internalID: -1641886735534465075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UI_WizardBook_Spritesheet01a_0: 5282917248919328669
+      UI_WizardBook_Spritesheet01a_1: -3052485533690427210
+      UI_WizardBook_Spritesheet01a_10: 3924810825208249166
+      UI_WizardBook_Spritesheet01a_100: -2072745182298104683
+      UI_WizardBook_Spritesheet01a_101: 1025365575589537477
+      UI_WizardBook_Spritesheet01a_102: 586176820363108157
+      UI_WizardBook_Spritesheet01a_103: -4367887055962211834
+      UI_WizardBook_Spritesheet01a_104: -7101051907421079324
+      UI_WizardBook_Spritesheet01a_105: -6434091301070275381
+      UI_WizardBook_Spritesheet01a_106: 5462923404226033647
+      UI_WizardBook_Spritesheet01a_107: 2745605881001471666
+      UI_WizardBook_Spritesheet01a_108: -6932071839228706207
+      UI_WizardBook_Spritesheet01a_109: 449498880714118408
+      UI_WizardBook_Spritesheet01a_11: 4177601774768809264
+      UI_WizardBook_Spritesheet01a_110: 2850960793369221580
+      UI_WizardBook_Spritesheet01a_111: 6671139787163370466
+      UI_WizardBook_Spritesheet01a_112: 3287740853156946855
+      UI_WizardBook_Spritesheet01a_113: 1045244683442661377
+      UI_WizardBook_Spritesheet01a_114: -4061860374770250363
+      UI_WizardBook_Spritesheet01a_115: 6447523840665233594
+      UI_WizardBook_Spritesheet01a_116: -5783208929486638965
+      UI_WizardBook_Spritesheet01a_117: 4681521501273646968
+      UI_WizardBook_Spritesheet01a_118: 7703219118056781148
+      UI_WizardBook_Spritesheet01a_119: -7291011339446244173
+      UI_WizardBook_Spritesheet01a_12: 4460164635023875132
+      UI_WizardBook_Spritesheet01a_120: 3072927688620005946
+      UI_WizardBook_Spritesheet01a_121: 7324158018680089216
+      UI_WizardBook_Spritesheet01a_122: -3166857838959337622
+      UI_WizardBook_Spritesheet01a_123: 5112100211111623430
+      UI_WizardBook_Spritesheet01a_124: -1941098705576838517
+      UI_WizardBook_Spritesheet01a_125: -7845329813469082623
+      UI_WizardBook_Spritesheet01a_126: -1780719696452825138
+      UI_WizardBook_Spritesheet01a_127: -4530205091869591101
+      UI_WizardBook_Spritesheet01a_128: -5151518757124831303
+      UI_WizardBook_Spritesheet01a_129: -3425284810436829651
+      UI_WizardBook_Spritesheet01a_13: 7104434400107385546
+      UI_WizardBook_Spritesheet01a_130: 4035320256665968275
+      UI_WizardBook_Spritesheet01a_131: 1352878248233037589
+      UI_WizardBook_Spritesheet01a_132: -1071585688558824511
+      UI_WizardBook_Spritesheet01a_133: -8301917015476990739
+      UI_WizardBook_Spritesheet01a_134: 919254073834251552
+      UI_WizardBook_Spritesheet01a_135: -5274553987700274317
+      UI_WizardBook_Spritesheet01a_136: 8386073277381726264
+      UI_WizardBook_Spritesheet01a_137: 4517886709652872057
+      UI_WizardBook_Spritesheet01a_138: -7773706113362141414
+      UI_WizardBook_Spritesheet01a_139: 8512248423843412332
+      UI_WizardBook_Spritesheet01a_14: -8458270846720757849
+      UI_WizardBook_Spritesheet01a_140: -5242636932167106197
+      UI_WizardBook_Spritesheet01a_141: -967218495907593160
+      UI_WizardBook_Spritesheet01a_142: 605069343122554392
+      UI_WizardBook_Spritesheet01a_143: 8391832109834620032
+      UI_WizardBook_Spritesheet01a_144: 9007121261907724115
+      UI_WizardBook_Spritesheet01a_145: -2455035855749419135
+      UI_WizardBook_Spritesheet01a_146: 8856142468136334135
+      UI_WizardBook_Spritesheet01a_147: -499368939226318910
+      UI_WizardBook_Spritesheet01a_148: -1120761427064341834
+      UI_WizardBook_Spritesheet01a_149: -4111562024788598246
+      UI_WizardBook_Spritesheet01a_15: 6994228704237005220
+      UI_WizardBook_Spritesheet01a_150: -7663895418964719437
+      UI_WizardBook_Spritesheet01a_151: -5097126374264631500
+      UI_WizardBook_Spritesheet01a_152: -7447707810247871632
+      UI_WizardBook_Spritesheet01a_153: -2961446808888193575
+      UI_WizardBook_Spritesheet01a_154: -7453223113127494664
+      UI_WizardBook_Spritesheet01a_155: -7442517927965256501
+      UI_WizardBook_Spritesheet01a_156: -1040426142659929598
+      UI_WizardBook_Spritesheet01a_157: -5151821756679455298
+      UI_WizardBook_Spritesheet01a_158: 6250750346584234037
+      UI_WizardBook_Spritesheet01a_159: 4218301822544517805
+      UI_WizardBook_Spritesheet01a_16: 694155966717094958
+      UI_WizardBook_Spritesheet01a_160: -416370053089594146
+      UI_WizardBook_Spritesheet01a_161: -3866051720524078635
+      UI_WizardBook_Spritesheet01a_162: 1521216107726375864
+      UI_WizardBook_Spritesheet01a_163: -3491440820916315621
+      UI_WizardBook_Spritesheet01a_164: -2630930034291902817
+      UI_WizardBook_Spritesheet01a_165: -3039861632135798839
+      UI_WizardBook_Spritesheet01a_166: 3491755925897870624
+      UI_WizardBook_Spritesheet01a_167: 1343745258862895942
+      UI_WizardBook_Spritesheet01a_168: -4591542732834544364
+      UI_WizardBook_Spritesheet01a_169: 5083042446813968404
+      UI_WizardBook_Spritesheet01a_17: 1439061747644183818
+      UI_WizardBook_Spritesheet01a_170: 7215925817158882380
+      UI_WizardBook_Spritesheet01a_171: 2341467080158798522
+      UI_WizardBook_Spritesheet01a_172: -7754343143450072800
+      UI_WizardBook_Spritesheet01a_173: 7786321187141031880
+      UI_WizardBook_Spritesheet01a_174: -4922681132868897225
+      UI_WizardBook_Spritesheet01a_175: -3302999132162868182
+      UI_WizardBook_Spritesheet01a_176: -1825871913843466451
+      UI_WizardBook_Spritesheet01a_177: 6924867104271072514
+      UI_WizardBook_Spritesheet01a_178: 1509561525795605900
+      UI_WizardBook_Spritesheet01a_179: -459101754455859802
+      UI_WizardBook_Spritesheet01a_18: 9138628874154390385
+      UI_WizardBook_Spritesheet01a_180: 150523783852531904
+      UI_WizardBook_Spritesheet01a_181: -1272145529913306359
+      UI_WizardBook_Spritesheet01a_182: -7447691780501401364
+      UI_WizardBook_Spritesheet01a_183: -5767360504468437881
+      UI_WizardBook_Spritesheet01a_184: -3209168841696972149
+      UI_WizardBook_Spritesheet01a_185: 5952504733237119852
+      UI_WizardBook_Spritesheet01a_186: -1641886735534465075
+      UI_WizardBook_Spritesheet01a_19: -2640760201108119816
+      UI_WizardBook_Spritesheet01a_2: 4986923548820519322
+      UI_WizardBook_Spritesheet01a_20: -8858622808320867695
+      UI_WizardBook_Spritesheet01a_21: -6818741883582048315
+      UI_WizardBook_Spritesheet01a_22: 2391354057948093523
+      UI_WizardBook_Spritesheet01a_23: 6942968261019411172
+      UI_WizardBook_Spritesheet01a_24: 5076169260917246598
+      UI_WizardBook_Spritesheet01a_25: -6917739813096199821
+      UI_WizardBook_Spritesheet01a_26: -3699000768139789236
+      UI_WizardBook_Spritesheet01a_27: -5463045915014754536
+      UI_WizardBook_Spritesheet01a_28: 5098714243505270379
+      UI_WizardBook_Spritesheet01a_29: -2223027754547145356
+      UI_WizardBook_Spritesheet01a_3: 2966774856760497998
+      UI_WizardBook_Spritesheet01a_30: 4438906366773364016
+      UI_WizardBook_Spritesheet01a_31: 58562943566998496
+      UI_WizardBook_Spritesheet01a_32: -8452199124498684543
+      UI_WizardBook_Spritesheet01a_33: -714607314209188206
+      UI_WizardBook_Spritesheet01a_34: -1312582995500767569
+      UI_WizardBook_Spritesheet01a_35: 4821652430594817125
+      UI_WizardBook_Spritesheet01a_36: -2122378509516291245
+      UI_WizardBook_Spritesheet01a_37: -7639880711028469373
+      UI_WizardBook_Spritesheet01a_38: -2626815833812136245
+      UI_WizardBook_Spritesheet01a_39: 7968639715985002726
+      UI_WizardBook_Spritesheet01a_4: -4471838076831866628
+      UI_WizardBook_Spritesheet01a_40: 5786894879436029551
+      UI_WizardBook_Spritesheet01a_41: -3585286431694907430
+      UI_WizardBook_Spritesheet01a_42: 9114978239357008307
+      UI_WizardBook_Spritesheet01a_43: 8014407655455707797
+      UI_WizardBook_Spritesheet01a_44: 466290474661251931
+      UI_WizardBook_Spritesheet01a_45: 6511743484662886232
+      UI_WizardBook_Spritesheet01a_46: -2097823274918833299
+      UI_WizardBook_Spritesheet01a_47: 8388512132102414151
+      UI_WizardBook_Spritesheet01a_48: -3756233972418768632
+      UI_WizardBook_Spritesheet01a_49: -6564468335268574684
+      UI_WizardBook_Spritesheet01a_5: 9139604438616492304
+      UI_WizardBook_Spritesheet01a_50: -2617471285222661530
+      UI_WizardBook_Spritesheet01a_51: 5775055990646186161
+      UI_WizardBook_Spritesheet01a_52: -624922541346211151
+      UI_WizardBook_Spritesheet01a_53: 2227623984562572451
+      UI_WizardBook_Spritesheet01a_54: 5409711370166640508
+      UI_WizardBook_Spritesheet01a_55: -5014366700006855873
+      UI_WizardBook_Spritesheet01a_56: -1335443986456029462
+      UI_WizardBook_Spritesheet01a_57: -8802999373311784491
+      UI_WizardBook_Spritesheet01a_58: -9188985409105053321
+      UI_WizardBook_Spritesheet01a_59: 1472244620733775719
+      UI_WizardBook_Spritesheet01a_6: 5176154485449344771
+      UI_WizardBook_Spritesheet01a_60: 6114673794869725913
+      UI_WizardBook_Spritesheet01a_61: -1591262004705517197
+      UI_WizardBook_Spritesheet01a_62: 737203131549081061
+      UI_WizardBook_Spritesheet01a_63: 4083227819017835360
+      UI_WizardBook_Spritesheet01a_64: -4651210737637437639
+      UI_WizardBook_Spritesheet01a_65: -6079876546288684995
+      UI_WizardBook_Spritesheet01a_66: -5431146731247186507
+      UI_WizardBook_Spritesheet01a_67: -8837279646835278773
+      UI_WizardBook_Spritesheet01a_68: -7019299547756179132
+      UI_WizardBook_Spritesheet01a_69: 2170940452509415497
+      UI_WizardBook_Spritesheet01a_7: -7030567218791137428
+      UI_WizardBook_Spritesheet01a_70: -6944905830712627247
+      UI_WizardBook_Spritesheet01a_71: 7776034670349431965
+      UI_WizardBook_Spritesheet01a_72: -7124050384203911154
+      UI_WizardBook_Spritesheet01a_73: 4015553640227087068
+      UI_WizardBook_Spritesheet01a_74: 3977019257987942831
+      UI_WizardBook_Spritesheet01a_75: 7290606248853287431
+      UI_WizardBook_Spritesheet01a_76: 1817777134398074744
+      UI_WizardBook_Spritesheet01a_77: -6672491018460363942
+      UI_WizardBook_Spritesheet01a_78: 6930082925527302560
+      UI_WizardBook_Spritesheet01a_79: 712698354532471964
+      UI_WizardBook_Spritesheet01a_8: 4492675656407060546
+      UI_WizardBook_Spritesheet01a_80: 8070930757073921584
+      UI_WizardBook_Spritesheet01a_81: -8223257529214300210
+      UI_WizardBook_Spritesheet01a_82: 8443633898555456288
+      UI_WizardBook_Spritesheet01a_83: -5398133780892998749
+      UI_WizardBook_Spritesheet01a_84: 7286032719201767555
+      UI_WizardBook_Spritesheet01a_85: -2624635838625189790
+      UI_WizardBook_Spritesheet01a_86: 7265219628875241222
+      UI_WizardBook_Spritesheet01a_87: 7309895259557105120
+      UI_WizardBook_Spritesheet01a_88: 3110767167215832186
+      UI_WizardBook_Spritesheet01a_89: 3008553262288748741
+      UI_WizardBook_Spritesheet01a_9: -2886942365243975760
+      UI_WizardBook_Spritesheet01a_90: -7492449706678709812
+      UI_WizardBook_Spritesheet01a_91: -7512491294566619045
+      UI_WizardBook_Spritesheet01a_92: -6667296717977519823
+      UI_WizardBook_Spritesheet01a_93: 3693445304174375682
+      UI_WizardBook_Spritesheet01a_94: 7461905283817525537
+      UI_WizardBook_Spritesheet01a_95: 4560179499350923654
+      UI_WizardBook_Spritesheet01a_96: 1703163781249454096
+      UI_WizardBook_Spritesheet01a_97: -962127137702494696
+      UI_WizardBook_Spritesheet01a_98: 314435275354776818
+      UI_WizardBook_Spritesheet01a_99: 8363013137648568670
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

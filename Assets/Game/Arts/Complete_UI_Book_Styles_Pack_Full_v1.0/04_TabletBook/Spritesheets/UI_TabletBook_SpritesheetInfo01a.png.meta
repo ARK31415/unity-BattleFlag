@@ -1,0 +1,5096 @@
+fileFormatVersion: 2
+guid: 36255ff9c7106ad42b6bd36397320cb7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3194603276442402214
+    second: UI_TabletBook_SpritesheetInfo01a_0
+  - first:
+      213: 4009717806731093888
+    second: UI_TabletBook_SpritesheetInfo01a_1
+  - first:
+      213: 3169161651616782657
+    second: UI_TabletBook_SpritesheetInfo01a_2
+  - first:
+      213: -3482320507665582589
+    second: UI_TabletBook_SpritesheetInfo01a_3
+  - first:
+      213: -6623198625183311602
+    second: UI_TabletBook_SpritesheetInfo01a_4
+  - first:
+      213: 3687846071609669598
+    second: UI_TabletBook_SpritesheetInfo01a_5
+  - first:
+      213: -4193381573231537290
+    second: UI_TabletBook_SpritesheetInfo01a_6
+  - first:
+      213: -6825176583993783323
+    second: UI_TabletBook_SpritesheetInfo01a_7
+  - first:
+      213: 1414393657934655050
+    second: UI_TabletBook_SpritesheetInfo01a_8
+  - first:
+      213: -3827972314916344141
+    second: UI_TabletBook_SpritesheetInfo01a_9
+  - first:
+      213: 320900942990579127
+    second: UI_TabletBook_SpritesheetInfo01a_10
+  - first:
+      213: 2090593813609433215
+    second: UI_TabletBook_SpritesheetInfo01a_11
+  - first:
+      213: -1426597800836134024
+    second: UI_TabletBook_SpritesheetInfo01a_12
+  - first:
+      213: -6783253465948119239
+    second: UI_TabletBook_SpritesheetInfo01a_13
+  - first:
+      213: -2116788248184505120
+    second: UI_TabletBook_SpritesheetInfo01a_14
+  - first:
+      213: 2250522612695754931
+    second: UI_TabletBook_SpritesheetInfo01a_15
+  - first:
+      213: 3513752696136174868
+    second: UI_TabletBook_SpritesheetInfo01a_16
+  - first:
+      213: -1330358115355554438
+    second: UI_TabletBook_SpritesheetInfo01a_17
+  - first:
+      213: 6065467476470140359
+    second: UI_TabletBook_SpritesheetInfo01a_18
+  - first:
+      213: 1291408309818092215
+    second: UI_TabletBook_SpritesheetInfo01a_19
+  - first:
+      213: -3644456325528719376
+    second: UI_TabletBook_SpritesheetInfo01a_20
+  - first:
+      213: 5902860118638368108
+    second: UI_TabletBook_SpritesheetInfo01a_21
+  - first:
+      213: -5708976627451006434
+    second: UI_TabletBook_SpritesheetInfo01a_22
+  - first:
+      213: 2444492866185632912
+    second: UI_TabletBook_SpritesheetInfo01a_23
+  - first:
+      213: 9180820183089149983
+    second: UI_TabletBook_SpritesheetInfo01a_24
+  - first:
+      213: -1962458905108546136
+    second: UI_TabletBook_SpritesheetInfo01a_25
+  - first:
+      213: 3070312661519401133
+    second: UI_TabletBook_SpritesheetInfo01a_26
+  - first:
+      213: -9055248025849932806
+    second: UI_TabletBook_SpritesheetInfo01a_27
+  - first:
+      213: -8979776266354403344
+    second: UI_TabletBook_SpritesheetInfo01a_28
+  - first:
+      213: 268940113929247372
+    second: UI_TabletBook_SpritesheetInfo01a_29
+  - first:
+      213: -1933382171132196339
+    second: UI_TabletBook_SpritesheetInfo01a_30
+  - first:
+      213: 8445070551061905055
+    second: UI_TabletBook_SpritesheetInfo01a_31
+  - first:
+      213: -4199767744579345818
+    second: UI_TabletBook_SpritesheetInfo01a_32
+  - first:
+      213: -8025456893452320584
+    second: UI_TabletBook_SpritesheetInfo01a_33
+  - first:
+      213: -7941060566113664267
+    second: UI_TabletBook_SpritesheetInfo01a_34
+  - first:
+      213: 8717684031770991155
+    second: UI_TabletBook_SpritesheetInfo01a_35
+  - first:
+      213: -8078999013413408866
+    second: UI_TabletBook_SpritesheetInfo01a_36
+  - first:
+      213: 5975428392775354148
+    second: UI_TabletBook_SpritesheetInfo01a_37
+  - first:
+      213: -4058267126196194998
+    second: UI_TabletBook_SpritesheetInfo01a_38
+  - first:
+      213: -5277312999380687876
+    second: UI_TabletBook_SpritesheetInfo01a_39
+  - first:
+      213: -6065137875920305635
+    second: UI_TabletBook_SpritesheetInfo01a_40
+  - first:
+      213: 3094932290069997043
+    second: UI_TabletBook_SpritesheetInfo01a_41
+  - first:
+      213: -401560031647799378
+    second: UI_TabletBook_SpritesheetInfo01a_42
+  - first:
+      213: 774757874547941757
+    second: UI_TabletBook_SpritesheetInfo01a_43
+  - first:
+      213: -4498152201760248089
+    second: UI_TabletBook_SpritesheetInfo01a_44
+  - first:
+      213: 6194787922060050921
+    second: UI_TabletBook_SpritesheetInfo01a_45
+  - first:
+      213: -2587283417900043660
+    second: UI_TabletBook_SpritesheetInfo01a_46
+  - first:
+      213: 6030256644119621101
+    second: UI_TabletBook_SpritesheetInfo01a_47
+  - first:
+      213: 8562243034574759582
+    second: UI_TabletBook_SpritesheetInfo01a_48
+  - first:
+      213: -4141852298709199078
+    second: UI_TabletBook_SpritesheetInfo01a_49
+  - first:
+      213: -6932835323322760742
+    second: UI_TabletBook_SpritesheetInfo01a_50
+  - first:
+      213: 5101303893157547044
+    second: UI_TabletBook_SpritesheetInfo01a_51
+  - first:
+      213: 7143838774207920620
+    second: UI_TabletBook_SpritesheetInfo01a_52
+  - first:
+      213: -6910750282742688164
+    second: UI_TabletBook_SpritesheetInfo01a_53
+  - first:
+      213: 4034814369895275538
+    second: UI_TabletBook_SpritesheetInfo01a_54
+  - first:
+      213: 3204321281793072531
+    second: UI_TabletBook_SpritesheetInfo01a_55
+  - first:
+      213: 6629850334356117958
+    second: UI_TabletBook_SpritesheetInfo01a_56
+  - first:
+      213: -2517422256719946019
+    second: UI_TabletBook_SpritesheetInfo01a_57
+  - first:
+      213: 4550365541421678400
+    second: UI_TabletBook_SpritesheetInfo01a_58
+  - first:
+      213: -2429335141361800148
+    second: UI_TabletBook_SpritesheetInfo01a_59
+  - first:
+      213: -905347302715373910
+    second: UI_TabletBook_SpritesheetInfo01a_60
+  - first:
+      213: 3272540171867979660
+    second: UI_TabletBook_SpritesheetInfo01a_61
+  - first:
+      213: -6359314174543446603
+    second: UI_TabletBook_SpritesheetInfo01a_62
+  - first:
+      213: 7438401944732153430
+    second: UI_TabletBook_SpritesheetInfo01a_63
+  - first:
+      213: -7443310051582879215
+    second: UI_TabletBook_SpritesheetInfo01a_64
+  - first:
+      213: -7824037521805190073
+    second: UI_TabletBook_SpritesheetInfo01a_65
+  - first:
+      213: -6612332354165658831
+    second: UI_TabletBook_SpritesheetInfo01a_66
+  - first:
+      213: -2739462505808778176
+    second: UI_TabletBook_SpritesheetInfo01a_67
+  - first:
+      213: 5913934828722899788
+    second: UI_TabletBook_SpritesheetInfo01a_68
+  - first:
+      213: -6389930396299386050
+    second: UI_TabletBook_SpritesheetInfo01a_69
+  - first:
+      213: 1537658623084577863
+    second: UI_TabletBook_SpritesheetInfo01a_70
+  - first:
+      213: -1375112547407995487
+    second: UI_TabletBook_SpritesheetInfo01a_71
+  - first:
+      213: -5170517655380805666
+    second: UI_TabletBook_SpritesheetInfo01a_72
+  - first:
+      213: 2858718995075281277
+    second: UI_TabletBook_SpritesheetInfo01a_73
+  - first:
+      213: -4261882059650798454
+    second: UI_TabletBook_SpritesheetInfo01a_74
+  - first:
+      213: -25531317048366272
+    second: UI_TabletBook_SpritesheetInfo01a_75
+  - first:
+      213: 1186492131956506247
+    second: UI_TabletBook_SpritesheetInfo01a_76
+  - first:
+      213: -4814495370420405831
+    second: UI_TabletBook_SpritesheetInfo01a_77
+  - first:
+      213: -9207629058078932627
+    second: UI_TabletBook_SpritesheetInfo01a_78
+  - first:
+      213: 5039173439665059611
+    second: UI_TabletBook_SpritesheetInfo01a_79
+  - first:
+      213: -7110338507845512422
+    second: UI_TabletBook_SpritesheetInfo01a_80
+  - first:
+      213: 1630838682075451940
+    second: UI_TabletBook_SpritesheetInfo01a_81
+  - first:
+      213: -4448260899044517465
+    second: UI_TabletBook_SpritesheetInfo01a_82
+  - first:
+      213: 7736209854090514007
+    second: UI_TabletBook_SpritesheetInfo01a_83
+  - first:
+      213: 2712845164500776990
+    second: UI_TabletBook_SpritesheetInfo01a_84
+  - first:
+      213: -1554695985275832234
+    second: UI_TabletBook_SpritesheetInfo01a_85
+  - first:
+      213: 5567580735288102197
+    second: UI_TabletBook_SpritesheetInfo01a_86
+  - first:
+      213: -8667895523288425180
+    second: UI_TabletBook_SpritesheetInfo01a_87
+  - first:
+      213: -7596032872551873834
+    second: UI_TabletBook_SpritesheetInfo01a_88
+  - first:
+      213: -6114869765433249357
+    second: UI_TabletBook_SpritesheetInfo01a_89
+  - first:
+      213: -2599749017367200345
+    second: UI_TabletBook_SpritesheetInfo01a_90
+  - first:
+      213: -8040540669790431356
+    second: UI_TabletBook_SpritesheetInfo01a_91
+  - first:
+      213: -442614295241208800
+    second: UI_TabletBook_SpritesheetInfo01a_92
+  - first:
+      213: -5370383440523560356
+    second: UI_TabletBook_SpritesheetInfo01a_93
+  - first:
+      213: 998273827606439352
+    second: UI_TabletBook_SpritesheetInfo01a_94
+  - first:
+      213: -5584109221522902671
+    second: UI_TabletBook_SpritesheetInfo01a_95
+  - first:
+      213: -8713588443062984597
+    second: UI_TabletBook_SpritesheetInfo01a_96
+  - first:
+      213: 4600607563644979855
+    second: UI_TabletBook_SpritesheetInfo01a_97
+  - first:
+      213: -1692226266570059196
+    second: UI_TabletBook_SpritesheetInfo01a_98
+  - first:
+      213: -6552917320191466727
+    second: UI_TabletBook_SpritesheetInfo01a_99
+  - first:
+      213: 7291505001705418715
+    second: UI_TabletBook_SpritesheetInfo01a_100
+  - first:
+      213: -6267664371974342290
+    second: UI_TabletBook_SpritesheetInfo01a_101
+  - first:
+      213: -5894831469811338024
+    second: UI_TabletBook_SpritesheetInfo01a_102
+  - first:
+      213: -5886032170831467933
+    second: UI_TabletBook_SpritesheetInfo01a_103
+  - first:
+      213: 6442809048008117632
+    second: UI_TabletBook_SpritesheetInfo01a_104
+  - first:
+      213: 4472575848142666125
+    second: UI_TabletBook_SpritesheetInfo01a_105
+  - first:
+      213: 2894255860458245588
+    second: UI_TabletBook_SpritesheetInfo01a_106
+  - first:
+      213: -619311063019110462
+    second: UI_TabletBook_SpritesheetInfo01a_107
+  - first:
+      213: 1053067919046033928
+    second: UI_TabletBook_SpritesheetInfo01a_108
+  - first:
+      213: 8196205285296053407
+    second: UI_TabletBook_SpritesheetInfo01a_109
+  - first:
+      213: -8228580850255279074
+    second: UI_TabletBook_SpritesheetInfo01a_110
+  - first:
+      213: 8641074352379488614
+    second: UI_TabletBook_SpritesheetInfo01a_111
+  - first:
+      213: 6881928224159293368
+    second: UI_TabletBook_SpritesheetInfo01a_112
+  - first:
+      213: -342378826306202218
+    second: UI_TabletBook_SpritesheetInfo01a_113
+  - first:
+      213: -6605510461203299132
+    second: UI_TabletBook_SpritesheetInfo01a_114
+  - first:
+      213: 3636023450126533538
+    second: UI_TabletBook_SpritesheetInfo01a_115
+  - first:
+      213: -1108540201367414217
+    second: UI_TabletBook_SpritesheetInfo01a_116
+  - first:
+      213: -2039286071357442412
+    second: UI_TabletBook_SpritesheetInfo01a_117
+  - first:
+      213: -4446356483920578726
+    second: UI_TabletBook_SpritesheetInfo01a_118
+  - first:
+      213: 8925835104414275319
+    second: UI_TabletBook_SpritesheetInfo01a_119
+  - first:
+      213: 1947642887957717111
+    second: UI_TabletBook_SpritesheetInfo01a_120
+  - first:
+      213: 8548443906382543398
+    second: UI_TabletBook_SpritesheetInfo01a_121
+  - first:
+      213: 8498584090395176368
+    second: UI_TabletBook_SpritesheetInfo01a_122
+  - first:
+      213: -7077337004542033875
+    second: UI_TabletBook_SpritesheetInfo01a_123
+  - first:
+      213: -8233055275430870669
+    second: UI_TabletBook_SpritesheetInfo01a_124
+  - first:
+      213: 4682042142707579369
+    second: UI_TabletBook_SpritesheetInfo01a_125
+  - first:
+      213: -193118317919164966
+    second: UI_TabletBook_SpritesheetInfo01a_126
+  - first:
+      213: 330204891208786358
+    second: UI_TabletBook_SpritesheetInfo01a_127
+  - first:
+      213: 3319292897245817965
+    second: UI_TabletBook_SpritesheetInfo01a_128
+  - first:
+      213: -8000964988157208279
+    second: UI_TabletBook_SpritesheetInfo01a_129
+  - first:
+      213: -8156818816974907803
+    second: UI_TabletBook_SpritesheetInfo01a_130
+  - first:
+      213: -5635122876634143519
+    second: UI_TabletBook_SpritesheetInfo01a_131
+  - first:
+      213: -2329426366802310706
+    second: UI_TabletBook_SpritesheetInfo01a_132
+  - first:
+      213: -5190963246965642469
+    second: UI_TabletBook_SpritesheetInfo01a_133
+  - first:
+      213: -8781008309973219548
+    second: UI_TabletBook_SpritesheetInfo01a_134
+  - first:
+      213: 5114972342752604695
+    second: UI_TabletBook_SpritesheetInfo01a_135
+  - first:
+      213: -8161052858280931208
+    second: UI_TabletBook_SpritesheetInfo01a_136
+  - first:
+      213: -6508034448298935311
+    second: UI_TabletBook_SpritesheetInfo01a_137
+  - first:
+      213: -8068506505367630765
+    second: UI_TabletBook_SpritesheetInfo01a_138
+  - first:
+      213: -6071447855766289572
+    second: UI_TabletBook_SpritesheetInfo01a_139
+  - first:
+      213: -6378233346649082731
+    second: UI_TabletBook_SpritesheetInfo01a_140
+  - first:
+      213: -6067049661002442353
+    second: UI_TabletBook_SpritesheetInfo01a_141
+  - first:
+      213: -8821536670521640771
+    second: UI_TabletBook_SpritesheetInfo01a_142
+  - first:
+      213: 5944318266409711229
+    second: UI_TabletBook_SpritesheetInfo01a_143
+  - first:
+      213: 2525569959608929766
+    second: UI_TabletBook_SpritesheetInfo01a_144
+  - first:
+      213: 7447110217397274597
+    second: UI_TabletBook_SpritesheetInfo01a_145
+  - first:
+      213: -3710398755696978935
+    second: UI_TabletBook_SpritesheetInfo01a_146
+  - first:
+      213: -2468108657599499069
+    second: UI_TabletBook_SpritesheetInfo01a_147
+  - first:
+      213: 5078331316463500992
+    second: UI_TabletBook_SpritesheetInfo01a_148
+  - first:
+      213: -5984408874343095529
+    second: UI_TabletBook_SpritesheetInfo01a_149
+  - first:
+      213: -4971537095948360329
+    second: UI_TabletBook_SpritesheetInfo01a_150
+  - first:
+      213: -417244953220164161
+    second: UI_TabletBook_SpritesheetInfo01a_151
+  - first:
+      213: 8635847466375777915
+    second: UI_TabletBook_SpritesheetInfo01a_152
+  - first:
+      213: 6334615155214469426
+    second: UI_TabletBook_SpritesheetInfo01a_153
+  - first:
+      213: 7916376240973951610
+    second: UI_TabletBook_SpritesheetInfo01a_154
+  - first:
+      213: -58053649042321444
+    second: UI_TabletBook_SpritesheetInfo01a_155
+  - first:
+      213: -2958649870122456086
+    second: UI_TabletBook_SpritesheetInfo01a_156
+  - first:
+      213: -5541383783830876920
+    second: UI_TabletBook_SpritesheetInfo01a_157
+  - first:
+      213: 6002825051626147566
+    second: UI_TabletBook_SpritesheetInfo01a_158
+  - first:
+      213: -1009725285423707429
+    second: UI_TabletBook_SpritesheetInfo01a_159
+  - first:
+      213: -7339767534132707479
+    second: UI_TabletBook_SpritesheetInfo01a_160
+  - first:
+      213: 694450188664535609
+    second: UI_TabletBook_SpritesheetInfo01a_161
+  - first:
+      213: 7495078627424813326
+    second: UI_TabletBook_SpritesheetInfo01a_162
+  - first:
+      213: -8166390163520067968
+    second: UI_TabletBook_SpritesheetInfo01a_163
+  - first:
+      213: 7508226815031848798
+    second: UI_TabletBook_SpritesheetInfo01a_164
+  - first:
+      213: 7423023976151410459
+    second: UI_TabletBook_SpritesheetInfo01a_165
+  - first:
+      213: -5053797038104593318
+    second: UI_TabletBook_SpritesheetInfo01a_166
+  - first:
+      213: -5603951480465707947
+    second: UI_TabletBook_SpritesheetInfo01a_167
+  - first:
+      213: -5948182659190565697
+    second: UI_TabletBook_SpritesheetInfo01a_168
+  - first:
+      213: 1102660321089724553
+    second: UI_TabletBook_SpritesheetInfo01a_169
+  - first:
+      213: 2773567377088013312
+    second: UI_TabletBook_SpritesheetInfo01a_170
+  - first:
+      213: -4488273906147763511
+    second: UI_TabletBook_SpritesheetInfo01a_171
+  - first:
+      213: 5996968301326767226
+    second: UI_TabletBook_SpritesheetInfo01a_172
+  - first:
+      213: -3971419682408637297
+    second: UI_TabletBook_SpritesheetInfo01a_173
+  - first:
+      213: -5651517421570432206
+    second: UI_TabletBook_SpritesheetInfo01a_174
+  - first:
+      213: -5771537990050995603
+    second: UI_TabletBook_SpritesheetInfo01a_175
+  - first:
+      213: 4399944561088452988
+    second: UI_TabletBook_SpritesheetInfo01a_176
+  - first:
+      213: -1189193761938518133
+    second: UI_TabletBook_SpritesheetInfo01a_177
+  - first:
+      213: 8757356848824483546
+    second: UI_TabletBook_SpritesheetInfo01a_178
+  - first:
+      213: 3767122215058302896
+    second: UI_TabletBook_SpritesheetInfo01a_179
+  - first:
+      213: 5086764303582807456
+    second: UI_TabletBook_SpritesheetInfo01a_180
+  - first:
+      213: -4108560251486358548
+    second: UI_TabletBook_SpritesheetInfo01a_181
+  - first:
+      213: -6059718128911500667
+    second: UI_TabletBook_SpritesheetInfo01a_182
+  - first:
+      213: -903939517959240078
+    second: UI_TabletBook_SpritesheetInfo01a_183
+  - first:
+      213: -871644790677892712
+    second: UI_TabletBook_SpritesheetInfo01a_184
+  - first:
+      213: -6538789947742629217
+    second: UI_TabletBook_SpritesheetInfo01a_185
+  - first:
+      213: -635953389570909118
+    second: UI_TabletBook_SpritesheetInfo01a_186
+  - first:
+      213: 3647442298551738590
+    second: UI_TabletBook_SpritesheetInfo01a_187
+  - first:
+      213: -7294519502705682691
+    second: UI_TabletBook_SpritesheetInfo01a_188
+  - first:
+      213: 5280833502213359915
+    second: UI_TabletBook_SpritesheetInfo01a_189
+  - first:
+      213: -2672047992891359066
+    second: UI_TabletBook_SpritesheetInfo01a_190
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1423
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6adf5a211c2855c20800000000000000
+      internalID: 3194603276442402214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1215
+        width: 322
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 087e3cfc91165a730800000000000000
+      internalID: 4009717806731093888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_2
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 1215
+        width: 322
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14998603bbf1bfb20800000000000000
+      internalID: 3169161651616782657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_3
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1183
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 306f88ac2ff4cafc0800000000000000
+      internalID: -3482320507665582589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_4
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 995
+        width: 290
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e09d71d01fba514a0800000000000000
+      internalID: -6623198625183311602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_5
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 991
+        width: 298
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed73d9c867cdd2330800000000000000
+      internalID: 3687846071609669598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_6
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 991
+        width: 298
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6739dd73dad1ec5c0800000000000000
+      internalID: -4193381573231537290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_7
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 959
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eb8cb5ee0a1841a0800000000000000
+      internalID: -6825176583993783323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 946
+        width: 96
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4ea2c1c98fe0a310800000000000000
+      internalID: 1414393657934655050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_9
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 946
+        width: 96
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bea167067f40eac0800000000000000
+      internalID: -3827972314916344141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 944
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b59a0b15b1147400800000000000000
+      internalID: 320900942990579127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 944
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f78c1dd3ff7430d10800000000000000
+      internalID: 2090593813609433215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_12
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 964
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87b0fcbcbd4b33ce0800000000000000
+      internalID: -1426597800836134024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_13
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 948
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f99b479ea0dd1a0800000000000000
+      internalID: -6783253465948119239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 914
+        width: 96
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ecbd32bd48af92e0800000000000000
+      internalID: -2116788248184505120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_15
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 870
+        width: 124
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8e6b874667b3f10800000000000000
+      internalID: 2250522612695754931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 915
+        width: 96
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41d84c1e57b53c030800000000000000
+      internalID: 3513752696136174868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_17
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 912
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d8c26b75e998de0800000000000000
+      internalID: -1330358115355554438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_18
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 879
+        width: 41
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd00bb988edc2450800000000000000
+      internalID: 6065467476470140359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 889
+        width: 58
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bae1bef3010ce110800000000000000
+      internalID: 1291408309818092215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 864
+        width: 58
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ff6f65f74a4c6dc0800000000000000
+      internalID: -3644456325528719376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_21
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 889
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c659242d00c2be150800000000000000
+      internalID: 5902860118638368108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_22
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 864
+        width: 7
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1276c93104a5c0b0800000000000000
+      internalID: -5708976627451006434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_23
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 831
+        width: 42
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09c98f07f459ce120800000000000000
+      internalID: 2444492866185632912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 832
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f18f3cf7053d86f70800000000000000
+      internalID: 9180820183089149983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_25
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 832
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8adf3baf502f3c4e0800000000000000
+      internalID: -1962458905108546136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_26
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 799
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da08f333911fb9a20800000000000000
+      internalID: 3070312661519401133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_27
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af35822b5eb455280800000000000000
+      internalID: -9055248025849932806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_28
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f75679001d616380800000000000000
+      internalID: -8979776266354403344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8a1b94db977bb300800000000000000
+      internalID: 268940113929247372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_30
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0a879aa82f3b25e0800000000000000
+      internalID: -1933382171132196339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_31
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9e382b1ceae23570800000000000000
+      internalID: 8445070551061905055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_32
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6626435dc7d67b5c0800000000000000
+      internalID: -4199767744579345818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_33
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b08091e979df9090800000000000000
+      internalID: -8025456893452320584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_34
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f2cee81d7fabc190800000000000000
+      internalID: -7941060566113664267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_35
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33a1ec9407f6bf870800000000000000
+      internalID: 8717684031770991155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_36
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 788
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9f23c0a331a1ef80800000000000000
+      internalID: -8078999013413408866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_37
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 800
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427882cc67cfce250800000000000000
+      internalID: 5975428392775354148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_38
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 801
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a413e63ec832ea7c0800000000000000
+      internalID: -4058267126196194998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_39
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf3ec5799c733c6b0800000000000000
+      internalID: -5277312999380687876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_40
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d12c0008c3d44dba0800000000000000
+      internalID: -6065137875920305635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_41
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f52289258863fa20800000000000000
+      internalID: 3094932290069997043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_42
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea763ad574f5d6af0800000000000000
+      internalID: -401560031647799378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_43
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71ed5b9e2e70ca00800000000000000
+      internalID: 774757874547941757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_44
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ee607c976a5391c0800000000000000
+      internalID: -4498152201760248089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_45
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e105413bce48f550800000000000000
+      internalID: 6194787922060050921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_46
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4723fce707f181cd0800000000000000
+      internalID: -2587283417900043660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_47
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded6039d776cfa350800000000000000
+      internalID: 6030256644119621101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_48
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 756
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e96246cdca233d670800000000000000
+      internalID: 8562243034574759582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_49
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 726
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a179d4f574f2586c0800000000000000
+      internalID: -4141852298709199078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_50
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 723
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad10113510f99cf90800000000000000
+      internalID: -6932835323322760742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_51
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 687
+        width: 59
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42c09faecd87bc640800000000000000
+      internalID: 5101303893157547044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_52
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 688
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce93355f383042360800000000000000
+      internalID: 7143838774207920620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_53
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 688
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5611b98b351810a0800000000000000
+      internalID: -6910750282742688164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_54
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 688
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21cdf34ca4a8ef730800000000000000
+      internalID: 4034814369895275538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_55
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 688
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39d10838a39087c20800000000000000
+      internalID: 3204321281793072531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_56
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 688
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c91d4da0c5f10c50800000000000000
+      internalID: 6629850334356117958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_57
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 688
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dde9b8e9bc1501dd0800000000000000
+      internalID: -2517422256719946019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_58
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 688
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ffd9ed955262f30800000000000000
+      internalID: 4550365541421678400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_59
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 688
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2ca1c26f84494ed0800000000000000
+      internalID: -2429335141361800148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_60
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 655
+        width: 56
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa6ca47cc6f8f63f0800000000000000
+      internalID: -905347302715373910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_61
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 659
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8ff26992f56a6d20800000000000000
+      internalID: 3272540171867979660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_62
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 656
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd3b3b837d2fb7a0800000000000000
+      internalID: -6359314174543446603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_63
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 656
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 656b55c88238a3760800000000000000
+      internalID: 7438401944732153430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_64
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 656
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11ade46c1fc04b890800000000000000
+      internalID: -7443310051582879215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_65
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 643
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74c5973d35f6b6390800000000000000
+      internalID: -7824037521805190073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_66
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 640
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13b222de1c64c34a0800000000000000
+      internalID: -6612332354165658831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_67
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04c24c18d597bf9d0800000000000000
+      internalID: -2739462505808778176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_68
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 640
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4bc6d2b464821250800000000000000
+      internalID: 5913934828722899788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_69
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 624
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e33aa1de8286257a0800000000000000
+      internalID: -6389930396299386050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_70
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 591
+        width: 53
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 744c5ceee5cd65510800000000000000
+      internalID: 1537658623084577863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_71
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 576
+        width: 80
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ad509d7c6e9aece0800000000000000
+      internalID: -1375112547407995487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_72
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 544
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed734264691ae38b0800000000000000
+      internalID: -5170517655380805666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_73
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 544
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71bf16a7c53ca720800000000000000
+      internalID: 2858718995075281277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_74
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 544
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8c67efd8d0cad4c0800000000000000
+      internalID: -4261882059650798454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_75
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 579
+        width: 48
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b2fa4076b45aff0800000000000000
+      internalID: -25531317048366272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_76
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 579
+        width: 48
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78e3016ce44477010800000000000000
+      internalID: 1186492131956506247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_77
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 595
+        width: 32
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b9345908f97f2db0800000000000000
+      internalID: -4814495370420405831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_78
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 580
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6104a1e72ee73080800000000000000
+      internalID: -9207629058078932627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_79
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 580
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b17b1d07b8dbee540800000000000000
+      internalID: 5039173439665059611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_80
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 544
+        width: 80
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a13561f9cc0035d90800000000000000
+      internalID: -7110338507845512422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_81
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 547
+        width: 48
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 422d21b0427e1a610800000000000000
+      internalID: 1630838682075451940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_82
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 547
+        width: 48
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a9113cb74a9442c0800000000000000
+      internalID: -4448260899044517465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_83
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 511
+        width: 49
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e01f4cfd98c5b60800000000000000
+      internalID: 7736209854090514007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_84
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 513
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1874b8cd46f5a520800000000000000
+      internalID: 2712845164500776990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_85
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 513
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65878ef0d3c9c6ae0800000000000000
+      internalID: -1554695985275832234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_86
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 513
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53dc7213e25044d40800000000000000
+      internalID: 5567580735288102197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_87
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 513
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42dd13032f275b780800000000000000
+      internalID: -8667895523288425180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_88
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 479
+        width: 27
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d20b511958759690800000000000000
+      internalID: -7596032872551873834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_89
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 484
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b13397a85e932ba0800000000000000
+      internalID: -6114869765433249357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_90
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 483
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad38a2fa06dbebd0800000000000000
+      internalID: -2599749017367200345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_91
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 464
+        width: 7
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4875f078cd24a6090800000000000000
+      internalID: -8040540669790431356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_92
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 454
+        width: 28
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c43afb4a48bd9f0800000000000000
+      internalID: -442614295241208800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_93
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 483
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5af3ffd6b09875b0800000000000000
+      internalID: -5370383440523560356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_94
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 483
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b52d03d1c49add00800000000000000
+      internalID: 998273827606439352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_95
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 483
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 171f428bf324182b0800000000000000
+      internalID: -5584109221522902671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_96
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 468
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6028444a7d131780800000000000000
+      internalID: -8713588443062984597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_97
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 466
+        width: 32
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8ac80e3434a8df30800000000000000
+      internalID: 4600607563644979855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_98
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 468
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44291852d210488e0800000000000000
+      internalID: -1692226266570059196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_99
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 467
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 913ab778a6c5f05a0800000000000000
+      internalID: -6552917320191466727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_100
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 464
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdfa2a0ca21a03560800000000000000
+      internalID: 7291505001705418715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_101
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 431
+        width: 49
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e69f8111678c409a0800000000000000
+      internalID: -6267664371974342290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_102
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 435
+        width: 48
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d4f917a20a513ea0800000000000000
+      internalID: -5894831469811338024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_103
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 437
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36aa1191dec905ea0800000000000000
+      internalID: -5886032170831467933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_104
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 418
+        width: 60
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08d423691b4796950800000000000000
+      internalID: 6442809048008117632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_105
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 383
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89f8838908c11e30800000000000000
+      internalID: 4472575848142666125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_106
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 386
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ddc4b3ee567a2820800000000000000
+      internalID: 2894255860458245588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_107
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 386
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cfb6439ed3c767f0800000000000000
+      internalID: -619311063019110462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_108
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 386
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 802491761bf3d9e00800000000000000
+      internalID: 1053067919046033928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_109
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 386
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c10481845ceb170800000000000000
+      internalID: 8196205285296053407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_110
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 385
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1cc3f640553ecd80800000000000000
+      internalID: -8228580850255279074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_111
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 387
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 669615357534be770800000000000000
+      internalID: 8641074352379488614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_112
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 373
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bfdfb20245818f50800000000000000
+      internalID: 6881928224159293368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_113
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 387
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695576f7540af3bf0800000000000000
+      internalID: -342378826306202218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_114
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 388
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c4c9d7ab338454a0800000000000000
+      internalID: -6605510461203299132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_115
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 370
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a348cb3010c57230800000000000000
+      internalID: 3636023450126533538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_116
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 370
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73a51466f8cad90f0800000000000000
+      internalID: -1108540201367414217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_117
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 370
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49676596f1003b3e0800000000000000
+      internalID: -2039286071357442412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_118
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 370
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a57b82fe55e5b42c0800000000000000
+      internalID: -4446356483920578726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_119
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 369
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f613528cbfeedb70800000000000000
+      internalID: 8925835104414275319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_120
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 371
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 770290633ea670b10800000000000000
+      internalID: 1947642887957717111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_121
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 335
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62ab846f07c22a670800000000000000
+      internalID: 8548443906382543398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_122
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 339
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd6ac9e33901f570800000000000000
+      internalID: 8498584090395176368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_123
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 339
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d208b80ed7f38cd90800000000000000
+      internalID: -7077337004542033875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_124
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 339
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37189cbf8df4ebd80800000000000000
+      internalID: -8233055275430870669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_125
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 338
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e97e73b584f9f040800000000000000
+      internalID: 4682042142707579369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_126
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 324
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad5aeccb9e7e15df0800000000000000
+      internalID: -193118317919164966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_127
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 324
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b1a89b599f159400800000000000000
+      internalID: 330204891208786358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_128
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 324
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c60ddbd4f701e20800000000000000
+      internalID: 3319292897245817965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_129
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 322
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9295d84fbbcd6f090800000000000000
+      internalID: -8000964988157208279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_130
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 300
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5661dfca0882dce80800000000000000
+      internalID: -8156818816974907803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_131
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 300
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e46b8099950cc1b0800000000000000
+      internalID: -5635122876634143519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_132
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 271
+        width: 38
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec9c15caf073cafd0800000000000000
+      internalID: -2329426366802310706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_133
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 276
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1b21860e6ef5f7b0800000000000000
+      internalID: -5190963246965642469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_134
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 276
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4270b424777932680800000000000000
+      internalID: -8781008309973219548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_135
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71277b5de380cf640800000000000000
+      internalID: 5114972342752604695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_136
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 256
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8709afc1aad1ebe80800000000000000
+      internalID: -8161052858280931208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_137
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 223
+        width: 38
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fbf22b7621dea5a0800000000000000
+      internalID: -6508034448298935311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_138
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 227
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35c42a70518e60090800000000000000
+      internalID: -8068506505367630765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_139
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 225
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c534eb4d752edbba0800000000000000
+      internalID: -6071447855766289572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_140
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 226
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5943e668096fb77a0800000000000000
+      internalID: -6378233346649082731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_141
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 191
+        width: 38
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f899b495a728dcba0800000000000000
+      internalID: -6067049661002442353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_142
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 196
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db8b97cf22b939580800000000000000
+      internalID: -8821536670521640771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_143
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 195
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76773d08f57e7250800000000000000
+      internalID: 5944318266409711229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_144
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 195
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ed43e94f70ac0320800000000000000
+      internalID: 2525569959608929766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_145
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 195
+        width: 26
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e785274943795760800000000000000
+      internalID: 7447110217397274597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_146
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 159
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90451af7df3028cc0800000000000000
+      internalID: -3710398755696978935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_147
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 163
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c437b4a0448fbdd0800000000000000
+      internalID: -2468108657599499069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_148
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 163
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce7c891d6bd97640800000000000000
+      internalID: 5078331316463500992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_149
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 163
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 713a516e5db13fca0800000000000000
+      internalID: -5984408874343095529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_150
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 163
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77522500a5d810bb0800000000000000
+      internalID: -4971537095948360329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_151
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 163
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb5dcfafce5a53af0800000000000000
+      internalID: -417244953220164161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_152
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 163
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7e09c71481b8d770800000000000000
+      internalID: 8635847466375777915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_153
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 163
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2394d53ebe219e750800000000000000
+      internalID: 6334615155214469426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_154
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 127
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7238979f3e9cdd60800000000000000
+      internalID: 7916376240973951610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_155
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 130
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdfcae68380c13ff0800000000000000
+      internalID: -58053649042321444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_156
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 129
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeb68946e93c0f6d0800000000000000
+      internalID: -2958649870122456086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_157
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 130
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d86a0eecc0913b0800000000000000
+      internalID: -5541383783830876920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_158
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 131
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eee0ef284915e4350800000000000000
+      internalID: 6002825051626147566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_159
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 129
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bda0791e33cbcf1f0800000000000000
+      internalID: -1009725285423707429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_160
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 129
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96f3312c058e32a90800000000000000
+      internalID: -7339767534132707479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_161
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 129
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a7d8964ce23a900800000000000000
+      internalID: 694450188664535609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_162
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 129
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e01474f0d4ed30860800000000000000
+      internalID: 7495078627424813326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_163
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 95
+        width: 45
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0866426e9672bae80800000000000000
+      internalID: -8166390163520067968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_164
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 100
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5f290b0284923860800000000000000
+      internalID: 7508226815031848798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_165
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 100
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1766b93af0e30760800000000000000
+      internalID: 7423023976151410459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_166
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 99
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5cbad8be5e4dd9b0800000000000000
+      internalID: -5053797038104593318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_167
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 98
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c215cc1d3ca32b0800000000000000
+      internalID: -5603951480465707947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_168
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 99
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb4dec3e26fc37da0800000000000000
+      internalID: -5948182659190565697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_169
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 99
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 980a87a48bf6d4f00800000000000000
+      internalID: 1102660321089724553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_170
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 99
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00461ff95d0bd7620800000000000000
+      internalID: 2773567377088013312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_171
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 99
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca586989a276b1c0800000000000000
+      internalID: -4488273906147763511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_172
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 99
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a741cd195e2893350800000000000000
+      internalID: 5996968301326767226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_173
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 97
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8cd90027dea2e8c0800000000000000
+      internalID: -3971419682408637297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_174
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 99
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 233ec5d19d6c191b0800000000000000
+      internalID: -5651517421570432206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_175
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 99
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d62a657e6c067efa0800000000000000
+      internalID: -5771537990050995603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_176
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 99
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c79d613344ebf0d30800000000000000
+      internalID: 4399944561088452988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_177
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 84
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8f4b8af2922f7fe0800000000000000
+      internalID: -1189193761938518133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_178
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 84
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ade7481d7a1688970800000000000000
+      internalID: 8757356848824483546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_179
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 83
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b7680e02b1874430800000000000000
+      internalID: 3767122215058302896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_180
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 82
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a5c03bee21d79640800000000000000
+      internalID: 5086764303582807456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_181
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 83
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce3bdd728367bf6c0800000000000000
+      internalID: -4108560251486358548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_182
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 83
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a3c3fa77e87eba0800000000000000
+      internalID: -6059718128911500667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_183
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 83
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2760a953ccf8473f0800000000000000
+      internalID: -903939517959240078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_184
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 83
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89113595eab47e3f0800000000000000
+      internalID: -871644790677892712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_185
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 82
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f92d7efbf2d8145a0800000000000000
+      internalID: -6538789947742629217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_186
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 80
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24c9be8f2c3ac27f0800000000000000
+      internalID: -635953389570909118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_187
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 82
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed029ef02715e9230800000000000000
+      internalID: 3647442298551738590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_188
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 83
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df6911a0929a4ca90800000000000000
+      internalID: -7294519502705682691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_189
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 83
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b29c869571a494940800000000000000
+      internalID: 5280833502213359915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TabletBook_SpritesheetInfo01a_190
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 83
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a04ae0f18afaead0800000000000000
+      internalID: -2672047992891359066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UI_TabletBook_SpritesheetInfo01a_0: 3194603276442402214
+      UI_TabletBook_SpritesheetInfo01a_1: 4009717806731093888
+      UI_TabletBook_SpritesheetInfo01a_10: 320900942990579127
+      UI_TabletBook_SpritesheetInfo01a_100: 7291505001705418715
+      UI_TabletBook_SpritesheetInfo01a_101: -6267664371974342290
+      UI_TabletBook_SpritesheetInfo01a_102: -5894831469811338024
+      UI_TabletBook_SpritesheetInfo01a_103: -5886032170831467933
+      UI_TabletBook_SpritesheetInfo01a_104: 6442809048008117632
+      UI_TabletBook_SpritesheetInfo01a_105: 4472575848142666125
+      UI_TabletBook_SpritesheetInfo01a_106: 2894255860458245588
+      UI_TabletBook_SpritesheetInfo01a_107: -619311063019110462
+      UI_TabletBook_SpritesheetInfo01a_108: 1053067919046033928
+      UI_TabletBook_SpritesheetInfo01a_109: 8196205285296053407
+      UI_TabletBook_SpritesheetInfo01a_11: 2090593813609433215
+      UI_TabletBook_SpritesheetInfo01a_110: -8228580850255279074
+      UI_TabletBook_SpritesheetInfo01a_111: 8641074352379488614
+      UI_TabletBook_SpritesheetInfo01a_112: 6881928224159293368
+      UI_TabletBook_SpritesheetInfo01a_113: -342378826306202218
+      UI_TabletBook_SpritesheetInfo01a_114: -6605510461203299132
+      UI_TabletBook_SpritesheetInfo01a_115: 3636023450126533538
+      UI_TabletBook_SpritesheetInfo01a_116: -1108540201367414217
+      UI_TabletBook_SpritesheetInfo01a_117: -2039286071357442412
+      UI_TabletBook_SpritesheetInfo01a_118: -4446356483920578726
+      UI_TabletBook_SpritesheetInfo01a_119: 8925835104414275319
+      UI_TabletBook_SpritesheetInfo01a_12: -1426597800836134024
+      UI_TabletBook_SpritesheetInfo01a_120: 1947642887957717111
+      UI_TabletBook_SpritesheetInfo01a_121: 8548443906382543398
+      UI_TabletBook_SpritesheetInfo01a_122: 8498584090395176368
+      UI_TabletBook_SpritesheetInfo01a_123: -7077337004542033875
+      UI_TabletBook_SpritesheetInfo01a_124: -8233055275430870669
+      UI_TabletBook_SpritesheetInfo01a_125: 4682042142707579369
+      UI_TabletBook_SpritesheetInfo01a_126: -193118317919164966
+      UI_TabletBook_SpritesheetInfo01a_127: 330204891208786358
+      UI_TabletBook_SpritesheetInfo01a_128: 3319292897245817965
+      UI_TabletBook_SpritesheetInfo01a_129: -8000964988157208279
+      UI_TabletBook_SpritesheetInfo01a_13: -6783253465948119239
+      UI_TabletBook_SpritesheetInfo01a_130: -8156818816974907803
+      UI_TabletBook_SpritesheetInfo01a_131: -5635122876634143519
+      UI_TabletBook_SpritesheetInfo01a_132: -2329426366802310706
+      UI_TabletBook_SpritesheetInfo01a_133: -5190963246965642469
+      UI_TabletBook_SpritesheetInfo01a_134: -8781008309973219548
+      UI_TabletBook_SpritesheetInfo01a_135: 5114972342752604695
+      UI_TabletBook_SpritesheetInfo01a_136: -8161052858280931208
+      UI_TabletBook_SpritesheetInfo01a_137: -6508034448298935311
+      UI_TabletBook_SpritesheetInfo01a_138: -8068506505367630765
+      UI_TabletBook_SpritesheetInfo01a_139: -6071447855766289572
+      UI_TabletBook_SpritesheetInfo01a_14: -2116788248184505120
+      UI_TabletBook_SpritesheetInfo01a_140: -6378233346649082731
+      UI_TabletBook_SpritesheetInfo01a_141: -6067049661002442353
+      UI_TabletBook_SpritesheetInfo01a_142: -8821536670521640771
+      UI_TabletBook_SpritesheetInfo01a_143: 5944318266409711229
+      UI_TabletBook_SpritesheetInfo01a_144: 2525569959608929766
+      UI_TabletBook_SpritesheetInfo01a_145: 7447110217397274597
+      UI_TabletBook_SpritesheetInfo01a_146: -3710398755696978935
+      UI_TabletBook_SpritesheetInfo01a_147: -2468108657599499069
+      UI_TabletBook_SpritesheetInfo01a_148: 5078331316463500992
+      UI_TabletBook_SpritesheetInfo01a_149: -5984408874343095529
+      UI_TabletBook_SpritesheetInfo01a_15: 2250522612695754931
+      UI_TabletBook_SpritesheetInfo01a_150: -4971537095948360329
+      UI_TabletBook_SpritesheetInfo01a_151: -417244953220164161
+      UI_TabletBook_SpritesheetInfo01a_152: 8635847466375777915
+      UI_TabletBook_SpritesheetInfo01a_153: 6334615155214469426
+      UI_TabletBook_SpritesheetInfo01a_154: 7916376240973951610
+      UI_TabletBook_SpritesheetInfo01a_155: -58053649042321444
+      UI_TabletBook_SpritesheetInfo01a_156: -2958649870122456086
+      UI_TabletBook_SpritesheetInfo01a_157: -5541383783830876920
+      UI_TabletBook_SpritesheetInfo01a_158: 6002825051626147566
+      UI_TabletBook_SpritesheetInfo01a_159: -1009725285423707429
+      UI_TabletBook_SpritesheetInfo01a_16: 3513752696136174868
+      UI_TabletBook_SpritesheetInfo01a_160: -7339767534132707479
+      UI_TabletBook_SpritesheetInfo01a_161: 694450188664535609
+      UI_TabletBook_SpritesheetInfo01a_162: 7495078627424813326
+      UI_TabletBook_SpritesheetInfo01a_163: -8166390163520067968
+      UI_TabletBook_SpritesheetInfo01a_164: 7508226815031848798
+      UI_TabletBook_SpritesheetInfo01a_165: 7423023976151410459
+      UI_TabletBook_SpritesheetInfo01a_166: -5053797038104593318
+      UI_TabletBook_SpritesheetInfo01a_167: -5603951480465707947
+      UI_TabletBook_SpritesheetInfo01a_168: -5948182659190565697
+      UI_TabletBook_SpritesheetInfo01a_169: 1102660321089724553
+      UI_TabletBook_SpritesheetInfo01a_17: -1330358115355554438
+      UI_TabletBook_SpritesheetInfo01a_170: 2773567377088013312
+      UI_TabletBook_SpritesheetInfo01a_171: -4488273906147763511
+      UI_TabletBook_SpritesheetInfo01a_172: 5996968301326767226
+      UI_TabletBook_SpritesheetInfo01a_173: -3971419682408637297
+      UI_TabletBook_SpritesheetInfo01a_174: -5651517421570432206
+      UI_TabletBook_SpritesheetInfo01a_175: -5771537990050995603
+      UI_TabletBook_SpritesheetInfo01a_176: 4399944561088452988
+      UI_TabletBook_SpritesheetInfo01a_177: -1189193761938518133
+      UI_TabletBook_SpritesheetInfo01a_178: 8757356848824483546
+      UI_TabletBook_SpritesheetInfo01a_179: 3767122215058302896
+      UI_TabletBook_SpritesheetInfo01a_18: 6065467476470140359
+      UI_TabletBook_SpritesheetInfo01a_180: 5086764303582807456
+      UI_TabletBook_SpritesheetInfo01a_181: -4108560251486358548
+      UI_TabletBook_SpritesheetInfo01a_182: -6059718128911500667
+      UI_TabletBook_SpritesheetInfo01a_183: -903939517959240078
+      UI_TabletBook_SpritesheetInfo01a_184: -871644790677892712
+      UI_TabletBook_SpritesheetInfo01a_185: -6538789947742629217
+      UI_TabletBook_SpritesheetInfo01a_186: -635953389570909118
+      UI_TabletBook_SpritesheetInfo01a_187: 3647442298551738590
+      UI_TabletBook_SpritesheetInfo01a_188: -7294519502705682691
+      UI_TabletBook_SpritesheetInfo01a_189: 5280833502213359915
+      UI_TabletBook_SpritesheetInfo01a_19: 1291408309818092215
+      UI_TabletBook_SpritesheetInfo01a_190: -2672047992891359066
+      UI_TabletBook_SpritesheetInfo01a_2: 3169161651616782657
+      UI_TabletBook_SpritesheetInfo01a_20: -3644456325528719376
+      UI_TabletBook_SpritesheetInfo01a_21: 5902860118638368108
+      UI_TabletBook_SpritesheetInfo01a_22: -5708976627451006434
+      UI_TabletBook_SpritesheetInfo01a_23: 2444492866185632912
+      UI_TabletBook_SpritesheetInfo01a_24: 9180820183089149983
+      UI_TabletBook_SpritesheetInfo01a_25: -1962458905108546136
+      UI_TabletBook_SpritesheetInfo01a_26: 3070312661519401133
+      UI_TabletBook_SpritesheetInfo01a_27: -9055248025849932806
+      UI_TabletBook_SpritesheetInfo01a_28: -8979776266354403344
+      UI_TabletBook_SpritesheetInfo01a_29: 268940113929247372
+      UI_TabletBook_SpritesheetInfo01a_3: -3482320507665582589
+      UI_TabletBook_SpritesheetInfo01a_30: -1933382171132196339
+      UI_TabletBook_SpritesheetInfo01a_31: 8445070551061905055
+      UI_TabletBook_SpritesheetInfo01a_32: -4199767744579345818
+      UI_TabletBook_SpritesheetInfo01a_33: -8025456893452320584
+      UI_TabletBook_SpritesheetInfo01a_34: -7941060566113664267
+      UI_TabletBook_SpritesheetInfo01a_35: 8717684031770991155
+      UI_TabletBook_SpritesheetInfo01a_36: -8078999013413408866
+      UI_TabletBook_SpritesheetInfo01a_37: 5975428392775354148
+      UI_TabletBook_SpritesheetInfo01a_38: -4058267126196194998
+      UI_TabletBook_SpritesheetInfo01a_39: -5277312999380687876
+      UI_TabletBook_SpritesheetInfo01a_4: -6623198625183311602
+      UI_TabletBook_SpritesheetInfo01a_40: -6065137875920305635
+      UI_TabletBook_SpritesheetInfo01a_41: 3094932290069997043
+      UI_TabletBook_SpritesheetInfo01a_42: -401560031647799378
+      UI_TabletBook_SpritesheetInfo01a_43: 774757874547941757
+      UI_TabletBook_SpritesheetInfo01a_44: -4498152201760248089
+      UI_TabletBook_SpritesheetInfo01a_45: 6194787922060050921
+      UI_TabletBook_SpritesheetInfo01a_46: -2587283417900043660
+      UI_TabletBook_SpritesheetInfo01a_47: 6030256644119621101
+      UI_TabletBook_SpritesheetInfo01a_48: 8562243034574759582
+      UI_TabletBook_SpritesheetInfo01a_49: -4141852298709199078
+      UI_TabletBook_SpritesheetInfo01a_5: 3687846071609669598
+      UI_TabletBook_SpritesheetInfo01a_50: -6932835323322760742
+      UI_TabletBook_SpritesheetInfo01a_51: 5101303893157547044
+      UI_TabletBook_SpritesheetInfo01a_52: 7143838774207920620
+      UI_TabletBook_SpritesheetInfo01a_53: -6910750282742688164
+      UI_TabletBook_SpritesheetInfo01a_54: 4034814369895275538
+      UI_TabletBook_SpritesheetInfo01a_55: 3204321281793072531
+      UI_TabletBook_SpritesheetInfo01a_56: 6629850334356117958
+      UI_TabletBook_SpritesheetInfo01a_57: -2517422256719946019
+      UI_TabletBook_SpritesheetInfo01a_58: 4550365541421678400
+      UI_TabletBook_SpritesheetInfo01a_59: -2429335141361800148
+      UI_TabletBook_SpritesheetInfo01a_6: -4193381573231537290
+      UI_TabletBook_SpritesheetInfo01a_60: -905347302715373910
+      UI_TabletBook_SpritesheetInfo01a_61: 3272540171867979660
+      UI_TabletBook_SpritesheetInfo01a_62: -6359314174543446603
+      UI_TabletBook_SpritesheetInfo01a_63: 7438401944732153430
+      UI_TabletBook_SpritesheetInfo01a_64: -7443310051582879215
+      UI_TabletBook_SpritesheetInfo01a_65: -7824037521805190073
+      UI_TabletBook_SpritesheetInfo01a_66: -6612332354165658831
+      UI_TabletBook_SpritesheetInfo01a_67: -2739462505808778176
+      UI_TabletBook_SpritesheetInfo01a_68: 5913934828722899788
+      UI_TabletBook_SpritesheetInfo01a_69: -6389930396299386050
+      UI_TabletBook_SpritesheetInfo01a_7: -6825176583993783323
+      UI_TabletBook_SpritesheetInfo01a_70: 1537658623084577863
+      UI_TabletBook_SpritesheetInfo01a_71: -1375112547407995487
+      UI_TabletBook_SpritesheetInfo01a_72: -5170517655380805666
+      UI_TabletBook_SpritesheetInfo01a_73: 2858718995075281277
+      UI_TabletBook_SpritesheetInfo01a_74: -4261882059650798454
+      UI_TabletBook_SpritesheetInfo01a_75: -25531317048366272
+      UI_TabletBook_SpritesheetInfo01a_76: 1186492131956506247
+      UI_TabletBook_SpritesheetInfo01a_77: -4814495370420405831
+      UI_TabletBook_SpritesheetInfo01a_78: -9207629058078932627
+      UI_TabletBook_SpritesheetInfo01a_79: 5039173439665059611
+      UI_TabletBook_SpritesheetInfo01a_8: 1414393657934655050
+      UI_TabletBook_SpritesheetInfo01a_80: -7110338507845512422
+      UI_TabletBook_SpritesheetInfo01a_81: 1630838682075451940
+      UI_TabletBook_SpritesheetInfo01a_82: -4448260899044517465
+      UI_TabletBook_SpritesheetInfo01a_83: 7736209854090514007
+      UI_TabletBook_SpritesheetInfo01a_84: 2712845164500776990
+      UI_TabletBook_SpritesheetInfo01a_85: -1554695985275832234
+      UI_TabletBook_SpritesheetInfo01a_86: 5567580735288102197
+      UI_TabletBook_SpritesheetInfo01a_87: -8667895523288425180
+      UI_TabletBook_SpritesheetInfo01a_88: -7596032872551873834
+      UI_TabletBook_SpritesheetInfo01a_89: -6114869765433249357
+      UI_TabletBook_SpritesheetInfo01a_9: -3827972314916344141
+      UI_TabletBook_SpritesheetInfo01a_90: -2599749017367200345
+      UI_TabletBook_SpritesheetInfo01a_91: -8040540669790431356
+      UI_TabletBook_SpritesheetInfo01a_92: -442614295241208800
+      UI_TabletBook_SpritesheetInfo01a_93: -5370383440523560356
+      UI_TabletBook_SpritesheetInfo01a_94: 998273827606439352
+      UI_TabletBook_SpritesheetInfo01a_95: -5584109221522902671
+      UI_TabletBook_SpritesheetInfo01a_96: -8713588443062984597
+      UI_TabletBook_SpritesheetInfo01a_97: 4600607563644979855
+      UI_TabletBook_SpritesheetInfo01a_98: -1692226266570059196
+      UI_TabletBook_SpritesheetInfo01a_99: -6552917320191466727
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

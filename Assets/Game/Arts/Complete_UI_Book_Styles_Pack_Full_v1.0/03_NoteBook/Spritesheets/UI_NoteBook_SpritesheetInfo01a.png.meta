@@ -1,0 +1,4654 @@
+fileFormatVersion: 2
+guid: f52f969766cee9d4cb89d8e8f80c7a43
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3226374545636314389
+    second: UI_NoteBook_SpritesheetInfo01a_0
+  - first:
+      213: 9188722144796513079
+    second: UI_NoteBook_SpritesheetInfo01a_1
+  - first:
+      213: -5462344307341027300
+    second: UI_NoteBook_SpritesheetInfo01a_2
+  - first:
+      213: 99576806277589656
+    second: UI_NoteBook_SpritesheetInfo01a_3
+  - first:
+      213: 229900534715912788
+    second: UI_NoteBook_SpritesheetInfo01a_4
+  - first:
+      213: 8624356971752095037
+    second: UI_NoteBook_SpritesheetInfo01a_5
+  - first:
+      213: -3998661003552279837
+    second: UI_NoteBook_SpritesheetInfo01a_6
+  - first:
+      213: 681663172247203129
+    second: UI_NoteBook_SpritesheetInfo01a_7
+  - first:
+      213: 4458968320947576743
+    second: UI_NoteBook_SpritesheetInfo01a_8
+  - first:
+      213: -3580566485764817117
+    second: UI_NoteBook_SpritesheetInfo01a_9
+  - first:
+      213: -8169111907330030275
+    second: UI_NoteBook_SpritesheetInfo01a_10
+  - first:
+      213: 6853155436142253093
+    second: UI_NoteBook_SpritesheetInfo01a_11
+  - first:
+      213: 6279389077538321581
+    second: UI_NoteBook_SpritesheetInfo01a_12
+  - first:
+      213: -3653932088595723196
+    second: UI_NoteBook_SpritesheetInfo01a_13
+  - first:
+      213: -5132591971593858320
+    second: UI_NoteBook_SpritesheetInfo01a_14
+  - first:
+      213: 2751519212007172045
+    second: UI_NoteBook_SpritesheetInfo01a_15
+  - first:
+      213: -2287176006608109190
+    second: UI_NoteBook_SpritesheetInfo01a_16
+  - first:
+      213: -7742073346453132478
+    second: UI_NoteBook_SpritesheetInfo01a_17
+  - first:
+      213: -2141847202902739091
+    second: UI_NoteBook_SpritesheetInfo01a_18
+  - first:
+      213: -1053573680736938667
+    second: UI_NoteBook_SpritesheetInfo01a_19
+  - first:
+      213: -5152470501037144715
+    second: UI_NoteBook_SpritesheetInfo01a_20
+  - first:
+      213: 5036368100059526120
+    second: UI_NoteBook_SpritesheetInfo01a_21
+  - first:
+      213: 4434864825500111796
+    second: UI_NoteBook_SpritesheetInfo01a_22
+  - first:
+      213: 5200732533033486135
+    second: UI_NoteBook_SpritesheetInfo01a_23
+  - first:
+      213: -3910464794685718653
+    second: UI_NoteBook_SpritesheetInfo01a_24
+  - first:
+      213: 5897022478994545211
+    second: UI_NoteBook_SpritesheetInfo01a_25
+  - first:
+      213: -1702296306659790805
+    second: UI_NoteBook_SpritesheetInfo01a_26
+  - first:
+      213: -4619049058714492175
+    second: UI_NoteBook_SpritesheetInfo01a_27
+  - first:
+      213: 1246633012616388083
+    second: UI_NoteBook_SpritesheetInfo01a_28
+  - first:
+      213: -2721693530196347318
+    second: UI_NoteBook_SpritesheetInfo01a_29
+  - first:
+      213: -7035057266856160624
+    second: UI_NoteBook_SpritesheetInfo01a_30
+  - first:
+      213: -6021381338337919263
+    second: UI_NoteBook_SpritesheetInfo01a_31
+  - first:
+      213: -3973287150068998730
+    second: UI_NoteBook_SpritesheetInfo01a_32
+  - first:
+      213: 8064590084834272187
+    second: UI_NoteBook_SpritesheetInfo01a_33
+  - first:
+      213: -8099531123037675389
+    second: UI_NoteBook_SpritesheetInfo01a_34
+  - first:
+      213: 6043514674736247720
+    second: UI_NoteBook_SpritesheetInfo01a_35
+  - first:
+      213: -1522426870313512865
+    second: UI_NoteBook_SpritesheetInfo01a_36
+  - first:
+      213: -4887105147197673007
+    second: UI_NoteBook_SpritesheetInfo01a_37
+  - first:
+      213: 1597917689499621605
+    second: UI_NoteBook_SpritesheetInfo01a_38
+  - first:
+      213: 2543074387522686794
+    second: UI_NoteBook_SpritesheetInfo01a_39
+  - first:
+      213: 994574742710531967
+    second: UI_NoteBook_SpritesheetInfo01a_40
+  - first:
+      213: -4529005972723894119
+    second: UI_NoteBook_SpritesheetInfo01a_41
+  - first:
+      213: -8929412292159075205
+    second: UI_NoteBook_SpritesheetInfo01a_42
+  - first:
+      213: 1066232053161890532
+    second: UI_NoteBook_SpritesheetInfo01a_43
+  - first:
+      213: 1523737418382854787
+    second: UI_NoteBook_SpritesheetInfo01a_44
+  - first:
+      213: -7209473883911994909
+    second: UI_NoteBook_SpritesheetInfo01a_45
+  - first:
+      213: -4032352073675177605
+    second: UI_NoteBook_SpritesheetInfo01a_46
+  - first:
+      213: -8426152202219534677
+    second: UI_NoteBook_SpritesheetInfo01a_47
+  - first:
+      213: 6242725577469198482
+    second: UI_NoteBook_SpritesheetInfo01a_48
+  - first:
+      213: 7761014725300709820
+    second: UI_NoteBook_SpritesheetInfo01a_49
+  - first:
+      213: 8708087047014590507
+    second: UI_NoteBook_SpritesheetInfo01a_50
+  - first:
+      213: -5879558665773860518
+    second: UI_NoteBook_SpritesheetInfo01a_51
+  - first:
+      213: -6823543720066160730
+    second: UI_NoteBook_SpritesheetInfo01a_52
+  - first:
+      213: 4701401047836145071
+    second: UI_NoteBook_SpritesheetInfo01a_53
+  - first:
+      213: 2941939459331257371
+    second: UI_NoteBook_SpritesheetInfo01a_54
+  - first:
+      213: 3319430936328810739
+    second: UI_NoteBook_SpritesheetInfo01a_55
+  - first:
+      213: 1415064124837033967
+    second: UI_NoteBook_SpritesheetInfo01a_56
+  - first:
+      213: 3387013068653772488
+    second: UI_NoteBook_SpritesheetInfo01a_57
+  - first:
+      213: -1215377116837183080
+    second: UI_NoteBook_SpritesheetInfo01a_58
+  - first:
+      213: 1843917920997179179
+    second: UI_NoteBook_SpritesheetInfo01a_59
+  - first:
+      213: -9075629256763712125
+    second: UI_NoteBook_SpritesheetInfo01a_60
+  - first:
+      213: -9152393819086371494
+    second: UI_NoteBook_SpritesheetInfo01a_61
+  - first:
+      213: 1360648226851086091
+    second: UI_NoteBook_SpritesheetInfo01a_62
+  - first:
+      213: 6337406959914256784
+    second: UI_NoteBook_SpritesheetInfo01a_63
+  - first:
+      213: 4451812695518039590
+    second: UI_NoteBook_SpritesheetInfo01a_64
+  - first:
+      213: 5937046978397253378
+    second: UI_NoteBook_SpritesheetInfo01a_65
+  - first:
+      213: -3038420788060375112
+    second: UI_NoteBook_SpritesheetInfo01a_66
+  - first:
+      213: -6509637720462524335
+    second: UI_NoteBook_SpritesheetInfo01a_67
+  - first:
+      213: 158184483616865246
+    second: UI_NoteBook_SpritesheetInfo01a_68
+  - first:
+      213: -8095767695002381277
+    second: UI_NoteBook_SpritesheetInfo01a_69
+  - first:
+      213: -6661028742894833475
+    second: UI_NoteBook_SpritesheetInfo01a_70
+  - first:
+      213: -5060363083798719892
+    second: UI_NoteBook_SpritesheetInfo01a_71
+  - first:
+      213: -2114513479192361764
+    second: UI_NoteBook_SpritesheetInfo01a_72
+  - first:
+      213: 3745677570585252176
+    second: UI_NoteBook_SpritesheetInfo01a_73
+  - first:
+      213: 4684639218758601160
+    second: UI_NoteBook_SpritesheetInfo01a_74
+  - first:
+      213: 4806882943463098356
+    second: UI_NoteBook_SpritesheetInfo01a_75
+  - first:
+      213: -272934153094943850
+    second: UI_NoteBook_SpritesheetInfo01a_76
+  - first:
+      213: 949898777256094255
+    second: UI_NoteBook_SpritesheetInfo01a_77
+  - first:
+      213: -1736261972885891955
+    second: UI_NoteBook_SpritesheetInfo01a_78
+  - first:
+      213: -2805478920178090533
+    second: UI_NoteBook_SpritesheetInfo01a_79
+  - first:
+      213: -2833461390414845474
+    second: UI_NoteBook_SpritesheetInfo01a_80
+  - first:
+      213: 5856828021639931150
+    second: UI_NoteBook_SpritesheetInfo01a_81
+  - first:
+      213: 6859930436742227356
+    second: UI_NoteBook_SpritesheetInfo01a_82
+  - first:
+      213: -2290803904318911087
+    second: UI_NoteBook_SpritesheetInfo01a_83
+  - first:
+      213: -8537430172337969860
+    second: UI_NoteBook_SpritesheetInfo01a_84
+  - first:
+      213: 207508252935168670
+    second: UI_NoteBook_SpritesheetInfo01a_85
+  - first:
+      213: -5773171190808369794
+    second: UI_NoteBook_SpritesheetInfo01a_86
+  - first:
+      213: 8370397552973711605
+    second: UI_NoteBook_SpritesheetInfo01a_87
+  - first:
+      213: 3530168854069229739
+    second: UI_NoteBook_SpritesheetInfo01a_88
+  - first:
+      213: 6711192888765613347
+    second: UI_NoteBook_SpritesheetInfo01a_89
+  - first:
+      213: 6305526708344171357
+    second: UI_NoteBook_SpritesheetInfo01a_90
+  - first:
+      213: -6079813853756432849
+    second: UI_NoteBook_SpritesheetInfo01a_91
+  - first:
+      213: -7943416901975986597
+    second: UI_NoteBook_SpritesheetInfo01a_92
+  - first:
+      213: -7872977943763940983
+    second: UI_NoteBook_SpritesheetInfo01a_93
+  - first:
+      213: -1342214107439196927
+    second: UI_NoteBook_SpritesheetInfo01a_94
+  - first:
+      213: -6299311585922058486
+    second: UI_NoteBook_SpritesheetInfo01a_95
+  - first:
+      213: 2558144785311993343
+    second: UI_NoteBook_SpritesheetInfo01a_96
+  - first:
+      213: -5974517948068596585
+    second: UI_NoteBook_SpritesheetInfo01a_97
+  - first:
+      213: -6751435213554939866
+    second: UI_NoteBook_SpritesheetInfo01a_98
+  - first:
+      213: 7660710569823743727
+    second: UI_NoteBook_SpritesheetInfo01a_99
+  - first:
+      213: 8132962677777938903
+    second: UI_NoteBook_SpritesheetInfo01a_100
+  - first:
+      213: -5029672353918356935
+    second: UI_NoteBook_SpritesheetInfo01a_101
+  - first:
+      213: 1245752988876335339
+    second: UI_NoteBook_SpritesheetInfo01a_102
+  - first:
+      213: -1722153117163590490
+    second: UI_NoteBook_SpritesheetInfo01a_103
+  - first:
+      213: 4262045801243461765
+    second: UI_NoteBook_SpritesheetInfo01a_104
+  - first:
+      213: -8984482676661199170
+    second: UI_NoteBook_SpritesheetInfo01a_105
+  - first:
+      213: 5493739821313984803
+    second: UI_NoteBook_SpritesheetInfo01a_106
+  - first:
+      213: -1774306805737162775
+    second: UI_NoteBook_SpritesheetInfo01a_107
+  - first:
+      213: -3256093772272865613
+    second: UI_NoteBook_SpritesheetInfo01a_108
+  - first:
+      213: -413838246765038616
+    second: UI_NoteBook_SpritesheetInfo01a_109
+  - first:
+      213: -7563449914072006054
+    second: UI_NoteBook_SpritesheetInfo01a_110
+  - first:
+      213: -7841880245470759823
+    second: UI_NoteBook_SpritesheetInfo01a_111
+  - first:
+      213: 8327650292023343151
+    second: UI_NoteBook_SpritesheetInfo01a_112
+  - first:
+      213: -5736962610991124150
+    second: UI_NoteBook_SpritesheetInfo01a_113
+  - first:
+      213: -3351093344368433841
+    second: UI_NoteBook_SpritesheetInfo01a_114
+  - first:
+      213: 7682270793169910825
+    second: UI_NoteBook_SpritesheetInfo01a_115
+  - first:
+      213: -4595657666513347026
+    second: UI_NoteBook_SpritesheetInfo01a_116
+  - first:
+      213: 644413378594468633
+    second: UI_NoteBook_SpritesheetInfo01a_117
+  - first:
+      213: 8345240449351026222
+    second: UI_NoteBook_SpritesheetInfo01a_118
+  - first:
+      213: -5053101601697504276
+    second: UI_NoteBook_SpritesheetInfo01a_119
+  - first:
+      213: -872899450716946895
+    second: UI_NoteBook_SpritesheetInfo01a_120
+  - first:
+      213: 1092851719632661317
+    second: UI_NoteBook_SpritesheetInfo01a_121
+  - first:
+      213: -766859288733349011
+    second: UI_NoteBook_SpritesheetInfo01a_122
+  - first:
+      213: -9114354284710666381
+    second: UI_NoteBook_SpritesheetInfo01a_123
+  - first:
+      213: 7035703666473429837
+    second: UI_NoteBook_SpritesheetInfo01a_124
+  - first:
+      213: 3392750505075102116
+    second: UI_NoteBook_SpritesheetInfo01a_125
+  - first:
+      213: 8209092840844323821
+    second: UI_NoteBook_SpritesheetInfo01a_126
+  - first:
+      213: -3408752239052199305
+    second: UI_NoteBook_SpritesheetInfo01a_127
+  - first:
+      213: -4760709429269366333
+    second: UI_NoteBook_SpritesheetInfo01a_128
+  - first:
+      213: -7813614021037760029
+    second: UI_NoteBook_SpritesheetInfo01a_129
+  - first:
+      213: -4275107593611822619
+    second: UI_NoteBook_SpritesheetInfo01a_130
+  - first:
+      213: -2850299666253788006
+    second: UI_NoteBook_SpritesheetInfo01a_131
+  - first:
+      213: 8644170108244709215
+    second: UI_NoteBook_SpritesheetInfo01a_132
+  - first:
+      213: 5494469907123550092
+    second: UI_NoteBook_SpritesheetInfo01a_133
+  - first:
+      213: 2810236816688267507
+    second: UI_NoteBook_SpritesheetInfo01a_134
+  - first:
+      213: -3390584002228194216
+    second: UI_NoteBook_SpritesheetInfo01a_135
+  - first:
+      213: 1635482926088706714
+    second: UI_NoteBook_SpritesheetInfo01a_136
+  - first:
+      213: 1931003802271185948
+    second: UI_NoteBook_SpritesheetInfo01a_137
+  - first:
+      213: 7439885711027402235
+    second: UI_NoteBook_SpritesheetInfo01a_138
+  - first:
+      213: -8849138438370582030
+    second: UI_NoteBook_SpritesheetInfo01a_139
+  - first:
+      213: -5477787996757522295
+    second: UI_NoteBook_SpritesheetInfo01a_140
+  - first:
+      213: -9207710779159085701
+    second: UI_NoteBook_SpritesheetInfo01a_141
+  - first:
+      213: 8285103556570800148
+    second: UI_NoteBook_SpritesheetInfo01a_142
+  - first:
+      213: 5513745858063436446
+    second: UI_NoteBook_SpritesheetInfo01a_143
+  - first:
+      213: 2955556426531702906
+    second: UI_NoteBook_SpritesheetInfo01a_144
+  - first:
+      213: 7313900634409314805
+    second: UI_NoteBook_SpritesheetInfo01a_145
+  - first:
+      213: 3163538950826427851
+    second: UI_NoteBook_SpritesheetInfo01a_146
+  - first:
+      213: -5918000098045817329
+    second: UI_NoteBook_SpritesheetInfo01a_147
+  - first:
+      213: -3915072457291766879
+    second: UI_NoteBook_SpritesheetInfo01a_148
+  - first:
+      213: 7046175823391276281
+    second: UI_NoteBook_SpritesheetInfo01a_149
+  - first:
+      213: 2367717018986898738
+    second: UI_NoteBook_SpritesheetInfo01a_150
+  - first:
+      213: -929155799645347508
+    second: UI_NoteBook_SpritesheetInfo01a_151
+  - first:
+      213: -8713965099422300762
+    second: UI_NoteBook_SpritesheetInfo01a_152
+  - first:
+      213: 3559258319690991490
+    second: UI_NoteBook_SpritesheetInfo01a_153
+  - first:
+      213: -7561782472304543385
+    second: UI_NoteBook_SpritesheetInfo01a_154
+  - first:
+      213: 6940966186179724285
+    second: UI_NoteBook_SpritesheetInfo01a_155
+  - first:
+      213: 8159686553993773338
+    second: UI_NoteBook_SpritesheetInfo01a_156
+  - first:
+      213: -5831599190242923354
+    second: UI_NoteBook_SpritesheetInfo01a_157
+  - first:
+      213: 107539107237814576
+    second: UI_NoteBook_SpritesheetInfo01a_158
+  - first:
+      213: 8764777889765387207
+    second: UI_NoteBook_SpritesheetInfo01a_159
+  - first:
+      213: -6415386329858335099
+    second: UI_NoteBook_SpritesheetInfo01a_160
+  - first:
+      213: 7628929651684719500
+    second: UI_NoteBook_SpritesheetInfo01a_161
+  - first:
+      213: -7546628220994677130
+    second: UI_NoteBook_SpritesheetInfo01a_162
+  - first:
+      213: -9079852737847293990
+    second: UI_NoteBook_SpritesheetInfo01a_163
+  - first:
+      213: -1302766420642963139
+    second: UI_NoteBook_SpritesheetInfo01a_164
+  - first:
+      213: 4392588055186371212
+    second: UI_NoteBook_SpritesheetInfo01a_165
+  - first:
+      213: -6139066150102880780
+    second: UI_NoteBook_SpritesheetInfo01a_166
+  - first:
+      213: 6329218136002718142
+    second: UI_NoteBook_SpritesheetInfo01a_167
+  - first:
+      213: -4856313038397517412
+    second: UI_NoteBook_SpritesheetInfo01a_168
+  - first:
+      213: -7655576126010846431
+    second: UI_NoteBook_SpritesheetInfo01a_169
+  - first:
+      213: -7098976725885052019
+    second: UI_NoteBook_SpritesheetInfo01a_170
+  - first:
+      213: 2617058122971484379
+    second: UI_NoteBook_SpritesheetInfo01a_171
+  - first:
+      213: 1033157295086860766
+    second: UI_NoteBook_SpritesheetInfo01a_172
+  - first:
+      213: -7295992578767897793
+    second: UI_NoteBook_SpritesheetInfo01a_173
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 767
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be23cfed17d9933d0800000000000000
+      internalID: -3226374545636314389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 594
+        width: 153
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7339c545b16e48f70800000000000000
+      internalID: 9188722144796513079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_2
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 593
+        width: 153
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c189f001bcad134b0800000000000000
+      internalID: -5462344307341027300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_3
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 596
+        width: 154
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a2b06e394c16100800000000000000
+      internalID: 99576806277589656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_4
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 596
+        width: 154
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4521a697155c03300800000000000000
+      internalID: 229900534715912788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 559
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d7275d8fedfa770800000000000000
+      internalID: 8624356971752095037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_6
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 551
+        width: 100
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e23f0ac007e188c0800000000000000
+      internalID: -3998661003552279837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_7
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 551
+        width: 100
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93da2462b01c57900800000000000000
+      internalID: 681663172247203129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 484
+        width: 64
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7afdcc2301071ed30800000000000000
+      internalID: 4458968320947576743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_9
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 517
+        width: 48
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32fb15970c54f4ec0800000000000000
+      internalID: -3580566485764817117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 488
+        width: 36
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d350e29800c71ae80800000000000000
+      internalID: -8169111907330030275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 499
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 524dbc14f8c4b1f50800000000000000
+      internalID: 6853155436142253093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 485
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da4b32da81fd42750800000000000000
+      internalID: 6279389077538321581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 452
+        width: 32
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44cc9d1ff10aa4dc0800000000000000
+      internalID: -3653932088595723196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 484
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f25024abce55c8b0800000000000000
+      internalID: -5132591971593858320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 456
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc7a958252c5f2620800000000000000
+      internalID: 2751519212007172045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_16
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 452
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a71c35b3a815240e0800000000000000
+      internalID: -2287176006608109190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 452
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24b24a78f41ae8490800000000000000
+      internalID: -7742073346453132478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_18
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 452
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6771d32151a642e0800000000000000
+      internalID: -2141847202902739091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_19
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 452
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55559f6c154f061f0800000000000000
+      internalID: -1053573680736938667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_20
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 452
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5758006d06fbe78b0800000000000000
+      internalID: -5152470501037144715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_21
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 452
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e3382a6a16c4e540800000000000000
+      internalID: 5036368100059526120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_22
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 452
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b31fc6df0ecb8d30800000000000000
+      internalID: 4434864825500111796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_23
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 452
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73747432fa6bc2840800000000000000
+      internalID: 5200732533033486135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_24
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 452
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38f361edcfc3bb9c0800000000000000
+      internalID: -3910464794685718653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 423
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3a96fc63be66d150800000000000000
+      internalID: 5897022478994545211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_26
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b20751b378a3068e0800000000000000
+      internalID: -1702296306659790805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_27
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f268379a57d5efb0800000000000000
+      internalID: -4619049058714492175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_28
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fd564abe1eec4110800000000000000
+      internalID: 1246633012616388083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_29
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a46fa29872a9a3ad0800000000000000
+      internalID: -2721693530196347318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_30
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 092128a60b47e5e90800000000000000
+      internalID: -7035057266856160624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_31
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eeb33f4391cf6ca0800000000000000
+      internalID: -6021381338337919263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_32
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bd538d636c0cd8c0800000000000000
+      internalID: -3973287150068998730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_33
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb32fa144fd2bef60800000000000000
+      internalID: 8064590084834272187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_34
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3806e145b5fa89f80800000000000000
+      internalID: -8099531123037675389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_35
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 417
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a3b386a390eed350800000000000000
+      internalID: 6043514674736247720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_36
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f50147ed3d04fdae0800000000000000
+      internalID: -1522426870313512865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_37
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 417
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d1bc49f2c38d2cb0800000000000000
+      internalID: -4887105147197673007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_38
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 432
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e810f62ca1fc2610800000000000000
+      internalID: 1597917689499621605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 401
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f0fa18ea0da4320800000000000000
+      internalID: 2543074387522686794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_40
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 400
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7736d185707dcd00800000000000000
+      internalID: 994574742710531967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_41
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 400
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9987b22401db521c0800000000000000
+      internalID: -4529005972723894119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_42
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 400
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c0ad094da541480800000000000000
+      internalID: -8929412292159075205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_43
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 400
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e299d837640cce00800000000000000
+      internalID: 1066232053161890532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_44
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 400
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38a4ea1eb17652510800000000000000
+      internalID: 1523737418382854787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_45
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 400
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e148f333bdc2fb90800000000000000
+      internalID: -7209473883911994909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_46
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 384
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b71084f37253a08c0800000000000000
+      internalID: -4032352073675177605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_47
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 352
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba6445b373b401b80800000000000000
+      internalID: -8426152202219534677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_48
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 384
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2900c4b56dd92a650800000000000000
+      internalID: 6242725577469198482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_49
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 352
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb9ef16e5c9a4bb60800000000000000
+      internalID: 7761014725300709820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_50
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b282c76280759d870800000000000000
+      internalID: 8708087047014590507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_51
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 352
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a59ba727b8c976ea0800000000000000
+      internalID: -5879558665773860518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_52
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 384
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a7eb18a327ed41a0800000000000000
+      internalID: -6823543720066160730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_53
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 368
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa53cea085bbe3140800000000000000
+      internalID: 4701401047836145071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_54
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 384
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b14f428e95ed3d820800000000000000
+      internalID: 2941939459331257371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_55
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 368
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f0325879dcf01e20800000000000000
+      internalID: 3319430936328810739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_56
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 352
+        width: 76
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe77f4ff25153a310800000000000000
+      internalID: 1415064124837033967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_57
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 356
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ceb6b6d076110f20800000000000000
+      internalID: 3387013068653772488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_58
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 335
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89108ca93fc122fe0800000000000000
+      internalID: -1215377116837183080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_59
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 340
+        width: 64
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f73046499e69910800000000000000
+      internalID: 1843917920997179179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_60
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 323
+        width: 48
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38dd4759643ec0280800000000000000
+      internalID: -9075629256763712125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_61
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 320
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5540e0205a2cf080800000000000000
+      internalID: -9152393819086371494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_62
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 307
+        width: 48
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0f59b17a5ef1e210800000000000000
+      internalID: 1360648226851086091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_63
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 309
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09907c29d0ef2f750800000000000000
+      internalID: 6337406959914256784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_64
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 291
+        width: 48
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e4de25f0408cd30800000000000000
+      internalID: 4451812695518039590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_65
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 272
+        width: 78
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20fac2265c0a46250800000000000000
+      internalID: 5937046978397253378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_66
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 271
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b7bf79346c55d5d0800000000000000
+      internalID: -3038420788060375112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_67
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 276
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15009579bfe19a5a0800000000000000
+      internalID: -6509637720462524335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_68
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edb36f223fbf13200800000000000000
+      internalID: 158184483616865246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_69
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 258
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324dc43bc2e06af80800000000000000
+      internalID: -8095767695002381277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_70
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 258
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db0361566a54f83a0800000000000000
+      internalID: -6661028742894833475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_71
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 258
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c625da3169af5c9b0800000000000000
+      internalID: -5060363083798719892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_72
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 258
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd4c6ff913db7a2e0800000000000000
+      internalID: -2114513479192361764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_73
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 258
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 051d1eda7e15bf330800000000000000
+      internalID: 3745677570585252176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_74
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 258
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c948f69c8e230140800000000000000
+      internalID: 4684639218758601160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_75
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 240
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f78002b19a75b240800000000000000
+      internalID: 4806882943463098356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_76
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 240
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69b24b575d7563cf0800000000000000
+      internalID: -272934153094943850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_77
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 241
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a6de6b7e7be2d00800000000000000
+      internalID: 949898777256094255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_78
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 241
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d841e1d4fee87e7e0800000000000000
+      internalID: -1736261972885891955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_79
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 243
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdd30f149cfe019d0800000000000000
+      internalID: -2805478920178090533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_80
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 243
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed9e983b0e58da8d0800000000000000
+      internalID: -2833461390414845474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_81
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 244
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05e66c0e02a74150800000000000000
+      internalID: 5856828021639931150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_82
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 244
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9529e1036e533f50800000000000000
+      internalID: 6859930436742227356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_83
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 214
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d4ef87cfd6530e0800000000000000
+      internalID: -2290803904318911087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_84
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 214
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c35e713dd74f48980800000000000000
+      internalID: -8537430172337969860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_85
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 214
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e92a92818a731e200800000000000000
+      internalID: 207508252935168670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_86
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 214
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e752958b36391efa0800000000000000
+      internalID: -5773171190808369794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_87
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 227
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f80cc5e930a92470800000000000000
+      internalID: 8370397552973711605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_88
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 211
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba8b1ff7eddadf030800000000000000
+      internalID: 3530168854069229739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_89
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 184
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 325800aff52f22d50800000000000000
+      internalID: 6711192888765613347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_90
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 183
+        width: 48
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ba794122bb18750800000000000000
+      internalID: 6305526708344171357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_91
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 183
+        width: 48
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2e5952238920aba0800000000000000
+      internalID: -6079813853756432849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_92
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 183
+        width: 48
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5e23e6e96053c190800000000000000
+      internalID: -7943416901975986597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_93
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 183
+        width: 48
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9890771e5409db290800000000000000
+      internalID: -7872977943763940983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_94
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 195
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1059191716f7f5de0800000000000000
+      internalID: -1342214107439196927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_95
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 195
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07fc9fdc795498a0800000000000000
+      internalID: -6299311585922058486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_96
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 196
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd0a8ce02b508320800000000000000
+      internalID: 2558144785311993343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_97
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 192
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 794fc21a49f361da0800000000000000
+      internalID: -5974517948068596585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_98
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 179
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6288ef3a1751e42a0800000000000000
+      internalID: -6751435213554939866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_99
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 179
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feeac61dcaf405a60800000000000000
+      internalID: 7660710569823743727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_100
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 180
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9b67417761ed070800000000000000
+      internalID: 8132962677777938903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_101
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 175
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 932f71874a3033ab0800000000000000
+      internalID: -5029672353918356935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_102
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 153
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be8eadb3ebdc94110800000000000000
+      internalID: 1245752988876335339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_103
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 165
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ace1a24ddea918e0800000000000000
+      internalID: -1722153117163590490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_104
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 165
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 588cf8f2314d52b30800000000000000
+      internalID: 4262045801243461765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_105
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 165
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe55fe7b94b05380800000000000000
+      internalID: -8984482676661199170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_106
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 165
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32986d9a24fad3c40800000000000000
+      internalID: 5493739821313984803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_107
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e77a716c556067e0800000000000000
+      internalID: -1774306805737162775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_108
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3be605437f700d2d0800000000000000
+      internalID: -3256093772272865613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_109
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 144
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e37913ae40c14af0800000000000000
+      internalID: -413838246765038616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_110
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a528743406a390790800000000000000
+      internalID: -7563449914072006054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_111
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 144
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 174ff8df67b0c2390800000000000000
+      internalID: -7841880245470759823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_112
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f28babd91d1c19370800000000000000
+      internalID: 8327650292023343151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_113
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a413d2aa6e63260b0800000000000000
+      internalID: -5736962610991124150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_114
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f456ebfab568e71d0800000000000000
+      internalID: -3351093344368433841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_115
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 130
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92c304f7598ec9a60800000000000000
+      internalID: 7682270793169910825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_116
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 130
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2edb2e73b1f830c0800000000000000
+      internalID: -4595657666513347026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_117
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 130
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 913f1a7bd8a61f800800000000000000
+      internalID: 644413378594468633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_118
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e260ac449ff30d370800000000000000
+      internalID: 8345240449351026222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_119
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 114
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce3ecd0add6cfd9b0800000000000000
+      internalID: -5053101601697504276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_120
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 114
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13ef16b0396d2e3f0800000000000000
+      internalID: -872899450716946895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_121
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 114
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54b21ec49d69a2f00800000000000000
+      internalID: 1092851719632661317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_122
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 115
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6b07563a819b55f0800000000000000
+      internalID: -766859288733349011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_123
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 116
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37fd2c6611f438180800000000000000
+      internalID: -9114354284710666381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_124
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 113
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4bef093537d3a160800000000000000
+      internalID: 7035703666473429837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_125
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 113
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1578adb98751f20800000000000000
+      internalID: 3392750505075102116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_126
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 113
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb6ab2f17e8ce170800000000000000
+      internalID: 8209092840844323821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_127
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 114
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ae9ff16eda1b0d0800000000000000
+      internalID: -3408752239052199305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_128
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 98
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c9fb855fff8eedb0800000000000000
+      internalID: -4760709429269366333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_129
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 98
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e168083277709390800000000000000
+      internalID: -7813614021037760029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_130
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 98
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e9313a4b44cba4c0800000000000000
+      internalID: -4275107593611822619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_131
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 100
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c47891e83b178d0800000000000000
+      internalID: -2850299666253788006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_132
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 100
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5fc9f72ae246f770800000000000000
+      internalID: 8644170108244709215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_133
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 97
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c873c230547404c40800000000000000
+      internalID: 5494469907123550092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_134
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 96
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f0cd69de77fff620800000000000000
+      internalID: 2810236816688267507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_135
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 99
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 854f01660d932f0d0800000000000000
+      internalID: -3390584002228194216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_136
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 82
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9adbbd5e0762b610800000000000000
+      internalID: 1635482926088706714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_137
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 82
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1c7d4e2abd4cca10800000000000000
+      internalID: 1931003802271185948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_138
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 82
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf5fa4fc2a8cf3760800000000000000
+      internalID: 7439885711027402235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_139
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 84
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f1aaac997b813580800000000000000
+      internalID: -8849138438370582030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_140
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 84
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9888e5ae6dcfaf3b0800000000000000
+      internalID: -5477787996757522295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_141
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 84
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7dffa5b4d3a73080800000000000000
+      internalID: -9207710779159085701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_142
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 84
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4106ab0d9c99af270800000000000000
+      internalID: 8285103556570800148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_143
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 84
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9a07a315a2c48c40800000000000000
+      internalID: 5513745858063436446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_144
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a788b0529ee340920800000000000000
+      internalID: 2955556426531702906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_145
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f9a87450e1308560800000000000000
+      internalID: 7313900634409314805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_146
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc50f152ae527eb20800000000000000
+      internalID: 3163538950826427851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_147
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e8047044a0fdda0800000000000000
+      internalID: -5918000098045817329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_148
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a36531d75edaa9c0800000000000000
+      internalID: -3915072457291766879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_149
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 66
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fcbe22449b09c160800000000000000
+      internalID: 7046175823391276281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_150
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 66
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2356c558512dbd020800000000000000
+      internalID: 2367717018986898738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_151
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 66
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c41252d19b9fa13f0800000000000000
+      internalID: -929155799645347508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_152
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 66
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a548cf19e6c11780800000000000000
+      internalID: -8713965099422300762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_153
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 67
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28709018596056130800000000000000
+      internalID: 3559258319690991490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_154
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 67
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 769338dc7e62f0790800000000000000
+      internalID: -7561782472304543385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_155
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 67
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df38d35b8f3435060800000000000000
+      internalID: 6940966186179724285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_156
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 67
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a11845160b70d3170800000000000000
+      internalID: 8159686553993773338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_157
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 66
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ac6d110f6ff11fa0800000000000000
+      internalID: -5831599190242923354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_158
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 66
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0316f5e8f3e0e7100800000000000000
+      internalID: 107539107237814576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_159
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 66
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cbe9ae8d0fb2a970800000000000000
+      internalID: 8764777889765387207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_160
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 66
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e95e78f18f7f6a0800000000000000
+      internalID: -6415386329858335099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_161
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 66
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8bbc1139176fd960800000000000000
+      internalID: 7628929651684719500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_162
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 50
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6769ca3ed9df44790800000000000000
+      internalID: -7546628220994677130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_163
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 50
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad701c3ca02edf180800000000000000
+      internalID: -9079852737847293990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_164
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 47
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d31e440c7d4abede0800000000000000
+      internalID: -1302766420642963139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_165
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 47
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c82f102309b95fc30800000000000000
+      internalID: 4392588055186371212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_166
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 50
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd2e76dcd7adcaa0800000000000000
+      internalID: -6139066150102880780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_167
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 50
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb9e66e6c56e5d750800000000000000
+      internalID: 6329218136002718142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_168
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 47
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c91d73c7509ea9cb0800000000000000
+      internalID: -4856313038397517412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_169
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 47
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 123992a031ee1c590800000000000000
+      internalID: -7655576126010846431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_170
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 51
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8b1bd0a74e5b7d90800000000000000
+      internalID: -7098976725885052019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_171
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 50
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd014404f78a15420800000000000000
+      internalID: 2617058122971484379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_172
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 48
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed971c20613865e00800000000000000
+      internalID: 1033157295086860766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_NoteBook_SpritesheetInfo01a_173
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 52
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b37aac76d6fba90800000000000000
+      internalID: -7295992578767897793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UI_NoteBook_SpritesheetInfo01a_0: -3226374545636314389
+      UI_NoteBook_SpritesheetInfo01a_1: 9188722144796513079
+      UI_NoteBook_SpritesheetInfo01a_10: -8169111907330030275
+      UI_NoteBook_SpritesheetInfo01a_100: 8132962677777938903
+      UI_NoteBook_SpritesheetInfo01a_101: -5029672353918356935
+      UI_NoteBook_SpritesheetInfo01a_102: 1245752988876335339
+      UI_NoteBook_SpritesheetInfo01a_103: -1722153117163590490
+      UI_NoteBook_SpritesheetInfo01a_104: 4262045801243461765
+      UI_NoteBook_SpritesheetInfo01a_105: -8984482676661199170
+      UI_NoteBook_SpritesheetInfo01a_106: 5493739821313984803
+      UI_NoteBook_SpritesheetInfo01a_107: -1774306805737162775
+      UI_NoteBook_SpritesheetInfo01a_108: -3256093772272865613
+      UI_NoteBook_SpritesheetInfo01a_109: -413838246765038616
+      UI_NoteBook_SpritesheetInfo01a_11: 6853155436142253093
+      UI_NoteBook_SpritesheetInfo01a_110: -7563449914072006054
+      UI_NoteBook_SpritesheetInfo01a_111: -7841880245470759823
+      UI_NoteBook_SpritesheetInfo01a_112: 8327650292023343151
+      UI_NoteBook_SpritesheetInfo01a_113: -5736962610991124150
+      UI_NoteBook_SpritesheetInfo01a_114: -3351093344368433841
+      UI_NoteBook_SpritesheetInfo01a_115: 7682270793169910825
+      UI_NoteBook_SpritesheetInfo01a_116: -4595657666513347026
+      UI_NoteBook_SpritesheetInfo01a_117: 644413378594468633
+      UI_NoteBook_SpritesheetInfo01a_118: 8345240449351026222
+      UI_NoteBook_SpritesheetInfo01a_119: -5053101601697504276
+      UI_NoteBook_SpritesheetInfo01a_12: 6279389077538321581
+      UI_NoteBook_SpritesheetInfo01a_120: -872899450716946895
+      UI_NoteBook_SpritesheetInfo01a_121: 1092851719632661317
+      UI_NoteBook_SpritesheetInfo01a_122: -766859288733349011
+      UI_NoteBook_SpritesheetInfo01a_123: -9114354284710666381
+      UI_NoteBook_SpritesheetInfo01a_124: 7035703666473429837
+      UI_NoteBook_SpritesheetInfo01a_125: 3392750505075102116
+      UI_NoteBook_SpritesheetInfo01a_126: 8209092840844323821
+      UI_NoteBook_SpritesheetInfo01a_127: -3408752239052199305
+      UI_NoteBook_SpritesheetInfo01a_128: -4760709429269366333
+      UI_NoteBook_SpritesheetInfo01a_129: -7813614021037760029
+      UI_NoteBook_SpritesheetInfo01a_13: -3653932088595723196
+      UI_NoteBook_SpritesheetInfo01a_130: -4275107593611822619
+      UI_NoteBook_SpritesheetInfo01a_131: -2850299666253788006
+      UI_NoteBook_SpritesheetInfo01a_132: 8644170108244709215
+      UI_NoteBook_SpritesheetInfo01a_133: 5494469907123550092
+      UI_NoteBook_SpritesheetInfo01a_134: 2810236816688267507
+      UI_NoteBook_SpritesheetInfo01a_135: -3390584002228194216
+      UI_NoteBook_SpritesheetInfo01a_136: 1635482926088706714
+      UI_NoteBook_SpritesheetInfo01a_137: 1931003802271185948
+      UI_NoteBook_SpritesheetInfo01a_138: 7439885711027402235
+      UI_NoteBook_SpritesheetInfo01a_139: -8849138438370582030
+      UI_NoteBook_SpritesheetInfo01a_14: -5132591971593858320
+      UI_NoteBook_SpritesheetInfo01a_140: -5477787996757522295
+      UI_NoteBook_SpritesheetInfo01a_141: -9207710779159085701
+      UI_NoteBook_SpritesheetInfo01a_142: 8285103556570800148
+      UI_NoteBook_SpritesheetInfo01a_143: 5513745858063436446
+      UI_NoteBook_SpritesheetInfo01a_144: 2955556426531702906
+      UI_NoteBook_SpritesheetInfo01a_145: 7313900634409314805
+      UI_NoteBook_SpritesheetInfo01a_146: 3163538950826427851
+      UI_NoteBook_SpritesheetInfo01a_147: -5918000098045817329
+      UI_NoteBook_SpritesheetInfo01a_148: -3915072457291766879
+      UI_NoteBook_SpritesheetInfo01a_149: 7046175823391276281
+      UI_NoteBook_SpritesheetInfo01a_15: 2751519212007172045
+      UI_NoteBook_SpritesheetInfo01a_150: 2367717018986898738
+      UI_NoteBook_SpritesheetInfo01a_151: -929155799645347508
+      UI_NoteBook_SpritesheetInfo01a_152: -8713965099422300762
+      UI_NoteBook_SpritesheetInfo01a_153: 3559258319690991490
+      UI_NoteBook_SpritesheetInfo01a_154: -7561782472304543385
+      UI_NoteBook_SpritesheetInfo01a_155: 6940966186179724285
+      UI_NoteBook_SpritesheetInfo01a_156: 8159686553993773338
+      UI_NoteBook_SpritesheetInfo01a_157: -5831599190242923354
+      UI_NoteBook_SpritesheetInfo01a_158: 107539107237814576
+      UI_NoteBook_SpritesheetInfo01a_159: 8764777889765387207
+      UI_NoteBook_SpritesheetInfo01a_16: -2287176006608109190
+      UI_NoteBook_SpritesheetInfo01a_160: -6415386329858335099
+      UI_NoteBook_SpritesheetInfo01a_161: 7628929651684719500
+      UI_NoteBook_SpritesheetInfo01a_162: -7546628220994677130
+      UI_NoteBook_SpritesheetInfo01a_163: -9079852737847293990
+      UI_NoteBook_SpritesheetInfo01a_164: -1302766420642963139
+      UI_NoteBook_SpritesheetInfo01a_165: 4392588055186371212
+      UI_NoteBook_SpritesheetInfo01a_166: -6139066150102880780
+      UI_NoteBook_SpritesheetInfo01a_167: 6329218136002718142
+      UI_NoteBook_SpritesheetInfo01a_168: -4856313038397517412
+      UI_NoteBook_SpritesheetInfo01a_169: -7655576126010846431
+      UI_NoteBook_SpritesheetInfo01a_17: -7742073346453132478
+      UI_NoteBook_SpritesheetInfo01a_170: -7098976725885052019
+      UI_NoteBook_SpritesheetInfo01a_171: 2617058122971484379
+      UI_NoteBook_SpritesheetInfo01a_172: 1033157295086860766
+      UI_NoteBook_SpritesheetInfo01a_173: -7295992578767897793
+      UI_NoteBook_SpritesheetInfo01a_18: -2141847202902739091
+      UI_NoteBook_SpritesheetInfo01a_19: -1053573680736938667
+      UI_NoteBook_SpritesheetInfo01a_2: -5462344307341027300
+      UI_NoteBook_SpritesheetInfo01a_20: -5152470501037144715
+      UI_NoteBook_SpritesheetInfo01a_21: 5036368100059526120
+      UI_NoteBook_SpritesheetInfo01a_22: 4434864825500111796
+      UI_NoteBook_SpritesheetInfo01a_23: 5200732533033486135
+      UI_NoteBook_SpritesheetInfo01a_24: -3910464794685718653
+      UI_NoteBook_SpritesheetInfo01a_25: 5897022478994545211
+      UI_NoteBook_SpritesheetInfo01a_26: -1702296306659790805
+      UI_NoteBook_SpritesheetInfo01a_27: -4619049058714492175
+      UI_NoteBook_SpritesheetInfo01a_28: 1246633012616388083
+      UI_NoteBook_SpritesheetInfo01a_29: -2721693530196347318
+      UI_NoteBook_SpritesheetInfo01a_3: 99576806277589656
+      UI_NoteBook_SpritesheetInfo01a_30: -7035057266856160624
+      UI_NoteBook_SpritesheetInfo01a_31: -6021381338337919263
+      UI_NoteBook_SpritesheetInfo01a_32: -3973287150068998730
+      UI_NoteBook_SpritesheetInfo01a_33: 8064590084834272187
+      UI_NoteBook_SpritesheetInfo01a_34: -8099531123037675389
+      UI_NoteBook_SpritesheetInfo01a_35: 6043514674736247720
+      UI_NoteBook_SpritesheetInfo01a_36: -1522426870313512865
+      UI_NoteBook_SpritesheetInfo01a_37: -4887105147197673007
+      UI_NoteBook_SpritesheetInfo01a_38: 1597917689499621605
+      UI_NoteBook_SpritesheetInfo01a_39: 2543074387522686794
+      UI_NoteBook_SpritesheetInfo01a_4: 229900534715912788
+      UI_NoteBook_SpritesheetInfo01a_40: 994574742710531967
+      UI_NoteBook_SpritesheetInfo01a_41: -4529005972723894119
+      UI_NoteBook_SpritesheetInfo01a_42: -8929412292159075205
+      UI_NoteBook_SpritesheetInfo01a_43: 1066232053161890532
+      UI_NoteBook_SpritesheetInfo01a_44: 1523737418382854787
+      UI_NoteBook_SpritesheetInfo01a_45: -7209473883911994909
+      UI_NoteBook_SpritesheetInfo01a_46: -4032352073675177605
+      UI_NoteBook_SpritesheetInfo01a_47: -8426152202219534677
+      UI_NoteBook_SpritesheetInfo01a_48: 6242725577469198482
+      UI_NoteBook_SpritesheetInfo01a_49: 7761014725300709820
+      UI_NoteBook_SpritesheetInfo01a_5: 8624356971752095037
+      UI_NoteBook_SpritesheetInfo01a_50: 8708087047014590507
+      UI_NoteBook_SpritesheetInfo01a_51: -5879558665773860518
+      UI_NoteBook_SpritesheetInfo01a_52: -6823543720066160730
+      UI_NoteBook_SpritesheetInfo01a_53: 4701401047836145071
+      UI_NoteBook_SpritesheetInfo01a_54: 2941939459331257371
+      UI_NoteBook_SpritesheetInfo01a_55: 3319430936328810739
+      UI_NoteBook_SpritesheetInfo01a_56: 1415064124837033967
+      UI_NoteBook_SpritesheetInfo01a_57: 3387013068653772488
+      UI_NoteBook_SpritesheetInfo01a_58: -1215377116837183080
+      UI_NoteBook_SpritesheetInfo01a_59: 1843917920997179179
+      UI_NoteBook_SpritesheetInfo01a_6: -3998661003552279837
+      UI_NoteBook_SpritesheetInfo01a_60: -9075629256763712125
+      UI_NoteBook_SpritesheetInfo01a_61: -9152393819086371494
+      UI_NoteBook_SpritesheetInfo01a_62: 1360648226851086091
+      UI_NoteBook_SpritesheetInfo01a_63: 6337406959914256784
+      UI_NoteBook_SpritesheetInfo01a_64: 4451812695518039590
+      UI_NoteBook_SpritesheetInfo01a_65: 5937046978397253378
+      UI_NoteBook_SpritesheetInfo01a_66: -3038420788060375112
+      UI_NoteBook_SpritesheetInfo01a_67: -6509637720462524335
+      UI_NoteBook_SpritesheetInfo01a_68: 158184483616865246
+      UI_NoteBook_SpritesheetInfo01a_69: -8095767695002381277
+      UI_NoteBook_SpritesheetInfo01a_7: 681663172247203129
+      UI_NoteBook_SpritesheetInfo01a_70: -6661028742894833475
+      UI_NoteBook_SpritesheetInfo01a_71: -5060363083798719892
+      UI_NoteBook_SpritesheetInfo01a_72: -2114513479192361764
+      UI_NoteBook_SpritesheetInfo01a_73: 3745677570585252176
+      UI_NoteBook_SpritesheetInfo01a_74: 4684639218758601160
+      UI_NoteBook_SpritesheetInfo01a_75: 4806882943463098356
+      UI_NoteBook_SpritesheetInfo01a_76: -272934153094943850
+      UI_NoteBook_SpritesheetInfo01a_77: 949898777256094255
+      UI_NoteBook_SpritesheetInfo01a_78: -1736261972885891955
+      UI_NoteBook_SpritesheetInfo01a_79: -2805478920178090533
+      UI_NoteBook_SpritesheetInfo01a_8: 4458968320947576743
+      UI_NoteBook_SpritesheetInfo01a_80: -2833461390414845474
+      UI_NoteBook_SpritesheetInfo01a_81: 5856828021639931150
+      UI_NoteBook_SpritesheetInfo01a_82: 6859930436742227356
+      UI_NoteBook_SpritesheetInfo01a_83: -2290803904318911087
+      UI_NoteBook_SpritesheetInfo01a_84: -8537430172337969860
+      UI_NoteBook_SpritesheetInfo01a_85: 207508252935168670
+      UI_NoteBook_SpritesheetInfo01a_86: -5773171190808369794
+      UI_NoteBook_SpritesheetInfo01a_87: 8370397552973711605
+      UI_NoteBook_SpritesheetInfo01a_88: 3530168854069229739
+      UI_NoteBook_SpritesheetInfo01a_89: 6711192888765613347
+      UI_NoteBook_SpritesheetInfo01a_9: -3580566485764817117
+      UI_NoteBook_SpritesheetInfo01a_90: 6305526708344171357
+      UI_NoteBook_SpritesheetInfo01a_91: -6079813853756432849
+      UI_NoteBook_SpritesheetInfo01a_92: -7943416901975986597
+      UI_NoteBook_SpritesheetInfo01a_93: -7872977943763940983
+      UI_NoteBook_SpritesheetInfo01a_94: -1342214107439196927
+      UI_NoteBook_SpritesheetInfo01a_95: -6299311585922058486
+      UI_NoteBook_SpritesheetInfo01a_96: 2558144785311993343
+      UI_NoteBook_SpritesheetInfo01a_97: -5974517948068596585
+      UI_NoteBook_SpritesheetInfo01a_98: -6751435213554939866
+      UI_NoteBook_SpritesheetInfo01a_99: 7660710569823743727
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

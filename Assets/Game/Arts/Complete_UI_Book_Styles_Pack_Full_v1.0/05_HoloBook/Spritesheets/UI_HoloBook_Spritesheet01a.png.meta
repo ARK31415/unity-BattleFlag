@@ -1,0 +1,6812 @@
+fileFormatVersion: 2
+guid: 1f8e6cae7b921f84c9083de8189078d2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3986523024765708279
+    second: UI_HoloBook_Spritesheet01a_0
+  - first:
+      213: -8451717526279863310
+    second: UI_HoloBook_Spritesheet01a_1
+  - first:
+      213: 8309471197943789976
+    second: UI_HoloBook_Spritesheet01a_2
+  - first:
+      213: -5532860483094592751
+    second: UI_HoloBook_Spritesheet01a_3
+  - first:
+      213: 5324595760709226453
+    second: UI_HoloBook_Spritesheet01a_4
+  - first:
+      213: -3863686979472769714
+    second: UI_HoloBook_Spritesheet01a_5
+  - first:
+      213: -7314148024036672063
+    second: UI_HoloBook_Spritesheet01a_6
+  - first:
+      213: -3186438061877813402
+    second: UI_HoloBook_Spritesheet01a_7
+  - first:
+      213: -9003023277224244219
+    second: UI_HoloBook_Spritesheet01a_8
+  - first:
+      213: -4050158704979883277
+    second: UI_HoloBook_Spritesheet01a_9
+  - first:
+      213: 5594295793603478442
+    second: UI_HoloBook_Spritesheet01a_10
+  - first:
+      213: -1187443999021175297
+    second: UI_HoloBook_Spritesheet01a_11
+  - first:
+      213: -7871218266886986024
+    second: UI_HoloBook_Spritesheet01a_12
+  - first:
+      213: 4767427554342877078
+    second: UI_HoloBook_Spritesheet01a_13
+  - first:
+      213: -5244490177488692106
+    second: UI_HoloBook_Spritesheet01a_14
+  - first:
+      213: 6153625611666151122
+    second: UI_HoloBook_Spritesheet01a_15
+  - first:
+      213: 4123899688679073246
+    second: UI_HoloBook_Spritesheet01a_16
+  - first:
+      213: -649929360285044283
+    second: UI_HoloBook_Spritesheet01a_17
+  - first:
+      213: 5269576202593937810
+    second: UI_HoloBook_Spritesheet01a_18
+  - first:
+      213: 4009029137236426831
+    second: UI_HoloBook_Spritesheet01a_19
+  - first:
+      213: -3053627120133075675
+    second: UI_HoloBook_Spritesheet01a_20
+  - first:
+      213: 3758754848774508438
+    second: UI_HoloBook_Spritesheet01a_21
+  - first:
+      213: 6495626075593563780
+    second: UI_HoloBook_Spritesheet01a_22
+  - first:
+      213: 5777105093952277371
+    second: UI_HoloBook_Spritesheet01a_23
+  - first:
+      213: 9024334818875947138
+    second: UI_HoloBook_Spritesheet01a_24
+  - first:
+      213: -5458333811855516931
+    second: UI_HoloBook_Spritesheet01a_25
+  - first:
+      213: -2348767965252255065
+    second: UI_HoloBook_Spritesheet01a_26
+  - first:
+      213: 3072458861667989661
+    second: UI_HoloBook_Spritesheet01a_27
+  - first:
+      213: -2675264070761643238
+    second: UI_HoloBook_Spritesheet01a_28
+  - first:
+      213: 4394888493775328666
+    second: UI_HoloBook_Spritesheet01a_29
+  - first:
+      213: 3913710100428994861
+    second: UI_HoloBook_Spritesheet01a_30
+  - first:
+      213: -1672527830308100344
+    second: UI_HoloBook_Spritesheet01a_31
+  - first:
+      213: -5818960834152158705
+    second: UI_HoloBook_Spritesheet01a_32
+  - first:
+      213: -1841207072383440327
+    second: UI_HoloBook_Spritesheet01a_33
+  - first:
+      213: -1493524812559050299
+    second: UI_HoloBook_Spritesheet01a_34
+  - first:
+      213: -5602144127738179967
+    second: UI_HoloBook_Spritesheet01a_35
+  - first:
+      213: 3500580228439826001
+    second: UI_HoloBook_Spritesheet01a_36
+  - first:
+      213: 5076571651732036218
+    second: UI_HoloBook_Spritesheet01a_37
+  - first:
+      213: 2967107927983552038
+    second: UI_HoloBook_Spritesheet01a_38
+  - first:
+      213: -8666648444528544338
+    second: UI_HoloBook_Spritesheet01a_39
+  - first:
+      213: 8640216681558484438
+    second: UI_HoloBook_Spritesheet01a_40
+  - first:
+      213: -395073622677899133
+    second: UI_HoloBook_Spritesheet01a_41
+  - first:
+      213: 742447600391335128
+    second: UI_HoloBook_Spritesheet01a_42
+  - first:
+      213: -8889222023464124167
+    second: UI_HoloBook_Spritesheet01a_43
+  - first:
+      213: 3506570420651624260
+    second: UI_HoloBook_Spritesheet01a_44
+  - first:
+      213: -809799227117694857
+    second: UI_HoloBook_Spritesheet01a_45
+  - first:
+      213: -276268687838579921
+    second: UI_HoloBook_Spritesheet01a_46
+  - first:
+      213: 3946737565141211155
+    second: UI_HoloBook_Spritesheet01a_47
+  - first:
+      213: 7261935058923856682
+    second: UI_HoloBook_Spritesheet01a_48
+  - first:
+      213: 9009960294792179687
+    second: UI_HoloBook_Spritesheet01a_49
+  - first:
+      213: 4193728649377675927
+    second: UI_HoloBook_Spritesheet01a_50
+  - first:
+      213: -1843073161745764903
+    second: UI_HoloBook_Spritesheet01a_51
+  - first:
+      213: -6463768495445374451
+    second: UI_HoloBook_Spritesheet01a_52
+  - first:
+      213: 7149393726305067021
+    second: UI_HoloBook_Spritesheet01a_53
+  - first:
+      213: 1369058150869196773
+    second: UI_HoloBook_Spritesheet01a_54
+  - first:
+      213: 5482530693802269292
+    second: UI_HoloBook_Spritesheet01a_55
+  - first:
+      213: 1896768009252946380
+    second: UI_HoloBook_Spritesheet01a_56
+  - first:
+      213: -2303699291768116093
+    second: UI_HoloBook_Spritesheet01a_57
+  - first:
+      213: 8256034240311850831
+    second: UI_HoloBook_Spritesheet01a_58
+  - first:
+      213: 8097808935527144984
+    second: UI_HoloBook_Spritesheet01a_59
+  - first:
+      213: -389591075803466335
+    second: UI_HoloBook_Spritesheet01a_60
+  - first:
+      213: -6484248651163713551
+    second: UI_HoloBook_Spritesheet01a_61
+  - first:
+      213: 6523542767712450375
+    second: UI_HoloBook_Spritesheet01a_62
+  - first:
+      213: 8802682231691380711
+    second: UI_HoloBook_Spritesheet01a_63
+  - first:
+      213: -8760552163987184476
+    second: UI_HoloBook_Spritesheet01a_64
+  - first:
+      213: -8104498509473637628
+    second: UI_HoloBook_Spritesheet01a_65
+  - first:
+      213: -3400868593806254553
+    second: UI_HoloBook_Spritesheet01a_66
+  - first:
+      213: -6865587082231959909
+    second: UI_HoloBook_Spritesheet01a_67
+  - first:
+      213: 2208053277473068713
+    second: UI_HoloBook_Spritesheet01a_68
+  - first:
+      213: -2720767562100806014
+    second: UI_HoloBook_Spritesheet01a_69
+  - first:
+      213: 230387838634574229
+    second: UI_HoloBook_Spritesheet01a_70
+  - first:
+      213: -8918332782625161734
+    second: UI_HoloBook_Spritesheet01a_71
+  - first:
+      213: 5070517992618535538
+    second: UI_HoloBook_Spritesheet01a_72
+  - first:
+      213: 6591815544385925566
+    second: UI_HoloBook_Spritesheet01a_73
+  - first:
+      213: 9189069237486488956
+    second: UI_HoloBook_Spritesheet01a_74
+  - first:
+      213: -8777958455309969717
+    second: UI_HoloBook_Spritesheet01a_75
+  - first:
+      213: -6761832025643934015
+    second: UI_HoloBook_Spritesheet01a_76
+  - first:
+      213: -7178415563179951450
+    second: UI_HoloBook_Spritesheet01a_77
+  - first:
+      213: 4664805556337593119
+    second: UI_HoloBook_Spritesheet01a_78
+  - first:
+      213: -4230272163207172833
+    second: UI_HoloBook_Spritesheet01a_79
+  - first:
+      213: 8782395693071306710
+    second: UI_HoloBook_Spritesheet01a_80
+  - first:
+      213: -6313817650536123879
+    second: UI_HoloBook_Spritesheet01a_81
+  - first:
+      213: 679876476798744099
+    second: UI_HoloBook_Spritesheet01a_82
+  - first:
+      213: 2621937566778258891
+    second: UI_HoloBook_Spritesheet01a_83
+  - first:
+      213: 4462719727108662540
+    second: UI_HoloBook_Spritesheet01a_84
+  - first:
+      213: 7539592544943499218
+    second: UI_HoloBook_Spritesheet01a_85
+  - first:
+      213: -4483912769334399640
+    second: UI_HoloBook_Spritesheet01a_86
+  - first:
+      213: 5584610691990317778
+    second: UI_HoloBook_Spritesheet01a_87
+  - first:
+      213: 6599378869204532909
+    second: UI_HoloBook_Spritesheet01a_88
+  - first:
+      213: 5999906067097320012
+    second: UI_HoloBook_Spritesheet01a_89
+  - first:
+      213: 7140698863135659062
+    second: UI_HoloBook_Spritesheet01a_90
+  - first:
+      213: -3641356268001392297
+    second: UI_HoloBook_Spritesheet01a_91
+  - first:
+      213: -3140877736479937283
+    second: UI_HoloBook_Spritesheet01a_92
+  - first:
+      213: -3278257058681159603
+    second: UI_HoloBook_Spritesheet01a_93
+  - first:
+      213: -6617166538275214584
+    second: UI_HoloBook_Spritesheet01a_94
+  - first:
+      213: -2777345852749110980
+    second: UI_HoloBook_Spritesheet01a_95
+  - first:
+      213: 2444222792566782283
+    second: UI_HoloBook_Spritesheet01a_96
+  - first:
+      213: 440884160523170038
+    second: UI_HoloBook_Spritesheet01a_97
+  - first:
+      213: 2427034185529029149
+    second: UI_HoloBook_Spritesheet01a_98
+  - first:
+      213: 2352792331979283833
+    second: UI_HoloBook_Spritesheet01a_99
+  - first:
+      213: 1538630275062961128
+    second: UI_HoloBook_Spritesheet01a_100
+  - first:
+      213: 694710685132773479
+    second: UI_HoloBook_Spritesheet01a_101
+  - first:
+      213: 984653062495760996
+    second: UI_HoloBook_Spritesheet01a_102
+  - first:
+      213: 6518306598950562169
+    second: UI_HoloBook_Spritesheet01a_103
+  - first:
+      213: -825299928770352812
+    second: UI_HoloBook_Spritesheet01a_104
+  - first:
+      213: -6536927720508441102
+    second: UI_HoloBook_Spritesheet01a_105
+  - first:
+      213: -8379190039528251123
+    second: UI_HoloBook_Spritesheet01a_106
+  - first:
+      213: 2776317084932086718
+    second: UI_HoloBook_Spritesheet01a_107
+  - first:
+      213: 6392983834152563870
+    second: UI_HoloBook_Spritesheet01a_108
+  - first:
+      213: 1544577475211368650
+    second: UI_HoloBook_Spritesheet01a_109
+  - first:
+      213: 1007226250141983419
+    second: UI_HoloBook_Spritesheet01a_110
+  - first:
+      213: -4784754620339165373
+    second: UI_HoloBook_Spritesheet01a_111
+  - first:
+      213: 6233671120001467242
+    second: UI_HoloBook_Spritesheet01a_112
+  - first:
+      213: -3032869999932082060
+    second: UI_HoloBook_Spritesheet01a_113
+  - first:
+      213: -1074771789789009056
+    second: UI_HoloBook_Spritesheet01a_114
+  - first:
+      213: -5236565458203110973
+    second: UI_HoloBook_Spritesheet01a_115
+  - first:
+      213: -1988135643498254208
+    second: UI_HoloBook_Spritesheet01a_116
+  - first:
+      213: -6046440802789785110
+    second: UI_HoloBook_Spritesheet01a_117
+  - first:
+      213: 2606132929970416694
+    second: UI_HoloBook_Spritesheet01a_118
+  - first:
+      213: -7321039969209479682
+    second: UI_HoloBook_Spritesheet01a_119
+  - first:
+      213: 2111207687586871298
+    second: UI_HoloBook_Spritesheet01a_120
+  - first:
+      213: 1656547206505538088
+    second: UI_HoloBook_Spritesheet01a_121
+  - first:
+      213: 3963370545089121049
+    second: UI_HoloBook_Spritesheet01a_122
+  - first:
+      213: -7254490392765445745
+    second: UI_HoloBook_Spritesheet01a_123
+  - first:
+      213: 7652049886190197849
+    second: UI_HoloBook_Spritesheet01a_124
+  - first:
+      213: -782955291186091281
+    second: UI_HoloBook_Spritesheet01a_125
+  - first:
+      213: 751324308306108259
+    second: UI_HoloBook_Spritesheet01a_126
+  - first:
+      213: 8247272127220059126
+    second: UI_HoloBook_Spritesheet01a_127
+  - first:
+      213: 8076805615346798879
+    second: UI_HoloBook_Spritesheet01a_128
+  - first:
+      213: 3706142181214286463
+    second: UI_HoloBook_Spritesheet01a_129
+  - first:
+      213: -8851701109936038004
+    second: UI_HoloBook_Spritesheet01a_130
+  - first:
+      213: 8655029878405720529
+    second: UI_HoloBook_Spritesheet01a_131
+  - first:
+      213: 2084681051582547476
+    second: UI_HoloBook_Spritesheet01a_132
+  - first:
+      213: 6917231639029546836
+    second: UI_HoloBook_Spritesheet01a_133
+  - first:
+      213: 1405715674436242239
+    second: UI_HoloBook_Spritesheet01a_134
+  - first:
+      213: 6242940110036678520
+    second: UI_HoloBook_Spritesheet01a_135
+  - first:
+      213: -5065025916505108516
+    second: UI_HoloBook_Spritesheet01a_136
+  - first:
+      213: -3978282782909185162
+    second: UI_HoloBook_Spritesheet01a_137
+  - first:
+      213: -6530076897741121116
+    second: UI_HoloBook_Spritesheet01a_138
+  - first:
+      213: 6564432068069308493
+    second: UI_HoloBook_Spritesheet01a_139
+  - first:
+      213: 5694352114501350277
+    second: UI_HoloBook_Spritesheet01a_140
+  - first:
+      213: -6215887885834015553
+    second: UI_HoloBook_Spritesheet01a_141
+  - first:
+      213: 5943681908657686113
+    second: UI_HoloBook_Spritesheet01a_142
+  - first:
+      213: 8226364600993018696
+    second: UI_HoloBook_Spritesheet01a_143
+  - first:
+      213: -2761476118845776399
+    second: UI_HoloBook_Spritesheet01a_144
+  - first:
+      213: -2193210062398759507
+    second: UI_HoloBook_Spritesheet01a_145
+  - first:
+      213: -4348474057844081627
+    second: UI_HoloBook_Spritesheet01a_146
+  - first:
+      213: -6525398915014530391
+    second: UI_HoloBook_Spritesheet01a_147
+  - first:
+      213: -6564540900002165473
+    second: UI_HoloBook_Spritesheet01a_148
+  - first:
+      213: -5741682622400235989
+    second: UI_HoloBook_Spritesheet01a_149
+  - first:
+      213: -58315770499733002
+    second: UI_HoloBook_Spritesheet01a_150
+  - first:
+      213: 6086761825607690637
+    second: UI_HoloBook_Spritesheet01a_151
+  - first:
+      213: -3338960134333431771
+    second: UI_HoloBook_Spritesheet01a_152
+  - first:
+      213: 6892679706875135562
+    second: UI_HoloBook_Spritesheet01a_153
+  - first:
+      213: 1242775178606218013
+    second: UI_HoloBook_Spritesheet01a_154
+  - first:
+      213: 3156870207553339932
+    second: UI_HoloBook_Spritesheet01a_155
+  - first:
+      213: -6971182393227403169
+    second: UI_HoloBook_Spritesheet01a_156
+  - first:
+      213: -7362998150915814594
+    second: UI_HoloBook_Spritesheet01a_157
+  - first:
+      213: -240081989645034959
+    second: UI_HoloBook_Spritesheet01a_158
+  - first:
+      213: 6941398628082828018
+    second: UI_HoloBook_Spritesheet01a_159
+  - first:
+      213: -2283656496720121499
+    second: UI_HoloBook_Spritesheet01a_160
+  - first:
+      213: 8882189951355683837
+    second: UI_HoloBook_Spritesheet01a_161
+  - first:
+      213: 3694128244411182701
+    second: UI_HoloBook_Spritesheet01a_162
+  - first:
+      213: 884368483457097573
+    second: UI_HoloBook_Spritesheet01a_163
+  - first:
+      213: -6211865200291635857
+    second: UI_HoloBook_Spritesheet01a_164
+  - first:
+      213: -6148387573983774125
+    second: UI_HoloBook_Spritesheet01a_165
+  - first:
+      213: -5744030508816430582
+    second: UI_HoloBook_Spritesheet01a_166
+  - first:
+      213: -7994622080533956923
+    second: UI_HoloBook_Spritesheet01a_167
+  - first:
+      213: -4928051543664574075
+    second: UI_HoloBook_Spritesheet01a_168
+  - first:
+      213: -7742133789249652859
+    second: UI_HoloBook_Spritesheet01a_169
+  - first:
+      213: -3430978618667453597
+    second: UI_HoloBook_Spritesheet01a_170
+  - first:
+      213: 4665640684971524310
+    second: UI_HoloBook_Spritesheet01a_171
+  - first:
+      213: 3598481224688226239
+    second: UI_HoloBook_Spritesheet01a_172
+  - first:
+      213: 21171012605549384
+    second: UI_HoloBook_Spritesheet01a_173
+  - first:
+      213: -1530073391308575113
+    second: UI_HoloBook_Spritesheet01a_174
+  - first:
+      213: -2370266898139338672
+    second: UI_HoloBook_Spritesheet01a_175
+  - first:
+      213: 7730376753361927014
+    second: UI_HoloBook_Spritesheet01a_176
+  - first:
+      213: -594101222501725647
+    second: UI_HoloBook_Spritesheet01a_177
+  - first:
+      213: 2054905766469060070
+    second: UI_HoloBook_Spritesheet01a_178
+  - first:
+      213: -175451669938549084
+    second: UI_HoloBook_Spritesheet01a_179
+  - first:
+      213: 3088877386514668162
+    second: UI_HoloBook_Spritesheet01a_180
+  - first:
+      213: -1340923588157882488
+    second: UI_HoloBook_Spritesheet01a_181
+  - first:
+      213: 9066135200775131725
+    second: UI_HoloBook_Spritesheet01a_182
+  - first:
+      213: -227875793429496306
+    second: UI_HoloBook_Spritesheet01a_183
+  - first:
+      213: -6997802665638933366
+    second: UI_HoloBook_Spritesheet01a_184
+  - first:
+      213: 524376522852206694
+    second: UI_HoloBook_Spritesheet01a_185
+  - first:
+      213: 3687793669424897406
+    second: UI_HoloBook_Spritesheet01a_186
+  - first:
+      213: 5087122951188671236
+    second: UI_HoloBook_Spritesheet01a_187
+  - first:
+      213: -2945034021933295765
+    second: UI_HoloBook_Spritesheet01a_188
+  - first:
+      213: 1118739924557015234
+    second: UI_HoloBook_Spritesheet01a_189
+  - first:
+      213: 9183445490642863496
+    second: UI_HoloBook_Spritesheet01a_190
+  - first:
+      213: 4230979058007769943
+    second: UI_HoloBook_Spritesheet01a_191
+  - first:
+      213: -3419822943919214668
+    second: UI_HoloBook_Spritesheet01a_192
+  - first:
+      213: 3156486930535632017
+    second: UI_HoloBook_Spritesheet01a_193
+  - first:
+      213: -6703292232532389152
+    second: UI_HoloBook_Spritesheet01a_194
+  - first:
+      213: -1214582606813202474
+    second: UI_HoloBook_Spritesheet01a_195
+  - first:
+      213: -2153228912857658601
+    second: UI_HoloBook_Spritesheet01a_196
+  - first:
+      213: -6503135543505988817
+    second: UI_HoloBook_Spritesheet01a_197
+  - first:
+      213: 2805046723302258027
+    second: UI_HoloBook_Spritesheet01a_198
+  - first:
+      213: -3405079879147756287
+    second: UI_HoloBook_Spritesheet01a_199
+  - first:
+      213: 9066860800801471120
+    second: UI_HoloBook_Spritesheet01a_200
+  - first:
+      213: 8082353963398144013
+    second: UI_HoloBook_Spritesheet01a_201
+  - first:
+      213: -4378032316378684087
+    second: UI_HoloBook_Spritesheet01a_202
+  - first:
+      213: -1830176150264244786
+    second: UI_HoloBook_Spritesheet01a_203
+  - first:
+      213: 2161509813803994700
+    second: UI_HoloBook_Spritesheet01a_204
+  - first:
+      213: -6079109224428571470
+    second: UI_HoloBook_Spritesheet01a_205
+  - first:
+      213: 89818395361550798
+    second: UI_HoloBook_Spritesheet01a_206
+  - first:
+      213: 3448226013739235082
+    second: UI_HoloBook_Spritesheet01a_207
+  - first:
+      213: -4412154871795481919
+    second: UI_HoloBook_Spritesheet01a_208
+  - first:
+      213: -7210139680602637424
+    second: UI_HoloBook_Spritesheet01a_209
+  - first:
+      213: -4318749934713120717
+    second: UI_HoloBook_Spritesheet01a_210
+  - first:
+      213: 3139547435316580110
+    second: UI_HoloBook_Spritesheet01a_211
+  - first:
+      213: -3383316841653650078
+    second: UI_HoloBook_Spritesheet01a_212
+  - first:
+      213: -7479917303304510480
+    second: UI_HoloBook_Spritesheet01a_213
+  - first:
+      213: 83796976434236966
+    second: UI_HoloBook_Spritesheet01a_214
+  - first:
+      213: 1280938511699766700
+    second: UI_HoloBook_Spritesheet01a_215
+  - first:
+      213: -5345651598929445559
+    second: UI_HoloBook_Spritesheet01a_216
+  - first:
+      213: 238429337371583688
+    second: UI_HoloBook_Spritesheet01a_217
+  - first:
+      213: -2235454251275753308
+    second: UI_HoloBook_Spritesheet01a_218
+  - first:
+      213: -2844461634053542744
+    second: UI_HoloBook_Spritesheet01a_219
+  - first:
+      213: -2427419098440985444
+    second: UI_HoloBook_Spritesheet01a_220
+  - first:
+      213: -5816880134640507512
+    second: UI_HoloBook_Spritesheet01a_221
+  - first:
+      213: 4299687651512519461
+    second: UI_HoloBook_Spritesheet01a_222
+  - first:
+      213: 6200228858663085399
+    second: UI_HoloBook_Spritesheet01a_223
+  - first:
+      213: -118195829527989394
+    second: UI_HoloBook_Spritesheet01a_224
+  - first:
+      213: -2901838613630022293
+    second: UI_HoloBook_Spritesheet01a_225
+  - first:
+      213: 4671956019047798277
+    second: UI_HoloBook_Spritesheet01a_226
+  - first:
+      213: 471949764994785441
+    second: UI_HoloBook_Spritesheet01a_227
+  - first:
+      213: 946316078022023825
+    second: UI_HoloBook_Spritesheet01a_228
+  - first:
+      213: -6915255520456181186
+    second: UI_HoloBook_Spritesheet01a_229
+  - first:
+      213: -6212208443921972808
+    second: UI_HoloBook_Spritesheet01a_230
+  - first:
+      213: 2398264067864555580
+    second: UI_HoloBook_Spritesheet01a_231
+  - first:
+      213: 7359770313294833482
+    second: UI_HoloBook_Spritesheet01a_232
+  - first:
+      213: -3746737610141123279
+    second: UI_HoloBook_Spritesheet01a_233
+  - first:
+      213: 4322291672058493300
+    second: UI_HoloBook_Spritesheet01a_234
+  - first:
+      213: -1716486108541546560
+    second: UI_HoloBook_Spritesheet01a_235
+  - first:
+      213: -654451560465684352
+    second: UI_HoloBook_Spritesheet01a_236
+  - first:
+      213: -4203750923790417027
+    second: UI_HoloBook_Spritesheet01a_237
+  - first:
+      213: 5544326524504153459
+    second: UI_HoloBook_Spritesheet01a_238
+  - first:
+      213: 9184750372168151562
+    second: UI_HoloBook_Spritesheet01a_239
+  - first:
+      213: -2964865131370275814
+    second: UI_HoloBook_Spritesheet01a_240
+  - first:
+      213: 2948494876607353093
+    second: UI_HoloBook_Spritesheet01a_241
+  - first:
+      213: -7643037106893460606
+    second: UI_HoloBook_Spritesheet01a_242
+  - first:
+      213: 663763521123168077
+    second: UI_HoloBook_Spritesheet01a_243
+  - first:
+      213: 8427382431624751083
+    second: UI_HoloBook_Spritesheet01a_244
+  - first:
+      213: -1131910389562509835
+    second: UI_HoloBook_Spritesheet01a_245
+  - first:
+      213: -5807584908505943216
+    second: UI_HoloBook_Spritesheet01a_246
+  - first:
+      213: -8937679884159349835
+    second: UI_HoloBook_Spritesheet01a_247
+  - first:
+      213: -1796530158213319124
+    second: UI_HoloBook_Spritesheet01a_248
+  - first:
+      213: 8887671047133337604
+    second: UI_HoloBook_Spritesheet01a_249
+  - first:
+      213: 2436990736890833720
+    second: UI_HoloBook_Spritesheet01a_250
+  - first:
+      213: -6780735527009978958
+    second: UI_HoloBook_Spritesheet01a_251
+  - first:
+      213: -775680778950024169
+    second: UI_HoloBook_Spritesheet01a_252
+  - first:
+      213: 5064667464570468363
+    second: UI_HoloBook_Spritesheet01a_253
+  - first:
+      213: 4576022628634259927
+    second: UI_HoloBook_Spritesheet01a_254
+  - first:
+      213: 8064631999997293254
+    second: UI_HoloBook_Spritesheet01a_255
+  - first:
+      213: -6581197365837624246
+    second: UI_HoloBook_Spritesheet01a_256
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_0
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 2047
+        width: 322
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f7631cc199f25730800000000000000
+      internalID: 3986523024765708279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_1
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 2048
+        width: 320
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f3452060b775ba80800000000000000
+      internalID: -8451717526279863310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_2
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1967
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89977c0770c215370800000000000000
+      internalID: 8309471197943789976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_3
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1967
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 113c95974b45733b0800000000000000
+      internalID: -5532860483094592751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_4
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1967
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dfcf9922a3c4e940800000000000000
+      internalID: 5324595760709226453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_5
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 1967
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4d3931b92d616ac0800000000000000
+      internalID: -3863686979472769714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_6
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1967
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cd3ba8cf1dee7a90800000000000000
+      internalID: -7314148024036672063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_7
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 1967
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f1df6177f77c3d0800000000000000
+      internalID: -3186438061877813402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_8
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1791
+        width: 226
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50cc9788706de0380800000000000000
+      internalID: -9003023277224244219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_9
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1903
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fac7b1dd12fac7c0800000000000000
+      internalID: -4050158704979883277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_10
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1839
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa3823a626ee2ad40800000000000000
+      internalID: 5594295793603478442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_11
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1749
+        width: 46
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd6ca769f9558fe0800000000000000
+      internalID: -1187443999021175297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1718
+        width: 65
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d6a2a490b0d3c290800000000000000
+      internalID: -7871218266886986024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_13
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1732
+        width: 50
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 697340d0a1e492240800000000000000
+      internalID: 4767427554342877078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_14
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1716
+        width: 50
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67cd2c658f3d737b0800000000000000
+      internalID: -5244490177488692106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1665
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d65b18f3e1166550800000000000000
+      internalID: 6153625611666151122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1665
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed56f01eae80b3930800000000000000
+      internalID: 4123899688679073246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_17
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 1664
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c1fc17b0bcfaf6f0800000000000000
+      internalID: -649929360285044283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_18
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1665
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 299a67803ab412940800000000000000
+      internalID: 5269576202593937810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_19
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1601
+        width: 94
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f400b2372cee2a730800000000000000
+      internalID: 4009029137236426831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_20
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1601
+        width: 94
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d08f320565f95d0800000000000000
+      internalID: -3053627120133075675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_21
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1569
+        width: 94
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69f4bf6ce97c92430800000000000000
+      internalID: 3758754848774508438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_22
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1569
+        width: 94
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48ed48d1089152a50800000000000000
+      internalID: 6495626075593563780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_23
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1537
+        width: 94
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7b002b79766c2050800000000000000
+      internalID: 5777105093952277371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_24
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1540
+        width: 94
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2883a4d64b0ec3d70800000000000000
+      internalID: 9024334818875947138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1472
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfa19de415a1044b0800000000000000
+      internalID: -5458333811855516931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1472
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a2825bdaff776fd0800000000000000
+      internalID: -2348767965252255065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_27
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1409
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d98b8bc5e0193aa20800000000000000
+      internalID: 3072458861667989661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_28
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1409
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1303e5708d8fdad0800000000000000
+      internalID: -2675264070761643238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_29
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1409
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a951eeaccc7cdfc30800000000000000
+      internalID: 4394888493775328666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_30
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1409
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29bde1c99a405630800000000000000
+      internalID: 3913710100428994861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_31
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1377
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 807e78dbcccf9c8e0800000000000000
+      internalID: -1672527830308100344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_32
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1377
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0a237693f5ee3fa0800000000000000
+      internalID: -5818960834152158705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_33
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1377
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93ae5ac3ce7b276e0800000000000000
+      internalID: -1841207072383440327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_34
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1377
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c99f24981fe54be0800000000000000
+      internalID: -1493524812559050299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_35
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1345
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e00a5e89f2142b0800000000000000
+      internalID: -5602144127738179967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_36
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1345
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e59efbb2f849030800000000000000
+      internalID: 3500580228439826001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_37
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1345
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7a5e4a350b937640800000000000000
+      internalID: 5076571651732036218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_38
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1345
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62674b9a0f84d2920800000000000000
+      internalID: 2967107927983552038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_39
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1303
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea53fa65821e9b780800000000000000
+      internalID: -8666648444528544338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_40
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1292
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d5a2b64b4738e770800000000000000
+      internalID: 8640216681558484438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_41
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1292
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 388382422aa648af0800000000000000
+      internalID: -395073622677899133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_42
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1280
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dcaaada824bd4a00800000000000000
+      internalID: 742447600391335128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_43
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1217
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f087d1baa323a480800000000000000
+      internalID: -8889222023464124167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_44
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1217
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44705de0837d9a030800000000000000
+      internalID: 3506570420651624260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_45
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1217
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7709348b4e303c4f0800000000000000
+      internalID: -809799227117694857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_46
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1217
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2371d6971f7a2cf0800000000000000
+      internalID: -276268687838579921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_47
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 1217
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3189eef97e0a5c630800000000000000
+      internalID: 3946737565141211155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_48
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 1217
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23ac11f57397c460800000000000000
+      internalID: 7261935058923856682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_49
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1217
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ef267bb62fc90d70800000000000000
+      internalID: 9009960294792179687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_50
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1217
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79af88ebcfd133a30800000000000000
+      internalID: 4193728649377675927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_51
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1185
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dd661379b61c66e0800000000000000
+      internalID: -1843073161745764903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_52
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1185
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0a0e96ccc41c46a0800000000000000
+      internalID: -6463768495445374451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_53
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1185
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d00e1d707bfb73360800000000000000
+      internalID: 7149393726305067021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_54
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1185
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ef5967722fdff210800000000000000
+      internalID: 1369058150869196773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_55
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 1185
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6a924a4e9cd51c40800000000000000
+      internalID: 5482530693802269292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_56
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 1185
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc1c8d4747ca25a10800000000000000
+      internalID: 1896768009252946380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_57
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1185
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38ca7dc13bd9700e0800000000000000
+      internalID: -2303699291768116093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_58
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1185
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f47ff333663539270800000000000000
+      internalID: 8256034240311850831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_59
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1153
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81e5415a252316070800000000000000
+      internalID: 8097808935527144984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_60
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1153
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a5721f0bf4e79af0800000000000000
+      internalID: -389591075803466335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_61
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1153
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ffb410f4325306a0800000000000000
+      internalID: -6484248651163713551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_62
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1153
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 747b1928597488a50800000000000000
+      internalID: 6523542767712450375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_63
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 1153
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e78b92e9d8692a70800000000000000
+      internalID: 8802682231691380711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_64
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 1153
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a4a345e8344c6680800000000000000
+      internalID: -8760552163987184476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_65
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1153
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40b142c8b89078f80800000000000000
+      internalID: -8104498509473637628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_66
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1153
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72e55625800bdc0d0800000000000000
+      internalID: -3400868593806254553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_67
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1121
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9ead059ce888b0a0800000000000000
+      internalID: -6865587082231959909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_68
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1121
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a65be0d1c494ae10800000000000000
+      internalID: 2208053277473068713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_69
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1121
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28e63984154ed3ad0800000000000000
+      internalID: -2720767562100806014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_70
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1121
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5914262c480823300800000000000000
+      internalID: 230387838634574229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_71
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 1121
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afdf7e6e597bb3480800000000000000
+      internalID: -8918332782625161734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_72
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 1121
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27a2141ef391e5640800000000000000
+      internalID: 5070517992618535538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_73
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1121
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb1750c0055da7b50800000000000000
+      internalID: 6591815544385925566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_74
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1121
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7d0ad429c1268f70800000000000000
+      internalID: 9189069237486488956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_75
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1057
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc6dc12ea4d6e2680800000000000000
+      internalID: -8777958455309969717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_76
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1057
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ce12a039952922a0800000000000000
+      internalID: -6761832025643934015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_77
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1057
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aaf5820415216c90800000000000000
+      internalID: -7178415563179951450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_78
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1057
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1b45c330f7bcb040800000000000000
+      internalID: 4664805556337593119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_79
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 998
+        width: 94
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1d20d861ed0b45c0800000000000000
+      internalID: -4230272163207172833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_80
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 998
+        width: 94
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6df8f6a0a5651e970800000000000000
+      internalID: 8782395693071306710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_81
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 966
+        width: 94
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 912f3338c40d068a0800000000000000
+      internalID: -6313817650536123879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_82
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 966
+        width: 94
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 326bbb2bd086f6900800000000000000
+      internalID: 679876476798744099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_83
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 902
+        width: 94
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5f11b435ef26420800000000000000
+      internalID: 2621937566778258891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_84
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 902
+        width: 94
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c05a07282f3ceed30800000000000000
+      internalID: 4462719727108662540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_85
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 833
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d76a80297302a860800000000000000
+      internalID: 7539592544943499218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_86
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 833
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86d2cf3d711f5c1c0800000000000000
+      internalID: -4483912769334399640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_87
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 833
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da6ee8f5d5808d40800000000000000
+      internalID: 5584610691990317778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_88
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 833
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daeb725dd14b59b50800000000000000
+      internalID: 6599378869204532909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_89
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 789
+        width: 62
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4afb0777c2f34350800000000000000
+      internalID: 5999906067097320012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_90
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 801
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6349c3178cbd81360800000000000000
+      internalID: 7140698863135659062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_91
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 801
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 759822954cd477dc0800000000000000
+      internalID: -3641356268001392297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_92
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 801
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfc2e2af65c5964d0800000000000000
+      internalID: -3140877736479937283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_93
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 788
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4084e6f29a4182d0800000000000000
+      internalID: -3278257058681159603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_94
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 737
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80b218ab71a1b24a0800000000000000
+      internalID: -6617166538275214584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_95
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 689
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c312c7479a2e479d0800000000000000
+      internalID: -2777345852749110980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_96
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 689
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b493bd60eaf9be120800000000000000
+      internalID: 2444222792566782283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_97
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 689
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f0741fdec55e1600800000000000000
+      internalID: 440884160523170038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_98
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 688
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d12ff269bbe8ea120800000000000000
+      internalID: 2427034185529029149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_99
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 627
+        width: 47
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d53e9092cc6a020800000000000000
+      internalID: 2352792331979283833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_100
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 659
+        width: 46
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e31ac945105a5510800000000000000
+      internalID: 1538630275062961128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_101
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 660
+        width: 46
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 768d109ffab14a900800000000000000
+      internalID: 694710685132773479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_102
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 658
+        width: 46
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4627f015eb03aad00800000000000000
+      internalID: 984653062495760996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_103
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 659
+        width: 45
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9796887f05da57a50800000000000000
+      internalID: 6518306598950562169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_104
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 644
+        width: 33
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 459ec706612fb84f0800000000000000
+      internalID: -825299928770352812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_105
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 627
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fdb0b05fda2845a0800000000000000
+      internalID: -6536927720508441102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_106
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 625
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d016d6ccd0327bb80800000000000000
+      internalID: -8379190039528251123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_107
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 627
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebb993fdda5778620800000000000000
+      internalID: 2776317084932086718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_108
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 625
+        width: 6
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e947a79fce078b850800000000000000
+      internalID: 6392983834152563870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_109
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 566
+        width: 62
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac81b0ab7017f6510800000000000000
+      internalID: 1544577475211368650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_110
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 582
+        width: 62
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2692020f26afd00800000000000000
+      internalID: 1007226250141983419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_111
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 532
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34766450603299db0800000000000000
+      internalID: -4784754620339165373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_112
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 532
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a638c423bd2728650800000000000000
+      internalID: 6233671120001467242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_113
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 532
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478fb1ccdc419e5d0800000000000000
+      internalID: -3032869999932082060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_114
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 531
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06be30760c4a511f0800000000000000
+      internalID: -1074771789789009056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_115
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 531
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c119b4d57bf357b0800000000000000
+      internalID: -5236565458203110973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_116
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 531
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0807ef37a29b864e0800000000000000
+      internalID: -1988135643498254208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_117
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 531
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae18942102ab61ca0800000000000000
+      internalID: -6046440802789785110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_118
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 531
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ca5588718da2420800000000000000
+      internalID: 2606132929970416694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_119
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 516
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efd05d0cfe0766a90800000000000000
+      internalID: -7321039969209479682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_120
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 516
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20870b9c4348c4d10800000000000000
+      internalID: 2111207687586871298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_121
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 516
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 822ad6558ec3df610800000000000000
+      internalID: 1656547206505538088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_122
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 515
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b884d0388b00730800000000000000
+      internalID: 3963370545089121049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_123
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 515
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f894bb87c6fd25b90800000000000000
+      internalID: -7254490392765445745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_124
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 515
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95c5fe544da813a60800000000000000
+      internalID: 7652049886190197849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_125
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 515
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fea27d99f426225f0800000000000000
+      internalID: -782955291186091281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_126
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 515
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36f93bb4a7d3d6a00800000000000000
+      internalID: 751324308306108259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_127
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 498
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb8ee4cd42347270800000000000000
+      internalID: 8247272127220059126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_128
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 498
+        width: 27
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1150a61ae3961070800000000000000
+      internalID: 8076805615346798879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_129
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 498
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f727e568dacde6330800000000000000
+      internalID: 3706142181214286463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_130
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 487
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8fd4542db0782580800000000000000
+      internalID: -8851701109936038004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_131
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 487
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d9e3ce61d7dc1870800000000000000
+      internalID: 8655029878405720529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_132
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 482
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 416c09d0f564eec10800000000000000
+      internalID: 2084681051582547476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_133
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 482
+        width: 27
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45ff271d681feff50800000000000000
+      internalID: 6917231639029546836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_134
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 482
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b88f545fa128310800000000000000
+      internalID: 1405715674436242239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_135
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 456
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87736cc14f063a650800000000000000
+      internalID: 6242940110036678520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_136
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 456
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdfc09cb3c965b9b0800000000000000
+      internalID: -5065025916505108516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_137
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 456
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67345a403ec4ac8c0800000000000000
+      internalID: -3978282782909185162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_138
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 436
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a9d72ac8a18065a0800000000000000
+      internalID: -6530076897741121116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_139
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 435
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d483471af2c891b50800000000000000
+      internalID: 6564432068069308493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_140
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 403
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 583f8d20417660f40800000000000000
+      internalID: 5694352114501350277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_141
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 403
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbca539a6eabcb9a0800000000000000
+      internalID: -6215887885834015553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_142
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 401
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 166057774333c7250800000000000000
+      internalID: 5943681908657686113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_143
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 401
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 843790bf40be92270800000000000000
+      internalID: 8226364600993018696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_144
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 401
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fd1970d9144da9d0800000000000000
+      internalID: -2761476118845776399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_145
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 401
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dadd8e081172091e0800000000000000
+      internalID: -2193210062398759507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_146
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 385
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52cb33332ed17a3c0800000000000000
+      internalID: -4348474057844081627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_147
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 403
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aae6d482402175a0800000000000000
+      internalID: -6525398915014530391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_148
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 403
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1d09d5f4d016e4a0800000000000000
+      internalID: -6564540900002165473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_149
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 387
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b26fcce53127150b0800000000000000
+      internalID: -5741682622400235989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_150
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 387
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f96f8e9d12d03ff0800000000000000
+      internalID: -58315770499733002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_151
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 387
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8921cf91a5887450800000000000000
+      internalID: 6086761825607690637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_152
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 387
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5208dd9c271a9a1d0800000000000000
+      internalID: -3338960134333431771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_153
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 385
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4606d6aca7b7af50800000000000000
+      internalID: 6892679706875135562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_154
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 385
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1b0f70c0793f3110800000000000000
+      internalID: 1242775178606218013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_155
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 385
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c120b3b5ab47fcb20800000000000000
+      internalID: 3156870207553339932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_156
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 358
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f50293b5c82614f90800000000000000
+      internalID: -6971182393227403169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_157
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 358
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3b0ecc413061d990800000000000000
+      internalID: -7362998150915814594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_158
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 323
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13a1d32d3be0bacf0800000000000000
+      internalID: -240081989645034959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_159
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 324
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f2c24f664dc45060800000000000000
+      internalID: 6941398628082828018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_160
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 323
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 561fbfbf382de40e0800000000000000
+      internalID: -2283656496720121499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_161
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 324
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df3891e63b0e34b70800000000000000
+      internalID: 8882189951355683837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_162
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 338
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6eadd2e01e244330800000000000000
+      internalID: 3694128244411182701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_163
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 322
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56fd20b3378e54c00800000000000000
+      internalID: 884368483457097573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_164
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 292
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6d910023850bc9a0800000000000000
+      internalID: -6211865200291635857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_165
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 291
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35a7547b31a8caaa0800000000000000
+      internalID: -6148387573983774125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_166
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 292
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0a8df67faa1940b0800000000000000
+      internalID: -5744030508816430582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_167
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 290
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c6774833956d0190800000000000000
+      internalID: -7994622080533956923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_168
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 257
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 581ce012b3b0c9bb0800000000000000
+      internalID: -4928051543664574075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_169
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 277
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 587b938965a6e8490800000000000000
+      internalID: -7742133789249652859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_170
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 277
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 363bd5adf17b260d0800000000000000
+      internalID: -3430978618667453597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_171
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 256
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d0865dbb7fafb040800000000000000
+      internalID: 4665640684971524310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_172
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 259
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbf4478bb9f50f130800000000000000
+      internalID: 3598481224688226239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_173
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 244
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84b93ed7ce63b4000800000000000000
+      internalID: 21171012605549384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_174
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 242
+        width: 21
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e66c67b5614cae0800000000000000
+      internalID: -1530073391308575113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_175
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 236
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 058a98970de1b1fd0800000000000000
+      internalID: -2370266898139338672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_176
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 239
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66b331c23b0d74b60800000000000000
+      internalID: 7730376753361927014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_177
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 209
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13ac828f51451c7f0800000000000000
+      internalID: -594101222501725647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_178
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 209
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e54a4148ed748c10800000000000000
+      internalID: 2054905766469060070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_179
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 209
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae4012c2aba09df0800000000000000
+      internalID: -175451669938549084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_180
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 209
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28a91f11e95edda20800000000000000
+      internalID: 3088877386514668162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_181
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88f38e0e915146de0800000000000000
+      internalID: -1340923588157882488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_182
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 194
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d42dddf3ee161dd70800000000000000
+      internalID: 9066135200775131725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_183
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 200
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0e79b75c2c66dcf0800000000000000
+      internalID: -227875793429496306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_184
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 197
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8c4f423d8fc2ee90800000000000000
+      internalID: -6997802665638933366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_185
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 194
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66809255ba5f64700800000000000000
+      internalID: 524376522852206694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_186
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 193
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7d5107bdccad2330800000000000000
+      internalID: 3687793669424897406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_187
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 193
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40b66521f57199640800000000000000
+      internalID: 5087122951188671236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_188
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 193
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b67d93719232127d0800000000000000
+      internalID: -2945034021933295765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_189
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 196
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c8a447b800968f00800000000000000
+      internalID: 1118739924557015234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_190
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 194
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8854eeb8407227f70800000000000000
+      internalID: 9183445490642863496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_191
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 194
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7538bac590577ba30800000000000000
+      internalID: 4230979058007769943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_192
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 194
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bfe6f8c6295a80d0800000000000000
+      internalID: -3419822943919214668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_193
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 195
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19c4db8b3281ecb20800000000000000
+      internalID: 3156486930535632017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_194
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 194
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e29546ea3f19f2a0800000000000000
+      internalID: -6703292232532389152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_195
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 195
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7f782ed8fe42fe0800000000000000
+      internalID: -1214582606813202474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_196
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 194
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71bc40946b13e12e0800000000000000
+      internalID: -2153228912857658601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_197
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 178
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f23db13ada830c5a0800000000000000
+      internalID: -6503135543505988817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_198
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 178
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b65fdc012278de620800000000000000
+      internalID: 2805046723302258027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_199
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 184
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 105619b04e9beb0d0800000000000000
+      internalID: -3405079879147756287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_200
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 181
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09a7fab2cd5f3dd70800000000000000
+      internalID: 9066860800801471120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_201
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 178
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0021598b1a4a2070800000000000000
+      internalID: 8082353963398144013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_202
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 177
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9456117ddca1e33c0800000000000000
+      internalID: -4378032316378684087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_203
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 177
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec59b1fec78e996e0800000000000000
+      internalID: -1830176150264244786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_204
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 177
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4ece4639b93ffd10800000000000000
+      internalID: 2161509813803994700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_205
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 180
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b4722f6e5aa2aba0800000000000000
+      internalID: -6079109224428571470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_206
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 178
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec122ddca591f3100800000000000000
+      internalID: 89818395361550798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_207
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 178
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07303e3a4f8adf20800000000000000
+      internalID: 3448226013739235082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_208
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 178
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c20f9c4580e4c2c0800000000000000
+      internalID: -4412154871795481919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_209
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 179
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b3bb4592070fb90800000000000000
+      internalID: -7210139680602637424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_210
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 178
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 338deabe0d7b014c0800000000000000
+      internalID: -4318749934713120717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_211
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 179
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0f888522c9e19b20800000000000000
+      internalID: 3139547435316580110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_212
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 178
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26d33a2124b0c01d0800000000000000
+      internalID: -3383316841653650078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_213
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 176
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f3ac3bc7def13890800000000000000
+      internalID: -7479917303304510480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_214
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 162
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e4d95f7e4b92100800000000000000
+      internalID: 83796976434236966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_215
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 168
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cad6bf82acec6c110800000000000000
+      internalID: 1280938511699766700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_216
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 165
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94dbfc8713e60d5b0800000000000000
+      internalID: -5345651598929445559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_217
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 162
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c4a01618321f4300800000000000000
+      internalID: 238429337371583688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_218
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 161
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a86211d3321af0e0800000000000000
+      internalID: -2235454251275753308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_219
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 161
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ace205e6317688d0800000000000000
+      internalID: -2844461634053542744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_220
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 161
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c941d64e033105ed0800000000000000
+      internalID: -2427419098440985444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_221
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 164
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 885e9b1365a464fa0800000000000000
+      internalID: -5816880134640507512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_222
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 162
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52b8989632f8bab30800000000000000
+      internalID: 4299687651512519461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_223
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 162
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7552db6fb43ab0650800000000000000
+      internalID: 6200228858663085399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_224
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 162
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e633d0fe4851c5ef0800000000000000
+      internalID: -118195829527989394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_225
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 163
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6d021fc7299ab7d0800000000000000
+      internalID: -2901838613630022293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_226
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 162
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50697990f3f16d040800000000000000
+      internalID: 4671956019047798277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_227
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 163
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a0e75e8fc3bc8600800000000000000
+      internalID: 471949764994785441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_228
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 162
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19a5ebb857df12d00800000000000000
+      internalID: 946316078022023825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_229
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 160
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a76242eb31800a0800000000000000
+      internalID: -6915255520456181186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_230
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 115
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b1495d755dc9c9a0800000000000000
+      internalID: -6212208443921972808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_231
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 114
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3076a29678584120800000000000000
+      internalID: 2398264067864555580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_232
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 115
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4767603b18232660800000000000000
+      internalID: 7359770313294833482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_233
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 114
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13d31f0aef9e00cc0800000000000000
+      internalID: -3746737610141123279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_234
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 116
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 479fca0106ddbfb30800000000000000
+      internalID: 4322291672058493300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_235
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 116
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cf0d768af0dd28e0800000000000000
+      internalID: -1716486108541546560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_236
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 116
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0882ebfe5cbeae6f0800000000000000
+      internalID: -654451560465684352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_237
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 115
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d738047aec649a5c0800000000000000
+      internalID: -4203750923790417027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_238
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 99
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37d98d3599761fc40800000000000000
+      internalID: 5544326524504153459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_239
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 99
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0238b3fcc9c67f70800000000000000
+      internalID: 9184750372168151562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_240
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 99
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1c9bbd1fdeaad6d0800000000000000
+      internalID: -2964865131370275814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_241
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 99
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5019d3ee7782be820800000000000000
+      internalID: 2948494876607353093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_242
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 83
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28b6c7eee3a7ee590800000000000000
+      internalID: -7643037106893460606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_243
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 83
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4fa86bd769263900800000000000000
+      internalID: 663763521123168077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_244
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 83
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be76c5fdba314f470800000000000000
+      internalID: 8427382431624751083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_245
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 83
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f57d807f75aa40f0800000000000000
+      internalID: -1131910389562509835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_246
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 66
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 053759dab40576fa0800000000000000
+      internalID: -5807584908505943216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_247
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 66
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bb078ccf7bf6f380800000000000000
+      internalID: -8937679884159349835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_248
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 65
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c263b6be6517117e0800000000000000
+      internalID: -1796530158213319124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_249
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 65
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40818ec7ab9575b70800000000000000
+      internalID: 8887671047133337604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_250
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 50
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83bab49d92ee1d120800000000000000
+      internalID: 2436990736890833720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_251
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 50
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b5f2bcc6fcf5e1a0800000000000000
+      internalID: -6780735527009978958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_252
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 51
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 714e597f07a3c35f0800000000000000
+      internalID: -775680778950024169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_253
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 34
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b08733ba930594640800000000000000
+      internalID: 5064667464570468363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_254
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 33
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d1f4eff55c418f30800000000000000
+      internalID: 4576022628634259927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_255
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 30
+        width: 26
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c2361463145bef60800000000000000
+      internalID: 8064631999997293254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HoloBook_Spritesheet01a_256
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 36
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4c038c4dd3eaa4a0800000000000000
+      internalID: -6581197365837624246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UI_HoloBook_Spritesheet01a_0: 3986523024765708279
+      UI_HoloBook_Spritesheet01a_1: -8451717526279863310
+      UI_HoloBook_Spritesheet01a_10: 5594295793603478442
+      UI_HoloBook_Spritesheet01a_100: 1538630275062961128
+      UI_HoloBook_Spritesheet01a_101: 694710685132773479
+      UI_HoloBook_Spritesheet01a_102: 984653062495760996
+      UI_HoloBook_Spritesheet01a_103: 6518306598950562169
+      UI_HoloBook_Spritesheet01a_104: -825299928770352812
+      UI_HoloBook_Spritesheet01a_105: -6536927720508441102
+      UI_HoloBook_Spritesheet01a_106: -8379190039528251123
+      UI_HoloBook_Spritesheet01a_107: 2776317084932086718
+      UI_HoloBook_Spritesheet01a_108: 6392983834152563870
+      UI_HoloBook_Spritesheet01a_109: 1544577475211368650
+      UI_HoloBook_Spritesheet01a_11: -1187443999021175297
+      UI_HoloBook_Spritesheet01a_110: 1007226250141983419
+      UI_HoloBook_Spritesheet01a_111: -4784754620339165373
+      UI_HoloBook_Spritesheet01a_112: 6233671120001467242
+      UI_HoloBook_Spritesheet01a_113: -3032869999932082060
+      UI_HoloBook_Spritesheet01a_114: -1074771789789009056
+      UI_HoloBook_Spritesheet01a_115: -5236565458203110973
+      UI_HoloBook_Spritesheet01a_116: -1988135643498254208
+      UI_HoloBook_Spritesheet01a_117: -6046440802789785110
+      UI_HoloBook_Spritesheet01a_118: 2606132929970416694
+      UI_HoloBook_Spritesheet01a_119: -7321039969209479682
+      UI_HoloBook_Spritesheet01a_12: -7871218266886986024
+      UI_HoloBook_Spritesheet01a_120: 2111207687586871298
+      UI_HoloBook_Spritesheet01a_121: 1656547206505538088
+      UI_HoloBook_Spritesheet01a_122: 3963370545089121049
+      UI_HoloBook_Spritesheet01a_123: -7254490392765445745
+      UI_HoloBook_Spritesheet01a_124: 7652049886190197849
+      UI_HoloBook_Spritesheet01a_125: -782955291186091281
+      UI_HoloBook_Spritesheet01a_126: 751324308306108259
+      UI_HoloBook_Spritesheet01a_127: 8247272127220059126
+      UI_HoloBook_Spritesheet01a_128: 8076805615346798879
+      UI_HoloBook_Spritesheet01a_129: 3706142181214286463
+      UI_HoloBook_Spritesheet01a_13: 4767427554342877078
+      UI_HoloBook_Spritesheet01a_130: -8851701109936038004
+      UI_HoloBook_Spritesheet01a_131: 8655029878405720529
+      UI_HoloBook_Spritesheet01a_132: 2084681051582547476
+      UI_HoloBook_Spritesheet01a_133: 6917231639029546836
+      UI_HoloBook_Spritesheet01a_134: 1405715674436242239
+      UI_HoloBook_Spritesheet01a_135: 6242940110036678520
+      UI_HoloBook_Spritesheet01a_136: -5065025916505108516
+      UI_HoloBook_Spritesheet01a_137: -3978282782909185162
+      UI_HoloBook_Spritesheet01a_138: -6530076897741121116
+      UI_HoloBook_Spritesheet01a_139: 6564432068069308493
+      UI_HoloBook_Spritesheet01a_14: -5244490177488692106
+      UI_HoloBook_Spritesheet01a_140: 5694352114501350277
+      UI_HoloBook_Spritesheet01a_141: -6215887885834015553
+      UI_HoloBook_Spritesheet01a_142: 5943681908657686113
+      UI_HoloBook_Spritesheet01a_143: 8226364600993018696
+      UI_HoloBook_Spritesheet01a_144: -2761476118845776399
+      UI_HoloBook_Spritesheet01a_145: -2193210062398759507
+      UI_HoloBook_Spritesheet01a_146: -4348474057844081627
+      UI_HoloBook_Spritesheet01a_147: -6525398915014530391
+      UI_HoloBook_Spritesheet01a_148: -6564540900002165473
+      UI_HoloBook_Spritesheet01a_149: -5741682622400235989
+      UI_HoloBook_Spritesheet01a_15: 6153625611666151122
+      UI_HoloBook_Spritesheet01a_150: -58315770499733002
+      UI_HoloBook_Spritesheet01a_151: 6086761825607690637
+      UI_HoloBook_Spritesheet01a_152: -3338960134333431771
+      UI_HoloBook_Spritesheet01a_153: 6892679706875135562
+      UI_HoloBook_Spritesheet01a_154: 1242775178606218013
+      UI_HoloBook_Spritesheet01a_155: 3156870207553339932
+      UI_HoloBook_Spritesheet01a_156: -6971182393227403169
+      UI_HoloBook_Spritesheet01a_157: -7362998150915814594
+      UI_HoloBook_Spritesheet01a_158: -240081989645034959
+      UI_HoloBook_Spritesheet01a_159: 6941398628082828018
+      UI_HoloBook_Spritesheet01a_16: 4123899688679073246
+      UI_HoloBook_Spritesheet01a_160: -2283656496720121499
+      UI_HoloBook_Spritesheet01a_161: 8882189951355683837
+      UI_HoloBook_Spritesheet01a_162: 3694128244411182701
+      UI_HoloBook_Spritesheet01a_163: 884368483457097573
+      UI_HoloBook_Spritesheet01a_164: -6211865200291635857
+      UI_HoloBook_Spritesheet01a_165: -6148387573983774125
+      UI_HoloBook_Spritesheet01a_166: -5744030508816430582
+      UI_HoloBook_Spritesheet01a_167: -7994622080533956923
+      UI_HoloBook_Spritesheet01a_168: -4928051543664574075
+      UI_HoloBook_Spritesheet01a_169: -7742133789249652859
+      UI_HoloBook_Spritesheet01a_17: -649929360285044283
+      UI_HoloBook_Spritesheet01a_170: -3430978618667453597
+      UI_HoloBook_Spritesheet01a_171: 4665640684971524310
+      UI_HoloBook_Spritesheet01a_172: 3598481224688226239
+      UI_HoloBook_Spritesheet01a_173: 21171012605549384
+      UI_HoloBook_Spritesheet01a_174: -1530073391308575113
+      UI_HoloBook_Spritesheet01a_175: -2370266898139338672
+      UI_HoloBook_Spritesheet01a_176: 7730376753361927014
+      UI_HoloBook_Spritesheet01a_177: -594101222501725647
+      UI_HoloBook_Spritesheet01a_178: 2054905766469060070
+      UI_HoloBook_Spritesheet01a_179: -175451669938549084
+      UI_HoloBook_Spritesheet01a_18: 5269576202593937810
+      UI_HoloBook_Spritesheet01a_180: 3088877386514668162
+      UI_HoloBook_Spritesheet01a_181: -1340923588157882488
+      UI_HoloBook_Spritesheet01a_182: 9066135200775131725
+      UI_HoloBook_Spritesheet01a_183: -227875793429496306
+      UI_HoloBook_Spritesheet01a_184: -6997802665638933366
+      UI_HoloBook_Spritesheet01a_185: 524376522852206694
+      UI_HoloBook_Spritesheet01a_186: 3687793669424897406
+      UI_HoloBook_Spritesheet01a_187: 5087122951188671236
+      UI_HoloBook_Spritesheet01a_188: -2945034021933295765
+      UI_HoloBook_Spritesheet01a_189: 1118739924557015234
+      UI_HoloBook_Spritesheet01a_19: 4009029137236426831
+      UI_HoloBook_Spritesheet01a_190: 9183445490642863496
+      UI_HoloBook_Spritesheet01a_191: 4230979058007769943
+      UI_HoloBook_Spritesheet01a_192: -3419822943919214668
+      UI_HoloBook_Spritesheet01a_193: 3156486930535632017
+      UI_HoloBook_Spritesheet01a_194: -6703292232532389152
+      UI_HoloBook_Spritesheet01a_195: -1214582606813202474
+      UI_HoloBook_Spritesheet01a_196: -2153228912857658601
+      UI_HoloBook_Spritesheet01a_197: -6503135543505988817
+      UI_HoloBook_Spritesheet01a_198: 2805046723302258027
+      UI_HoloBook_Spritesheet01a_199: -3405079879147756287
+      UI_HoloBook_Spritesheet01a_2: 8309471197943789976
+      UI_HoloBook_Spritesheet01a_20: -3053627120133075675
+      UI_HoloBook_Spritesheet01a_200: 9066860800801471120
+      UI_HoloBook_Spritesheet01a_201: 8082353963398144013
+      UI_HoloBook_Spritesheet01a_202: -4378032316378684087
+      UI_HoloBook_Spritesheet01a_203: -1830176150264244786
+      UI_HoloBook_Spritesheet01a_204: 2161509813803994700
+      UI_HoloBook_Spritesheet01a_205: -6079109224428571470
+      UI_HoloBook_Spritesheet01a_206: 89818395361550798
+      UI_HoloBook_Spritesheet01a_207: 3448226013739235082
+      UI_HoloBook_Spritesheet01a_208: -4412154871795481919
+      UI_HoloBook_Spritesheet01a_209: -7210139680602637424
+      UI_HoloBook_Spritesheet01a_21: 3758754848774508438
+      UI_HoloBook_Spritesheet01a_210: -4318749934713120717
+      UI_HoloBook_Spritesheet01a_211: 3139547435316580110
+      UI_HoloBook_Spritesheet01a_212: -3383316841653650078
+      UI_HoloBook_Spritesheet01a_213: -7479917303304510480
+      UI_HoloBook_Spritesheet01a_214: 83796976434236966
+      UI_HoloBook_Spritesheet01a_215: 1280938511699766700
+      UI_HoloBook_Spritesheet01a_216: -5345651598929445559
+      UI_HoloBook_Spritesheet01a_217: 238429337371583688
+      UI_HoloBook_Spritesheet01a_218: -2235454251275753308
+      UI_HoloBook_Spritesheet01a_219: -2844461634053542744
+      UI_HoloBook_Spritesheet01a_22: 6495626075593563780
+      UI_HoloBook_Spritesheet01a_220: -2427419098440985444
+      UI_HoloBook_Spritesheet01a_221: -5816880134640507512
+      UI_HoloBook_Spritesheet01a_222: 4299687651512519461
+      UI_HoloBook_Spritesheet01a_223: 6200228858663085399
+      UI_HoloBook_Spritesheet01a_224: -118195829527989394
+      UI_HoloBook_Spritesheet01a_225: -2901838613630022293
+      UI_HoloBook_Spritesheet01a_226: 4671956019047798277
+      UI_HoloBook_Spritesheet01a_227: 471949764994785441
+      UI_HoloBook_Spritesheet01a_228: 946316078022023825
+      UI_HoloBook_Spritesheet01a_229: -6915255520456181186
+      UI_HoloBook_Spritesheet01a_23: 5777105093952277371
+      UI_HoloBook_Spritesheet01a_230: -6212208443921972808
+      UI_HoloBook_Spritesheet01a_231: 2398264067864555580
+      UI_HoloBook_Spritesheet01a_232: 7359770313294833482
+      UI_HoloBook_Spritesheet01a_233: -3746737610141123279
+      UI_HoloBook_Spritesheet01a_234: 4322291672058493300
+      UI_HoloBook_Spritesheet01a_235: -1716486108541546560
+      UI_HoloBook_Spritesheet01a_236: -654451560465684352
+      UI_HoloBook_Spritesheet01a_237: -4203750923790417027
+      UI_HoloBook_Spritesheet01a_238: 5544326524504153459
+      UI_HoloBook_Spritesheet01a_239: 9184750372168151562
+      UI_HoloBook_Spritesheet01a_24: 9024334818875947138
+      UI_HoloBook_Spritesheet01a_240: -2964865131370275814
+      UI_HoloBook_Spritesheet01a_241: 2948494876607353093
+      UI_HoloBook_Spritesheet01a_242: -7643037106893460606
+      UI_HoloBook_Spritesheet01a_243: 663763521123168077
+      UI_HoloBook_Spritesheet01a_244: 8427382431624751083
+      UI_HoloBook_Spritesheet01a_245: -1131910389562509835
+      UI_HoloBook_Spritesheet01a_246: -5807584908505943216
+      UI_HoloBook_Spritesheet01a_247: -8937679884159349835
+      UI_HoloBook_Spritesheet01a_248: -1796530158213319124
+      UI_HoloBook_Spritesheet01a_249: 8887671047133337604
+      UI_HoloBook_Spritesheet01a_25: -5458333811855516931
+      UI_HoloBook_Spritesheet01a_250: 2436990736890833720
+      UI_HoloBook_Spritesheet01a_251: -6780735527009978958
+      UI_HoloBook_Spritesheet01a_252: -775680778950024169
+      UI_HoloBook_Spritesheet01a_253: 5064667464570468363
+      UI_HoloBook_Spritesheet01a_254: 4576022628634259927
+      UI_HoloBook_Spritesheet01a_255: 8064631999997293254
+      UI_HoloBook_Spritesheet01a_256: -6581197365837624246
+      UI_HoloBook_Spritesheet01a_26: -2348767965252255065
+      UI_HoloBook_Spritesheet01a_27: 3072458861667989661
+      UI_HoloBook_Spritesheet01a_28: -2675264070761643238
+      UI_HoloBook_Spritesheet01a_29: 4394888493775328666
+      UI_HoloBook_Spritesheet01a_3: -5532860483094592751
+      UI_HoloBook_Spritesheet01a_30: 3913710100428994861
+      UI_HoloBook_Spritesheet01a_31: -1672527830308100344
+      UI_HoloBook_Spritesheet01a_32: -5818960834152158705
+      UI_HoloBook_Spritesheet01a_33: -1841207072383440327
+      UI_HoloBook_Spritesheet01a_34: -1493524812559050299
+      UI_HoloBook_Spritesheet01a_35: -5602144127738179967
+      UI_HoloBook_Spritesheet01a_36: 3500580228439826001
+      UI_HoloBook_Spritesheet01a_37: 5076571651732036218
+      UI_HoloBook_Spritesheet01a_38: 2967107927983552038
+      UI_HoloBook_Spritesheet01a_39: -8666648444528544338
+      UI_HoloBook_Spritesheet01a_4: 5324595760709226453
+      UI_HoloBook_Spritesheet01a_40: 8640216681558484438
+      UI_HoloBook_Spritesheet01a_41: -395073622677899133
+      UI_HoloBook_Spritesheet01a_42: 742447600391335128
+      UI_HoloBook_Spritesheet01a_43: -8889222023464124167
+      UI_HoloBook_Spritesheet01a_44: 3506570420651624260
+      UI_HoloBook_Spritesheet01a_45: -809799227117694857
+      UI_HoloBook_Spritesheet01a_46: -276268687838579921
+      UI_HoloBook_Spritesheet01a_47: 3946737565141211155
+      UI_HoloBook_Spritesheet01a_48: 7261935058923856682
+      UI_HoloBook_Spritesheet01a_49: 9009960294792179687
+      UI_HoloBook_Spritesheet01a_5: -3863686979472769714
+      UI_HoloBook_Spritesheet01a_50: 4193728649377675927
+      UI_HoloBook_Spritesheet01a_51: -1843073161745764903
+      UI_HoloBook_Spritesheet01a_52: -6463768495445374451
+      UI_HoloBook_Spritesheet01a_53: 7149393726305067021
+      UI_HoloBook_Spritesheet01a_54: 1369058150869196773
+      UI_HoloBook_Spritesheet01a_55: 5482530693802269292
+      UI_HoloBook_Spritesheet01a_56: 1896768009252946380
+      UI_HoloBook_Spritesheet01a_57: -2303699291768116093
+      UI_HoloBook_Spritesheet01a_58: 8256034240311850831
+      UI_HoloBook_Spritesheet01a_59: 8097808935527144984
+      UI_HoloBook_Spritesheet01a_6: -7314148024036672063
+      UI_HoloBook_Spritesheet01a_60: -389591075803466335
+      UI_HoloBook_Spritesheet01a_61: -6484248651163713551
+      UI_HoloBook_Spritesheet01a_62: 6523542767712450375
+      UI_HoloBook_Spritesheet01a_63: 8802682231691380711
+      UI_HoloBook_Spritesheet01a_64: -8760552163987184476
+      UI_HoloBook_Spritesheet01a_65: -8104498509473637628
+      UI_HoloBook_Spritesheet01a_66: -3400868593806254553
+      UI_HoloBook_Spritesheet01a_67: -6865587082231959909
+      UI_HoloBook_Spritesheet01a_68: 2208053277473068713
+      UI_HoloBook_Spritesheet01a_69: -2720767562100806014
+      UI_HoloBook_Spritesheet01a_7: -3186438061877813402
+      UI_HoloBook_Spritesheet01a_70: 230387838634574229
+      UI_HoloBook_Spritesheet01a_71: -8918332782625161734
+      UI_HoloBook_Spritesheet01a_72: 5070517992618535538
+      UI_HoloBook_Spritesheet01a_73: 6591815544385925566
+      UI_HoloBook_Spritesheet01a_74: 9189069237486488956
+      UI_HoloBook_Spritesheet01a_75: -8777958455309969717
+      UI_HoloBook_Spritesheet01a_76: -6761832025643934015
+      UI_HoloBook_Spritesheet01a_77: -7178415563179951450
+      UI_HoloBook_Spritesheet01a_78: 4664805556337593119
+      UI_HoloBook_Spritesheet01a_79: -4230272163207172833
+      UI_HoloBook_Spritesheet01a_8: -9003023277224244219
+      UI_HoloBook_Spritesheet01a_80: 8782395693071306710
+      UI_HoloBook_Spritesheet01a_81: -6313817650536123879
+      UI_HoloBook_Spritesheet01a_82: 679876476798744099
+      UI_HoloBook_Spritesheet01a_83: 2621937566778258891
+      UI_HoloBook_Spritesheet01a_84: 4462719727108662540
+      UI_HoloBook_Spritesheet01a_85: 7539592544943499218
+      UI_HoloBook_Spritesheet01a_86: -4483912769334399640
+      UI_HoloBook_Spritesheet01a_87: 5584610691990317778
+      UI_HoloBook_Spritesheet01a_88: 6599378869204532909
+      UI_HoloBook_Spritesheet01a_89: 5999906067097320012
+      UI_HoloBook_Spritesheet01a_9: -4050158704979883277
+      UI_HoloBook_Spritesheet01a_90: 7140698863135659062
+      UI_HoloBook_Spritesheet01a_91: -3641356268001392297
+      UI_HoloBook_Spritesheet01a_92: -3140877736479937283
+      UI_HoloBook_Spritesheet01a_93: -3278257058681159603
+      UI_HoloBook_Spritesheet01a_94: -6617166538275214584
+      UI_HoloBook_Spritesheet01a_95: -2777345852749110980
+      UI_HoloBook_Spritesheet01a_96: 2444222792566782283
+      UI_HoloBook_Spritesheet01a_97: 440884160523170038
+      UI_HoloBook_Spritesheet01a_98: 2427034185529029149
+      UI_HoloBook_Spritesheet01a_99: 2352792331979283833
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
