@@ -89,9 +89,7 @@ namespace BF.Game.Runtime.Battle.Units
 
         public void TakeDamage(int damage)
         {
-            if (!IsAlive) return;
-            CurrentHP = Mathf.Max(0, CurrentHP - damage);
-            if (!IsAlive) ChangeState(_deadState);
+            ApplyDamage(damage);
         }
 
         /// <summary>
@@ -99,11 +97,18 @@ namespace BF.Game.Runtime.Battle.Units
         /// </summary>
         public void ApplyResolvedDamage(int finalDamage)
         {
+            ApplyDamage(finalDamage);
+        }
+
+        private void ApplyDamage(int damage)
+        {
             if (!IsAlive) return;
-            
-            int previousHP = CurrentHP;
-            CurrentHP = Mathf.Max(0, CurrentHP - finalDamage);
-            
+
+            int appliedDamage = Mathf.Max(0, damage);
+            if (appliedDamage <= 0) return;
+
+            CurrentHP = Mathf.Max(0, CurrentHP - appliedDamage);
+
             if (IsAlive)
             {
                 HurtReceived?.Invoke(this);
