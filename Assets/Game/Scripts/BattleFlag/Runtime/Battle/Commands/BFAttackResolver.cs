@@ -20,7 +20,9 @@ namespace BF.Game.Runtime.Battle.Commands
                 return default;
             }
 
-            if (!context.Target.IsAlive)
+            // 结算层只通过 Stats 查询存活并通过 UnitRuntime 的伤害入口应用结果，
+            // 保持 HP 写入、受伤事件和死亡状态切换集中在单位生命周期边界内。
+            if (!context.Target.Stats.IsAlive)
             {
                 Debug.LogWarning("[BFAttackResolver] 目标已死亡，无法结算。");
                 return default;
@@ -30,8 +32,8 @@ namespace BF.Game.Runtime.Battle.Commands
             
             context.Target.ApplyResolvedDamage(finalDamage);
             
-            bool targetWasKilled = !context.Target.IsAlive;
-            int targetRemainingHp = context.Target.CurrentHP;
+            bool targetWasKilled = !context.Target.Stats.IsAlive;
+            int targetRemainingHp = context.Target.Stats.CurrentHP;
 
             return new BFAttackResolveResult(
                 context.Attacker,

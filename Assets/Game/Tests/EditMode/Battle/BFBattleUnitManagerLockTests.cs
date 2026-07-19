@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace BF.Game.Tests.EditMode.Battle
 {
+    /// <summary>
+    /// 验证 UnitManager 在动作锁定期间不会改变玩家选择状态。
+    /// </summary>
     public class BFBattleUnitManagerLockTests
     {
         [TearDown]
@@ -57,8 +60,8 @@ namespace BF.Game.Tests.EditMode.Battle
         {
             var gameObject = new GameObject(name);
             var unit = gameObject.AddComponent<UnitRuntime>();
-            unit.Faction = UnitFaction.Player;
-            unit.CurrentHP = unit.MaxHP;
+            unit.Identity.Faction = UnitFaction.Player;
+            unit.BeginBattle();
             return unit;
         }
 

@@ -1,8 +1,8 @@
 ﻿<Solution>
   <Project Path="AstarPathfindingProject.csproj" />
   <Project Path="AstarPathfindingProjectEditor.csproj" />
-  <Project Path="Drawing.csproj" />
   <Project Path="BF.Game.Runtime.csproj" />
+  <Project Path="Drawing.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="AstarPackageToolsEditor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />

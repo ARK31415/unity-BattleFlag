@@ -9,6 +9,9 @@ using UnityEngine.TestTools;
 
 namespace BF.Game.Tests.EditMode.Battle
 {
+    /// <summary>
+    /// 验证棋盘初始化、A* GridGraph 接入、单位吸附和路径查询合同。
+    /// </summary>
     public class BFBattleBoardManagerTests
     {
         [TearDown]
@@ -114,7 +117,7 @@ namespace BF.Game.Tests.EditMode.Battle
             manager.SnapUnitsToGrid(new List<UnitRuntime> { unit });
 
             Assert.That(grid.isScanned, Is.True);
-            Assert.That(unit.GridPosition, Is.EqualTo(new Vector2Int(1, 1)));
+            Assert.That(unit.Grid.GridPosition, Is.EqualTo(new Vector2Int(1, 1)));
             Assert.That(manager.IsCellOccupied(new Vector2Int(1, 1)), Is.True);
         }
 

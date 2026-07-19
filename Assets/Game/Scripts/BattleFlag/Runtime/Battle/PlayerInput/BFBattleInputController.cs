@@ -145,7 +145,7 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         {
             if (_isMoveMode)
             {
-                if (unit.Faction == UnitFaction.Enemy)
+                if (unit.Identity.Faction == UnitFaction.Enemy)
                 {
                     _unitManager.TryAttack(unit);
                     _isMoveMode = false;
@@ -164,13 +164,14 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void SelectUnit(UnitRuntime unit)
         {
-            if (unit.Faction != UnitFaction.Player || !unit.IsAlive) return;
-            if (unit.HasActed) return;
+            // 输入层只做玩家操作过滤；阵营、存活和行动状态从明确子组件读取。
+            if (unit.Identity.Faction != UnitFaction.Player || !unit.Stats.IsAlive) return;
+            if (unit.Stats.HasActed) return;
 
             _unitManager.TrySelectUnit(unit);
 
             var reachable = _unitManager.GetReachableCellsForSelected();
-            Debug.Log($"[Input] Selected {unit.DisplayName}, reachable: {reachable.Count}");
+            Debug.Log($"[Input] Selected {unit.Identity.DisplayName}, reachable: {reachable.Count}");
 
             _boardManager?.ResetCellColors();
             _boardManager?.HighlightCells(reachable,

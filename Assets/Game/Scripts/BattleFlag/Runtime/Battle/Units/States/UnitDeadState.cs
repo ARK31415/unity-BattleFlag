@@ -12,7 +12,7 @@ namespace BF.Game.Runtime.Battle.Units
         {
             // 逻辑上立即死亡，但不隐藏对象
             // 视觉清理由 BFUnitAnimationPresenter 在死亡动画完成后调用 FinalizeDeathVisualCleanup
-            Debug.Log($"[UnitDeadState] {Owner.DisplayName} 逻辑死亡，等待死亡动画完成。");
+            Debug.Log($"[UnitDeadState] {Owner.Identity.DisplayName} 逻辑死亡，等待死亡动画完成。");
         }
 
         public override void LogicUpdate()

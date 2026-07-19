@@ -79,7 +79,7 @@ namespace BF.Game.Runtime.Battle.Managers
             foreach (var unit in units)
             {
                 Vector2Int cell = WorldToCell(unit.transform.position);
-                unit.GridPosition = cell;
+                unit.Grid.GridPosition = cell;
                 unit.transform.position = (Vector3)CellToWorld(cell);
                 unit.MovementHandler = this;
                 OccupyCell(cell, unit.UnitId);
@@ -358,7 +358,7 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             foreach (var t in targets)
             {
-                int index = GetVisualIndex(t.GridPosition);
+                int index = GetVisualIndex(t.Grid.GridPosition);
                 if (index < 0 || index >= _cellVisuals.Count) continue;
 
                 var sr = _cellVisuals[index].GetComponent<SpriteRenderer>();

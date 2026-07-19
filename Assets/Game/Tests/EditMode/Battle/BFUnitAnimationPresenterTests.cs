@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace BF.Game.Tests.EditMode.Battle
 {
+    /// <summary>
+    /// 验证单位动画表现层的朝向规则，确保表现逻辑只读取身份和格子语义。
+    /// </summary>
     public class BFUnitAnimationPresenterTests
     {
         [TearDown]
@@ -59,7 +62,7 @@ namespace BF.Game.Tests.EditMode.Battle
         {
             var gameObject = new GameObject("Unit");
             var runtime = gameObject.AddComponent<UnitRuntime>();
-            runtime.Faction = faction;
+            runtime.Identity.Faction = faction;
 
             gameObject.AddComponent<Animator>();
             var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();

@@ -57,6 +57,14 @@ namespace BF.Game.Runtime.Battle.Managers
                 return;
             }
 
+            // 单位根先完成子组件缓存和战斗资源初始化，再交给棋盘和管理器读取。
+            // 这样 Board、UnitManager、HUD 和 Presenter 后续访问 Identity/Stats/Grid 时不会遇到半初始化对象。
+            foreach (var unit in units)
+            {
+                unit.InitializeRuntime();
+                unit.BeginBattle();
+            }
+
             // Step 2: 棋盘对齐单位
             if (_boardManager != null)
             {

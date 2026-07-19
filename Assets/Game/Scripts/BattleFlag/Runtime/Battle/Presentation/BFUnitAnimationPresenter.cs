@@ -39,6 +39,7 @@ namespace BF.Game.Runtime.Battle.Presentation
         {
             if (_runtime != null)
             {
+                // Hurt 和 Death 仍是表现层事件，不进入正式逻辑状态机。
                 _runtime.HurtReceived += OnHurtReceived;
                 _runtime.DeathStarted += OnDeathStarted;
             }
@@ -57,8 +58,9 @@ namespace BF.Game.Runtime.Battle.Presentation
         {
             if (_runtime == null || _animator == null) return;
 
-            _animator.SetBool(IsMoving, _runtime.CurrentState is UnitMoveState);
-            _animator.SetBool(IsDead, !_runtime.IsAlive);
+            // Presenter 只把正式状态和存活结果翻译成 Animator 参数，不反向修改 Stats 或 StateMachine。
+            _animator.SetBool(IsMoving, _runtime.StateMachine.CurrentState is UnitMoveState);
+            _animator.SetBool(IsDead, !_runtime.Stats.IsAlive);
         }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace BF.Game.Runtime.Battle.Presentation
         {
             if (_runtime == null || _spriteRenderer == null) return;
 
-            SetFacingRight(_runtime.Faction != UnitFaction.Enemy);
+            SetFacingRight(_runtime.Identity.Faction != UnitFaction.Enemy);
         }
 
         /// <summary>
@@ -138,7 +140,8 @@ namespace BF.Game.Runtime.Battle.Presentation
                 return;
             }
 
-            if (_runtime.TryConsumeQueuedAttack(out _))
+            // 动画命中帧先消费 Combat 上下文；只有消费成功才通知结算层，防止重复动画事件多次扣血。
+            if (_runtime.Combat.TryConsumeQueuedAttack(_runtime, out _))
             {
                 _resolutionManager.TryResolveQueuedAttack(_runtime);
             }
@@ -155,6 +158,7 @@ namespace BF.Game.Runtime.Battle.Presentation
                 return;
             }
 
+            // 死亡动画完成后才通知结算层做最终隐藏，保证逻辑死亡和视觉退场解耦。
             _resolutionManager.NotifyDeathVisualFinished(_runtime);
         }
 
@@ -176,8 +180,8 @@ namespace BF.Game.Runtime.Battle.Presentation
         {
             if (_runtime == null || _animator == null) return;
 
-            _animator.SetBool(IsMoving, _runtime.CurrentState is UnitMoveState);
-            _animator.SetBool(IsDead, !_runtime.IsAlive);
+            _animator.SetBool(IsMoving, _runtime.StateMachine.CurrentState is UnitMoveState);
+            _animator.SetBool(IsDead, !_runtime.Stats.IsAlive);
         }
 
         private void SetFacingRight(bool isFacingRight)

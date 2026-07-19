@@ -49,13 +49,13 @@ namespace BF.Game.Runtime.Battle.Managers
                 return false;
             }
 
-            if (!attacker.IsAlive)
+            if (!attacker.Stats.IsAlive)
             {
                 Debug.LogWarning("[BFBattleResolutionManager] 攻击者已死亡，无法发起攻击。");
                 return false;
             }
 
-            if (!target.IsAlive)
+            if (!target.Stats.IsAlive)
             {
                 Debug.LogWarning("[BFBattleResolutionManager] 目标已死亡，无法发起攻击。");
                 return false;
@@ -67,10 +67,11 @@ namespace BF.Game.Runtime.Battle.Managers
                 return false;
             }
 
+            // 这里保存的是结算层快照；动画命中帧到来后再消费，避免攻击动画开始时立即扣血。
             var context = new BFAttackContext(attacker, target);
             _pendingAttacks[attacker] = context;
 
-            Debug.Log($"[BFBattleResolutionManager] 已登记攻击：{attacker.DisplayName} -> {target.DisplayName}");
+            Debug.Log($"[BFBattleResolutionManager] 已登记攻击：{attacker.Identity.DisplayName} -> {target.Identity.DisplayName}");
             return true;
         }
 
@@ -97,7 +98,8 @@ namespace BF.Game.Runtime.Battle.Managers
                 return false;
             }
 
-            if (!context.Target.IsAlive)
+            // 目标在命中帧前可能已经死亡；此时清理待结算攻击，不再生成伤害结果。
+            if (!context.Target.Stats.IsAlive)
             {
                 Debug.LogWarning("[BFBattleResolutionManager] 目标已死亡，清理待结算攻击。");
                 _pendingAttacks.Remove(attacker);
@@ -107,12 +109,13 @@ namespace BF.Game.Runtime.Battle.Managers
             var result = _attackResolver.Resolve(context);
             _pendingAttacks.Remove(attacker);
 
-            Debug.Log($"[BFBattleResolutionManager] 攻击结算：{result.Attacker.DisplayName} -> {result.Target.DisplayName}，伤害 {result.FinalDamage}，目标剩余 HP {result.TargetRemainingHp}");
+            Debug.Log($"[BFBattleResolutionManager] 攻击结算：{result.Attacker.Identity.DisplayName} -> {result.Target.Identity.DisplayName}，伤害 {result.FinalDamage}，目标剩余 HP {result.TargetRemainingHp}");
 
             _unitManager?.HandleAttackResolved(result);
 
             if (result.TargetWasKilled)
             {
+                // 逻辑死亡已在伤害入口完成，这里只登记等待死亡动画完成后的视觉清理。
                 _awaitingDeathVisualCleanup.Add(result.Target);
             }
 
@@ -128,14 +131,14 @@ namespace BF.Game.Runtime.Battle.Managers
 
             if (!_awaitingDeathVisualCleanup.Contains(unit))
             {
-                Debug.LogWarning($"[BFBattleResolutionManager] {unit.DisplayName} 不在死亡视觉清理队列中。");
+                Debug.LogWarning($"[BFBattleResolutionManager] {unit.Identity.DisplayName} 不在死亡视觉清理队列中。");
                 return;
             }
 
             _awaitingDeathVisualCleanup.Remove(unit);
             unit.FinalizeDeathVisualCleanup();
 
-            Debug.Log($"[BFBattleResolutionManager] {unit.DisplayName} 死亡视觉清理完成。");
+            Debug.Log($"[BFBattleResolutionManager] {unit.Identity.DisplayName} 死亡视觉清理完成。");
         }
 
         /// <summary>
@@ -154,7 +157,7 @@ namespace BF.Game.Runtime.Battle.Managers
             if (attacker != null && _pendingAttacks.ContainsKey(attacker))
             {
                 _pendingAttacks.Remove(attacker);
-                Debug.Log($"[BFBattleResolutionManager] 已清理 {attacker.DisplayName} 的待结算攻击。");
+                Debug.Log($"[BFBattleResolutionManager] 已清理 {attacker.Identity.DisplayName} 的待结算攻击。");
             }
         }
     }

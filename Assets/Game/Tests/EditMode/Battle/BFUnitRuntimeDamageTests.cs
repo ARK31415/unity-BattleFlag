@@ -1,11 +1,13 @@
 using BF.Game.Runtime.Battle.Units;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 namespace BF.Game.Tests.EditMode.Battle
 {
+    /// <summary>
+    /// 验证单位伤害入口、受伤事件和死亡状态切换的生命周期合同。
+    /// </summary>
     public class BFUnitRuntimeDamageTests
     {
         private readonly List<GameObject> _createdObjects = new();
@@ -35,11 +37,11 @@ namespace BF.Game.Tests.EditMode.Battle
 
             unit.TakeDamage(3);
 
-            Assert.That(unit.CurrentHP, Is.EqualTo(7));
-            Assert.That(unit.IsAlive, Is.True);
+            Assert.That(unit.Stats.CurrentHP, Is.EqualTo(7));
+            Assert.That(unit.Stats.IsAlive, Is.True);
             Assert.That(hurtCount, Is.EqualTo(1));
             Assert.That(deathCount, Is.Zero);
-            Assert.That(unit.CurrentState, Is.TypeOf<UnitIdleState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitIdleState>());
         }
 
         [Test]
@@ -53,11 +55,11 @@ namespace BF.Game.Tests.EditMode.Battle
 
             unit.TakeDamage(10);
 
-            Assert.That(unit.CurrentHP, Is.Zero);
-            Assert.That(unit.IsAlive, Is.False);
+            Assert.That(unit.Stats.CurrentHP, Is.Zero);
+            Assert.That(unit.Stats.IsAlive, Is.False);
             Assert.That(hurtCount, Is.Zero);
             Assert.That(deathCount, Is.EqualTo(1));
-            Assert.That(unit.CurrentState, Is.TypeOf<UnitDeadState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitDeadState>());
         }
 
         [Test]
@@ -71,7 +73,7 @@ namespace BF.Game.Tests.EditMode.Battle
 
             unit.ApplyResolvedDamage(4);
 
-            Assert.That(unit.CurrentHP, Is.EqualTo(6));
+            Assert.That(unit.Stats.CurrentHP, Is.EqualTo(6));
             Assert.That(hurtCount, Is.EqualTo(1));
             Assert.That(deathCount, Is.Zero);
         }
@@ -88,8 +90,8 @@ namespace BF.Game.Tests.EditMode.Battle
 
             unit.TakeDamage(damage);
 
-            Assert.That(unit.CurrentHP, Is.EqualTo(10));
-            Assert.That(unit.IsAlive, Is.True);
+            Assert.That(unit.Stats.CurrentHP, Is.EqualTo(10));
+            Assert.That(unit.Stats.IsAlive, Is.True);
             Assert.That(hurtCount, Is.Zero);
             Assert.That(deathCount, Is.Zero);
         }
@@ -100,19 +102,10 @@ namespace BF.Game.Tests.EditMode.Battle
             _createdObjects.Add(gameObject);
 
             var unit = gameObject.AddComponent<UnitRuntime>();
-            unit.MaxHP = hp;
-            InvokeAwake(unit);
+            unit.Stats.MaxHP = hp;
+            unit.BeginBattle();
 
             return unit;
-        }
-
-        private static void InvokeAwake(UnitRuntime unit)
-        {
-            var awake = typeof(UnitRuntime).GetMethod(
-                "Awake",
-                BindingFlags.Instance | BindingFlags.NonPublic);
-            Assert.That(awake, Is.Not.Null);
-            awake.Invoke(unit, null);
         }
     }
 }

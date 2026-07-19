@@ -26,13 +26,20 @@ namespace BF.Game.Runtime.Battle.Commands
         /// <summary>是否已被消费（防止重复结算）。</summary>
         public bool Consumed { get; }
 
+        /// <summary>
+        /// 从攻击者和目标创建结算快照。
+        ///
+        /// 攻击数值从 attacker.Stats 读取，避免结算上下文继续依赖 UnitRuntime 旧业务直通 API。
+        /// </summary>
+        /// <param name="attacker">攻击发起者。</param>
+        /// <param name="target">攻击目标。</param>
         public BFAttackContext(UnitRuntime attacker, UnitRuntime target)
         {
             Attacker = attacker;
             Target = target;
-            AttackCost = attacker != null ? attacker.AttackCost : 0;
-            BaseAttack = attacker != null ? attacker.Attack : 0;
-            AttackRange = attacker != null ? attacker.AttackRange : 0;
+            AttackCost = attacker != null ? attacker.Stats.AttackCost : 0;
+            BaseAttack = attacker != null ? attacker.Stats.Attack : 0;
+            AttackRange = attacker != null ? attacker.Stats.AttackRange : 0;
             Consumed = false;
         }
 

@@ -200,17 +200,21 @@ namespace BF.Game.Runtime.Battle.Presentation
             if (unit == null || _unitInfoPanel == null) return;
             _unitInfoPanel.SetActive(true);
 
-            if (_unitNameText != null) _unitNameText.text = unit.DisplayName;
-            float hpRatio = unit.MaxHP > 0 ? (float)unit.CurrentHP / unit.MaxHP : 0f;
+            // HUD 只读取 Identity/Stats 的展示数据，不读取 Combat 或直接修改单位状态。
+            var identity = unit.Identity;
+            var stats = unit.Stats;
+
+            if (_unitNameText != null) _unitNameText.text = identity.DisplayName;
+            float hpRatio = stats.MaxHP > 0 ? (float)stats.CurrentHP / stats.MaxHP : 0f;
             if (_unitHPFill != null)
             {
                 _unitHPFill.fillAmount = hpRatio;
                 _unitHPFill.color = hpRatio > 0.5f ? Color.green :
                     hpRatio > 0.25f ? new Color(1f, 0.8f, 0f) : Color.red;
             }
-            if (_unitHPText != null) _unitHPText.text = $"HP: {unit.CurrentHP}/{unit.MaxHP}";
-            if (_unitATKText != null) _unitATKText.text = $"ATK: {unit.Attack}";
-            if (_unitAPText != null) _unitAPText.text = $"AP: {unit.RemainingActionPoints}/{unit.MaxActionPoints}";
+            if (_unitHPText != null) _unitHPText.text = $"HP: {stats.CurrentHP}/{stats.MaxHP}";
+            if (_unitATKText != null) _unitATKText.text = $"ATK: {stats.Attack}";
+            if (_unitAPText != null) _unitAPText.text = $"AP: {stats.RemainingActionPoints}/{stats.MaxActionPoints}";
         }
 
         // ---- Result Popup ----

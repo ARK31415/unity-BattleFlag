@@ -63,7 +63,8 @@ namespace BF.Game.Runtime.Battle
         /// </summary>
         public List<UnitRuntime> GetUnitsByFaction(UnitFaction faction)
         {
-            return Units?.FindAll(u => u != null && u.Faction == faction) ?? new List<UnitRuntime>();
+            // Context 仍保存单位根集合，但所有业务筛选都进入职责子组件读取。
+            return Units?.FindAll(u => u != null && u.Identity.Faction == faction) ?? new List<UnitRuntime>();
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace BF.Game.Runtime.Battle
         /// </summary>
         public List<UnitRuntime> GetAliveUnits()
         {
-            return Units?.FindAll(u => u != null && u.IsAlive) ?? new List<UnitRuntime>();
+            return Units?.FindAll(u => u != null && u.Stats.IsAlive) ?? new List<UnitRuntime>();
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace BF.Game.Runtime.Battle
         /// </summary>
         public List<UnitRuntime> GetAliveUnitsByFaction(UnitFaction faction)
         {
-            return Units?.FindAll(u => u != null && u.Faction == faction && u.IsAlive)
+            return Units?.FindAll(u => u != null && u.Identity.Faction == faction && u.Stats.IsAlive)
                    ?? new List<UnitRuntime>();
         }
     }
