@@ -1,3 +1,4 @@
+using BF.Game.Runtime.Battle.Data;
 using UnityEngine;
 
 namespace BF.Game.Runtime.Battle.Units
@@ -78,6 +79,23 @@ namespace BF.Game.Runtime.Battle.Units
 
         public bool HasActed => _remainingActionPoints <= 0;
         public bool IsAlive => _currentHP > 0;
+
+        /// <summary>
+        /// 从配置计算结果写入干净 Base 白值。
+        /// </summary>
+        public void InitializeBaseStats(BFUnitStatBlock stats, bool resetResources)
+        {
+            MaxHP = stats.MaxHP;
+            Attack = stats.Attack;
+            AttackRange = stats.AttackRange;
+            AttackCost = stats.AttackCost;
+            MaxActionPoints = stats.MaxActionPoints;
+
+            if (resetResources)
+            {
+                ResetBattleResources();
+            }
+        }
 
         /// <summary>
         /// 战斗开始时重置运行时资源。

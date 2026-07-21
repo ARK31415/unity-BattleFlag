@@ -54,5 +54,15 @@ namespace BF.Game.Runtime.Battle.Units
             _spawnGridPosition = gridPosition;
             _hasSpawnGridPosition = true;
         }
+
+        /// <summary>
+        /// 数据驱动生成时显式写入出生格和当前格。
+        /// </summary>
+        public void InitializeSpawnPosition(Vector2Int gridPosition)
+        {
+            _gridPosition = gridPosition;
+            _spawnGridPosition = gridPosition;
+            _hasSpawnGridPosition = true;
+        }
     }
 }

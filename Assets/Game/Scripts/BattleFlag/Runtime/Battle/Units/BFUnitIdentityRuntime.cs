@@ -1,3 +1,4 @@
+using BF.Game.Runtime.Battle.Data;
 using UnityEngine;
 
 namespace BF.Game.Runtime.Battle.Units
@@ -14,12 +15,15 @@ namespace BF.Game.Runtime.Battle.Units
     public class BFUnitIdentityRuntime : MonoBehaviour
     {
         [Header("Identity")]
+        [SerializeField] private string _unitId;
         [SerializeField] private string _displayName = "Unit";
         [SerializeField] private UnitFaction _faction = UnitFaction.Player;
         [SerializeField] private BFUnitRole _role = BFUnitRole.Warrior;
 
         /// <summary>场景手摆阶段的单位实例 ID，当前由 GameObject 名称提供。</summary>
-        public string UnitId => gameObject != null ? gameObject.name : "Unknown";
+        public string UnitId => !string.IsNullOrWhiteSpace(_unitId)
+            ? _unitId
+            : gameObject != null ? gameObject.name : "Unknown";
 
         /// <summary>HUD 和日志显示名；写入空白时回退为通用名称，避免 UI 出现空文本。</summary>
         public string DisplayName
@@ -40,6 +44,19 @@ namespace BF.Game.Runtime.Battle.Units
         {
             get => _role;
             set => _role = value;
+        }
+
+        /// <summary>
+        /// 从单位配置和生成上下文写入运行时身份副本。
+        /// </summary>
+        public void InitializeFromConfig(BFUnitImportedConfigSO config, UnitFaction faction)
+        {
+            if (config == null) return;
+
+            _unitId = config.UnitId;
+            DisplayName = config.DisplayName;
+            _faction = faction;
+            _role = config.Role;
         }
     }
 }

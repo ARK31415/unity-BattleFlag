@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee984ae78c5da145b62b76fec24f820, type: 3}
+  m_Name: BFUnitDef_EnemyMage
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Data.BFUnitDefinitionSO
+  _importedConfig: {fileID: 11400000, guid: 5f0a7a50c0d86f746b777ddeaaae2e4b, type: 2}
+  _unityBinding: {fileID: 11400000, guid: 5ec366d15a8b6ca46bee5b43665af91d, type: 2}
+  _progressionTable: {fileID: 11400000, guid: 916f9e06032071845802d033f048da49, type: 2}

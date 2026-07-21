@@ -18,6 +18,7 @@ namespace BF.Game.Runtime.Battle.Managers
         [SerializeField] private BFBattleUnitManager _unitManager;
         [SerializeField] private BFBattleTurnManager _turnManager;
         [SerializeField] private BFBattleResolutionManager _resolutionManager;
+        [SerializeField] private BFBattleUnitSpawner _unitSpawner;
 
         [Header("Input / UI")]
         [SerializeField] private BFBattleInputController _inputController;
@@ -39,6 +40,7 @@ namespace BF.Game.Runtime.Battle.Managers
             if (_unitManager == null) _unitManager = GetComponentInChildren<BFBattleUnitManager>();
             if (_turnManager == null) _turnManager = GetComponentInChildren<BFBattleTurnManager>();
             if (_resolutionManager == null) _resolutionManager = GetComponentInChildren<BFBattleResolutionManager>();
+            if (_unitSpawner == null) _unitSpawner = GetComponentInChildren<BFBattleUnitSpawner>();
             if (_inputController == null) _inputController = GetComponentInChildren<BFBattleInputController>();
             if (_hud == null) _hud = GetComponentInChildren<BFBattleHUD>();
         }
@@ -46,6 +48,11 @@ namespace BF.Game.Runtime.Battle.Managers
         private void InitializeBattle()
         {
             Debug.Log("[BFBattleRoot] Initializing battle...");
+
+            if (_unitSpawner != null && _unitSpawner.HasSpawnConfig)
+            {
+                _unitSpawner.TrySpawnConfiguredEncounter(_boardManager, out _);
+            }
 
             // Step 1: 从场景中发现所有单位
             var units = new List<UnitRuntime>(

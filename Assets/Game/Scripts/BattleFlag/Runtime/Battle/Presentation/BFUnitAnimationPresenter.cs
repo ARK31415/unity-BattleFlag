@@ -35,6 +35,15 @@ namespace BF.Game.Runtime.Battle.Presentation
             ApplyInitialFacing();
         }
 
+        private void Start()
+        {
+            if (_resolutionManager == null)
+            {
+                _resolutionManager = FindFirstObjectByType<BFBattleResolutionManager>();
+            }
+        }
+
+
         private void OnEnable()
         {
             if (_runtime != null)

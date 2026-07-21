@@ -1,4 +1,5 @@
 using System;
+using BF.Game.Runtime.Battle.Data;
 using UnityEngine;
 
 namespace BF.Game.Runtime.Battle.Units
@@ -50,6 +51,9 @@ namespace BF.Game.Runtime.Battle.Units
 
         /// <summary>单位根 ID，当前沿用 GameObject 名称作为场景手摆阶段的实例标识。</summary>
         public string UnitId => Identity.UnitId;
+
+        /// <summary>当前单位实例使用的数据定义；场景手摆单位可为空。</summary>
+        public BFUnitDefinitionSO Definition { get; private set; }
 
         /// <summary>移动能力注入入口；当前由棋盘管理器在单位吸附到格子时写入。</summary>
         public IMovementHandler MovementHandler { get; set; }
@@ -106,6 +110,32 @@ namespace BF.Game.Runtime.Battle.Units
             InitializeRuntime();
             Stats.ResetBattleResources();
             StateMachine.ChangeState(StateMachine.IdleState);
+        }
+
+        /// <summary>
+        /// 使用单位定义和生成上下文初始化运行时子组件。
+        /// </summary>
+        public void InitializeFromDefinition(BFUnitDefinitionSO definition, BFUnitSpawnContext spawnContext)
+        {
+            if (definition == null)
+            {
+                Debug.LogError("[UnitRuntime] Cannot initialize from a missing unit definition.", this);
+                return;
+            }
+
+            if (!definition.ValidateConfiguration(out string error))
+            {
+                Debug.LogError($"[UnitRuntime] {error}", this);
+                return;
+            }
+
+            Definition = definition;
+            InitializeRuntime();
+
+            Identity.InitializeFromConfig(definition.ImportedConfig, spawnContext.Faction);
+            Stats.InitializeBaseStats(definition.GetBaseStats(), resetResources: true);
+            Grid.InitializeSpawnPosition(spawnContext.GridPosition);
+            ApplyUnityBinding(definition.UnityBinding);
         }
 
         /// <summary>
@@ -238,6 +268,14 @@ namespace BF.Game.Runtime.Battle.Units
             if (_grid == null) Debug.LogError("[UnitRuntime] Missing BFUnitGridRuntime.", this);
             if (_combat == null) Debug.LogError("[UnitRuntime] Missing BFUnitCombatRuntime.", this);
             if (_stateMachine == null) Debug.LogError("[UnitRuntime] Missing BFUnitStateMachineRuntime.", this);
+        }
+
+        private void ApplyUnityBinding(BFUnitUnityBindingSO binding)
+        {
+            if (binding == null) return;
+            if (_animator == null || binding.AnimatorController == null) return;
+
+            _animator.runtimeAnimatorController = binding.AnimatorController;
         }
 
         private T GetOrAddComponent<T>(T current, bool addIfMissing) where T : Component

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176ad7e2a2bd8214385fae666d590fd3, type: 3}
+  m_Name: BFBattleEncounter_DataDrivenSmoke
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Data.BFBattleEncounterSO
+  _spawnEntries:
+  - _unitDefinition: {fileID: 11400000, guid: 22c1c99cc98c3664cbb4ab20f577f0b6, type: 2}
+    _gridPosition: {x: 1, y: 1}
+    _factionOverride: 1
+    _isEnabled: 1
+  - _unitDefinition: {fileID: 11400000, guid: fd35fc5456c852b4e813393da21fbcc1, type: 2}
+    _gridPosition: {x: 1, y: 5}
+    _factionOverride: 1
+    _isEnabled: 1
+  - _unitDefinition: {fileID: 11400000, guid: e69b4ccfc8092d14cac367e31c63f375, type: 2}
+    _gridPosition: {x: 7, y: 1}
+    _factionOverride: 2
+    _isEnabled: 1
+  - _unitDefinition: {fileID: 11400000, guid: 71616593a9e29b44a8d71b72e57d318f, type: 2}
+    _gridPosition: {x: 7, y: 5}
+    _factionOverride: 2
+    _isEnabled: 1
