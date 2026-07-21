@@ -7,7 +7,8 @@
         "Unity.Cinemachine",
         "AstarPathfindingProject",
         "PackageTools",
-        "Drawing"
+        "Drawing",
+        "GUID:a1e8bbcb386865c4da709cd1225a4f13"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

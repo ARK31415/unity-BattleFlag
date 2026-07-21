@@ -8,7 +8,8 @@
         "Unity.Cinemachine",
         "AstarPathfindingProject",
         "PackageTools",
-        "Drawing"
+        "Drawing",
+        "Wit.Framework.UI"
     ],
     "includePlatforms": [
         "Editor"
