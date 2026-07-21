@@ -56,17 +56,17 @@ namespace BF.Game.Runtime.Battle.Presentation
             var canvas = GetComponentInParent<Canvas>();
             if (canvas == null) canvas = FindFirstObjectByType<Canvas>();
 
-            if (_turnText == null && canvas != null) _turnText = FindChild<Text>(canvas.transform, "TurnText");
-            if (_phaseText == null && canvas != null) _phaseText = FindChild<Text>(canvas.transform, "PhaseText");
-            if (_unitInfoPanel == null && canvas != null) _unitInfoPanel = FindChild(canvas.transform, "UnitInfoPanel");
+            if (_turnText == null) _turnText = FindInCanvases<Text>(canvas, "TurnText");
+            if (_phaseText == null) _phaseText = FindInCanvases<Text>(canvas, "PhaseText");
+            if (_unitInfoPanel == null) _unitInfoPanel = FindInCanvases(canvas, "UnitInfoPanel");
             if (_unitNameText == null && _unitInfoPanel != null) _unitNameText = FindChild<Text>(_unitInfoPanel.transform, "UnitName");
             if (_unitHPFill == null && _unitInfoPanel != null) _unitHPFill = FindChild<Image>(_unitInfoPanel.transform, "HPBarFill");
             if (_unitHPText == null && _unitInfoPanel != null) _unitHPText = FindChild<Text>(_unitInfoPanel.transform, "HPText");
             if (_unitATKText == null && _unitInfoPanel != null) _unitATKText = FindChild<Text>(_unitInfoPanel.transform, "ATKText");
             if (_unitAPText == null && _unitInfoPanel != null) _unitAPText = FindChild<Text>(_unitInfoPanel.transform, "APText");
             if (_unitAPText == null && _unitInfoPanel != null) _unitAPText = CreateFallbackAPText();
-            if (_endTurnButton == null && canvas != null) _endTurnButton = FindChild<Button>(canvas.transform, "EndTurnButton");
-            if (_resultPopup == null && canvas != null) _resultPopup = FindChild(canvas.transform, "ResultPopup");
+            if (_endTurnButton == null) _endTurnButton = FindInCanvases<Button>(canvas, "EndTurnButton");
+            if (_resultPopup == null) _resultPopup = FindInCanvases(canvas, "ResultPopup");
             if (_resultText == null && _resultPopup != null) _resultText = FindChild<Text>(_resultPopup.transform, "ResultText");
             if (_resultCloseButton == null && _resultPopup != null) _resultCloseButton = FindChild<Button>(_resultPopup.transform, "CloseButton");
 
@@ -256,6 +256,34 @@ namespace BF.Game.Runtime.Battle.Presentation
         private T FindChild<T>(Transform parent, string name) where T : Component
         {
             var go = FindChild(parent, name);
+            return go != null ? go.GetComponent<T>() : null;
+        }
+
+        private GameObject FindInCanvases(Canvas preferredCanvas, string name)
+        {
+            if (preferredCanvas != null)
+            {
+                var found = FindChild(preferredCanvas.transform, name);
+                if (found != null) return found;
+            }
+
+            // 项目中可能同时存在战斗 HUD Canvas 和通用 UI 框架 Canvas。
+            // 逐个 Canvas 查找，避免 FindFirstObjectByType 拿到非战斗 Canvas 后漏绑 HUD 按钮。
+            var canvases = FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (var candidate in canvases)
+            {
+                if (candidate == null || candidate == preferredCanvas) continue;
+
+                var found = FindChild(candidate.transform, name);
+                if (found != null) return found;
+            }
+
+            return null;
+        }
+
+        private T FindInCanvases<T>(Canvas preferredCanvas, string name) where T : Component
+        {
+            var go = FindInCanvases(preferredCanvas, name);
             return go != null ? go.GetComponent<T>() : null;
         }
 

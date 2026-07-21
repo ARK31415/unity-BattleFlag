@@ -6,8 +6,8 @@
   <Project Path="Wit.Framework.UI.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="AstarPackageToolsEditor.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="BF.Game.Tests.EditMode.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="andywiecko.BurstTriangulator.csproj" />
   <Project Path="PackageTools.csproj" />
   <Project Path="BF.Game.InputActions.csproj" />
