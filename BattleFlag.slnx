@@ -10,6 +10,7 @@
   <Project Path="BF.Game.Tests.EditMode.csproj" />
   <Project Path="andywiecko.BurstTriangulator.csproj" />
   <Project Path="PackageTools.csproj" />
+  <Project Path="BF.Game.InputActions.csproj" />
   <Project Path="BF.Game.Editor.csproj" />
   <Project Path="DrawingEditor.csproj" />
   <Project Path="Wit.Framework.Input.csproj" />

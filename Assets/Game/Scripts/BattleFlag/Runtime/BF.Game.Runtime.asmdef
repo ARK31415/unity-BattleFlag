@@ -8,7 +8,8 @@
         "AstarPathfindingProject",
         "PackageTools",
         "Drawing",
-        "GUID:a1e8bbcb386865c4da709cd1225a4f13"
+        "GUID:a1e8bbcb386865c4da709cd1225a4f13",
+        "GUID:ce64bd3332d4b8548959eeac17e3c524"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

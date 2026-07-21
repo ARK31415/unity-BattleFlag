@@ -3,13 +3,15 @@ using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Wit.Framework.Input;
 
 namespace BF.Game.Runtime.Battle.PlayerInput
 {
     /// <summary>
     /// 玩家输入控制器。仅解释玩家输入（选中/移动/攻击/结束回合），
     /// 调用三个 Manager 的公开合同。自身不持有核心逻辑。
+    ///
+    /// 输入消费迁移为直接使用 BFInputManager.Actions 的强类型 Action，
+    /// 不再通过字符串 key 查询旧输入上下文，改为直接使用 BFInputManager.Actions 强类型 Action。
     /// </summary>
     [DisallowMultipleComponent]
     public class BFBattleInputController : MonoBehaviour
@@ -23,12 +25,12 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         [SerializeField] private Camera _camera;
 
         [Header("Input")]
-        [SerializeField] private WitInputContextManager _inputContextManager;
+        [SerializeField] private BFInputManager _inputManager;
 
-        private WitInputActionSubscription _selectSubscription;
-        private WitInputActionSubscription _cancelSubscription;
-        private WitInputActionSubscription _endTurnSubscription;
         private InputAction _pointAction;
+        private InputAction _selectAction;
+        private InputAction _cancelAction;
+        private InputAction _endTurnAction;
         private Vector2 _lastPointerPosition;
         private bool _isMoveMode;
 
@@ -48,6 +50,8 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             {
                 _unitManager.OnUnitMoveCompleted -= UnitManager_OnUnitMoveCompleted;
             }
+
+            DisposeInputSubscriptions();
         }
 
         private void Start()
@@ -59,39 +63,51 @@ namespace BF.Game.Runtime.Battle.PlayerInput
                 _unitManager.OnUnitMoveCompleted += UnitManager_OnUnitMoveCompleted;
             }
 
-            if (_selectSubscription == null)
+            if (_selectAction == null)
                 RegisterInputActions();
         }
 
         private void RegisterInputActions()
         {
-            _inputContextManager ??= WitInputContextManager.Instance;
-            if (_inputContextManager == null) return;
+            _inputManager ??= BFInputManager.Instance;
+            if (_inputManager?.Actions == null) return;
 
-            _inputContextManager.TryGetAction(BFBattleFlagInputKeys.BattlePoint, out _pointAction);
-            _inputContextManager.TryRegisterPerformed(
-                BFBattleFlagInputKeys.BattleSelect,
-                _ => HandleClick(),
-                out _selectSubscription);
-            _inputContextManager.TryRegisterPerformed(
-                BFBattleFlagInputKeys.BattleCancel,
-                _ => HandleCancelInput(),
-                out _cancelSubscription);
-            _inputContextManager.TryRegisterPerformed(
-                BFBattleFlagInputKeys.BattleEndTurn,
-                _ => OnEndTurnClicked(),
-                out _endTurnSubscription);
+            _pointAction = _inputManager.Actions.Battle.Point;
+            _selectAction = _inputManager.Actions.Battle.Select;
+            _cancelAction = _inputManager.Actions.Battle.Cancel;
+            _endTurnAction = _inputManager.Actions.Battle.EndTurn;
+
+            _selectAction.performed += OnSelectPerformed;
+            _cancelAction.performed += OnCancelPerformed;
+            _endTurnAction.performed += OnEndTurnPerformed;
         }
 
         private void DisposeInputSubscriptions()
         {
-            _selectSubscription?.Dispose();
-            _cancelSubscription?.Dispose();
-            _endTurnSubscription?.Dispose();
-            _selectSubscription = null;
-            _cancelSubscription = null;
-            _endTurnSubscription = null;
+            if (_selectAction != null) _selectAction.performed -= OnSelectPerformed;
+            if (_cancelAction != null) _cancelAction.performed -= OnCancelPerformed;
+            if (_endTurnAction != null) _endTurnAction.performed -= OnEndTurnPerformed;
+
+            _selectAction = null;
+            _cancelAction = null;
+            _endTurnAction = null;
             _pointAction = null;
+        }
+
+        private void OnSelectPerformed(InputAction.CallbackContext ctx)
+        {
+            HandleClick();
+        }
+
+        private void OnCancelPerformed(InputAction.CallbackContext ctx)
+        {
+            if (!CanHandleBattleInput()) return;
+            CancelSelection();
+        }
+
+        private void OnEndTurnPerformed(InputAction.CallbackContext ctx)
+        {
+            OnEndTurnClicked();
         }
 
         private bool CanHandleBattleInput()
@@ -99,13 +115,6 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             if (_turnManager == null || _unitManager == null) return false;
             if (_unitManager.IsActionLocked) return false;
             return _turnManager.CurrentPhase == BattlePhase.PlayerTurn;
-        }
-
-        private void HandleCancelInput()
-        {
-            if (!CanHandleBattleInput()) return;
-
-            CancelSelection();
         }
 
         private void HandleClick()
@@ -164,7 +173,6 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void SelectUnit(UnitRuntime unit)
         {
-            // 输入层只做玩家操作过滤；阵营、存活和行动状态从明确子组件读取。
             if (unit.Identity.Faction != UnitFaction.Player || !unit.Stats.IsAlive) return;
             if (unit.Stats.HasActed) return;
 

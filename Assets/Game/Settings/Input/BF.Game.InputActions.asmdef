@@ -1,0 +1,11 @@
+{
+    "name": "BF.Game.InputActions",
+    "rootNamespace": "",
+    "references": [
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "autoReferenced": true,
+    "noEngineReferences": false
+}

@@ -3,10 +3,14 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using Wit.Framework.Input;
 
 namespace BF.Game.Runtime.Battle.Cameras
 {
+    /// <summary>
+    /// 战斗自由相机控制器，负责鼠标/键盘驱动的平移和缩放。
+    /// 输入消费已迁移为直接使用 BFInputManager.Actions 的强类型 Action，
+    /// 输入阻塞逻辑改为查询 BFInputMapGroupId 状态，不再使用旧 Overlay 命名。
+    /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(CinemachineCamera))]
     public class BFBattleCameraController : MonoBehaviour
@@ -16,7 +20,7 @@ namespace BF.Game.Runtime.Battle.Cameras
         [Header("References")]
         [SerializeField] private CinemachineCamera _cinemachineCamera;
         [SerializeField] private CinemachineConfiner2D _confiner2D;
-        [SerializeField] private WitInputContextManager _inputContextManager;
+        [SerializeField] private BFInputManager _inputManager;
         [SerializeField] private EventSystem _eventSystem;
 
         [Header("Movement")]
@@ -41,7 +45,7 @@ namespace BF.Game.Runtime.Battle.Cameras
         private float _targetOrthographicSize;
         private float _zoomVelocity;
         private float _lastAppliedOrthographicSize;
-        private bool _loggedMissingInputContext;
+        private bool _loggedMissingInputManager;
         private bool _loggedMissingActions;
 
         private void Reset()
@@ -114,17 +118,17 @@ namespace BF.Game.Runtime.Battle.Cameras
 
         private void CacheRuntimeReferences()
         {
-            _inputContextManager ??= WitInputContextManager.Instance;
+            _inputManager ??= BFInputManager.Instance;
             _eventSystem ??= EventSystem.current;
         }
 
         private void ResolveInputActions()
         {
-            if (_inputContextManager == null)
+            if (_inputManager?.Actions == null)
                 return;
 
-            _inputContextManager.TryGetAction(BFBattleFlagInputKeys.BattleCameraMove, out _moveAction);
-            _inputContextManager.TryGetAction(BFBattleFlagInputKeys.BattleCameraZoom, out _zoomAction);
+            _moveAction = _inputManager.Actions.BattleCamera.Move;
+            _zoomAction = _inputManager.Actions.BattleCamera.Zoom;
         }
 
         private bool TryResolveInputActions()
@@ -143,19 +147,23 @@ namespace BF.Game.Runtime.Battle.Cameras
             return hasActions;
         }
 
+        /// <summary>
+        /// 判断是否应阻塞相机输入。
+        /// 当 BFInputManager 不存在或 BattleGameplay 组未启用时应阻塞。
+        /// </summary>
         private bool ShouldBlockCameraInput()
         {
-            if (_inputContextManager == null)
+            if (_inputManager == null)
             {
-                if (!_loggedMissingInputContext)
+                if (!_loggedMissingInputManager)
                 {
-                    Debug.LogWarning("[BattleCamera] Missing WitInputContextManager; camera input is disabled.", this);
-                    _loggedMissingInputContext = true;
+                    Debug.LogWarning("[BattleCamera] Missing BFInputManager; camera input is disabled.", this);
+                    _loggedMissingInputManager = true;
                 }
                 return true;
             }
 
-            if (!_inputContextManager.IsOverlayEnabled(BFBattleFlagInputKeys.BattleCameraOverlay))
+            if (!_inputManager.IsGroupEnabled(BFInputMapGroupId.BattleGameplay))
                 return true;
 
             return IsPointerOverUI();

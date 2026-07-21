@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using System.Reflection;
 using BF.Game.Runtime.Battle.Cameras;
 using BF.Game.Runtime.Input;
 using NUnit.Framework;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Wit.Framework.Input;
 
 namespace BF.Game.Tests.EditMode.Battle.Cameras
 {
@@ -85,15 +82,15 @@ namespace BF.Game.Tests.EditMode.Battle.Cameras
         }
 
         [Test]
-        public void ShouldBlockCameraInput_RespectsBattleCameraOverlay()
+        public void ShouldBlockCameraInput_BlocksWhenBattleGameplayDisabled()
         {
-            using TestInputContext inputContext = new();
-            SetPrivateField(_controller, "_inputContextManager", inputContext.Manager);
+            using TestInputManager testInput = new();
+            SetPrivateField(_controller, "_inputManager", testInput.Manager);
             SetPrivateField(_controller, "_blockInputWhenPointerOverUI", false);
 
             Assert.That((bool)InvokePrivate(_controller, "ShouldBlockCameraInput"), Is.True);
 
-            inputContext.Manager.EnableOverlay(BFBattleFlagInputKeys.BattleCameraOverlay);
+            testInput.Manager.EnableGroup(BFInputMapGroupId.BattleGameplay);
 
             Assert.That((bool)InvokePrivate(_controller, "ShouldBlockCameraInput"), Is.False);
         }
@@ -128,74 +125,45 @@ namespace BF.Game.Tests.EditMode.Battle.Cameras
             field.SetValue(target, value);
         }
 
-        private sealed class TestInputContext : System.IDisposable
+        private sealed class TestInputManager : System.IDisposable
         {
             private readonly GameObject _owner;
-            private readonly WitInputContextConfig _config;
-            private readonly InputActionAsset _inputActions;
+            private readonly BFInputConfig _config;
 
-            public TestInputContext()
+            public TestInputManager()
             {
-                _inputActions = CreateInputActions();
-                _config = CreateConfig(_inputActions);
-                _owner = new GameObject("InputContextManager");
-                Manager = _owner.AddComponent<WitInputContextManager>();
+                _config = ScriptableObject.CreateInstance<BFInputConfig>();
+                _config.SetTestDefinitions(
+                    new[]
+                    {
+                        new BFInputMapGroupDefinition(BFInputMapGroupId.BattleGameplay,
+                            new[] { BFInputActionMapId.Battle, BFInputActionMapId.BattleCamera, BFInputActionMapId.Global })
+                    },
+                    new[]
+                    {
+                        new BFInputProfileDefinition(BFInputProfileId.BattleHud,
+                            new[] { BFInputMapGroupId.BattleGameplay })
+                    },
+                    BFInputProfileId.BattleHud);
+
+                _owner = new GameObject("BFInputManager");
+                _owner.SetActive(false);
+                Manager = _owner.AddComponent<BFInputManager>();
                 SetPrivateField(Manager, "_config", _config);
+                SetPrivateField(Manager, "_applyStartupProfileOnAwake", false);
+                InvokePrivate(Manager, "Awake");
             }
 
-            public WitInputContextManager Manager { get; }
+            public BFInputManager Manager { get; }
 
             public void Dispose()
             {
+                if (Manager != null)
+                    InvokePrivate(Manager, "OnDestroy");
                 if (_owner != null)
                     Object.DestroyImmediate(_owner);
                 if (_config != null)
                     Object.DestroyImmediate(_config);
-                if (_inputActions != null)
-                    Object.DestroyImmediate(_inputActions);
-            }
-
-            private static WitInputContextConfig CreateConfig(InputActionAsset asset)
-            {
-                WitInputContextConfig config = ScriptableObject.CreateInstance<WitInputContextConfig>();
-                SetPrivateField(config, "_inputActions", asset);
-                SetPrivateField(config, "_overlayContexts", new List<WitInputContextDefinition>
-                {
-                    CreateContext(BFBattleFlagInputKeys.BattleCameraOverlay, "BattleCamera")
-                });
-                SetPrivateField(config, "_actions", new List<WitInputActionDefinition>
-                {
-                    CreateAction(BFBattleFlagInputKeys.BattleCameraMove, "BattleCamera", "Move"),
-                    CreateAction(BFBattleFlagInputKeys.BattleCameraZoom, "BattleCamera", "Zoom")
-                });
-                return config;
-            }
-
-            private static WitInputContextDefinition CreateContext(string key, string actionMap)
-            {
-                WitInputContextDefinition context = new();
-                SetPrivateField(context, "_key", key);
-                SetPrivateField(context, "_actionMap", actionMap);
-                return context;
-            }
-
-            private static WitInputActionDefinition CreateAction(string key, string actionMap, string action)
-            {
-                WitInputActionDefinition definition = new();
-                SetPrivateField(definition, "_key", key);
-                SetPrivateField(definition, "_actionMap", actionMap);
-                SetPrivateField(definition, "_action", action);
-                return definition;
-            }
-
-            private static InputActionAsset CreateInputActions()
-            {
-                InputActionAsset asset = ScriptableObject.CreateInstance<InputActionAsset>();
-                InputActionMap camera = new("BattleCamera");
-                camera.AddAction("Move", InputActionType.Value);
-                camera.AddAction("Zoom", InputActionType.Value, "<Mouse>/scroll");
-                asset.AddActionMap(camera);
-                return asset;
             }
         }
     }
