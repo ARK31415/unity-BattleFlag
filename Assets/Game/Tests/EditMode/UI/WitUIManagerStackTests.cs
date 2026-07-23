@@ -61,6 +61,55 @@ namespace BF.Game.Tests.EditMode.UI
         }
 
         [Test]
+        public void Open_AlreadyOpenWindow_ReusesInstanceAndCallsOnReopened()
+        {
+            var firstContext = new TestContext("first");
+            var secondContext = new TestContext("second");
+            var prefab = CreateTrackingPrefab("PF_UI_Reopen", out _);
+            _fixture.RegisterWindow("test.reopen", prefab, WitUILayer.Screen);
+
+            var first = _fixture.Manager.Open("test.reopen", firstContext);
+            var view = (TrackingView)first.View;
+            var second = _fixture.Manager.Open("test.reopen", secondContext);
+
+            Assert.That(second.Succeeded, Is.True);
+            Assert.That(second.ReusedExisting, Is.True);
+            Assert.That(second.View, Is.SameAs(first.View));
+            Assert.That(view.OpenedCount, Is.EqualTo(1));
+            Assert.That(view.ReopenedCount, Is.EqualTo(1));
+            Assert.That(view.LastContext, Is.SameAs(secondContext));
+            Assert.That(_fixture.Manager.OpenViewCount, Is.EqualTo(1));
+            Object.DestroyImmediate(prefab);
+        }
+
+        [Test]
+        public void Open_TypedViewRejectsMismatchedContext()
+        {
+            var prefab = CreateTypedPrefab("PF_UI_Typed", out _);
+            _fixture.RegisterWindow("test.typed", prefab, WitUILayer.Screen);
+
+            var result = _fixture.Manager.Open("test.typed", 123);
+
+            Assert.That(result.Succeeded, Is.False);
+            Assert.That(result.Error, Does.Contain(nameof(StringContext)));
+            Assert.That(_fixture.Manager.OpenViewCount, Is.EqualTo(0));
+            Object.DestroyImmediate(prefab);
+        }
+
+        [Test]
+        public void Open_EmptyContextViewNormalizesNullContext()
+        {
+            var prefab = CreateEmptyContextPrefab("PF_UI_Empty", out _);
+            _fixture.RegisterWindow("test.empty", prefab, WitUILayer.Screen);
+
+            var result = _fixture.Manager.Open("test.empty");
+
+            Assert.That(result.Succeeded, Is.True);
+            Assert.That(result.View.Context, Is.SameAs(WitEmptyContext.Instance));
+            Object.DestroyImmediate(prefab);
+        }
+
+        [Test]
         public void Open_MissingKey_ReturnsFailure()
         {
             var result = _fixture.Manager.Open("missing.key");
@@ -166,5 +215,64 @@ namespace BF.Game.Tests.EditMode.UI
             go.SetActive(false);
             return go;
         }
+
+        private GameObject CreateTrackingPrefab(string name, out TrackingView view)
+        {
+            var go = new GameObject(name);
+            view = go.AddComponent<TrackingView>();
+            go.SetActive(false);
+            return go;
+        }
+
+        private GameObject CreateTypedPrefab(string name, out TypedStringView view)
+        {
+            var go = new GameObject(name);
+            view = go.AddComponent<TypedStringView>();
+            go.SetActive(false);
+            return go;
+        }
+
+        private GameObject CreateEmptyContextPrefab(string name, out EmptyContextView view)
+        {
+            var go = new GameObject(name);
+            view = go.AddComponent<EmptyContextView>();
+            go.SetActive(false);
+            return go;
+        }
+
+        private sealed class TestContext
+        {
+            public TestContext(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get; }
+        }
+
+        private sealed class StringContext { }
+
+        private sealed class TrackingView : WitUIView
+        {
+            public int OpenedCount { get; private set; }
+            public int ReopenedCount { get; private set; }
+            public object LastContext { get; private set; }
+
+            protected override void OnOpened(object context)
+            {
+                OpenedCount++;
+                LastContext = context;
+            }
+
+            protected override void OnReopened(object context)
+            {
+                ReopenedCount++;
+                LastContext = context;
+            }
+        }
+
+        private sealed class TypedStringView : WitUIView<StringContext> { }
+
+        private sealed class EmptyContextView : WitUIView<WitEmptyContext> { }
     }
 }

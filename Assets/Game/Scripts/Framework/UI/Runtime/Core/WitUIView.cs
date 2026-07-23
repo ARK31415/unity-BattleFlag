@@ -20,7 +20,7 @@ namespace Wit.Framework.UI
         /// <summary>当前是否处于打开状态。</summary>
         public bool IsOpen { get; private set; }
 
-        /// <summary>打开时传入的上下文对象，由项目层自行解析。</summary>
+        /// <summary>打开或重开时传入的上下文对象，由项目层自行解析。</summary>
         public object Context { get; private set; }
 
         private WitUIWindowDefinition _definition;
@@ -32,14 +32,29 @@ namespace Wit.Framework.UI
         public virtual void Open(string key, object context, WitUIWindowDefinition definition)
         {
             _definition = definition;
-            Context = context;
+            Context = NormalizeContext(context);
             IsOpen = true;
 
             if (_canvasGroup == null)
                 _canvasGroup = GetComponent<CanvasGroup>();
 
             gameObject.SetActive(true);
-            OnOpened(context);
+            OnOpened(Context);
+        }
+
+        /// <summary>
+        /// 由 UIManager 在复用已打开或缓存窗口时调用，只刷新业务上下文，不重新执行首次打开逻辑。
+        /// </summary>
+        public virtual void Reopen(object context)
+        {
+            Context = NormalizeContext(context);
+            IsOpen = true;
+
+            if (_canvasGroup == null)
+                _canvasGroup = GetComponent<CanvasGroup>();
+
+            gameObject.SetActive(true);
+            OnReopened(Context);
         }
 
         /// <summary>
@@ -67,9 +82,28 @@ namespace Wit.Framework.UI
         }
 
         /// <summary>
+        /// 将调用方传入的 context 标准化为该 View 期望的形态。
+        /// </summary>
+        public virtual object NormalizeContext(object context) => context;
+
+        /// <summary>
+        /// 在 Open/Reopen 前校验 context 是否能被该 View 接收。
+        /// </summary>
+        public virtual bool CanAcceptContext(object context, out string error)
+        {
+            error = string.Empty;
+            return true;
+        }
+
+        /// <summary>
         /// 打开完成后调用，子类可在此接收 context 并初始化 UI 控件。
         /// </summary>
         protected virtual void OnOpened(object context) { }
+
+        /// <summary>
+        /// 窗口复用后调用，子类可在此刷新 context 驱动的显示数据。
+        /// </summary>
+        protected virtual void OnReopened(object context) { }
 
         /// <summary>
         /// 关闭前调用，子类可在此释放资源或取消订阅。
@@ -85,5 +119,63 @@ namespace Wit.Framework.UI
         {
             _canvasGroup = GetComponent<CanvasGroup>();
         }
+    }
+
+    /// <summary>
+    /// 无参数窗口的显式 Context。业务窗口不再把 null 作为标准无参语义。
+    /// </summary>
+    public sealed class WitEmptyContext
+    {
+        public static readonly WitEmptyContext Instance = new();
+
+        private WitEmptyContext() { }
+    }
+
+    /// <summary>
+    /// 正式业务窗口的强类型 Context 基类，负责在框架入口处完成 Context 类型校验。
+    /// </summary>
+    public class WitUIView<TContext> : WitUIView
+    {
+        public override object NormalizeContext(object context)
+        {
+            if (context == null && typeof(TContext) == typeof(WitEmptyContext))
+                return WitEmptyContext.Instance;
+
+            return context;
+        }
+
+        public override bool CanAcceptContext(object context, out string error)
+        {
+            object normalized = NormalizeContext(context);
+            if (normalized is TContext)
+            {
+                error = string.Empty;
+                return true;
+            }
+
+            string received = normalized == null ? "null" : normalized.GetType().Name;
+            error = $"窗口 '{Key}' 需要 Context 类型 {typeof(TContext).Name}，实际收到 {received}。";
+            return false;
+        }
+
+        protected sealed override void OnOpened(object context)
+        {
+            OnOpened((TContext)NormalizeContext(context));
+        }
+
+        protected sealed override void OnReopened(object context)
+        {
+            OnReopened((TContext)NormalizeContext(context));
+        }
+
+        /// <summary>
+        /// 强类型窗口首次打开完成后调用，适合初始化、订阅事件和首次刷新。
+        /// </summary>
+        protected virtual void OnOpened(TContext context) { }
+
+        /// <summary>
+        /// 强类型窗口被重复打开或缓存复用后调用，适合刷新显示数据。
+        /// </summary>
+        protected virtual void OnReopened(TContext context) { }
     }
 }

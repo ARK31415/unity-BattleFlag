@@ -21,8 +21,9 @@ namespace Wit.Framework.UI
         public GameObject Prefab => _prefab;
         public WitUILayer Layer => _layer;
         public WitUICachePolicy CachePolicy => _cachePolicy;
-        public bool Unique => _unique;
+        public bool Unique => true;
         public bool Modal => _modal;
+        public bool HasDisabledUniqueFlag => !_unique;
 
         public WitUIWindowDefinition()
         {

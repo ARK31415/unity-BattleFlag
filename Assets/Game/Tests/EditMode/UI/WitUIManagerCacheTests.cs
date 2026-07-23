@@ -39,6 +39,27 @@ namespace BF.Game.Tests.EditMode.UI
         }
 
         [Test]
+        public void CacheOnClose_ReopenCallsOnReopenedInsteadOfOnOpened()
+        {
+            var prefab = CreateTrackingPrefab("PF_UI_CachedTracking", out _);
+            _fixture.RegisterWindow("test.cached", prefab, WitUILayer.Screen, WitUICachePolicy.CacheOnClose);
+
+            var result1 = _fixture.Manager.Open("test.cached", "first");
+            var view = (TrackingView)result1.View;
+            _fixture.Manager.Close("test.cached");
+
+            var result2 = _fixture.Manager.Open("test.cached", "second");
+
+            Assert.That(result2.Succeeded, Is.True);
+            Assert.That(result2.ReusedExisting, Is.True);
+            Assert.That(result2.View, Is.SameAs(view));
+            Assert.That(view.OpenedCount, Is.EqualTo(1));
+            Assert.That(view.ReopenedCount, Is.EqualTo(1));
+            Assert.That(view.LastContext, Is.EqualTo("second"));
+            Object.DestroyImmediate(prefab);
+        }
+
+        [Test]
         public void DestroyOnClose_DoesNotReuseClosedInstance()
         {
             var prefab = CreateTestPrefab("PF_UI_Destroy", out _);
@@ -81,6 +102,33 @@ namespace BF.Game.Tests.EditMode.UI
             view = go.AddComponent<WitUIView>();
             go.SetActive(false);
             return go;
+        }
+
+        private GameObject CreateTrackingPrefab(string name, out TrackingView view)
+        {
+            var go = new GameObject(name);
+            view = go.AddComponent<TrackingView>();
+            go.SetActive(false);
+            return go;
+        }
+
+        private sealed class TrackingView : WitUIView
+        {
+            public int OpenedCount { get; private set; }
+            public int ReopenedCount { get; private set; }
+            public object LastContext { get; private set; }
+
+            protected override void OnOpened(object context)
+            {
+                OpenedCount++;
+                LastContext = context;
+            }
+
+            protected override void OnReopened(object context)
+            {
+                ReopenedCount++;
+                LastContext = context;
+            }
         }
     }
 }

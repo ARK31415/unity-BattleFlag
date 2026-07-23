@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2401955931868394547
+--- !u!1 &2111039412047100001
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4024642528471171393}
-  - component: {fileID: 7717577256384933660}
-  - component: {fileID: 7634687323666309533}
+  - component: {fileID: 2111039412047100002}
+  - component: {fileID: 2111039412047100003}
+  - component: {fileID: 2111039412047100004}
   m_Layer: 0
-  m_Name: PF_UI_BF_TestPopup
+  m_Name: PF_UI_BF_BattleResultPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4024642528471171393
+--- !u!4 &2111039412047100002
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401955931868394547}
+  m_GameObject: {fileID: 2111039412047100001}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,27 +33,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!225 &7717577256384933660
+--- !u!225 &2111039412047100003
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401955931868394547}
+  m_GameObject: {fileID: 2111039412047100001}
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &7634687323666309533
+--- !u!114 &2111039412047100004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401955931868394547}
+  m_GameObject: {fileID: 2111039412047100001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e656837c62f6e784fa23973eb0feb021, type: 3}
+  m_Script: {fileID: 11500000, guid: d6b1156a063e4cd885efbff6d50fba72, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Wit.Framework.UI::Wit.Framework.UI.WitUIView
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.UI.Battle.BattleResultPopupView
+  _resultText: {fileID: 0}
+  _closeButton: {fileID: 0}

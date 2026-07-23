@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BF.Game.Runtime.Battle.PlayerInput;
-using BF.Game.Runtime.Battle.Presentation;
 using BF.Game.Runtime.Battle.Units;
+using BF.Game.Runtime.UI.Battle;
 using UnityEngine;
 
 namespace BF.Game.Runtime.Battle.Managers
@@ -22,7 +22,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
         [Header("Input / UI")]
         [SerializeField] private BFBattleInputController _inputController;
-        [SerializeField] private BFBattleHUD _hud;
+        [SerializeField] private BattleHudView _hud;
 
         private void Awake()
         {
@@ -42,7 +42,7 @@ namespace BF.Game.Runtime.Battle.Managers
             if (_resolutionManager == null) _resolutionManager = GetComponentInChildren<BFBattleResolutionManager>();
             if (_unitSpawner == null) _unitSpawner = GetComponentInChildren<BFBattleUnitSpawner>();
             if (_inputController == null) _inputController = GetComponentInChildren<BFBattleInputController>();
-            if (_hud == null) _hud = GetComponentInChildren<BFBattleHUD>();
+            if (_hud == null) _hud = GetComponentInChildren<BattleHudView>();
         }
 
         private void InitializeBattle()

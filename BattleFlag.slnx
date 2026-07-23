@@ -13,5 +13,6 @@
   <Project Path="BF.Game.InputActions.csproj" />
   <Project Path="BF.Game.Editor.csproj" />
   <Project Path="DrawingEditor.csproj" />
+  <Project Path="Wit.Framework.UI.Editor.csproj" />
   <Project Path="DrawingPackageToolsEditor.csproj" />
 </Solution>

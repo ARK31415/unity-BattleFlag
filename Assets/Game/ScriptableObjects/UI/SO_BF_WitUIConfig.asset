@@ -13,21 +13,15 @@ MonoBehaviour:
   m_Name: SO_BF_WitUIConfig
   m_EditorClassIdentifier: Wit.Framework.UI::Wit.Framework.UI.WitUIConfig
   _definitions:
-  - _key: bf.test.hud
-    _prefab: {fileID: 4656861983880981709, guid: 5d2a1fbbe486f264f9ad8e04743367d4, type: 3}
+  - _key: battle.hud
+    _prefab: {fileID: 2111039412047000001, guid: e16893afec9e4f4b94d7efe5f0d78c5f, type: 3}
     _layer: 0
     _cachePolicy: 20
     _unique: 1
     _modal: 0
-  - _key: bf.test.screen
-    _prefab: {fileID: 8686783219315072122, guid: 71e5245325139de46b9260dbc062879e, type: 3}
-    _layer: 10
-    _cachePolicy: 10
-    _unique: 1
-    _modal: 0
-  - _key: bf.test.popup
-    _prefab: {fileID: 2401955931868394547, guid: b6e5339d1b1392c4cb1d1d9db6d04a10, type: 3}
+  - _key: battle.result
+    _prefab: {fileID: 2111039412047100001, guid: b33614225c9d4b2b82edcfa29b7e3f8a, type: 3}
     _layer: 20
-    _cachePolicy: 0
+    _cachePolicy: 10
     _unique: 1
     _modal: 1
