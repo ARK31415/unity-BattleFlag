@@ -1,5 +1,6 @@
 using System.Reflection;
-using BF.Game.Runtime.Battle.Presentation;
+using BF.Game.Runtime.Battle;
+using BF.Game.Runtime.UI.Battle;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,18 +25,46 @@ namespace BF.Game.Tests.EditMode.Battle
         }
 
         [Test]
-        public void AutoResolveReferences_FindsEndTurnButtonWhenFirstCanvasIsNotBattleCanvas()
+        public void BattleHudView_OpenDoesNotScanSceneCanvasesForButton()
         {
             _uiRootCanvas = CreateCanvas("Canvas");
             _battleCanvas = CreateCanvas("BattleCanvas");
-            var endTurnButton = CreateButton("EndTurnButton", _battleCanvas.transform);
+            CreateButton("EndTurnButton", _battleCanvas.transform);
 
             _hudOwner = new GameObject("BFBattleRoot");
-            var hud = _hudOwner.AddComponent<BFBattleHUD>();
+            var hud = _hudOwner.AddComponent<BattleHudView>();
+            var definition = new Wit.Framework.UI.WitUIWindowDefinition(
+                "battle.hud",
+                _hudOwner,
+                Wit.Framework.UI.WitUILayer.HUD,
+                Wit.Framework.UI.WitUICachePolicy.DestroyOnClose,
+                true,
+                false);
 
-            InvokePrivate(hud, "AutoResolveReferences");
+            hud.Open("battle.hud", new BattleHudContext(), definition);
 
-            Assert.That(GetPrivateField(hud, "_endTurnButton"), Is.SameAs(endTurnButton));
+            Assert.That(GetPrivateField(hud, "_endTurnButton"), Is.Null);
+        }
+
+        [Test]
+        public void BattleResultPopupView_OpenAndReopenRefreshesResultText()
+        {
+            _hudOwner = new GameObject("BattleResultPopup");
+            var popup = _hudOwner.AddComponent<BattleResultPopupView>();
+            var resultText = CreateText("ResultText", _hudOwner.transform);
+            SetPrivateField(popup, "_resultText", resultText);
+            var definition = new Wit.Framework.UI.WitUIWindowDefinition(
+                "battle.result",
+                _hudOwner,
+                Wit.Framework.UI.WitUILayer.Popup,
+                Wit.Framework.UI.WitUICachePolicy.CacheOnClose,
+                true,
+                true);
+
+            popup.Open("battle.result", new BattleResultContext(BattleResult.Victory("test", 3)), definition);
+            popup.Reopen(new BattleResultContext(BattleResult.Defeat("test", 4)));
+
+            Assert.That(resultText.text, Is.EqualTo("DEFEAT"));
         }
 
         private static GameObject CreateCanvas(string name)
@@ -58,6 +87,14 @@ namespace BF.Game.Tests.EditMode.Battle
             return go.AddComponent<Button>();
         }
 
+        private static Text CreateText(string name, Transform parent)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(parent, false);
+            go.AddComponent<RectTransform>();
+            return go.AddComponent<Text>();
+        }
+
         private static object GetPrivateField(object target, string fieldName)
         {
             FieldInfo field = target.GetType().GetField(
@@ -67,13 +104,13 @@ namespace BF.Game.Tests.EditMode.Battle
             return field.GetValue(target);
         }
 
-        private static object InvokePrivate(object target, string methodName, params object[] args)
+        private static void SetPrivateField(object target, string fieldName, object value)
         {
-            MethodInfo method = target.GetType().GetMethod(
-                methodName,
+            FieldInfo field = target.GetType().GetField(
+                fieldName,
                 BindingFlags.Instance | BindingFlags.NonPublic);
-            Assert.That(method, Is.Not.Null);
-            return method.Invoke(target, args);
+            Assert.That(field, Is.Not.Null);
+            field.SetValue(target, value);
         }
     }
 }

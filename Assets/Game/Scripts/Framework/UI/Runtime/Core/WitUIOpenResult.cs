@@ -10,10 +10,16 @@ namespace Wit.Framework.UI
         public bool Succeeded { get; private set; }
         public WitUIView View { get; private set; }
         public string Error { get; private set; }
+        public bool ReusedExisting { get; private set; }
 
-        public static WitUIOpenResult Success(WitUIView view)
+        public static WitUIOpenResult Success(WitUIView view, bool reusedExisting = false)
         {
-            return new WitUIOpenResult { Succeeded = true, View = view };
+            return new WitUIOpenResult
+            {
+                Succeeded = true,
+                View = view,
+                ReusedExisting = reusedExisting
+            };
         }
 
         public static WitUIOpenResult Failure(string error)

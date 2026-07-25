@@ -62,6 +62,79 @@ namespace BF.Game.Tests.EditMode.Input
             Object.DestroyImmediate(config);
         }
 
+        [Test]
+        public void Update_RetriesInputRegistrationWhenPersistentManagerAppearsAfterStart()
+        {
+            var config = CreateBattleInputConfig();
+            var controllerOwner = new GameObject("BFBattleInputController");
+            var controller = controllerOwner.AddComponent<BFBattleInputController>();
+            var managerOwner = new GameObject("BFInputManager");
+            var manager = managerOwner.AddComponent<BFInputManager>();
+            SetPrivateField(manager, "_config", config);
+            SetPrivateField(manager, "_applyStartupProfileOnAwake", false);
+            SetPrivateField(controller, "_inputManager", manager);
+
+            try
+            {
+                InvokePrivate(controller, "OnEnable");
+                InvokePrivate(controller, "Start");
+                Assert.That(GetPrivateField(controller, "_selectAction"), Is.Null);
+
+                InvokePrivate(manager, "Awake");
+                InvokePrivate(controller, "Update");
+
+                Assert.That(GetPrivateField(controller, "_inputManager"), Is.SameAs(manager));
+                Assert.That(GetPrivateField(controller, "_selectAction"), Is.Not.Null);
+            }
+            finally
+            {
+                InvokePrivate(controller, "OnDisable");
+                InvokePrivate(manager, "OnDestroy");
+                Object.DestroyImmediate(controllerOwner);
+                Object.DestroyImmediate(managerOwner);
+                Object.DestroyImmediate(config);
+            }
+        }
+
+        [Test]
+        public void Update_ResolvesMainCameraWhenSerializedReferenceIsMissing()
+        {
+            var controllerOwner = new GameObject("BFBattleInputController");
+            var controller = controllerOwner.AddComponent<BFBattleInputController>();
+
+            try
+            {
+                InvokePrivate(controller, "Start");
+                SetPrivateField(controller, "_camera", null);
+
+                InvokePrivate(controller, "Update");
+
+                Assert.That(GetPrivateField(controller, "_camera"), Is.SameAs(Camera.main));
+            }
+            finally
+            {
+                Object.DestroyImmediate(controllerOwner);
+            }
+        }
+
+        private static BFInputConfig CreateBattleInputConfig()
+        {
+            var config = ScriptableObject.CreateInstance<BFInputConfig>();
+            config.SetTestDefinitions(
+                new[]
+                {
+                    new BFInputMapGroupDefinition(BFInputMapGroupId.BattleGameplay,
+                        new[] { BFInputActionMapId.Battle })
+                },
+                new[]
+                {
+                    new BFInputProfileDefinition(BFInputProfileId.BattleHud,
+                        new[] { BFInputMapGroupId.BattleGameplay })
+                },
+                BFInputProfileId.BattleHud);
+            return config;
+        }
+
         private static object GetPrivateField(object target, string fieldName)
         {
             FieldInfo field = target.GetType().GetField(

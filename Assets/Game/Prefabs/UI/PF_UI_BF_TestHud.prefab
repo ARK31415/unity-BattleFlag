@@ -54,7 +54,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4656861983880981709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01418320eaf201d4aaa119c4eb247dfc, type: 3}
+  m_Script: {fileID: 11500000, guid: e656837c62f6e784fa23973eb0feb021, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.UI.Test.BFTestHudView
-  _labelText: {fileID: 0}
+  m_EditorClassIdentifier: Wit.Framework.UI::Wit.Framework.UI.WitUIView

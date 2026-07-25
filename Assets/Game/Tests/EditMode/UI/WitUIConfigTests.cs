@@ -36,5 +36,43 @@ namespace BF.Game.Tests.EditMode.UI
             Assert.That(definition, Is.Null);
             Object.DestroyImmediate(config);
         }
+
+        [Test]
+        public void ValidateDefinitions_ReportsDuplicateKeyEmptyPrefabAndDisabledUnique()
+        {
+            var config = ScriptableObject.CreateInstance<WitUIConfig>();
+            var prefab = new GameObject("PF_UI_TestScreen");
+            prefab.AddComponent<WitUIView>();
+            config.SetTestDefinitions(new[]
+            {
+                new WitUIWindowDefinition("test.screen", prefab, WitUILayer.Screen, WitUICachePolicy.CacheOnClose, true, false),
+                new WitUIWindowDefinition("test.screen", null, WitUILayer.Popup, WitUICachePolicy.DestroyOnClose, false, true)
+            });
+
+            var errors = config.ValidateDefinitions();
+
+            Assert.That(errors, Has.Some.Contains("重复"));
+            Assert.That(errors, Has.Some.Contains("prefab 为空"));
+            Assert.That(errors, Has.Some.Contains("Unique=false"));
+            Object.DestroyImmediate(prefab);
+            Object.DestroyImmediate(config);
+        }
+
+        [Test]
+        public void ValidateDefinitions_ReportsPrefabWithoutView()
+        {
+            var config = ScriptableObject.CreateInstance<WitUIConfig>();
+            var prefab = new GameObject("PF_UI_NoView");
+            config.SetTestDefinitions(new[]
+            {
+                new WitUIWindowDefinition("test.no-view", prefab, WitUILayer.Screen, WitUICachePolicy.DestroyOnClose, true, false)
+            });
+
+            var errors = config.ValidateDefinitions();
+
+            Assert.That(errors, Has.Some.Contains("缺少 WitUIView"));
+            Object.DestroyImmediate(prefab);
+            Object.DestroyImmediate(config);
+        }
     }
 }

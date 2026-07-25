@@ -64,9 +64,17 @@ namespace Wit.Framework.UI
             if (_root.GetLayerRoot(definition.Layer) == null)
                 return WitUIOpenResult.Failure($"层级 '{definition.Layer}' 的 Transform 未配置。");
 
-            // 唯一窗口已打开时直接返回已有实例
-            if (definition.Unique && _openViewsByKey.TryGetValue(key, out WitUIView existing))
-                return WitUIOpenResult.Failure($"窗口 '{key}' 已打开且配置为唯一窗口。");
+            if (_openViewsByKey.TryGetValue(key, out WitUIView existing))
+            {
+                object normalizedContext = existing.NormalizeContext(context);
+                if (!existing.CanAcceptContext(normalizedContext, out string contextError))
+                    return WitUIOpenResult.Failure(contextError);
+
+                existing.Reopen(normalizedContext);
+                UpdateModalBlocker();
+                NotifyInputCoordinator();
+                return WitUIOpenResult.Success(existing, true);
+            }
 
             // 尝试从缓存复用
             WitUIView view;
@@ -86,14 +94,39 @@ namespace Wit.Framework.UI
                 }
             }
 
-            view.Open(key, context, definition);
+            object viewContext = view.NormalizeContext(context);
+            if (!view.CanAcceptContext(viewContext, out string error))
+            {
+                if (fromCache)
+                {
+                    _cachedViewsByKey[key] = view;
+                }
+                else
+                {
+#if UNITY_EDITOR
+                    if (!Application.isPlaying)
+                        DestroyImmediate(view.gameObject);
+                    else
+                        Destroy(view.gameObject);
+#else
+                    Destroy(view.gameObject);
+#endif
+                }
+                return WitUIOpenResult.Failure(error);
+            }
+
+            if (fromCache)
+                view.Reopen(viewContext);
+            else
+                view.Open(key, viewContext, definition);
+
             _openViewsByKey[key] = view;
 
             AddToStack(view, definition.Layer);
             UpdateModalBlocker();
             NotifyInputCoordinator();
 
-            return WitUIOpenResult.Success(view);
+            return WitUIOpenResult.Success(view, fromCache);
         }
 
         /// <summary>

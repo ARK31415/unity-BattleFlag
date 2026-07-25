@@ -1,0 +1,14 @@
+{
+    "name": "Wit.Framework.UI.Editor",
+    "rootNamespace": "Wit.Framework.UI.Editor",
+    "references": [
+        "Wit.Framework.UI"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "autoReferenced": true,
+    "noEngineReferences": false
+}

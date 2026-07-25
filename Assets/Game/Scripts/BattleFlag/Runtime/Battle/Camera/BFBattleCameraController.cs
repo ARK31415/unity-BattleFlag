@@ -16,12 +16,14 @@ namespace BF.Game.Runtime.Battle.Cameras
     public class BFBattleCameraController : MonoBehaviour
     {
         private const float ScrollWheelScale = 0.01f;
+        private const string DefaultBoundsTag = "Bounds";
 
         [Header("References")]
         [SerializeField] private CinemachineCamera _cinemachineCamera;
         [SerializeField] private CinemachineConfiner2D _confiner2D;
         [SerializeField] private BFInputManager _inputManager;
         [SerializeField] private EventSystem _eventSystem;
+        [SerializeField] private string _boundsTag = DefaultBoundsTag;
 
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 8f;
@@ -47,6 +49,7 @@ namespace BF.Game.Runtime.Battle.Cameras
         private float _lastAppliedOrthographicSize;
         private bool _loggedMissingInputManager;
         private bool _loggedMissingActions;
+        private bool _loggedMissingBoundsCollider;
 
         private void Reset()
         {
@@ -58,6 +61,7 @@ namespace BF.Game.Runtime.Battle.Cameras
             _maxOrthographicSize = 12f;
             _smoothTime = 0.08f;
             _blockInputWhenPointerOverUI = true;
+            _boundsTag = DefaultBoundsTag;
         }
 
         private void Awake()
@@ -120,6 +124,47 @@ namespace BF.Game.Runtime.Battle.Cameras
         {
             _inputManager ??= BFInputManager.Instance;
             _eventSystem ??= EventSystem.current;
+            BindConfinerBoundsByTag();
+        }
+
+        private void BindConfinerBoundsByTag()
+        {
+            if (_confiner2D == null || _confiner2D.BoundingShape2D != null)
+                return;
+
+            if (string.IsNullOrEmpty(_boundsTag))
+                return;
+
+            GameObject boundsObject;
+            try
+            {
+                boundsObject = GameObject.FindGameObjectWithTag(_boundsTag);
+            }
+            catch (UnityException)
+            {
+                if (!_loggedMissingBoundsCollider)
+                {
+                    Debug.LogWarning($"[BattleCamera] Bounds tag '{_boundsTag}' is not defined.", this);
+                    _loggedMissingBoundsCollider = true;
+                }
+                return;
+            }
+
+            if (boundsObject == null)
+                return;
+
+            if (!boundsObject.TryGetComponent(out Collider2D boundsCollider))
+            {
+                if (!_loggedMissingBoundsCollider)
+                {
+                    Debug.LogWarning($"[BattleCamera] Tagged bounds object '{boundsObject.name}' has no Collider2D.", boundsObject);
+                    _loggedMissingBoundsCollider = true;
+                }
+                return;
+            }
+
+            _confiner2D.BoundingShape2D = boundsCollider;
+            _confiner2D.InvalidateBoundingShapeCache();
         }
 
         private void ResolveInputActions()

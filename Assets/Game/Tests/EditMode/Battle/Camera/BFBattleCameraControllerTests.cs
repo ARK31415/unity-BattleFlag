@@ -11,6 +11,7 @@ namespace BF.Game.Tests.EditMode.Battle.Cameras
     {
         private GameObject _cameraObject;
         private CinemachineCamera _cinemachineCamera;
+        private CinemachineConfiner2D _confiner2D;
         private BFBattleCameraController _controller;
 
         [SetUp]
@@ -18,6 +19,7 @@ namespace BF.Game.Tests.EditMode.Battle.Cameras
         {
             _cameraObject = new GameObject("BattleCamera");
             _cinemachineCamera = _cameraObject.AddComponent<CinemachineCamera>();
+            _confiner2D = _cameraObject.AddComponent<CinemachineConfiner2D>();
             _controller = _cameraObject.AddComponent<BFBattleCameraController>();
             SetPrivateField(_controller, "_smoothTime", 0f);
             SetPrivateField(_controller, "_moveSpeed", 8f);
@@ -93,6 +95,25 @@ namespace BF.Game.Tests.EditMode.Battle.Cameras
             testInput.Manager.EnableGroup(BFInputMapGroupId.BattleGameplay);
 
             Assert.That((bool)InvokePrivate(_controller, "ShouldBlockCameraInput"), Is.False);
+        }
+
+        [Test]
+        public void BindConfinerBoundsByTag_AssignsBoundsCollider()
+        {
+            GameObject boundsObject = new("Bounds");
+            boundsObject.tag = "Bounds";
+            PolygonCollider2D boundsCollider = boundsObject.AddComponent<PolygonCollider2D>();
+
+            try
+            {
+                InvokePrivate(_controller, "BindConfinerBoundsByTag");
+
+                Assert.That(_confiner2D.BoundingShape2D, Is.SameAs(boundsCollider));
+            }
+            finally
+            {
+                Object.DestroyImmediate(boundsObject);
+            }
         }
 
         private void StepCamera(Vector2 moveInput, float zoomInput, bool inputBlocked, float deltaTime)

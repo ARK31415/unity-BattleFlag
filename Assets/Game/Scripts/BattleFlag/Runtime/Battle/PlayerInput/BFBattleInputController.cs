@@ -56,12 +56,23 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void Start()
         {
-            if (_camera == null) _camera = Camera.main;
+            ResolveCrossSceneReferences();
 
             if (_unitManager != null)
             {
                 _unitManager.OnUnitMoveCompleted += UnitManager_OnUnitMoveCompleted;
             }
+        }
+
+        private void Update()
+        {
+            ResolveCrossSceneReferences();
+        }
+
+        private void ResolveCrossSceneReferences()
+        {
+            if (_camera == null)
+                _camera = Camera.main;
 
             if (_selectAction == null)
                 RegisterInputActions();
@@ -69,7 +80,12 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void RegisterInputActions()
         {
-            _inputManager ??= BFInputManager.Instance;
+            if (_selectAction != null)
+                return;
+
+            if (_inputManager == null || _inputManager.Actions == null)
+                _inputManager = BFInputManager.Instance;
+
             if (_inputManager?.Actions == null) return;
 
             _pointAction = _inputManager.Actions.Battle.Point;
