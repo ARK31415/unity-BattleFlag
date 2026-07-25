@@ -324,6 +324,7 @@ MonoBehaviour:
   _confiner2D: {fileID: 942396854}
   _inputManager: {fileID: 1786621502}
   _eventSystem: {fileID: 298831109}
+  _boundsTag: Bounds
   _moveSpeed: 8
   _zoomSpeed: 2
   _minOrthographicSize: 4

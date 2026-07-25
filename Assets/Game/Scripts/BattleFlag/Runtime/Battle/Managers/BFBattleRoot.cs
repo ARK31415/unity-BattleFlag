@@ -1,15 +1,21 @@
 using System.Collections.Generic;
+using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.PlayerInput;
 using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.UI.Battle;
 using UnityEngine;
+using Wit.Framework.UI;
 
 namespace BF.Game.Runtime.Battle.Managers
 {
     /// <summary>
-    /// 战斗场景根节点。装配三个 Manager（Board → UnitManager → TurnManager）、
-    /// 输入控制器和 HUD，按顺序初始化，提供场景级入口。
-    /// 不负责回合规则、寻路计算、AI 决策。
+    /// 战斗场景根节点。装配三个 Manager（Board - UnitManager - TurnManager）、
+    /// 输入控制器，按顺序初始化，提供场景级入口。
+    ///
+    /// 职责边界：
+    /// - 负责战斗初始化流程（单位发现 - 棋盘对齐 - 注册 - 启动回合）。
+    /// - 负责通过 WitUIManager 打开战斗 HUD（battle.hud key）。
+    /// - 不负责回合规则、寻路计算、AI 决策、UI 内部逻辑。
     /// </summary>
     public class BFBattleRoot : MonoBehaviour
     {
@@ -20,9 +26,15 @@ namespace BF.Game.Runtime.Battle.Managers
         [SerializeField] private BFBattleResolutionManager _resolutionManager;
         [SerializeField] private BFBattleUnitSpawner _unitSpawner;
 
+        [Header("Event Channels")]
+        [SerializeField] private BFTurnEventSO _turnEventChannel;
+        [SerializeField] private BFBattleEventSO _battleEventChannel;
+        [SerializeField] private BFUnitEventSO _unitEventChannel;
+
         [Header("Input / UI")]
         [SerializeField] private BFBattleInputController _inputController;
-        [SerializeField] private BattleHudView _hud;
+        // WitUIManager 来自常驻场景 BFPersistent，负责打开战斗 HUD 等窗口。
+        [SerializeField] private WitUIManager _uiManager;
 
         private void Awake()
         {
@@ -42,7 +54,8 @@ namespace BF.Game.Runtime.Battle.Managers
             if (_resolutionManager == null) _resolutionManager = GetComponentInChildren<BFBattleResolutionManager>();
             if (_unitSpawner == null) _unitSpawner = GetComponentInChildren<BFBattleUnitSpawner>();
             if (_inputController == null) _inputController = GetComponentInChildren<BFBattleInputController>();
-            if (_hud == null) _hud = GetComponentInChildren<BattleHudView>();
+            // WitUIManager 位于常驻场景 BFPersistent，通过 FindFirstObjectByType 跨场景查找。
+            if (_uiManager == null) _uiManager = FindFirstObjectByType<WitUIManager>();
         }
 
         private void InitializeBattle()
@@ -93,8 +106,37 @@ namespace BF.Game.Runtime.Battle.Managers
             // Step 5: 启动回合循环
             _turnManager?.StartBattle();
 
+            // Step 6: 通过 WitUIManager 打开战斗 HUD
+            OpenBattleHud();
+
             Debug.Log($"[BFBattleRoot] Battle initialized: {units.Count} units, " +
                       $"Board {_boardManager?.Width}x{_boardManager?.Height}");
+        }
+
+        // 通过 WitUIManager 打开 battle.hud 窗口，注入战斗所需的依赖引用。
+        private void OpenBattleHud()
+        {
+            if (_uiManager == null)
+            {
+                Debug.LogWarning("[BFBattleRoot] WitUIManager 未配置，跳过 HUD 打开。");
+                return;
+            }
+
+            // 收集事件通道引用（从场景中查找 SO 资产）。
+            var context = new BattleHudContext
+            {
+                TurnEventChannel = _turnEventChannel,
+                BattleEventChannel = _battleEventChannel,
+                UnitEventChannel = _unitEventChannel,
+                TurnManager = _turnManager,
+                UnitManager = _unitManager,
+                InputController = _inputController,
+                UIManager = _uiManager
+            };
+
+            var result = _uiManager.Open("battle.hud", context);
+            if (!result.Succeeded)
+                Debug.LogWarning($"[BFBattleRoot] 战斗 HUD 打开失败: {result.Error}");
         }
     }
 }

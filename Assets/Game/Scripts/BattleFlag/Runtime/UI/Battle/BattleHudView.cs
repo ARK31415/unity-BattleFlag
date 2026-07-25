@@ -10,14 +10,24 @@ using Wit.Framework.UI;
 namespace BF.Game.Runtime.UI.Battle
 {
     /// <summary>
-    /// 战斗 HUD 正式 Window。依赖 Context 和序列化绑定，不在运行时扫描场景 Canvas。
+    /// 战斗 HUD 正式 Window，由 WitUIManager 按 battle.hud key 打开。
+    ///
+    /// 职责边界：
+    /// - 负责显示回合提示（合并 Turn 数字 + 阶段文字）、选中单位信息和结束回合按钮。
+    /// - 负责把按钮交互转发给输入控制器，把胜负结果转发给 WitUIManager 打开结算弹窗。
+    /// - 不负责战斗规则计算，也不负责场景装配。
+    /// - 所有 UI 控件通过 SerializeField 绑定，不在运行时扫描 Canvas。
+    ///
+    /// 运行前提：
+    /// - Prefab 上挂载此组件，并拖入 Banner 背景 Text、Button、UnitInfoWidget、事件通道和 Manager 引用。
+    /// - 通过 BattleHudContext 接收事件通道、Manager、输入控制器和 UIManager 依赖。
     /// </summary>
     [DisallowMultipleComponent]
     public class BattleHudView : WitUIView<BattleHudContext>
     {
         [Header("Top Bar")]
-        [SerializeField] private Text _turnText;
-        [SerializeField] private Text _phaseText;
+        // 合并的回合提示文字，格式 "Turn {N} · {阶段}"。
+        [SerializeField] private Text _turnPhaseText;
 
         [Header("Unit Info")]
         [SerializeField] private UnitInfoWidget _unitInfoWidget;
@@ -40,6 +50,8 @@ namespace BF.Game.Runtime.UI.Battle
         private WitUIManager _uiManager;
         private string _resultPopupKey = "battle.result";
         private bool _isSubscribed;
+        private int _currentTurnNumber;
+        private BattlePhase _currentPhase;
 
         protected override void OnOpened(BattleHudContext context)
         {
@@ -123,19 +135,20 @@ namespace BF.Game.Runtime.UI.Battle
 
         private void RefreshInitialState()
         {
-            if (_turnText != null && _turnManager != null)
-                _turnText.text = $"Turn {_turnManager.TurnNumber}";
+            if (_turnManager != null)
+            {
+                _currentTurnNumber = _turnManager.TurnNumber;
+                _currentPhase = _turnManager.CurrentPhase;
+            }
 
-            if (_phaseText != null && _turnManager != null)
-                _phaseText.text = FormatPhase(_turnManager.CurrentPhase);
-
+            RefreshTurnPhaseText();
             RefreshSelectedUnitInfo();
         }
 
         private void OnTurnEvent(BFTurnEventData data)
         {
-            if (_turnText != null)
-                _turnText.text = $"Turn {data.TurnNumber}";
+            _currentTurnNumber = data.TurnNumber;
+            RefreshTurnPhaseText();
         }
 
         private void OnBattleEvent(BFBattleEventData data)
@@ -158,11 +171,19 @@ namespace BF.Game.Runtime.UI.Battle
 
         private void OnPhaseChanged(BattlePhase oldPhase, BattlePhase newPhase)
         {
-            if (_phaseText != null)
-                _phaseText.text = FormatPhase(newPhase);
+            _currentPhase = newPhase;
+            RefreshTurnPhaseText();
 
             if (_endTurnButton != null)
                 _endTurnButton.interactable = newPhase == BattlePhase.PlayerTurn;
+        }
+
+        // 将缓存的回合数和阶段合并写入同一 Text，格式 "Turn {N} · {阶段}"。
+        private void RefreshTurnPhaseText()
+        {
+            if (_turnPhaseText == null) return;
+
+            _turnPhaseText.text = $"Turn {_currentTurnNumber} · {FormatPhase(_currentPhase)}";
         }
 
         private void OnNoLegalActionChanged(bool noActions)

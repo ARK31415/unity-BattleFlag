@@ -8,10 +8,10 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 {
     /// <summary>
     /// 玩家输入控制器。仅解释玩家输入（选中/移动/攻击/结束回合），
-    /// 调用三个 Manager 的公开合同。自身不持有核心逻辑。
+    /// 调用三个 Manager 的公开合同。自身不持有核心逻辑�?
     ///
-    /// 输入消费迁移为直接使用 BFInputManager.Actions 的强类型 Action，
-    /// 不再通过字符串 key 查询旧输入上下文，改为直接使用 BFInputManager.Actions 强类型 Action。
+    /// 输入消费迁移为直接使�?BFInputManager.Actions 的强类型 Action�?
+    /// 不再通过字符�?key 查询旧输入上下文，改为直接使�?BFInputManager.Actions 强类�?Action�?
     /// </summary>
     [DisallowMultipleComponent]
     public class BFBattleInputController : MonoBehaviour
@@ -189,10 +189,16 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void SelectUnit(UnitRuntime unit)
         {
-            if (unit.Identity.Faction != UnitFaction.Player || !unit.Stats.IsAlive) return;
-            if (unit.Stats.HasActed) return;
+            if (unit == null || !unit.Stats.IsAlive) return;
+            if (!_unitManager.TrySelectUnit(unit)) return;
 
-            _unitManager.TrySelectUnit(unit);
+            bool canActWithSelectedUnit = unit.Identity.Faction == UnitFaction.Player && !unit.Stats.HasActed;
+            if (!canActWithSelectedUnit)
+            {
+                _isMoveMode = false;
+                _boardManager?.ResetCellColors();
+                return;
+            }
 
             var reachable = _unitManager.GetReachableCellsForSelected();
             Debug.Log($"[Input] Selected {unit.Identity.DisplayName}, reachable: {reachable.Count}");

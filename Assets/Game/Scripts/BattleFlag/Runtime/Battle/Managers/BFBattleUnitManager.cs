@@ -122,7 +122,6 @@ namespace BF.Game.Runtime.Battle.Managers
             // 选择规则只读取子组件数据，避免重新把阵营和存活状态塞回 UnitRuntime 根 API。
             if (unit == null || !unit.Stats.IsAlive) return false;
             if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.PlayerTurn) return false;
-            if (unit.Identity.Faction != UnitFaction.Player) return false;
 
             DeselectUnit();
             SelectedUnit = unit;
@@ -167,6 +166,7 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             if (_isActionLocked) return false;
             if (SelectedUnit == null || SelectedUnit.Stats.HasActed) return false;
+            if (SelectedUnit.Identity.Faction != UnitFaction.Player) return false;
             if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.PlayerTurn) return false;
             if (!TryGetMovePath(SelectedUnit, targetCell, out var path)) return false;
 
@@ -189,6 +189,7 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             if (_isActionLocked) return false;
             if (SelectedUnit == null || SelectedUnit.Stats.HasActed) return false;
+            if (SelectedUnit.Identity.Faction != UnitFaction.Player) return false;
             if (target == null || !target.Stats.IsAlive || target.Identity.Faction == SelectedUnit.Identity.Faction) return false;
             if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.PlayerTurn) return false;
 
