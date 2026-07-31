@@ -18,14 +18,21 @@ namespace BF.Game.Runtime.Battle.Units
     public class BFUnitStatsRuntime : MonoBehaviour
     {
         [Header("Base Stats")]
+        /// <summary>最大 HP 白值（默认 20）。</summary>
         [SerializeField] private int _maxHP = 20;
+        /// <summary>攻击力白值（默认 5）。</summary>
         [SerializeField] private int _attack = 5;
+        /// <summary>攻击范围，曼哈顿距离口径（默认 1）。</summary>
         [SerializeField] private int _attackRange = 1;
+        /// <summary>发起一次攻击消耗的 AP（默认 2）。</summary>
         [SerializeField] private int _attackCost = 2;
+        /// <summary>每回合最大 AP（默认 5）。</summary>
         [SerializeField] private int _maxActionPoints = 5;
 
         [Header("Runtime Resources")]
+        /// <summary>当前 HP 运行时资源。</summary>
         [SerializeField] private int _currentHP = 20;
+        /// <summary>当前剩余 AP 运行时资源。</summary>
         [SerializeField] private int _remainingActionPoints = 5;
 
         /// <summary>最大 HP 白值；调整该值不会自动治疗 CurrentHP。</summary>
@@ -77,7 +84,9 @@ namespace BF.Game.Runtime.Battle.Units
             set => _remainingActionPoints = Mathf.Clamp(value, 0, Mathf.Max(0, _maxActionPoints));
         }
 
+        /// <summary>本回合是否已行动（AP 耗尽）。</summary>
         public bool HasActed => _remainingActionPoints <= 0;
+        /// <summary>是否存活（HP > 0）。</summary>
         public bool IsAlive => _currentHP > 0;
 
         /// <summary>

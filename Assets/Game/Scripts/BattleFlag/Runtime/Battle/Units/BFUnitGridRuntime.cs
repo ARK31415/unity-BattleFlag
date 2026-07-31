@@ -14,8 +14,11 @@ namespace BF.Game.Runtime.Battle.Units
     public class BFUnitGridRuntime : MonoBehaviour
     {
         [Header("Grid")]
+        /// <summary>单位当前所在格子。</summary>
         [SerializeField] private Vector2Int _gridPosition;
+        /// <summary>单位出生格。</summary>
         [SerializeField] private Vector2Int _spawnGridPosition;
+        /// <summary>是否已显式捕获出生格。</summary>
         [SerializeField] private bool _hasSpawnGridPosition;
 
         /// <summary>单位当前所在格子；写入时会在首次设置时捕获出生格。</summary>
