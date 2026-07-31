@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/BFBattleTest.unity
     guid: 73b87ea4bb3dc8f4b93179c78014b366
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: b0ab10bce18d05e499fb8ceb89fac4f7, type: 3}
   m_UseUCBPForAssetBundles: 0

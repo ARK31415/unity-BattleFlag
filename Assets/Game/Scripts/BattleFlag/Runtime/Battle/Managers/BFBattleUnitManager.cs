@@ -205,6 +205,27 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
+        /// 让当前选中单位执行单位级等待。
+        /// 该入口只消耗该单位本回合剩余 AP，并刷新玩家合法行动状态，不等同于结束整个玩家回合。
+        /// </summary>
+        /// <returns>true 表示等待命令已生效。</returns>
+        public bool TryWaitSelectedUnit()
+        {
+            if (_isActionLocked) return false;
+            if (SelectedUnit == null || SelectedUnit.Stats.HasActed) return false;
+            if (SelectedUnit.Identity.Faction != UnitFaction.Player) return false;
+            if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.PlayerTurn) return false;
+
+            var waitedUnit = SelectedUnit;
+            waitedUnit.Stats.ConsumeActionPoints(waitedUnit.Stats.RemainingActionPoints);
+            RaiseUnitActionEvent(waitedUnit, "Waited", waitedUnit.UnitId, 0);
+            DeselectUnitIgnoringLock();
+            _turnManager?.RefreshPlayerLegalActions();
+            Debug.Log($"[BFBattleUnitManager] {waitedUnit.Identity.DisplayName} 等待并结束本单位行动。");
+            return true;
+        }
+
+        /// <summary>
         /// 获取当前选中单位在剩余 AP 内可到达的格子。
         /// </summary>
         /// <returns>可移动目标格列表；无选中单位或棋盘缺失时返回空列表。</returns>

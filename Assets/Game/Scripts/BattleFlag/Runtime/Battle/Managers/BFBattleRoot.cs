@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BF.Game.Runtime.Battle.Cameras;
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.PlayerInput;
 using BF.Game.Runtime.Battle.Units;
@@ -33,6 +34,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
         [Header("Input / UI")]
         [SerializeField] private BFBattleInputController _inputController;
+        [SerializeField] private BFBattleCameraController _cameraController;
         // WitUIManager 来自常驻场景 BFPersistent，负责打开战斗 HUD 等窗口。
         [SerializeField] private WitUIManager _uiManager;
 
@@ -54,6 +56,7 @@ namespace BF.Game.Runtime.Battle.Managers
             if (_resolutionManager == null) _resolutionManager = GetComponentInChildren<BFBattleResolutionManager>();
             if (_unitSpawner == null) _unitSpawner = GetComponentInChildren<BFBattleUnitSpawner>();
             if (_inputController == null) _inputController = GetComponentInChildren<BFBattleInputController>();
+            if (_cameraController == null) _cameraController = FindFirstObjectByType<BFBattleCameraController>();
             // WitUIManager 位于常驻场景 BFPersistent，通过 FindFirstObjectByType 跨场景查找。
             if (_uiManager == null) _uiManager = FindFirstObjectByType<WitUIManager>();
         }
@@ -131,6 +134,7 @@ namespace BF.Game.Runtime.Battle.Managers
                 TurnManager = _turnManager,
                 UnitManager = _unitManager,
                 InputController = _inputController,
+                CameraFocusLock = _cameraController,
                 UIManager = _uiManager
             };
 

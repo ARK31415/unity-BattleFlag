@@ -1,6 +1,7 @@
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.PlayerInput;
+using BF.Game.Runtime.UI.Battle.HUD.Camera;
 using Wit.Framework.UI;
 
 namespace BF.Game.Runtime.UI.Battle
@@ -16,6 +17,7 @@ namespace BF.Game.Runtime.UI.Battle
         public BFBattleTurnManager TurnManager { get; set; }
         public BFBattleUnitManager UnitManager { get; set; }
         public BFBattleInputController InputController { get; set; }
+        public IBattleHudCameraFocusLock CameraFocusLock { get; set; }
         public WitUIManager UIManager { get; set; }
         public string ResultPopupKey { get; set; } = "battle.result";
     }
