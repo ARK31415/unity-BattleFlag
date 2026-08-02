@@ -54,8 +54,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Units.BFUnitIdentityRuntime
   _unitId: 
-  _displayName: Unit
-  _faction: 1
+  _displayName: 
+  _faction: 0
   _role: 0
 --- !u!114 &6487017083411791041
 MonoBehaviour:
@@ -69,13 +69,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b8ffe49c183b8468dd03483159a45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Units.BFUnitStatsRuntime
-  _maxHP: 20
-  _attack: 5
-  _attackRange: 1
-  _attackCost: 2
-  _maxActionPoints: 5
-  _currentHP: 20
-  _remainingActionPoints: 5
+  _maxHP: 0
+  _attack: 0
+  _attackRange: 0
+  _attackCost: 0
+  _maxActionPoints: 0
+  _currentHP: 0
+  _remainingActionPoints: 0
 --- !u!114 &3661341633070221849
 MonoBehaviour:
   m_ObjectHideFlags: 0

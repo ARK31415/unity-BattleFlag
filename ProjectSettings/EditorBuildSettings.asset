@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Game/Scenes/BFBoot.unity
-    guid: fe0ddf4f6c8831944bf1a03f8eea48f9
-  - enabled: 1
-    path: Assets/Game/Scenes/BFMainMenu.unity
-    guid: 28b121ef3abc4ec40abc0c856a8ffdb9
+    path: Assets/Game/Scenes/BFPersistent.unity
+    guid: 43645bda7548286448f16be903a6f227
   - enabled: 1
     path: Assets/Game/Scenes/BFBattleTest.unity
     guid: 73b87ea4bb3dc8f4b93179c78014b366
+  - enabled: 1
+    path: Assets/Game/Scenes/BFMainMenu.unity
+    guid: 28b121ef3abc4ec40abc0c856a8ffdb9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: b0ab10bce18d05e499fb8ceb89fac4f7, type: 3}
   m_UseUCBPForAssetBundles: 0

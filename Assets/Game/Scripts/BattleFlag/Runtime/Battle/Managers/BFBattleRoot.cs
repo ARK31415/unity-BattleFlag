@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using BF.Game.Runtime.Battle.Cameras;
 using BF.Game.Runtime.Battle.Events;
@@ -20,6 +21,8 @@ namespace BF.Game.Runtime.Battle.Managers
     /// </summary>
     public class BFBattleRoot : MonoBehaviour
     {
+        private const int UiManagerResolveMaxFrames = 60;
+
         [Header("Managers")]
         /// <summary>棋盘管理器。</summary>
         [SerializeField] private BFBattleBoardManager _boardManager;
@@ -78,7 +81,11 @@ namespace BF.Game.Runtime.Battle.Managers
             if (_inputController == null) _inputController = GetComponentInChildren<BFBattleInputController>();
             if (_cameraController == null) _cameraController = FindFirstObjectByType<BFBattleCameraController>();
             // WitUIManager 位于常驻场景 BFPersistent，通过 FindFirstObjectByType 跨场景查找。
-            if (_uiManager == null) _uiManager = FindFirstObjectByType<WitUIManager>();
+            // 包含暂时未激活的对象，避免常驻场景初始化阶段漏检。
+            if (_uiManager == null)
+            {
+                _uiManager = FindFirstObjectByType<WitUIManager>(FindObjectsInactive.Include);
+            }
         }
 
         /// <summary>
@@ -138,11 +145,30 @@ namespace BF.Game.Runtime.Battle.Managers
             // Step 5: 启动回合循环
             _turnManager?.StartBattle();
 
-            // Step 6: 通过 WitUIManager 打开战斗 HUD
-            OpenBattleHud();
+            // Step 6: 等待常驻 UI 场景就绪后打开战斗 HUD。
+            // BFPersistent 可能比战斗场景晚一帧完成加载，不能只在 Awake 中查找一次。
+            StartCoroutine(OpenBattleHudWhenReady());
 
             Debug.Log($"[BFBattleRoot] Battle initialized: {units.Count} units, " +
                       $"Board {_boardManager?.Width}x{_boardManager?.Height}");
+        }
+
+        private IEnumerator OpenBattleHudWhenReady()
+        {
+            for (var frame = 0; frame < UiManagerResolveMaxFrames; frame++)
+            {
+                ResolveMissingReferences();
+                if (_uiManager != null)
+                {
+                    OpenBattleHud();
+                    yield break;
+                }
+
+                yield return null;
+            }
+
+            Debug.LogWarning(
+                "[BFBattleRoot] 未找到 WitUIManager，无法打开 HUD。请确认 BFPersistent 已在运行时加载，且场景中的 Canvas 已启用。");
         }
 
         /// <summary>
