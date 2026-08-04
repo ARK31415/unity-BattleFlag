@@ -21,17 +21,23 @@ namespace BF.Game.Runtime.Battle.Units
     public class UnitRuntime : MonoBehaviour
     {
         [Header("Runtime Components")]
-        // 这些引用可由 Inspector 预设；为空时运行期会从同一根节点缓存或补齐。
+        /// <summary>单位身份子组件引用，可由 Inspector 预设；为空时运行期从同一根节点缓存或补齐。</summary>
         [SerializeField] private BFUnitIdentityRuntime _identity;
+        /// <summary>单位数值子组件引用。</summary>
         [SerializeField] private BFUnitStatsRuntime _stats;
+        /// <summary>单位格子子组件引用。</summary>
         [SerializeField] private BFUnitGridRuntime _grid;
+        /// <summary>单位攻击上下文子组件引用。</summary>
         [SerializeField] private BFUnitCombatRuntime _combat;
+        /// <summary>单位状态机子组件引用。</summary>
         [SerializeField] private BFUnitStateMachineRuntime _stateMachine;
 
         [Header("Optional Visual Cleanup")]
-        // 死亡动画完成后统一关闭的表现组件；为空时只跳过对应清理，不影响逻辑死亡。
+        /// <summary>死亡动画完成后统一关闭的 SpriteRenderer；为空时只跳过对应清理。</summary>
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        /// <summary>死亡动画完成后统一关闭的 Animator。</summary>
         [SerializeField] private Animator _animator;
+        /// <summary>死亡动画完成后统一关闭的 Collider2D。</summary>
         [SerializeField] private Collider2D _collider2D;
 
         /// <summary>单位身份入口，包含显示名、阵营和角色类型。</summary>
@@ -64,23 +70,33 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>进入逻辑死亡时广播给表现层，视觉清理仍等待死亡动画完成事件。</summary>
         public event Action<UnitRuntime> DeathStarted;
 
+        /// <summary>
+        /// Inspector Reset 回调：自动补齐缺失的子组件。
+        /// </summary>
         private void Reset()
         {
             CacheRuntimeComponents(addIfMissing: true);
         }
 
-        // 在 Awake 建立最小可用依赖，避免 Root、Manager 或 Presenter 在 Start 前访问到半初始化单位。
+        /// <summary>
+        /// Awake 建立最小可用依赖，避免 Root、Manager 或 Presenter 在 Start 前访问到半初始化单位。
+        /// </summary>
         private void Awake()
         {
             InitializeRuntime();
         }
 
-        // 正式逻辑状态机仍由单位根统一驱动，状态数据本身归 StateMachine 组件。
+        /// <summary>
+        /// 正式逻辑状态机由单位根统一驱动，状态数据本身归 StateMachine 组件。
+        /// </summary>
         private void Update()
         {
             _stateMachine?.LogicUpdate();
         }
 
+        /// <summary>
+        /// 物理更新驱动当前状态的固定步长更新。
+        /// </summary>
         private void FixedUpdate()
         {
             _stateMachine?.PhysicsUpdate();
@@ -199,6 +215,12 @@ namespace BF.Game.Runtime.Battle.Units
             Debug.Log($"[UnitRuntime] {Identity.DisplayName} death visual cleanup finished.");
         }
 
+        /// <summary>
+        /// 应用伤害的统一内部入口。
+        /// 尝试扣血，根据是否致死分别广播 HurtReceived 或 DeathStarted 事件，
+        /// 并触发状态切换。
+        /// </summary>
+        /// <param name="damage">待应用的伤害值。</param>
         private void ApplyDamage(int damage)
         {
             if (!Stats.TryApplyDamage(damage, out bool wasKilled)) return;
@@ -214,30 +236,45 @@ namespace BF.Game.Runtime.Battle.Units
             HurtReceived?.Invoke(this);
         }
 
+        /// <summary>
+        /// 确保 Identity 子组件已缓存，为空时自动补齐。
+        /// </summary>
         private BFUnitIdentityRuntime EnsureIdentity()
         {
             if (_identity == null) CacheRuntimeComponents(addIfMissing: true);
             return _identity;
         }
 
+        /// <summary>
+        /// 确保 Stats 子组件已缓存，为空时自动补齐。
+        /// </summary>
         private BFUnitStatsRuntime EnsureStats()
         {
             if (_stats == null) CacheRuntimeComponents(addIfMissing: true);
             return _stats;
         }
 
+        /// <summary>
+        /// 确保 Grid 子组件已缓存，为空时自动补齐。
+        /// </summary>
         private BFUnitGridRuntime EnsureGrid()
         {
             if (_grid == null) CacheRuntimeComponents(addIfMissing: true);
             return _grid;
         }
 
+        /// <summary>
+        /// 确保 Combat 子组件已缓存，为空时自动补齐。
+        /// </summary>
         private BFUnitCombatRuntime EnsureCombat()
         {
             if (_combat == null) CacheRuntimeComponents(addIfMissing: true);
             return _combat;
         }
 
+        /// <summary>
+        /// 确保 StateMachine 子组件已缓存并完成初始化，为空时自动补齐。
+        /// </summary>
         private BFUnitStateMachineRuntime EnsureStateMachine()
         {
             if (_stateMachine == null) CacheRuntimeComponents(addIfMissing: true);
@@ -245,6 +282,10 @@ namespace BF.Game.Runtime.Battle.Units
             return _stateMachine;
         }
 
+        /// <summary>
+        /// 缓存或补齐五个运行时子组件。
+        /// </summary>
+        /// <param name="addIfMissing">为 true 时，缺失组件会自动 AddComponent。</param>
         private void CacheRuntimeComponents(bool addIfMissing)
         {
             _identity = GetOrAddComponent(_identity, addIfMissing);
@@ -254,6 +295,9 @@ namespace BF.Game.Runtime.Battle.Units
             _stateMachine = GetOrAddComponent(_stateMachine, addIfMissing);
         }
 
+        /// <summary>
+        /// 缓存三个可选视觉清理组件（SpriteRenderer、Animator、Collider2D）。
+        /// </summary>
         private void CacheOptionalVisualComponents()
         {
             if (_spriteRenderer == null) TryGetComponent(out _spriteRenderer);
@@ -261,6 +305,9 @@ namespace BF.Game.Runtime.Battle.Units
             if (_collider2D == null) TryGetComponent(out _collider2D);
         }
 
+        /// <summary>
+        /// 校验五个运行时子组件是否全部存在，缺失时输出错误日志。
+        /// </summary>
         private void ValidateRuntimeComponents()
         {
             if (_identity == null) Debug.LogError("[UnitRuntime] Missing BFUnitIdentityRuntime.", this);
@@ -270,6 +317,10 @@ namespace BF.Game.Runtime.Battle.Units
             if (_stateMachine == null) Debug.LogError("[UnitRuntime] Missing BFUnitStateMachineRuntime.", this);
         }
 
+        /// <summary>
+        /// 应用 Unity 资源绑定（当前仅设置 AnimatorController）。
+        /// </summary>
+        /// <param name="binding">资源绑定配置，可以为 null。</param>
         private void ApplyUnityBinding(BFUnitUnityBindingSO binding)
         {
             if (binding == null) return;
@@ -278,6 +329,10 @@ namespace BF.Game.Runtime.Battle.Units
             _animator.runtimeAnimatorController = binding.AnimatorController;
         }
 
+        /// <summary>
+        /// 获取或添加指定类型的组件。优先复用已有引用，其次从 GameObject 上查找，
+        /// 最后根据 addIfMissing 决定是否 AddComponent。
+        /// </summary>
         private T GetOrAddComponent<T>(T current, bool addIfMissing) where T : Component
         {
             if (current != null) return current;

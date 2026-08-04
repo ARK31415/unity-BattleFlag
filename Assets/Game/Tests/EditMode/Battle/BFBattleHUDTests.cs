@@ -43,7 +43,7 @@ namespace BF.Game.Tests.EditMode.Battle
 
             hud.Open("battle.hud", new BattleHudContext(), definition);
 
-            Assert.That(GetPrivateField(hud, "_endTurnButton"), Is.Null);
+            Assert.That(GetPrivateField(hud, "_endTurnControl"), Is.Null);
         }
 
         [Test]

@@ -22,6 +22,20 @@ namespace BF.Game.Tests.EditMode.Input
         }
 
         [Test]
+        public void Source_BlocksBattleRaycastWhenPointerIsOverUI()
+        {
+            string path = "Assets/Game/Scripts/BattleFlag/Runtime/Battle/PlayerInput/BFBattleInputController.cs";
+            string source = File.ReadAllText(path);
+
+            Assert.That(source, Does.Contain("UnityEngine.EventSystems"));
+            Assert.That(source, Does.Contain("IsPointerOverBlockingUI"));
+            Assert.That(source, Does.Contain("EventSystem.current"));
+            Assert.That(source, Does.Contain("PointerEventData"));
+            Assert.That(source, Does.Contain("RaycastAll"));
+            Assert.That(source, Does.Not.Contain("IsPointerOverGameObject()"));
+        }
+
+        [Test]
         public void Start_RetriesInputRegistrationWhenManagerAwakeRunsAfterOnEnable()
         {
             var config = ScriptableObject.CreateInstance<BFInputConfig>();

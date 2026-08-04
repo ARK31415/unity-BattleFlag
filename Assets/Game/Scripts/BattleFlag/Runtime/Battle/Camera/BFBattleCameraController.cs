@@ -1,4 +1,6 @@
 using BF.Game.Runtime.Input;
+using BF.Game.Runtime.Battle.Units;
+using BF.Game.Runtime.UI.Battle.HUD.Camera;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +15,7 @@ namespace BF.Game.Runtime.Battle.Cameras
     /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(CinemachineCamera))]
-    public class BFBattleCameraController : MonoBehaviour
+    public class BFBattleCameraController : MonoBehaviour, IBattleHudCameraFocusLock
     {
         private const float ScrollWheelScale = 0.01f;
         private const string DefaultBoundsTag = "Bounds";
@@ -47,6 +49,7 @@ namespace BF.Game.Runtime.Battle.Cameras
         private float _targetOrthographicSize;
         private float _zoomVelocity;
         private float _lastAppliedOrthographicSize;
+        private bool _isHudFocusLocked;
         private bool _loggedMissingInputManager;
         private bool _loggedMissingActions;
         private bool _loggedMissingBoundsCollider;
@@ -87,6 +90,12 @@ namespace BF.Game.Runtime.Battle.Cameras
         private void Update()
         {
             CacheRuntimeReferences();
+
+            if (_isHudFocusLocked)
+            {
+                HaltPendingMotion();
+                return;
+            }
 
             bool inputBlocked = ShouldBlockCameraInput();
             Vector2 moveInput = Vector2.zero;
@@ -329,6 +338,36 @@ namespace BF.Game.Runtime.Battle.Cameras
 
             if (_confiner2D == null)
                 Debug.LogWarning("[BattleCamera] Missing CinemachineConfiner2D; bounds limiting is unavailable.", this);
+        }
+
+        /// <summary>
+        /// BattleHUD 进入攻击/技能子界面时调用。
+        /// 相机立即聚焦到行动单位并锁住玩家平移/缩放输入，避免 HUD 子界面和画面中心割裂。
+        /// </summary>
+        public void FocusAndLock(UnitRuntime unit)
+        {
+            if (unit == null)
+                return;
+
+            if (_cachedTransform == null)
+                _cachedTransform = transform;
+
+            Vector3 focusedPosition = unit.transform.position;
+            focusedPosition.z = _cachedTransform.position.z;
+            _cachedTransform.position = focusedPosition;
+            _targetPosition = focusedPosition;
+            _moveVelocity = Vector3.zero;
+            _zoomVelocity = 0f;
+            _isHudFocusLocked = true;
+        }
+
+        /// <summary>
+        /// BattleHUD 退出攻击/技能子界面时调用，恢复玩家对战斗相机的自由控制。
+        /// </summary>
+        public void ReleaseLock()
+        {
+            _isHudFocusLocked = false;
+            SnapTargetsToCurrentState();
         }
     }
 }

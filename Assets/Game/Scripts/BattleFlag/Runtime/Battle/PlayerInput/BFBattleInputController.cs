@@ -1,17 +1,20 @@
+using System;
+using System.Collections.Generic;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.Input;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace BF.Game.Runtime.Battle.PlayerInput
 {
     /// <summary>
-    /// 玩家输入控制器。仅解释玩家输入（选中/移动/攻击/结束回合），
-    /// 调用三个 Manager 的公开合同。自身不持有核心逻辑�?
+    /// 鐜╁杈撳叆鎺у埗鍣ㄣ€備粎瑙ｉ噴鐜╁杈撳叆锛堥€変腑/绉诲姩/鏀诲嚮/缁撴潫鍥炲悎锛夛紝
+    /// 璋冪敤涓変釜 Manager 鐨勫叕寮€鍚堝悓銆傝嚜韬笉鎸佹湁鏍稿績閫昏緫銆?
     ///
-    /// 输入消费迁移为直接使�?BFInputManager.Actions 的强类型 Action�?
-    /// 不再通过字符�?key 查询旧输入上下文，改为直接使�?BFInputManager.Actions 强类�?Action�?
+    /// 杈撳叆娑堣垂杩佺Щ涓虹洿鎺ヤ娇鐢?BFInputManager.Actions 鐨勫己绫诲瀷 Action锛?
+    /// 涓嶅啀閫氳繃瀛楃涓?key 鏌ヨ鏃ц緭鍏ヤ笂涓嬫枃锛屾敼涓虹洿鎺ヤ娇鐢?BFInputManager.Actions 寮虹被鍨?Action銆?
     /// </summary>
     [DisallowMultipleComponent]
     public class BFBattleInputController : MonoBehaviour
@@ -31,8 +34,19 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         private InputAction _selectAction;
         private InputAction _cancelAction;
         private InputAction _endTurnAction;
+        private readonly List<RaycastResult> _uiRaycastResults = new();
         private Vector2 _lastPointerPosition;
-        private bool _isMoveMode;
+        private BattleInputMode _inputMode;
+
+        public event Action CommandCancelRequested;
+        public event Action<UnitRuntime> AttackTargetSelected;
+
+        private enum BattleInputMode
+        {
+            Selection,
+            MoveTarget,
+            AttackTarget
+        }
 
         private void OnEnable()
         {
@@ -118,6 +132,12 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         private void OnCancelPerformed(InputAction.CallbackContext ctx)
         {
             if (!CanHandleBattleInput()) return;
+            if (_inputMode == BattleInputMode.AttackTarget)
+            {
+                CommandCancelRequested?.Invoke();
+                return;
+            }
+
             CancelSelection();
         }
 
@@ -136,13 +156,15 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         private void HandleClick()
         {
             if (!CanHandleBattleInput()) return;
-            if (_camera == null) _camera = Camera.main;
-            if (_camera == null) return;
 
             Vector2 screenPosition = _pointAction != null
                 ? _pointAction.ReadValue<Vector2>()
                 : _lastPointerPosition;
             _lastPointerPosition = screenPosition;
+
+            if (IsPointerOverBlockingUI(screenPosition)) return;
+            if (_camera == null) _camera = Camera.main;
+            if (_camera == null) return;
 
             Vector3 mouseWorld = _camera.ScreenToWorldPoint(
                 new Vector3(screenPosition.x, screenPosition.y, 0f));
@@ -152,8 +174,10 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
             if (hit.collider == null)
             {
-                if (_isMoveMode)
+                if (_inputMode == BattleInputMode.MoveTarget)
                     TryMoveToWorld(mouseWorld);
+                else if (_inputMode == BattleInputMode.AttackTarget)
+                    CommandCancelRequested?.Invoke();
                 else
                     CancelSelection();
                 return;
@@ -162,29 +186,45 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             var clickedUnit = hit.collider.gameObject.GetComponent<UnitRuntime>();
             if (clickedUnit != null)
                 HandleUnitClick(clickedUnit);
-            else if (_isMoveMode)
+            else if (_inputMode == BattleInputMode.MoveTarget)
                 TryMoveToWorld(mouseWorld);
+            else if (_inputMode == BattleInputMode.AttackTarget)
+                CommandCancelRequested?.Invoke();
+        }
+
+        private bool IsPointerOverBlockingUI(Vector2 screenPosition)
+        {
+            var eventSystem = EventSystem.current;
+            if (eventSystem == null) return false;
+
+            _uiRaycastResults.Clear();
+            var pointerEventData = new PointerEventData(eventSystem)
+            {
+                position = screenPosition
+            };
+            eventSystem.RaycastAll(pointerEventData, _uiRaycastResults);
+            return _uiRaycastResults.Count > 0;
         }
 
         private void HandleUnitClick(UnitRuntime unit)
         {
-            if (_isMoveMode)
-            {
-                if (unit.Identity.Faction == UnitFaction.Enemy)
-                {
-                    _unitManager.TryAttack(unit);
-                    _isMoveMode = false;
-                    _boardManager?.ResetCellColors();
-                }
-                else
-                {
-                    SelectUnit(unit);
-                }
-            }
-            else
+            if (_inputMode == BattleInputMode.MoveTarget)
             {
                 SelectUnit(unit);
+                return;
             }
+
+            if (_inputMode == BattleInputMode.AttackTarget)
+            {
+                if (_unitManager.SelectedUnit != null &&
+                    unit.Identity.Faction != _unitManager.SelectedUnit.Identity.Faction)
+                {
+                    AttackTargetSelected?.Invoke(unit);
+                }
+                return;
+            }
+
+            SelectUnit(unit);
         }
 
         private void SelectUnit(UnitRuntime unit)
@@ -195,23 +235,19 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             bool canActWithSelectedUnit = unit.Identity.Faction == UnitFaction.Player && !unit.Stats.HasActed;
             if (!canActWithSelectedUnit)
             {
-                _isMoveMode = false;
+                _inputMode = BattleInputMode.Selection;
                 _boardManager?.ResetCellColors();
                 return;
             }
 
-            var reachable = _unitManager.GetReachableCellsForSelected();
-            Debug.Log($"[Input] Selected {unit.Identity.DisplayName}, reachable: {reachable.Count}");
-
+            Debug.Log($"[Input] Selected {unit.Identity.DisplayName}");
+            _inputMode = BattleInputMode.Selection;
             _boardManager?.ResetCellColors();
-            _boardManager?.HighlightCells(reachable,
-                _boardManager != null ? _boardManager.ReachableColor : new Color(1f, 0.92f, 0.2f, 0.75f));
-            _isMoveMode = true;
         }
 
         private void TryMoveToWorld(Vector3 worldPos)
         {
-            if (!_isMoveMode || _unitManager.SelectedUnit == null) return;
+            if (_inputMode != BattleInputMode.MoveTarget || _unitManager.SelectedUnit == null) return;
 
             Vector2Int targetCell = _boardManager.WorldToCell(worldPos);
             var reachable = _unitManager.GetReachableCellsForSelected();
@@ -219,7 +255,7 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
             if (!_unitManager.TryMoveUnit(targetCell)) return;
 
-            _isMoveMode = false;
+            _inputMode = BattleInputMode.Selection;
             _boardManager?.ResetCellColors();
         }
 
@@ -236,7 +272,7 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             if (_unitManager.SelectedUnit != unit) return;
 
             _boardManager?.ResetCellColors();
-            HighlightAttackTargets();
+            _inputMode = BattleInputMode.Selection;
         }
 
         public void CancelSelection()
@@ -244,7 +280,36 @@ namespace BF.Game.Runtime.Battle.PlayerInput
             if (_unitManager != null && _unitManager.IsActionLocked) return;
 
             _unitManager?.DeselectUnit();
-            _isMoveMode = false;
+            _inputMode = BattleInputMode.Selection;
+            _boardManager?.ResetCellColors();
+        }
+
+        public void BeginMoveCommand()
+        {
+            if (!CanHandleBattleInput()) return;
+            if (_unitManager?.SelectedUnit == null) return;
+
+            var reachable = _unitManager.GetReachableCellsForSelected();
+            Debug.Log($"[Input] Move command for {_unitManager.SelectedUnit.Identity.DisplayName}, reachable: {reachable.Count}");
+            _boardManager?.ResetCellColors();
+            _boardManager?.HighlightCells(reachable,
+                _boardManager != null ? _boardManager.ReachableColor : new Color(1f, 0.92f, 0.2f, 0.75f));
+            _inputMode = BattleInputMode.MoveTarget;
+        }
+
+        public void BeginAttackTargetCommand()
+        {
+            if (!CanHandleBattleInput()) return;
+            if (_unitManager?.SelectedUnit == null) return;
+
+            _boardManager?.ResetCellColors();
+            HighlightAttackTargets();
+            _inputMode = BattleInputMode.AttackTarget;
+        }
+
+        public void ExitCommandTargeting()
+        {
+            _inputMode = BattleInputMode.Selection;
             _boardManager?.ResetCellColors();
         }
 
@@ -257,3 +322,4 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         }
     }
 }
+

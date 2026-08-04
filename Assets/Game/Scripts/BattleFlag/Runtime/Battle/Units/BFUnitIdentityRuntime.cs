@@ -15,9 +15,13 @@ namespace BF.Game.Runtime.Battle.Units
     public class BFUnitIdentityRuntime : MonoBehaviour
     {
         [Header("Identity")]
+        /// <summary>单位实例 ID，场景手摆阶段由 GameObject 名称提供。</summary>
         [SerializeField] private string _unitId;
+        /// <summary>HUD 和日志显示名。</summary>
         [SerializeField] private string _displayName = "Unit";
+        /// <summary>单位所属阵营。</summary>
         [SerializeField] private UnitFaction _faction = UnitFaction.Player;
+        /// <summary>单位角色类型。</summary>
         [SerializeField] private BFUnitRole _role = BFUnitRole.Warrior;
 
         /// <summary>场景手摆阶段的单位实例 ID，当前由 GameObject 名称提供。</summary>

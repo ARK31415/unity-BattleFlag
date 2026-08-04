@@ -14,8 +14,11 @@ namespace BF.Game.Runtime.Battle.Units
     [DisallowMultipleComponent]
     public class BFUnitCombatRuntime : MonoBehaviour
     {
+        /// <summary>待结算攻击目标。</summary>
         private UnitRuntime _queuedAttackTarget;
+        /// <summary>是否已记录待结算攻击。</summary>
         private bool _hasQueuedAttack;
+        /// <summary>是否已消费本次待结算攻击。</summary>
         private bool _hasResolvedQueuedAttack;
 
         /// <summary>是否存在尚未被命中帧消费的待结算攻击。</summary>
