@@ -36,9 +36,24 @@ namespace BF.Game.Runtime.Battle
         public int RoundNumber { get; set; } = 0;
 
         /// <summary>
+        /// 当前战斗结果；战斗完成后保留，供表现层读取。
+        /// </summary>
+        public BattleResult Result { get; set; }
+
+        /// <summary>
         /// 战场上所有单位。
         /// </summary>
         public List<UnitRuntime> Units { get; set; } = new();
+
+        /// <summary>
+        /// 释放 Context 对 Unity 运行时单位对象的引用。
+        /// 战斗结果等值数据在 Session 进入 Disposed 后不再依赖这些对象。
+        /// </summary>
+        public void ReleaseRuntimeReferences()
+        {
+            Units = null;
+            ActiveUnitIndex = 0;
+        }
 
         /// <summary>
         /// 当前活跃单位的索引。

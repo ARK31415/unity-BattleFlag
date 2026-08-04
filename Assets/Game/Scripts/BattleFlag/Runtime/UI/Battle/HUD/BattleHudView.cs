@@ -46,12 +46,14 @@ namespace BF.Game.Runtime.UI.Battle
         private UnitRuntime _selectedTarget;
         private string _resultPopupKey = "battle.result";
         private bool _isSubscribed;
+        private bool _hasShownBattleResult;
         private bool _noLegalActions;
         private int _currentTurnNumber;
         private BattlePhase _currentPhase;
 
         protected override void OnOpened(BattleHudContext context)
         {
+            _hasShownBattleResult = false;
             ApplyContext(context);
             SubscribeEvents();
             RefreshInitialState();
@@ -96,7 +98,6 @@ namespace BF.Game.Runtime.UI.Battle
             {
                 _unitManager.OnUnitSelected -= OnUnitSelected;
                 _unitManager.OnUnitDeselected -= OnUnitDeselected;
-                _unitManager.OnBattleEnded -= OnBattleEnded;
             }
 
             _isSubscribed = false;
@@ -177,7 +178,6 @@ namespace BF.Game.Runtime.UI.Battle
             {
                 _unitManager.OnUnitSelected += OnUnitSelected;
                 _unitManager.OnUnitDeselected += OnUnitDeselected;
-                _unitManager.OnBattleEnded += OnBattleEnded;
             }
 
             _isSubscribed = true;
@@ -198,20 +198,39 @@ namespace BF.Game.Runtime.UI.Battle
             RefreshEndTurnControl();
             RefreshSelectedUnitBar();
             RefreshPhaseHint();
+
+            if (_unitManager?.Result != null && _unitManager.Result.HasResult)
+            {
+                _currentPhase = BattlePhase.Resolution;
+                CloseCommandSubmenu(releaseCamera: true);
+                RefreshPhaseHint();
+                ShowResult(_unitManager.Result);
+            }
         }
 
         private void OnTurnEvent(BFTurnEventData data)
         {
             _currentTurnNumber = data.TurnNumber;
-            RefreshTurnBanner();
         }
 
         private void OnBattleEvent(BFBattleEventData data)
         {
             if (data.EventType == BFBattleEventType.Victory)
-                ShowResult(BattleResult.Victory(data.BattleId, _turnManager != null ? _turnManager.TurnNumber : 0));
+            {
+                _currentPhase = BattlePhase.Resolution;
+                CloseCommandSubmenu(releaseCamera: true);
+                RefreshPhaseHint();
+                ShowResult(_unitManager?.Result ??
+                           BattleResult.Victory(data.BattleId, _turnManager != null ? _turnManager.TurnNumber : 0));
+            }
             else if (data.EventType == BFBattleEventType.Defeat)
-                ShowResult(BattleResult.Defeat(data.BattleId, _turnManager != null ? _turnManager.TurnNumber : 0));
+            {
+                _currentPhase = BattlePhase.Resolution;
+                CloseCommandSubmenu(releaseCamera: true);
+                RefreshPhaseHint();
+                ShowResult(_unitManager?.Result ??
+                           BattleResult.Defeat(data.BattleId, _turnManager != null ? _turnManager.TurnNumber : 0));
+            }
         }
 
         private void OnUnitEvent(BFUnitEventData data)
@@ -237,6 +256,7 @@ namespace BF.Game.Runtime.UI.Battle
         private void OnPhaseChanged(BattlePhase oldPhase, BattlePhase newPhase)
         {
             _currentPhase = newPhase;
+            _currentTurnNumber = _turnManager != null ? _turnManager.TurnNumber : _currentTurnNumber;
             if (newPhase != BattlePhase.PlayerTurn)
                 CloseCommandSubmenu(releaseCamera: true);
 
@@ -250,14 +270,6 @@ namespace BF.Game.Runtime.UI.Battle
         {
             _noLegalActions = noActions;
             RefreshEndTurnControl();
-        }
-
-        private void OnBattleEnded(BattleResult result)
-        {
-            _currentPhase = BattlePhase.Resolution;
-            CloseCommandSubmenu(releaseCamera: true);
-            RefreshPhaseHint();
-            ShowResult(result);
         }
 
         private void OpenActionSelect()
@@ -450,7 +462,9 @@ namespace BF.Game.Runtime.UI.Battle
 
         private void ShowResult(BattleResult result)
         {
+            if (result == null || !result.HasResult || _hasShownBattleResult) return;
             if (_uiManager == null || string.IsNullOrWhiteSpace(_resultPopupKey)) return;
+            _hasShownBattleResult = true;
 
             _uiManager.Open(_resultPopupKey, new BattleResultContext(
                 result,

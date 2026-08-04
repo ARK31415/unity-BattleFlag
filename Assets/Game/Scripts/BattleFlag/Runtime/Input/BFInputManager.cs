@@ -64,6 +64,10 @@ namespace BF.Game.Runtime.Input
             {
                 if (Actions != null)
                 {
+                    // InputActionAsset 被销毁前必须先禁用所有 Action Map，
+                    // 否则生成代码的终结器会报告未释放的输入资源。
+                    Actions.Disable();
+
                     if (Application.isPlaying)
                         Actions.Dispose();
                     else

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Cameras;
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.PlayerInput;
@@ -42,6 +43,35 @@ namespace BF.Game.Runtime.Battle.Managers
         [SerializeField] private BFBattleEventSO _battleEventChannel;
         /// <summary>单位事件通道。</summary>
         [SerializeField] private BFUnitEventSO _unitEventChannel;
+
+        private BFBattleSession _battleSession;
+        private BFBattleEventToSOAdapter _battleEventAdapter;
+
+        /// <summary>
+        /// 当前战斗场景持有的战斗会话。
+        /// </summary>
+        public BFBattleSession BattleSession => _battleSession;
+
+        /// <summary>当前战斗场景使用的棋盘管理器。</summary>
+        public BFBattleBoardManager BoardManager => _boardManager;
+
+        /// <summary>当前战斗场景使用的单位管理器。</summary>
+        public BFBattleUnitManager UnitManager => _unitManager;
+
+        /// <summary>当前战斗场景使用的回合管理器。</summary>
+        public BFBattleTurnManager TurnManager => _turnManager;
+
+        /// <summary>当前战斗场景使用的结算管理器。</summary>
+        public BFBattleResolutionManager ResolutionManager => _resolutionManager;
+
+        /// <summary>当前战斗场景使用的战斗 SO 事件通道。</summary>
+        public BFBattleEventSO BattleEventChannel => _battleEventChannel;
+
+        /// <summary>当前战斗场景使用的回合 SO 事件通道。</summary>
+        public BFTurnEventSO TurnEventChannel => _turnEventChannel;
+
+        /// <summary>当前战斗场景使用的单位 SO 事件通道。</summary>
+        public BFUnitEventSO UnitEventChannel => _unitEventChannel;
 
         [Header("Input / UI")]
         /// <summary>输入控制器。</summary>
@@ -143,6 +173,26 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             // Step 5: 启动回合循环
+            var battleContext = new BFBattleContext
+            {
+                BattleId = "BattleTest",
+                GridWidth = _boardManager != null ? _boardManager.Width : 10,
+                GridHeight = _boardManager != null ? _boardManager.Height : 8,
+                Units = units,
+                TurnNumber = 0,
+                RoundNumber = 0
+            };
+            _battleSession = new BFBattleSession(battleContext);
+            _turnManager?.SetBattleSession(_battleSession);
+            _unitManager?.SetBattleSession(_battleSession);
+            _battleEventAdapter = new BFBattleEventToSOAdapter(
+                _battleSession,
+                _battleEventChannel,
+                _turnEventChannel,
+                _unitEventChannel);
+            _battleSession.Start();
+            _battleSession.Publish(new BFBattleStartedEvent(battleContext.BattleId));
+
             _turnManager?.StartBattle();
 
             // Step 6: 等待常驻 UI 场景就绪后打开战斗 HUD。
@@ -151,6 +201,17 @@ namespace BF.Game.Runtime.Battle.Managers
 
             Debug.Log($"[BFBattleRoot] Battle initialized: {units.Count} units, " +
                       $"Board {_boardManager?.Width}x{_boardManager?.Height}");
+        }
+
+        /// <summary>
+        /// 销毁战斗根节点时，先解除 SO 适配订阅，再释放战斗会话。
+        /// </summary>
+        private void OnDestroy()
+        {
+            _battleEventAdapter?.Dispose();
+            _battleEventAdapter = null;
+            _battleSession?.Dispose();
+            _battleSession = null;
         }
 
         private IEnumerator OpenBattleHudWhenReady()

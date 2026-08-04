@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.Presentation;
 using BF.Game.Runtime.Battle.Units;
@@ -28,6 +29,7 @@ namespace BF.Game.Runtime.Battle.Managers
         private Coroutine _enemyTurnCoroutine;
         private UnitRuntime _activeMovingUnit;
         private bool _isActionLocked;
+        private BFBattleSession _battleSession;
 
         /// <summary>战场上所有单位。</summary>
         public List<UnitRuntime> AllUnits { get; private set; } = new();
@@ -41,10 +43,37 @@ namespace BF.Game.Runtime.Battle.Managers
         /// <summary>是否有移动或行动表现正在执行。</summary>
         public bool IsActionLocked => _isActionLocked;
 
+        /// <summary>
+        /// 指示单位管理器是否已经绑定战斗会话。
+        /// </summary>
+        public bool HasBattleSession => _battleSession != null;
+
+        /// <summary>当前单位被选中时触发的兼容性回调。</summary>
         public event Action<UnitRuntime> OnUnitSelected;
+
+        /// <summary>当前单位被取消选中时触发的兼容性回调。</summary>
         public event Action<UnitRuntime> OnUnitDeselected;
+
+        /// <summary>单位完成移动表现时触发的兼容性回调。</summary>
         public event Action<UnitRuntime> OnUnitMoveCompleted;
+
+        /// <summary>战斗结果确定时触发的旧 C# 回调；新代码应优先订阅战斗完成领域事件。</summary>
         public event Action<BattleResult> OnBattleEnded;
+
+        /// <summary>
+        /// 将单位管理器绑定到一个战斗会话。
+        ///
+        /// 同一个管理器可以重复绑定同一会话，但不能改绑到其他会话。
+        /// </summary>
+        /// <param name="session">要绑定的战斗会话。</param>
+        /// <exception cref="InvalidOperationException">当管理器已经绑定其他会话时抛出。</exception>
+        public void SetBattleSession(BFBattleSession session)
+        {
+            if (_battleSession != null && _battleSession != session)
+                throw new InvalidOperationException("BFBattleUnitManager is already attached to another battle session.");
+
+            _battleSession = session;
+        }
 
         // 组件禁用时停止正在进行的协程，并把移动中的单位恢复到当前格子世界坐标。
         // 这样场景切换或对象禁用不会留下半锁定的输入状态。
@@ -308,15 +337,27 @@ namespace BF.Game.Runtime.Battle.Managers
 
             if (!playerAlive)
             {
-                Result = BattleResult.Defeat("BattleTest", _turnManager != null ? _turnManager.TurnNumber : 0);
-                OnBattleEnded?.Invoke(Result);
+                Result = BattleResult.Defeat(
+                    _battleSession?.Context.BattleId ?? "BattleTest",
+                    _turnManager != null ? _turnManager.TurnNumber : 0);
+                if (_battleSession != null)
+                    _battleSession.Context.Result = Result;
                 _turnManager?.TransitionToResolution();
+                PublishBattleCompletedEvent();
+                CompleteBattleSession();
+                OnBattleEnded?.Invoke(Result);
             }
             else if (!enemyAlive)
             {
-                Result = BattleResult.Victory("BattleTest", _turnManager != null ? _turnManager.TurnNumber : 0);
-                OnBattleEnded?.Invoke(Result);
+                Result = BattleResult.Victory(
+                    _battleSession?.Context.BattleId ?? "BattleTest",
+                    _turnManager != null ? _turnManager.TurnNumber : 0);
+                if (_battleSession != null)
+                    _battleSession.Context.Result = Result;
                 _turnManager?.TransitionToResolution();
+                PublishBattleCompletedEvent();
+                CompleteBattleSession();
+                OnBattleEnded?.Invoke(Result);
             }
         }
 
@@ -332,32 +373,38 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
-        /// 处理结算层返回的攻击结果，广播单位事件并收尾攻击生命周期。
+        /// 处理结算层返回的攻击结果，发布攻击结算与单位击败领域事实，并收尾攻击生命周期。
+        ///
+        /// 当尚未绑定战斗会话时，方法保留旧 SO 事件转发行为；绑定会话后由会话总线统一发布领域事件。
         /// </summary>
         /// <param name="result">结算层生成的攻击结果。</param>
         public void HandleAttackResolved(BF.Game.Runtime.Battle.Commands.BFAttackResolveResult result)
         {
             if (result.Attacker == null || result.Target == null) return;
 
-            _unitEventChannel?.Raise(new BFUnitEventData
-            {
-                UnitId = result.Target.UnitId,
-                EventType = "Damaged",
-                TargetId = result.Attacker.UnitId,
-                Value = result.FinalDamage
-            });
-
-            if (result.TargetWasKilled)
+            if (_battleSession == null)
             {
                 _unitEventChannel?.Raise(new BFUnitEventData
                 {
                     UnitId = result.Target.UnitId,
-                    EventType = "Killed"
+                    EventType = "Damaged",
+                    TargetId = result.Attacker.UnitId,
+                    Value = result.FinalDamage
                 });
+
+                if (result.TargetWasKilled)
+                {
+                    _unitEventChannel?.Raise(new BFUnitEventData
+                    {
+                        UnitId = result.Target.UnitId,
+                        EventType = "Killed"
+                    });
+                }
+
+                // 结算完成后由 UnitManager 协调攻击生命周期收尾：
+                // Combat 清理上下文，StateMachine 只在攻击者仍存活时回到 Idle。
             }
 
-            // 结算完成后由 UnitManager 协调攻击生命周期收尾：
-            // Combat 清理上下文，StateMachine 只在攻击者仍存活时回到 Idle。
             result.Attacker.Combat.ClearQueuedAttack();
             if (result.Attacker.Stats.IsAlive)
             {
@@ -372,8 +419,57 @@ namespace BF.Game.Runtime.Battle.Managers
             _isActionLocked = _enemyTurnCoroutine != null;
             _turnManager?.RefreshPlayerLegalActions();
 
+            if (_battleSession != null)
+            {
+                _battleSession.Publish(new BFAttackResolvedEvent(
+                    _battleSession.Context.BattleId,
+                    result.Attacker.UnitId,
+                    result.Target.UnitId,
+                    result.FinalDamage,
+                    result.TargetRemainingHp,
+                    result.TargetWasKilled,
+                    _battleSession.Context.TurnNumber));
+
+                if (result.TargetWasKilled)
+                {
+                    _battleSession.Publish(new BFUnitDefeatedEvent(
+                        _battleSession.Context.BattleId,
+                        result.Target.UnitId,
+                        ToDomainFaction(result.Target.Identity.Faction),
+                        result.Attacker.UnitId,
+                        _battleSession.Context.TurnNumber));
+                }
+            }
+
             Debug.Log($"[BFBattleUnitManager] 攻击结算完成：{result.Attacker.Identity.DisplayName} -> {result.Target.Identity.DisplayName}, 伤害 {result.FinalDamage}, 目标剩余 HP {result.TargetRemainingHp}");
             CheckBattleEndCondition();
+        }
+
+        private void PublishBattleCompletedEvent()
+        {
+            if (_battleSession == null) return;
+
+            _battleSession.Context.Result = Result;
+            _battleSession.Publish(new BFBattleCompletedEvent(
+                _battleSession.Context.BattleId,
+                ToDomainFaction(Result.WinnerFaction),
+                Result.TotalTurns));
+        }
+
+        private void CompleteBattleSession()
+        {
+            if (_battleSession != null && _battleSession.State == BFBattleSessionState.Running)
+                _battleSession.Complete();
+        }
+
+        private static BFUnitFaction ToDomainFaction(UnitFaction faction)
+        {
+            return faction switch
+            {
+                UnitFaction.Player => BFUnitFaction.Player,
+                UnitFaction.Enemy => BFUnitFaction.Enemy,
+                _ => BFUnitFaction.None
+            };
         }
 
         private IEnumerator ExecuteEnemyTurnCoroutine()

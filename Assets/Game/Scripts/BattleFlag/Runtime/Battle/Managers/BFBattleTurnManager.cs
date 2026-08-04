@@ -1,5 +1,7 @@
 using System;
+using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Events;
+using BF.Game.Runtime.Battle;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
 
@@ -10,10 +12,19 @@ namespace BF.Game.Runtime.Battle.Managers
     /// </summary>
     public enum BattlePhase
     {
+        /// <summary>未进入有效阶段。</summary>
         None,
+
+        /// <summary>战斗初始化阶段。</summary>
         Init,
+
+        /// <summary>玩家行动阶段。</summary>
         PlayerTurn,
+
+        /// <summary>敌方行动阶段。</summary>
         EnemyTurn,
+
+        /// <summary>行动结果结算阶段。</summary>
         Resolution
     }
 
@@ -31,6 +42,8 @@ namespace BF.Game.Runtime.Battle.Managers
         [Header("Dependencies")]
         [SerializeField] private BFBattleUnitManager _unitManager;
 
+        private BFBattleSession _battleSession;
+
         /// <summary>当前战斗阶段。</summary>
         public BattlePhase CurrentPhase { get; private set; } = BattlePhase.None;
 
@@ -40,6 +53,11 @@ namespace BF.Game.Runtime.Battle.Managers
         /// <summary>当前轮次编号（EnemyTurn → PlayerTurn 时递增）。</summary>
         public int RoundNumber { get; private set; }
 
+        /// <summary>
+        /// 指示回合管理器是否已经绑定战斗会话。
+        /// </summary>
+        public bool HasBattleSession => _battleSession != null;
+
         /// <summary>阶段变化事件（旧阶段, 新阶段）。</summary>
         public event Action<BattlePhase, BattlePhase> OnPhaseChanged;
 
@@ -48,6 +66,21 @@ namespace BF.Game.Runtime.Battle.Managers
         /// Spec 第 6 节：高亮不等于自动结束回合。
         /// </summary>
         public event Action<bool> OnNoLegalActionChanged;
+
+        /// <summary>
+        /// 将回合管理器绑定到一个战斗会话。
+        ///
+        /// 同一个管理器可以重复绑定同一会话，但不能改绑到其他会话。
+        /// </summary>
+        /// <param name="session">要绑定的战斗会话。</param>
+        /// <exception cref="InvalidOperationException">当管理器已经绑定其他会话时抛出。</exception>
+        public void SetBattleSession(BFBattleSession session)
+        {
+            if (_battleSession != null && _battleSession != session)
+                throw new InvalidOperationException("BFBattleTurnManager is already attached to another battle session.");
+
+            _battleSession = session;
+        }
 
         /// <summary>启动战斗流程。</summary>
         public void StartBattle()
@@ -92,27 +125,61 @@ namespace BF.Game.Runtime.Battle.Managers
             var oldPhase = CurrentPhase;
             CurrentPhase = newPhase;
             Debug.Log($"[BFBattleTurnManager] Phase: {oldPhase} → {newPhase}");
-            OnPhaseChanged?.Invoke(oldPhase, newPhase);
-
             switch (newPhase)
             {
                 case BattlePhase.PlayerTurn:
                     TurnNumber++;
                     if (oldPhase == BattlePhase.EnemyTurn) RoundNumber++;
                     _unitManager?.ResetAllUnitsForNewTurn();
-                    RaiseTurnEvent(BFTurnPhase.PlayerTurnStarted);
                     RefreshPlayerLegalActions();
                     break;
 
                 case BattlePhase.EnemyTurn:
-                    RaiseTurnEvent(BFTurnPhase.EnemyTurnStarted);
-                    _unitManager?.ExecuteEnemyTurn();
                     break;
 
                 case BattlePhase.Resolution:
-                    RaiseBattleEndEvent();
+                    if (_battleSession == null)
+                        RaiseBattleEndEvent();
                     break;
             }
+
+            if (_battleSession != null)
+            {
+                _battleSession.Context.TurnNumber = TurnNumber;
+                _battleSession.Context.RoundNumber = RoundNumber;
+                _battleSession.Publish(new BFBattlePhaseChangedEvent(
+                    _battleSession.Context.BattleId,
+                    ToDomainPhase(oldPhase),
+                    ToDomainPhase(newPhase),
+                    TurnNumber,
+                    RoundNumber));
+            }
+            else if (newPhase == BattlePhase.PlayerTurn)
+            {
+                RaiseTurnEvent(BFTurnPhase.PlayerTurnStarted);
+            }
+            else if (newPhase == BattlePhase.EnemyTurn)
+            {
+                RaiseTurnEvent(BFTurnPhase.EnemyTurnStarted);
+            }
+
+            // 保留旧 C# 观察者，但现在回调读取到的是更新后的阶段与回合数据。
+            OnPhaseChanged?.Invoke(oldPhase, newPhase);
+
+            if (newPhase == BattlePhase.EnemyTurn)
+                _unitManager?.ExecuteEnemyTurn();
+        }
+
+        private static BFBattlePhase ToDomainPhase(BattlePhase phase)
+        {
+            return phase switch
+            {
+                BattlePhase.Init => BFBattlePhase.Init,
+                BattlePhase.PlayerTurn => BFBattlePhase.PlayerTurn,
+                BattlePhase.EnemyTurn => BFBattlePhase.EnemyTurn,
+                BattlePhase.Resolution => BFBattlePhase.Resolution,
+                _ => BFBattlePhase.None
+            };
         }
 
         private void RaiseTurnEvent(BFTurnPhase phase)
