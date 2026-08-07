@@ -1,3 +1,4 @@
+using BF.Game.Battle.Domain.Units;
 using BF.Game.Runtime.Battle.Data;
 using UnityEngine;
 
@@ -104,6 +105,23 @@ namespace BF.Game.Runtime.Battle.Units
             {
                 ResetBattleResources();
             }
+        }
+
+        /// <summary>
+        /// 从规则属性投影当前有效属性和 HP/AP 资源。
+        /// 该方法只写入 Unity 表现投影，不会反向修改规则状态。
+        /// </summary>
+        public void InitializeFromRuleState(BFUnitAttributes attributes, BFUnitStatBlock combatStats)
+        {
+            if (attributes == null) return;
+
+            MaxHP = attributes.EffectiveMaxHP;
+            Attack = attributes.EffectiveAttackPower;
+            AttackRange = combatStats.AttackRange;
+            AttackCost = combatStats.AttackCost;
+            MaxActionPoints = attributes.EffectiveMaxActionPoints;
+            CurrentHP = attributes.CurrentHP;
+            RemainingActionPoints = attributes.RemainingActionPoints;
         }
 
         /// <summary>

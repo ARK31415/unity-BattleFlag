@@ -53,7 +53,7 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(unit.Stats.AttackCost, Is.EqualTo(3));
             Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(6));
             Assert.That(unit.Grid.GridPosition, Is.EqualTo(new Vector2Int(1, 5)));
-            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitIdleState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<BFUnit_PresentationIdleState>());
         }
 
         [Test]
@@ -117,11 +117,11 @@ namespace BF.Game.Tests.EditMode.Battle
 
             unit.StateMachine.ChangeState(unit.StateMachine.AttackState);
 
-            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitAttackState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<BFUnit_PresentationAttackState>());
 
             unit.StateMachine.ChangeState(unit.StateMachine.IdleState);
 
-            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitIdleState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<BFUnit_PresentationIdleState>());
         }
 
         [Test]

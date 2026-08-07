@@ -68,7 +68,7 @@ namespace BF.Game.Runtime.Battle.Presentation
             if (_runtime == null || _animator == null) return;
 
             // Presenter 只把正式状态和存活结果翻译成 Animator 参数，不反向修改 Stats 或 StateMachine。
-            _animator.SetBool(IsMoving, _runtime.StateMachine.CurrentState is UnitMoveState);
+            _animator.SetBool(IsMoving, _runtime.StateMachine.CurrentState is BFUnit_PresentationMoveState);
             _animator.SetBool(IsDead, !_runtime.Stats.IsAlive);
         }
 
@@ -189,7 +189,7 @@ namespace BF.Game.Runtime.Battle.Presentation
         {
             if (_runtime == null || _animator == null) return;
 
-            _animator.SetBool(IsMoving, _runtime.StateMachine.CurrentState is UnitMoveState);
+            _animator.SetBool(IsMoving, _runtime.StateMachine.CurrentState is BFUnit_PresentationMoveState);
             _animator.SetBool(IsDead, !_runtime.Stats.IsAlive);
         }
 

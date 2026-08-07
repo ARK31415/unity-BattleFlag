@@ -1,4 +1,5 @@
 using System;
+using BF.Game.Battle.Domain.Events;
 using BF.Game.Eventing;
 
 namespace BF.Game.Battle.Domain
@@ -13,6 +14,7 @@ namespace BF.Game.Battle.Domain
     {
         private readonly BFBattleContext _context;
         private readonly BFEventSubscriptionGroup _subscriptions = new();
+        private int _nextRuntimeNumber = 1;
         private bool _isDisposed;
 
         /// <summary>创建处于 Created 状态的战斗 Session。</summary>
@@ -36,6 +38,19 @@ namespace BF.Game.Battle.Domain
 
         /// <summary>当前 Session 生命周期状态。</summary>
         public BFBattleSessionState State { get; private set; }
+
+        /// <summary>
+        /// 为当前 Session 生成不复用的运行时单位身份。
+        /// 计数器属于会话实例，因此不会被不同战斗或不同工厂共享。
+        /// </summary>
+        public string CreateRuntimeId()
+        {
+            EnsureNotDisposed();
+            if (State == BFBattleSessionState.Completed)
+                throw new InvalidOperationException("Cannot create a RuntimeId after a battle session is completed.");
+
+            return $"{Context.BattleId}_unit_{_nextRuntimeNumber++:D4}";
+        }
 
         /// <summary>当前 Session 独立持有的事件总线。</summary>
         internal BFScopedEventBus EventBus { get; }
@@ -72,6 +87,29 @@ namespace BF.Game.Battle.Domain
             EventBus.Publish(eventData);
         }
 
+        /// <summary>
+        /// 在完成事件发布前写入已计算的战斗结果。
+        /// 会话仍保持 Running，使完成事件回调能够读取最终规则结果。
+        /// </summary>
+        public void SetResult(BattleResult result)
+        {
+            EnsureNotDisposed();
+            if (State != BFBattleSessionState.Running)
+                throw new InvalidOperationException($"Cannot set a battle result in state {State}.");
+            _context.SetResult(result ?? throw new ArgumentNullException(nameof(result)));
+        }
+
+        /// <summary>
+        /// 在规则状态更新完成后同步推进阶段、回合和轮次。
+        /// </summary>
+        public void UpdateProgress(BFBattlePhase phase, int turnNumber, int roundNumber)
+        {
+            EnsureNotDisposed();
+            _context.SetCurrentPhase(phase);
+            _context.SetTurnNumber(turnNumber);
+            _context.SetRoundNumber(roundNumber);
+        }
+
         /// <summary>将 Session 从 Created 推进到 Running。</summary>
         public void Start()
         {
@@ -96,6 +134,20 @@ namespace BF.Game.Battle.Domain
                 throw new ArgumentException("战斗结果必须已经完成计算。", nameof(result));
 
             _context.SetResult(result);
+            State = BFBattleSessionState.Completed;
+        }
+
+        /// <summary>
+        /// 使用已通过 <see cref="SetResult" /> 写入上下文的结果完成会话。
+        /// </summary>
+        public void Complete()
+        {
+            EnsureNotDisposed();
+            if (State != BFBattleSessionState.Running)
+                throw new InvalidOperationException($"Cannot complete a battle session in state {State}.");
+            if (_context.Result == null || !_context.Result.HasResult)
+                throw new InvalidOperationException("Battle result must be set before completing the session.");
+
             State = BFBattleSessionState.Completed;
         }
 

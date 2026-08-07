@@ -76,7 +76,7 @@ namespace BF.Game.Battle.Domain
         /// <summary>注册一个单位规则状态。</summary>
         /// <param name="unit">要注册的单位规则状态。</param>
         /// <returns>true 表示注册成功，false 表示为空或 RuntimeId 重复。</returns>
-        internal bool TryRegisterUnit(BFUnitState unit)
+        public bool TryRegisterUnit(BFUnitState unit)
         {
             EnsureNotDisposed();
             if (unit == null) return false;
@@ -86,7 +86,7 @@ namespace BF.Game.Battle.Domain
         /// <summary>按 RuntimeId 移除单位规则状态。</summary>
         /// <param name="runtimeId">要移除的运行时单位身份。</param>
         /// <returns>true 表示移除成功。</returns>
-        internal bool TryRemoveUnit(string runtimeId)
+        public bool TryRemoveUnit(string runtimeId)
         {
             EnsureNotDisposed();
             if (string.IsNullOrWhiteSpace(runtimeId)) return false;

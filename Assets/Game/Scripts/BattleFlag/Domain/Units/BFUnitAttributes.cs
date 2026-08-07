@@ -123,7 +123,10 @@ namespace BF.Game.Battle.Domain.Units
 
         private static int CalculateEffectiveValue(int baseValue, int bonusValue)
         {
-            return Math.Max(0, baseValue + bonusValue);
+            var effectiveValue = (long)baseValue + bonusValue;
+            if (effectiveValue <= 0) return 0;
+            if (effectiveValue >= int.MaxValue) return int.MaxValue;
+            return (int)effectiveValue;
         }
 
         private static int Clamp(int value, int min, int max)

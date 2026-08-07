@@ -6,6 +6,9 @@ using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.Presentation;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
+using DomainBattleResult = BF.Game.Battle.Domain.BattleResult;
+using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
+using DomainSessionState = BF.Game.Battle.Domain.BFBattleSessionState;
 
 namespace BF.Game.Runtime.Battle.Managers
 {
@@ -29,7 +32,7 @@ namespace BF.Game.Runtime.Battle.Managers
         private Coroutine _enemyTurnCoroutine;
         private UnitRuntime _activeMovingUnit;
         private bool _isActionLocked;
-        private BFBattleSession _battleSession;
+        private DomainBattleSession _battleSession;
 
         /// <summary>战场上所有单位。</summary>
         public List<UnitRuntime> AllUnits { get; private set; } = new();
@@ -67,7 +70,7 @@ namespace BF.Game.Runtime.Battle.Managers
         /// </summary>
         /// <param name="session">要绑定的战斗会话。</param>
         /// <exception cref="InvalidOperationException">当管理器已经绑定其他会话时抛出。</exception>
-        public void SetBattleSession(BFBattleSession session)
+        public void SetBattleSession(DomainBattleSession session)
         {
             if (_battleSession != null && _battleSession != session)
                 throw new InvalidOperationException("BFBattleUnitManager is already attached to another battle session.");
@@ -340,8 +343,6 @@ namespace BF.Game.Runtime.Battle.Managers
                 Result = BattleResult.Defeat(
                     _battleSession?.Context.BattleId ?? "BattleTest",
                     _turnManager != null ? _turnManager.TurnNumber : 0);
-                if (_battleSession != null)
-                    _battleSession.Context.Result = Result;
                 _turnManager?.TransitionToResolution();
                 PublishBattleCompletedEvent();
                 CompleteBattleSession();
@@ -352,8 +353,6 @@ namespace BF.Game.Runtime.Battle.Managers
                 Result = BattleResult.Victory(
                     _battleSession?.Context.BattleId ?? "BattleTest",
                     _turnManager != null ? _turnManager.TurnNumber : 0);
-                if (_battleSession != null)
-                    _battleSession.Context.Result = Result;
                 _turnManager?.TransitionToResolution();
                 PublishBattleCompletedEvent();
                 CompleteBattleSession();
@@ -449,7 +448,10 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             if (_battleSession == null) return;
 
-            _battleSession.Context.Result = Result;
+            var domainResult = Result.IsPlayerVictory
+                ? DomainBattleResult.Victory(Result.BattleId, Result.TotalTurns)
+                : DomainBattleResult.Defeat(Result.BattleId, Result.TotalTurns);
+            _battleSession.SetResult(domainResult);
             _battleSession.Publish(new BFBattleCompletedEvent(
                 _battleSession.Context.BattleId,
                 ToDomainFaction(Result.WinnerFaction),
@@ -458,7 +460,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
         private void CompleteBattleSession()
         {
-            if (_battleSession != null && _battleSession.State == BFBattleSessionState.Running)
+            if (_battleSession != null && _battleSession.State == DomainSessionState.Running)
                 _battleSession.Complete();
         }
 
@@ -606,7 +608,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
             while (unit != null
                    && unit.Stats.IsAlive
-                   && (unit.StateMachine.CurrentState is UnitAttackState || unit.Combat.HasQueuedAttack || (_resolutionManager != null && _resolutionManager.HasPendingAttack(unit)))
+                   && (unit.StateMachine.CurrentState is BFUnit_PresentationAttackState || unit.Combat.HasQueuedAttack || (_resolutionManager != null && _resolutionManager.HasPendingAttack(unit)))
                    && elapsed < timeoutSeconds)
             {
                 elapsed += Time.deltaTime;

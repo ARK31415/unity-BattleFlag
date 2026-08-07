@@ -1,5 +1,7 @@
 using System;
+using BF.Game.Battle.Domain.Units;
 using BF.Game.Runtime.Battle.Data;
+using BF.Game.Runtime.Battle.Factory;
 using UnityEngine;
 
 namespace BF.Game.Runtime.Battle.Units
@@ -17,7 +19,7 @@ namespace BF.Game.Runtime.Battle.Units
     [RequireComponent(typeof(BFUnitStatsRuntime))]
     [RequireComponent(typeof(BFUnitGridRuntime))]
     [RequireComponent(typeof(BFUnitCombatRuntime))]
-    [RequireComponent(typeof(BFUnitStateMachineRuntime))]
+    [RequireComponent(typeof(BFUnit_PresentationStateMachineRuntime))]
     public class UnitRuntime : MonoBehaviour
     {
         [Header("Runtime Components")]
@@ -30,7 +32,12 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>单位攻击上下文子组件引用。</summary>
         [SerializeField] private BFUnitCombatRuntime _combat;
         /// <summary>单位状态机子组件引用。</summary>
-        [SerializeField] private BFUnitStateMachineRuntime _stateMachine;
+        [SerializeField] private BFUnit_PresentationStateMachineRuntime _stateMachine;
+
+        private BFUnitState _ruleState;
+        private BFUnitStatBlock _combatProjection;
+        private BFUnitUnityBindingSO _unityBinding;
+        private BFBattleUnitHandle _unitHandle;
 
         [Header("Optional Visual Cleanup")]
         /// <summary>死亡动画完成后统一关闭的 SpriteRenderer；为空时只跳过对应清理。</summary>
@@ -52,11 +59,23 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>单位攻击上下文入口，负责动画命中帧前后的待结算攻击状态。</summary>
         public BFUnitCombatRuntime Combat => EnsureCombat();
 
-        /// <summary>单位正式逻辑状态机入口，只承载 Idle、Move、Attack、Dead 等逻辑状态。</summary>
-        public BFUnitStateMachineRuntime StateMachine => EnsureStateMachine();
+        /// <summary>单位表现状态机入口，只承载 Idle、Move、Attack、Dead 等表现状态。</summary>
+        public BFUnit_PresentationStateMachineRuntime StateMachine => EnsureStateMachine();
 
-        /// <summary>单位根 ID，当前沿用 GameObject 名称作为场景手摆阶段的实例标识。</summary>
+        /// <summary>兼容用的单位实例 ID；绑定规则状态后由 RuntimeId 提供，未绑定时才回退为对象名。</summary>
         public string UnitId => Identity.UnitId;
+
+        /// <summary>当前绑定的 RuntimeId；未绑定规则状态时为空。</summary>
+        public string RuntimeId => _unitHandle?.RuntimeId;
+
+        /// <summary>当前绑定的 BattleId；未绑定规则状态时为空。</summary>
+        public string BattleId => _unitHandle?.BattleId;
+
+        /// <summary>当前绑定的规则状态，只读暴露引用，修改仍由规则层负责。</summary>
+        public BFUnitState RuleState => _ruleState;
+
+        /// <summary>当前是否已完成规则状态绑定。</summary>
+        public bool IsRuleBound => _ruleState != null && _unitHandle != null;
 
         /// <summary>当前单位实例使用的数据定义；场景手摆单位可为空。</summary>
         public BFUnitDefinitionSO Definition { get; private set; }
@@ -87,7 +106,7 @@ namespace BF.Game.Runtime.Battle.Units
         }
 
         /// <summary>
-        /// 正式逻辑状态机由单位根统一驱动，状态数据本身归 StateMachine 组件。
+        /// 表现状态机由单位根统一驱动，表现状态数据本身归 StateMachine 组件。
         /// </summary>
         private void Update()
         {
@@ -152,6 +171,55 @@ namespace BF.Game.Runtime.Battle.Units
             Stats.InitializeBaseStats(definition.GetBaseStats(), resetResources: true);
             Grid.InitializeSpawnPosition(spawnContext.GridPosition);
             ApplyUnityBinding(definition.UnityBinding);
+        }
+
+        /// <summary>
+        /// 接收规则状态并建立 Unity 表现投影。
+        /// 新 Factory 使用此方法，不再把 Unity 配置作为规则状态来源。
+        /// </summary>
+        public void BindRuleState(
+            BFUnitState state,
+            BFUnitStatBlock combatStats,
+            BFUnitUnityBindingSO unityBinding,
+            string displayName,
+            BFBattleUnitHandle handle,
+            BFUnitDefinitionSO definition = null)
+        {
+            if (state == null) throw new ArgumentNullException(nameof(state));
+            if (handle == null) throw new ArgumentNullException(nameof(handle));
+            if (!string.Equals(state.RuntimeId, handle.RuntimeId, StringComparison.Ordinal))
+                throw new ArgumentException("Rule state and handle RuntimeId do not match.", nameof(handle));
+
+            InitializeRuntime();
+            _ruleState = state;
+            _combatProjection = combatStats;
+            _unityBinding = unityBinding;
+            _unitHandle = handle;
+            Definition = definition;
+            RefreshRuleStateProjection(displayName);
+        }
+
+        /// <summary>刷新规则状态到 Identity、Stats 和 Grid 的表现投影。</summary>
+        public void RefreshRuleStateProjection(string displayName = null)
+        {
+            if (!IsRuleBound) return;
+
+            Identity.InitializeFromRuleState(_ruleState, displayName ?? Identity.DisplayName);
+            Stats.InitializeFromRuleState(_ruleState.Attributes, _combatProjection);
+            Grid.InitializeSpawnPosition(new Vector2Int(
+                _ruleState.GridPosition.X,
+                _ruleState.GridPosition.Y));
+            ApplyUnityBinding(_unityBinding);
+        }
+
+        /// <summary>解除规则状态与 Runtime 的绑定，不销毁 Unity 对象，并清理身份投影。</summary>
+        public void UnbindRuleState()
+        {
+            _ruleState = null;
+            _unitHandle = null;
+            _unityBinding = null;
+            Definition = null;
+            Identity.ClearRuleIdentity();
         }
 
         /// <summary>
@@ -275,7 +343,7 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>
         /// 确保 StateMachine 子组件已缓存并完成初始化，为空时自动补齐。
         /// </summary>
-        private BFUnitStateMachineRuntime EnsureStateMachine()
+        private BFUnit_PresentationStateMachineRuntime EnsureStateMachine()
         {
             if (_stateMachine == null) CacheRuntimeComponents(addIfMissing: true);
             _stateMachine.Initialize(this);
@@ -314,7 +382,7 @@ namespace BF.Game.Runtime.Battle.Units
             if (_stats == null) Debug.LogError("[UnitRuntime] Missing BFUnitStatsRuntime.", this);
             if (_grid == null) Debug.LogError("[UnitRuntime] Missing BFUnitGridRuntime.", this);
             if (_combat == null) Debug.LogError("[UnitRuntime] Missing BFUnitCombatRuntime.", this);
-            if (_stateMachine == null) Debug.LogError("[UnitRuntime] Missing BFUnitStateMachineRuntime.", this);
+            if (_stateMachine == null) Debug.LogError("[UnitRuntime] Missing BFUnit_PresentationStateMachineRuntime.", this);
         }
 
         /// <summary>

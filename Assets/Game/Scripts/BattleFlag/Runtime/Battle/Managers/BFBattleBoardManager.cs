@@ -24,6 +24,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
         private GridGraph _grid;
         private readonly List<GameObject> _cellVisuals = new();
+        private readonly Dictionary<Vector2Int, string> _occupants = new();
         private static readonly Vector2Int[] NeighborOffsets =
         {
             new(1, 0),
@@ -150,12 +151,35 @@ namespace BF.Game.Runtime.Battle.Managers
         public bool IsCellOccupied(Vector2Int cell)
         {
             if (_grid == null || !IsCellInBounds(cell)) return false;
+            if (_occupants.ContainsKey(cell)) return true;
             var node = _grid.GetNode(cell.x, cell.y);
             return node != null && !node.Walkable;
         }
 
         public string GetOccupant(Vector2Int cell)
-            => IsCellOccupied(cell) ? "occupied" : null;
+        {
+            if (_occupants.TryGetValue(cell, out var runtimeId))
+                return runtimeId;
+
+            return IsCellOccupied(cell) ? "occupied" : null;
+        }
+
+        /// <summary>
+        /// 尝试以 RuntimeId 占用一个可用棋盘格。
+        /// </summary>
+        public bool TryOccupyCell(Vector2Int cell, string runtimeId)
+        {
+            if (_grid == null || !IsCellInBounds(cell) || string.IsNullOrWhiteSpace(runtimeId))
+                return false;
+            if (IsCellOccupied(cell)) return false;
+
+            var node = _grid.GetNode(cell.x, cell.y);
+            if (node == null || !node.Walkable) return false;
+
+            node.Walkable = false;
+            _occupants[cell] = runtimeId;
+            return true;
+        }
 
         // ============================================================
         // 占用管理（IMovementHandler）
@@ -163,14 +187,17 @@ namespace BF.Game.Runtime.Battle.Managers
 
         public void OccupyCell(Vector2Int cell, string uid)
         {
-            if (_grid == null || !IsCellInBounds(cell)) return;
-            var node = _grid.GetNode(cell.x, cell.y);
-            if (node != null) node.Walkable = false;
+            TryOccupyCell(cell, uid);
         }
 
         public void ReleaseCell(Vector2Int cell, string uid)
         {
             if (_grid == null || !IsCellInBounds(cell)) return;
+            if (!_occupants.TryGetValue(cell, out var occupantId)) return;
+            if (!string.IsNullOrWhiteSpace(uid) && !string.Equals(uid, occupantId, System.StringComparison.Ordinal))
+                return;
+
+            _occupants.Remove(cell);
             var node = _grid.GetNode(cell.x, cell.y);
             if (node != null) node.Walkable = true;
         }

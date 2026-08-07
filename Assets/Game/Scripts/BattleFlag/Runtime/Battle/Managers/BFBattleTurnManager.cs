@@ -4,6 +4,7 @@ using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
+using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
 
 namespace BF.Game.Runtime.Battle.Managers
 {
@@ -42,7 +43,7 @@ namespace BF.Game.Runtime.Battle.Managers
         [Header("Dependencies")]
         [SerializeField] private BFBattleUnitManager _unitManager;
 
-        private BFBattleSession _battleSession;
+        private DomainBattleSession _battleSession;
 
         /// <summary>当前战斗阶段。</summary>
         public BattlePhase CurrentPhase { get; private set; } = BattlePhase.None;
@@ -74,7 +75,7 @@ namespace BF.Game.Runtime.Battle.Managers
         /// </summary>
         /// <param name="session">要绑定的战斗会话。</param>
         /// <exception cref="InvalidOperationException">当管理器已经绑定其他会话时抛出。</exception>
-        public void SetBattleSession(BFBattleSession session)
+        public void SetBattleSession(DomainBattleSession session)
         {
             if (_battleSession != null && _battleSession != session)
                 throw new InvalidOperationException("BFBattleTurnManager is already attached to another battle session.");
@@ -145,8 +146,10 @@ namespace BF.Game.Runtime.Battle.Managers
 
             if (_battleSession != null)
             {
-                _battleSession.Context.TurnNumber = TurnNumber;
-                _battleSession.Context.RoundNumber = RoundNumber;
+                _battleSession.UpdateProgress(
+                    ToDomainPhase(newPhase),
+                    TurnNumber,
+                    RoundNumber);
                 _battleSession.Publish(new BFBattlePhaseChangedEvent(
                     _battleSession.Context.BattleId,
                     ToDomainPhase(oldPhase),

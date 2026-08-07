@@ -1,13 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Cameras;
+using BF.Game.Runtime.Battle.Data;
 using BF.Game.Runtime.Battle.Events;
+using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.PlayerInput;
 using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.UI.Battle;
 using UnityEngine;
 using Wit.Framework.UI;
+using DomainBattleContext = BF.Game.Battle.Domain.BFBattleContext;
+using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
 
 namespace BF.Game.Runtime.Battle.Managers
 {
@@ -33,8 +38,11 @@ namespace BF.Game.Runtime.Battle.Managers
         [SerializeField] private BFBattleTurnManager _turnManager;
         /// <summary>战斗结算管理器。</summary>
         [SerializeField] private BFBattleResolutionManager _resolutionManager;
-        /// <summary>单位生成器。</summary>
-        [SerializeField] private BFBattleUnitSpawner _unitSpawner;
+        [Header("Battle Creation")]
+        /// <summary>默认战斗单位唯一创建来源。</summary>
+        [SerializeField] private BFBattleEncounterSO _encounter;
+        /// <summary>单位 Runtime Prefab 选择配置。</summary>
+        [SerializeField] private BFUnitFactoryConfigSO _factoryConfig;
 
         [Header("Event Channels")]
         /// <summary>回合事件通道。</summary>
@@ -44,13 +52,21 @@ namespace BF.Game.Runtime.Battle.Managers
         /// <summary>单位事件通道。</summary>
         [SerializeField] private BFUnitEventSO _unitEventChannel;
 
-        private BFBattleSession _battleSession;
+        private DomainBattleSession _battleSession;
+        private BFUnitRegistry _unitRegistry;
+        private BFBattleUnitFactory _unitFactory;
         private BFBattleEventToSOAdapter _battleEventAdapter;
 
         /// <summary>
         /// 当前战斗场景持有的战斗会话。
         /// </summary>
-        public BFBattleSession BattleSession => _battleSession;
+        public DomainBattleSession BattleSession => _battleSession;
+
+        /// <summary>当前战斗会话的 Runtime 注册表。</summary>
+        public BFUnitRegistry UnitRegistry => _unitRegistry;
+
+        /// <summary>当前战斗会话的单位组合工厂。</summary>
+        public BFBattleUnitFactory UnitFactory => _unitFactory;
 
         /// <summary>当前战斗场景使用的棋盘管理器。</summary>
         public BFBattleBoardManager BoardManager => _boardManager;
@@ -107,7 +123,6 @@ namespace BF.Game.Runtime.Battle.Managers
             if (_unitManager == null) _unitManager = GetComponentInChildren<BFBattleUnitManager>();
             if (_turnManager == null) _turnManager = GetComponentInChildren<BFBattleTurnManager>();
             if (_resolutionManager == null) _resolutionManager = GetComponentInChildren<BFBattleResolutionManager>();
-            if (_unitSpawner == null) _unitSpawner = GetComponentInChildren<BFBattleUnitSpawner>();
             if (_inputController == null) _inputController = GetComponentInChildren<BFBattleInputController>();
             if (_cameraController == null) _cameraController = FindFirstObjectByType<BFBattleCameraController>();
             // WitUIManager 位于常驻场景 BFPersistent，通过 FindFirstObjectByType 跨场景查找。
@@ -119,48 +134,58 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
-        /// 战斗初始化主流程（6 步）：
-        /// 1. 数据驱动生成单位（如果配置了 Spawner）
-        /// 2. 从场景中发现所有 UnitRuntime
-        /// 3. 初始化各单位（缓存子组件 + 重置战斗资源）
-        /// 4. 棋盘对齐单位
-        /// 5. 注册单位到 UnitManager
-        /// 6. 启动回合循环 + 打开 HUD
+        /// 战斗初始化主流程：创建 Domain Session，使用 Factory 生成并绑定单位，
+        /// 再把 Factory 结果注入棋盘、UnitManager 和事件适配器。
         /// </summary>
         private void InitializeBattle()
         {
             Debug.Log("[BFBattleRoot] Initializing battle...");
 
-            if (_unitSpawner != null && _unitSpawner.HasSpawnConfig)
+            if (_encounter == null || _factoryConfig == null || _boardManager == null)
             {
-                _unitSpawner.TrySpawnConfiguredEncounter(_boardManager, out _);
-            }
-
-            // Step 1: 从场景中发现所有单位
-            var units = new List<UnitRuntime>(
-                FindObjectsByType<UnitRuntime>(FindObjectsSortMode.None));
-
-            if (units.Count == 0)
-            {
-                Debug.LogError("[BFBattleRoot] No UnitRuntime found in scene!");
+                Debug.LogError(
+                    "[BFBattleRoot] Encounter、FactoryConfig 或 BoardManager 缺失，无法初始化战斗。",
+                    this);
                 return;
             }
 
-            // 单位根先完成子组件缓存和战斗资源初始化，再交给棋盘和管理器读取。
-            // 这样 Board、UnitManager、HUD 和 Presenter 后续访问 Identity/Stats/Grid 时不会遇到半初始化对象。
-            foreach (var unit in units)
+            if (string.IsNullOrWhiteSpace(_encounter.EncounterId))
             {
+                Debug.LogError("[BFBattleRoot] EncounterId 缺失，无法创建 BattleSession。", this);
+                return;
+            }
+
+            // EncounterId 是配置身份，BattleId 是本次运行的会话身份，不能直接复用。
+            var battleId = $"{_encounter.EncounterId}_{Guid.NewGuid():N}";
+            var battleContext = new DomainBattleContext(battleId);
+            _battleSession = new DomainBattleSession(battleContext);
+            _unitRegistry = new BFUnitRegistry(battleContext.BattleId);
+            _unitFactory = new BFBattleUnitFactory(
+                _battleSession,
+                _unitRegistry,
+                _factoryConfig,
+                _boardManager,
+                transform);
+
+            var creationResult = _unitFactory.CreateEncounter(_encounter);
+            if (!creationResult.Succeeded)
+            {
+                Debug.LogError($"[BFBattleRoot] Unit creation failed: {creationResult.Error}", this);
+                DisposeBattleServices();
+                return;
+            }
+
+            var units = new List<UnitRuntime>(creationResult.Units.Count);
+            foreach (var createdUnit in creationResult.Units)
+            {
+                var unit = createdUnit.Runtime;
                 unit.InitializeRuntime();
                 unit.BeginBattle();
+                unit.MovementHandler = _boardManager;
+                units.Add(unit);
             }
 
-            // Step 2: 棋盘对齐单位
-            if (_boardManager != null)
-            {
-                _boardManager.SnapUnitsToGrid(units);
-            }
-
-            // Step 3: 注册单位到 UnitManager
+            // Factory 已经使用 Encounter 的规则坐标完成棋盘占用；这里仅注入结果列表。
             foreach (var unit in units)
             {
                 _unitManager?.RegisterUnit(unit);
@@ -172,17 +197,6 @@ namespace BF.Game.Runtime.Battle.Managers
                 _resolutionManager.SetUnitManager(_unitManager);
             }
 
-            // Step 5: 启动回合循环
-            var battleContext = new BFBattleContext
-            {
-                BattleId = "BattleTest",
-                GridWidth = _boardManager != null ? _boardManager.Width : 10,
-                GridHeight = _boardManager != null ? _boardManager.Height : 8,
-                Units = units,
-                TurnNumber = 0,
-                RoundNumber = 0
-            };
-            _battleSession = new BFBattleSession(battleContext);
             _turnManager?.SetBattleSession(_battleSession);
             _unitManager?.SetBattleSession(_battleSession);
             _battleEventAdapter = new BFBattleEventToSOAdapter(
@@ -210,6 +224,18 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             _battleEventAdapter?.Dispose();
             _battleEventAdapter = null;
+            DisposeBattleServices();
+        }
+
+        /// <summary>
+        /// 以工厂、Registry、Session 的所有权顺序释放当前战斗资源。
+        /// </summary>
+        private void DisposeBattleServices()
+        {
+            _unitFactory?.Dispose();
+            _unitFactory = null;
+            _unitRegistry?.Dispose();
+            _unitRegistry = null;
             _battleSession?.Dispose();
             _battleSession = null;
         }

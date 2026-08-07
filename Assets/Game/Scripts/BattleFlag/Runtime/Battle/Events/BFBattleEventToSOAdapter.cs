@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle;
+using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
 
 namespace BF.Game.Runtime.Battle.Events
 {
@@ -27,6 +28,29 @@ namespace BF.Game.Runtime.Battle.Events
         /// <param name="turnEventChannel">回合阶段事件的旧 SO 通道，可为空。</param>
         /// <param name="unitEventChannel">单位攻击和击败事件的旧 SO 通道，可为空。</param>
         /// <exception cref="ArgumentNullException">当 <paramref name="session" /> 为空时抛出。</exception>
+        public BFBattleEventToSOAdapter(
+            DomainBattleSession session,
+            BFBattleEventSO battleEventChannel,
+            BFTurnEventSO turnEventChannel,
+            BFUnitEventSO unitEventChannel)
+        {
+            if (session == null) throw new ArgumentNullException(nameof(session));
+
+            _subscriptions.Add(session.Subscribe<BFBattleStartedEvent>(eventData =>
+                RaiseBattleStarted(battleEventChannel, eventData)));
+            _subscriptions.Add(session.Subscribe<BFBattlePhaseChangedEvent>(eventData =>
+                RaisePhaseChanged(turnEventChannel, eventData)));
+            _subscriptions.Add(session.Subscribe<BFAttackResolvedEvent>(eventData =>
+                RaiseAttackResolved(unitEventChannel, eventData)));
+            _subscriptions.Add(session.Subscribe<BFUnitDefeatedEvent>(eventData =>
+                RaiseUnitDefeated(unitEventChannel, eventData)));
+            _subscriptions.Add(session.Subscribe<BFBattleCompletedEvent>(eventData =>
+                RaiseBattleCompleted(battleEventChannel, eventData)));
+        }
+
+        /// <summary>
+        /// 兼容旧 Runtime Session 的构造入口，供尚未迁移的测试和旧代码继续使用。
+        /// </summary>
         public BFBattleEventToSOAdapter(
             BFBattleSession session,
             BFBattleEventSO battleEventChannel,

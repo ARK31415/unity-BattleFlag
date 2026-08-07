@@ -28,7 +28,7 @@ namespace BF.Game.Tests.EditMode.Domain
             Assert.That(state.Role, Is.EqualTo(BFUnitRole.Warrior));
             Assert.That(state.Tier, Is.EqualTo(BFUnitTier.Normal));
             Assert.That(state.GridPosition, Is.EqualTo(new BFGridPosition(2, 3)));
-            Assert.That(state.ActionState, Is.EqualTo(BFUnitActionState.Idle));
+            Assert.That(state.ActionState, Is.EqualTo(BFUnit_ActionState.Idle));
             Assert.That(state.IsAlive, Is.True);
         }
 
@@ -38,12 +38,12 @@ namespace BF.Game.Tests.EditMode.Domain
             var attributes = new BFUnitAttributes(100, 5, 20);
             var state = CreateState(attributes);
 
-            Assert.That(state.TryChangeActionState(BFUnitActionState.Dead), Is.False);
+            Assert.That(state.TryChangeActionState(BFUnit_ActionState.Dead), Is.False);
 
             attributes.SetCurrentHP(0);
-            Assert.That(state.TryChangeActionState(BFUnitActionState.Dead), Is.True);
-            Assert.That(state.ActionState, Is.EqualTo(BFUnitActionState.Dead));
-            Assert.That(state.TryChangeActionState(BFUnitActionState.Idle), Is.False);
+            Assert.That(state.TryChangeActionState(BFUnit_ActionState.Dead), Is.True);
+            Assert.That(state.ActionState, Is.EqualTo(BFUnit_ActionState.Dead));
+            Assert.That(state.TryChangeActionState(BFUnit_ActionState.Idle), Is.False);
         }
 
         [Test]

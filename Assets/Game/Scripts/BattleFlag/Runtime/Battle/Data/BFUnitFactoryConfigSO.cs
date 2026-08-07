@@ -61,7 +61,7 @@ namespace BF.Game.Runtime.Battle.Data
 
         /// <summary>
         /// 校验 Prefab 是否满足单位运行时组件合同。
-        /// 必需组件：UnitRuntime、Identity、Stats、Grid、Combat、StateMachine。
+        /// 必需组件：UnitRuntime、Identity、Stats、Grid、Combat、PresentationStateMachine。
         /// </summary>
         /// <param name="prefab">待校验的 Prefab。</param>
         /// <returns>true 表示满足合同。</returns>
@@ -73,7 +73,7 @@ namespace BF.Game.Runtime.Battle.Data
                    && prefab.TryGetComponent(out BFUnitStatsRuntime _)
                    && prefab.TryGetComponent(out BFUnitGridRuntime _)
                    && prefab.TryGetComponent(out BFUnitCombatRuntime _)
-                   && prefab.TryGetComponent(out BFUnitStateMachineRuntime _);
+                   && prefab.TryGetComponent(out BFUnit_PresentationStateMachineRuntime _);
         }
     }
 }

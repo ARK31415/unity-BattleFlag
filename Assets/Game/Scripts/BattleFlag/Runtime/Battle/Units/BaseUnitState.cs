@@ -3,11 +3,11 @@ using UnityEngine;
 namespace BF.Game.Runtime.Battle.Units
 {
     /// <summary>
-    /// 单位状态基类。
+    /// 单位表现状态基类。
     /// 采用四段式生命周期：OnEnter / LogicUpdate / PhysicsUpdate / OnExit。
     /// 基类禁止引用具体子类名与动画名。
     /// </summary>
-    public abstract class BaseUnitState
+    public abstract class BFUnit_PresentationState
     {
         /// <summary>
         /// 状态所属的单位运行时。
@@ -17,12 +17,12 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>
         /// 状态机引用（用于状态切换）。
         /// </summary>
-        protected IUnitStateMachine StateMachine { get; private set; }
+        protected IBFUnit_PresentationStateMachine StateMachine { get; private set; }
 
         /// <summary>
         /// 初始化状态（在状态首次切换到此状态时调用）。
         /// </summary>
-        public virtual void Initialize(UnitRuntime owner, IUnitStateMachine stateMachine)
+        public virtual void Initialize(UnitRuntime owner, IBFUnit_PresentationStateMachine stateMachine)
         {
             Owner = owner;
             StateMachine = stateMachine;
@@ -55,19 +55,37 @@ namespace BF.Game.Runtime.Battle.Units
     }
 
     /// <summary>
-    /// 单位状态机最小接口。
-    /// 由 UnitRuntime 实现，供 BaseUnitState 回调使用。
+    /// 单位表现状态机最小接口。
+    /// 由 UnitRuntime 的表现状态机组件实现，供表现状态回调使用。
     /// </summary>
-    public interface IUnitStateMachine
+    public interface IBFUnit_PresentationStateMachine
     {
         /// <summary>
         /// 切换到指定状态。
         /// </summary>
-        void ChangeState(BaseUnitState newState);
+        void ChangeState(BFUnit_PresentationState newState);
 
         /// <summary>
         /// 当前活跃状态。
         /// </summary>
-        BaseUnitState CurrentState { get; }
+        BFUnit_PresentationState CurrentState { get; }
+    }
+
+    /// <summary>
+    /// 旧状态基类兼容类型。
+    /// 新代码必须使用 <see cref="BFUnit_PresentationState"/>。
+    /// </summary>
+    [System.Obsolete("Use BFUnit_PresentationState instead.")]
+    public abstract class BaseUnitState : BFUnit_PresentationState
+    {
+    }
+
+    /// <summary>
+    /// 旧状态机接口兼容类型。
+    /// 新代码必须使用 <see cref="IBFUnit_PresentationStateMachine"/>。
+    /// </summary>
+    [System.Obsolete("Use IBFUnit_PresentationStateMachine instead.")]
+    public interface IUnitStateMachine : IBFUnit_PresentationStateMachine
+    {
     }
 }

@@ -41,7 +41,7 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(unit.Stats.IsAlive, Is.True);
             Assert.That(hurtCount, Is.EqualTo(1));
             Assert.That(deathCount, Is.Zero);
-            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitIdleState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<BFUnit_PresentationIdleState>());
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(unit.Stats.IsAlive, Is.False);
             Assert.That(hurtCount, Is.Zero);
             Assert.That(deathCount, Is.EqualTo(1));
-            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitDeadState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<BFUnit_PresentationDeadState>());
         }
 
         [Test]

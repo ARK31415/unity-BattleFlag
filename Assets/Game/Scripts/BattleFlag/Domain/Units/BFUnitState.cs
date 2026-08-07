@@ -29,11 +29,16 @@ namespace BF.Game.Battle.Domain.Units
             BFUnitFaction faction,
             BFUnitRole role,
             BFUnitTier tier,
+            int unitLevel,
             BFUnitAttributes attributes,
             BFGridPosition gridPosition)
         {
             ValidateIdentity(profileId, nameof(profileId));
             ValidateIdentity(runtimeId, nameof(runtimeId));
+            if (faction != BFUnitFaction.Player && faction != BFUnitFaction.Enemy)
+                throw new ArgumentException("单位阵营必须为 Player 或 Enemy。", nameof(faction));
+            if (unitLevel < 1)
+                throw new ArgumentOutOfRangeException(nameof(unitLevel), unitLevel, "单位等级必须大于等于 1。");
             Attributes = attributes ?? throw new ArgumentNullException(nameof(attributes));
 
             ProfileId = profileId;
@@ -41,8 +46,24 @@ namespace BF.Game.Battle.Domain.Units
             Faction = faction;
             Role = role;
             Tier = tier;
+            UnitLevel = unitLevel;
             GridPosition = gridPosition;
-            ActionState = BFUnitActionState.Idle;
+            ActionState = BFUnit_ActionState.Idle;
+        }
+
+        /// <summary>
+        /// 创建兼容旧调用方的一级单位状态。
+        /// </summary>
+        public BFUnitState(
+            string profileId,
+            string runtimeId,
+            BFUnitFaction faction,
+            BFUnitRole role,
+            BFUnitTier tier,
+            BFUnitAttributes attributes,
+            BFGridPosition gridPosition)
+            : this(profileId, runtimeId, faction, role, tier, 1, attributes, gridPosition)
+        {
         }
 
         /// <summary>单位配置身份。</summary>
@@ -60,6 +81,9 @@ namespace BF.Game.Battle.Domain.Units
         /// <summary>单位层级或品质。</summary>
         public BFUnitTier Tier { get; }
 
+        /// <summary>单位规则等级；等级与单位品质是两个独立维度。</summary>
+        public int UnitLevel { get; }
+
         /// <summary>单位规则属性。</summary>
         public BFUnitAttributes Attributes { get; }
 
@@ -67,7 +91,7 @@ namespace BF.Game.Battle.Domain.Units
         public BFGridPosition GridPosition { get; private set; }
 
         /// <summary>单位当前规则行动状态。</summary>
-        public BFUnitActionState ActionState { get; private set; }
+        public BFUnit_ActionState ActionState { get; private set; }
 
         /// <summary>根据属性中的当前生命值推导单位是否存活。</summary>
         public bool IsAlive => Attributes.IsAlive;
@@ -79,12 +103,12 @@ namespace BF.Game.Battle.Domain.Units
         /// </summary>
         /// <param name="nextState">目标规则行动状态。</param>
         /// <returns>true 表示切换成功，false 表示违反当前状态不变量。</returns>
-        internal bool TryChangeActionState(BFUnitActionState nextState)
+        internal bool TryChangeActionState(BFUnit_ActionState nextState)
         {
-            if (ActionState == BFUnitActionState.Dead)
+            if (ActionState == BFUnit_ActionState.Dead)
                 return false;
 
-            if (nextState == BFUnitActionState.Dead)
+            if (nextState == BFUnit_ActionState.Dead)
             {
                 if (IsAlive) return false;
 

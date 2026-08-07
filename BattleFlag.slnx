@@ -5,6 +5,7 @@
   <Project Path="BF.Game.Runtime.csproj" />
   <Project Path="Drawing.csproj" />
   <Project Path="Wit.Framework.UI.csproj" />
+  <Project Path="BF.Game.Battle.Rules.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="AstarPackageToolsEditor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />

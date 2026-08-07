@@ -1,10 +1,18 @@
 using System.Collections.Generic;
+using BF.Game.Battle.Domain;
+using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Data;
+using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using DomainBFGridPosition = BF.Game.Battle.Domain.Units.BFGridPosition;
+using DomainBFUnitAttributes = BF.Game.Battle.Domain.Units.BFUnitAttributes;
+using DomainBFUnitRole = BF.Game.Battle.Domain.Units.BFUnitRole;
+using DomainBFUnitState = BF.Game.Battle.Domain.Units.BFUnitState;
+using DomainBFUnitTier = BF.Game.Battle.Domain.Units.BFUnitTier;
 
 namespace BF.Game.Tests.EditMode.Battle
 {
@@ -54,6 +62,7 @@ namespace BF.Game.Tests.EditMode.Battle
 
             Assert.That(unit.Definition, Is.SameAs(definition));
             Assert.That(unit.Identity.UnitId, Is.EqualTo("mage_001"));
+            Assert.That(unit.Identity.ProfileId, Is.EqualTo("mage_001"));
             Assert.That(unit.Identity.DisplayName, Is.EqualTo("法师"));
             Assert.That(unit.Identity.Faction, Is.EqualTo(UnitFaction.Enemy));
             Assert.That(unit.Identity.Role, Is.EqualTo(BFUnitRole.Mage));
@@ -66,6 +75,36 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(6));
             Assert.That(unit.Grid.GridPosition, Is.EqualTo(new Vector2Int(2, 3)));
             Assert.That(unit.Grid.SpawnGridPosition, Is.EqualTo(new Vector2Int(2, 3)));
+        }
+
+        [Test]
+        public void UnbindRuleState_ClearsProjectedRuntimeIdentity()
+        {
+            var unit = CreateUnit("Reusable Unit");
+            var state = new DomainBFUnitState(
+                "profile_001",
+                "runtime_001",
+                BFUnitFaction.Player,
+                DomainBFUnitRole.Warrior,
+                DomainBFUnitTier.Normal,
+                1,
+                new DomainBFUnitAttributes(20, 5, 8),
+                new DomainBFGridPosition(1, 2));
+            var handle = new BFBattleUnitHandle("battle_001", "runtime_001");
+
+            unit.BindRuleState(
+                state,
+                BFUnitStatBlock.Default,
+                CreateUnityBinding(),
+                "先锋",
+                handle);
+            unit.UnbindRuleState();
+
+            Assert.That(unit.IsRuleBound, Is.False);
+            Assert.That(unit.RuntimeId, Is.Null);
+            Assert.That(unit.BattleId, Is.Null);
+            Assert.That(unit.Identity.UnitId, Is.EqualTo("Reusable Unit"));
+            Assert.That(unit.Identity.ProfileId, Is.Null);
         }
 
         [Test]

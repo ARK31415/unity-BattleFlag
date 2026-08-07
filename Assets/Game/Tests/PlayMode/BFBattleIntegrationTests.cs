@@ -11,6 +11,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using BFBattleSession = BF.Game.Battle.Domain.BFBattleSession;
+using BFBattleSessionState = BF.Game.Battle.Domain.BFBattleSessionState;
+using BattleResult = BF.Game.Battle.Domain.BattleResult;
 
 namespace BF.Game.Tests.PlayMode
 {
@@ -105,7 +108,7 @@ namespace BF.Game.Tests.PlayMode
             Assert.That(_completedCallbackResult.HasResult, Is.True);
             Assert.That(
                 _completedEvents[0].WinnerFaction,
-                Is.EqualTo(ToDomainFaction(_completedCallbackResult.WinnerFaction)));
+                Is.EqualTo(_completedCallbackResult.WinnerFaction));
 
             var finalAttackIndex = FindLastDefeatingAttackIndex();
             var defeatedIndex = FindNextEventIndex(SessionEventKind.UnitDefeated, finalAttackIndex);
@@ -119,7 +122,7 @@ namespace BF.Game.Tests.PlayMode
             yield return UnloadBattleScene();
 
             Assert.That(_session.State, Is.EqualTo(BFBattleSessionState.Disposed));
-            Assert.That(context.Units, Is.Null);
+            Assert.Throws<ObjectDisposedException>(() => _ = context.Units);
         }
 
         [UnityTest]
@@ -127,6 +130,11 @@ namespace BF.Game.Tests.PlayMode
         {
             var firstSession = _session;
             var firstContext = firstSession.Context;
+            var firstBattleId = firstSession.Context.BattleId;
+            var firstRuntime = _battleRoot.UnitManager.AllUnits[0];
+            var firstHandle = new BF.Game.Runtime.Battle.Factory.BFBattleUnitHandle(
+                firstBattleId,
+                firstRuntime.RuntimeId);
 
             Assert.That(_soBattleStartedCount, Is.EqualTo(1));
             Assert.That(firstSession.State, Is.EqualTo(BFBattleSessionState.Running));
@@ -134,7 +142,7 @@ namespace BF.Game.Tests.PlayMode
             yield return UnloadBattleScene();
 
             Assert.That(firstSession.State, Is.EqualTo(BFBattleSessionState.Disposed));
-            Assert.That(firstContext.Units, Is.Null);
+            Assert.Throws<ObjectDisposedException>(() => _ = firstContext.Units);
 
             DisposeSessionSubscriptions();
             UnregisterSOObservers();
@@ -145,8 +153,10 @@ namespace BF.Game.Tests.PlayMode
 
             var secondSession = _session;
             Assert.That(secondSession, Is.Not.SameAs(firstSession));
+            Assert.That(secondSession.Context.BattleId, Is.Not.EqualTo(firstBattleId));
             Assert.That(secondSession.State, Is.EqualTo(BFBattleSessionState.Running));
             Assert.That(_soBattleStartedCount, Is.EqualTo(1));
+            Assert.That(_battleRoot.UnitRegistry.TryGetRuntime(firstHandle, out _), Is.False);
 
             yield return UnloadBattleScene();
 
