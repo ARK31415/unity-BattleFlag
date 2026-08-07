@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Cameras;
 using BF.Game.Runtime.Battle.Data;
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.PlayerInput;
+using BF.Game.Runtime.Battle.Presentation;
 using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.UI.Battle;
 using UnityEngine;
@@ -197,17 +199,34 @@ namespace BF.Game.Runtime.Battle.Managers
                 _resolutionManager.SetUnitManager(_unitManager);
             }
 
+            // 动画命中帧依赖结算层引用；显式注入到每个单位的动画表现器，
+            // 避免运行期通过全局查找建立隐式依赖。
+            foreach (var unit in units)
+            {
+                var presenter = unit != null
+                    ? unit.GetComponent<BFUnitAnimationPresenter>()
+                    : null;
+                presenter?.SetResolutionManager(_resolutionManager);
+            }
+
             _turnManager?.SetBattleSession(_battleSession);
             _unitManager?.SetBattleSession(_battleSession);
+            _resolutionManager?.SetBattleSession(_battleSession);
             _battleEventAdapter = new BFBattleEventToSOAdapter(
                 _battleSession,
                 _battleEventChannel,
                 _turnEventChannel,
                 _unitEventChannel);
-            _battleSession.Start();
-            _battleSession.Publish(new BFBattleStartedEvent(battleContext.BattleId));
 
-            _turnManager?.StartBattle();
+            // 由战斗进度规则统一启动 Session 并发布战斗开始事实，Root 只负责组装。
+            if (_turnManager != null)
+            {
+                _turnManager.StartBattle();
+            }
+            else
+            {
+                new BFBattleProgressRules(_battleSession).StartBattle();
+            }
 
             // Step 6: 等待常驻 UI 场景就绪后打开战斗 HUD。
             // BFPersistent 可能比战斗场景晚一帧完成加载，不能只在 Awake 中查找一次。

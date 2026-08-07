@@ -1,7 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BF.Game.Battle.Domain;
+using BF.Game.Battle.Domain.Units;
 using BF.Game.Battle.Domain.Events;
+using BF.Game.Battle.Rules.Battle;
+using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.Presentation;
 using BF.Game.Runtime.Battle.Units;
@@ -33,6 +37,8 @@ namespace BF.Game.Runtime.Battle.Managers
         private UnitRuntime _activeMovingUnit;
         private bool _isActionLocked;
         private DomainBattleSession _battleSession;
+        private BFUnitStateRules _unitStateRules;
+        private BFBattleProgressRules _battleProgressRules;
 
         /// <summary>战场上所有单位。</summary>
         public List<UnitRuntime> AllUnits { get; private set; } = new();
@@ -76,6 +82,8 @@ namespace BF.Game.Runtime.Battle.Managers
                 throw new InvalidOperationException("BFBattleUnitManager is already attached to another battle session.");
 
             _battleSession = session;
+            _unitStateRules = session == null ? null : new BFUnitStateRules(session.Context);
+            _battleProgressRules = session == null ? null : new BFBattleProgressRules(session);
         }
 
         // 组件禁用时停止正在进行的协程，并把移动中的单位恢复到当前格子世界坐标。
@@ -138,8 +146,17 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             foreach (var unit in AllUnits)
             {
-                // 回合时机由 UnitManager/TurnManager 管理，具体 AP 重置由单位生命周期入口下发给 Stats。
-                unit?.BeginTurn();
+                if (unit == null) continue;
+
+                if (_unitStateRules != null && unit.IsRuleBound)
+                {
+                    if (_unitStateRules.TryResetTurnResources(unit.RuntimeId))
+                        unit.RefreshRuleStateProjection();
+                    continue;
+                }
+
+                // 未绑定 Session 的旧场景单位保留兼容生命周期入口。
+                unit.BeginTurn();
             }
         }
 
@@ -232,6 +249,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
             _isActionLocked = true;
             RaiseUnitActionEvent(SelectedUnit, "Attacked", target.RuntimeId, attackCost);
+            StartCoroutine(WaitForAttackToFinishCoroutine(SelectedUnit));
             Debug.Log($"[BFBattleUnitManager] {SelectedUnit.Identity.DisplayName} 发起攻击 -> {target.Identity.DisplayName}, AP 剩余: {SelectedUnit.Stats.RemainingActionPoints}");
             return true;
         }
@@ -249,7 +267,22 @@ namespace BF.Game.Runtime.Battle.Managers
             if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.PlayerTurn) return false;
 
             var waitedUnit = SelectedUnit;
-            waitedUnit.Stats.ConsumeActionPoints(waitedUnit.Stats.RemainingActionPoints);
+            if (_unitStateRules != null && waitedUnit.IsRuleBound)
+            {
+                if (!_unitStateRules.TryConsumeActionPoints(
+                        waitedUnit.RuntimeId,
+                        waitedUnit.Stats.RemainingActionPoints))
+                {
+                    return false;
+                }
+
+                waitedUnit.RefreshRuleStateProjection();
+            }
+            else
+            {
+                waitedUnit.Stats.ConsumeActionPoints(waitedUnit.Stats.RemainingActionPoints);
+            }
+
             RaiseUnitActionEvent(waitedUnit, "Waited", waitedUnit.RuntimeId, 0);
             DeselectUnitIgnoringLock();
             _turnManager?.RefreshPlayerLegalActions();
@@ -344,7 +377,6 @@ namespace BF.Game.Runtime.Battle.Managers
                     _battleSession?.Context.BattleId ?? "BattleTest",
                     _turnManager != null ? _turnManager.TurnNumber : 0);
                 _turnManager?.TransitionToResolution();
-                PublishBattleCompletedEvent();
                 CompleteBattleSession();
                 OnBattleEnded?.Invoke(Result);
             }
@@ -354,7 +386,6 @@ namespace BF.Game.Runtime.Battle.Managers
                     _battleSession?.Context.BattleId ?? "BattleTest",
                     _turnManager != null ? _turnManager.TurnNumber : 0);
                 _turnManager?.TransitionToResolution();
-                PublishBattleCompletedEvent();
                 CompleteBattleSession();
                 OnBattleEnded?.Invoke(Result);
             }
@@ -405,6 +436,14 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             result.Attacker.Combat.ClearQueuedAttack();
+            if (_unitStateRules != null && result.Attacker.IsRuleBound)
+            {
+                _unitStateRules.TryChangeActionState(
+                    result.Attacker.RuntimeId,
+                    BFUnit_ActionState.Idle);
+                result.Attacker.RefreshRuleStateProjection();
+            }
+
             if (result.Attacker.Stats.IsAlive)
             {
                 result.Attacker.StateMachine.ChangeState(result.Attacker.StateMachine.IdleState);
@@ -444,24 +483,48 @@ namespace BF.Game.Runtime.Battle.Managers
             CheckBattleEndCondition();
         }
 
-        private void PublishBattleCompletedEvent()
+        /// <summary>
+        /// 收尾一次未产生有效结果的攻击。
+        /// 规则拒绝或目标在命中帧前死亡时，不发布攻击成功事实，
+        /// 但必须释放 Combat、表现状态和输入动作锁。
+        /// </summary>
+        internal void HandleAttackResolutionFailed(UnitRuntime attacker)
         {
-            if (_battleSession == null) return;
+            if (attacker == null) return;
 
-            var domainResult = Result.IsPlayerVictory
-                ? DomainBattleResult.Victory(Result.BattleId, Result.TotalTurns)
-                : DomainBattleResult.Defeat(Result.BattleId, Result.TotalTurns);
-            _battleSession.SetResult(domainResult);
-            _battleSession.Publish(new BFBattleCompletedEvent(
-                _battleSession.Context.BattleId,
-                ToDomainFaction(Result.WinnerFaction),
-                Result.TotalTurns));
+            attacker.Combat.ClearQueuedAttack();
+            if (_unitStateRules != null && attacker.IsRuleBound)
+            {
+                if (_unitStateRules.TryChangeActionState(
+                        attacker.RuntimeId,
+                        BFUnit_ActionState.Idle))
+                {
+                    attacker.RefreshRuleStateProjection();
+                }
+            }
+
+            if (attacker.Stats.IsAlive)
+            {
+                attacker.StateMachine.ChangeState(attacker.StateMachine.IdleState);
+            }
+
+            _isActionLocked = _enemyTurnCoroutine != null;
+            _turnManager?.RefreshPlayerLegalActions();
         }
 
         private void CompleteBattleSession()
         {
-            if (_battleSession != null && _battleSession.State == DomainSessionState.Running)
-                _battleSession.Complete();
+            if (_battleSession == null || _battleSession.State != DomainSessionState.Running)
+                return;
+
+            var domainResult = Result.IsPlayerVictory
+                ? DomainBattleResult.Victory(Result.BattleId, Result.TotalTurns)
+                : DomainBattleResult.Defeat(Result.BattleId, Result.TotalTurns);
+
+            if (_battleProgressRules != null)
+            {
+                _battleProgressRules.CompleteBattle(domainResult);
+            }
         }
 
         private static BFUnitFaction ToDomainFaction(UnitFaction faction)
@@ -546,6 +609,19 @@ namespace BF.Game.Runtime.Battle.Managers
 
             // 路径表现由 UnitManager 逐格驱动，格子真源写回 Grid，棋盘占用仍由 BoardManager 维护。
             var startCell = unit.Grid.GridPosition;
+            if (_unitStateRules != null && unit.IsRuleBound
+                && !_unitStateRules.TryChangeActionState(unit.RuntimeId, BFUnit_ActionState.Move))
+            {
+                RestoreMovePresentation(unit, startCell);
+                if (manageActionLock)
+                {
+                    _isActionLocked = false;
+                    _activeMoveCoroutine = null;
+                }
+
+                yield break;
+            }
+
             var presenter = unit.GetComponent<BFUnitAnimationPresenter>();
             _activeMovingUnit = unit;
             unit.StateMachine.MoveState.SetTarget(path[^1]);
@@ -582,11 +658,14 @@ namespace BF.Game.Runtime.Battle.Managers
             bool completed = unit != null && unit.Stats.IsAlive && unit.gameObject.activeInHierarchy && previousCell == path[^1];
             if (completed)
             {
-                CompleteMove(unit, startCell, previousCell, path.Count, refreshPlayerLegalActions, clearSelectionWhenActed);
+                if (!CompleteMove(unit, startCell, previousCell, path.Count, refreshPlayerLegalActions, clearSelectionWhenActed))
+                {
+                    RestoreMovePresentation(unit, startCell);
+                }
             }
             else if (unit != null && unit.Stats.IsAlive)
             {
-                unit.StateMachine.ChangeState(unit.StateMachine.IdleState);
+                RestoreMovePresentation(unit, startCell);
             }
 
             if (manageActionLock)
@@ -603,7 +682,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
         private IEnumerator WaitForAttackToFinishCoroutine(UnitRuntime unit)
         {
-            const float timeoutSeconds = 10f;
+            const float timeoutSeconds = 5f;
             float elapsed = 0f;
 
             while (unit != null
@@ -618,6 +697,8 @@ namespace BF.Game.Runtime.Battle.Managers
             if (elapsed >= timeoutSeconds)
             {
                 Debug.LogWarning($"[BFBattleUnitManager] {unit.Identity.DisplayName} 攻击表现等待超时，请检查动画事件。");
+                _resolutionManager?.ClearPendingAttack(unit);
+                HandleAttackResolutionFailed(unit);
             }
         }
 
@@ -674,14 +755,30 @@ namespace BF.Game.Runtime.Battle.Managers
                 return false;
             }
 
-            // 只有结算层和 Combat 都登记成功后，才进入 Attack 状态并扣 AP，避免失败路径消耗行动。
+            if (_unitStateRules != null && attacker.IsRuleBound)
+            {
+                if (!_unitStateRules.TryStartAttack(attacker.RuntimeId, cost))
+                {
+                    _resolutionManager.ClearPendingAttack(attacker);
+                    attacker.Combat.ClearQueuedAttack();
+                    return false;
+                }
+
+                // 只有规则命令成功后，才进入对应的攻击表现并刷新 AP 投影。
+                attacker.RefreshRuleStateProjection();
+            }
+
+            // 未绑定 Session 的旧场景单位继续使用 Runtime 兼容资源。
             attacker.StateMachine.AttackState.SetTarget(target);
             attacker.StateMachine.ChangeState(attacker.StateMachine.AttackState);
-            attacker.Stats.ConsumeActionPoints(cost);
+            if (_unitStateRules == null || !attacker.IsRuleBound)
+            {
+                attacker.Stats.ConsumeActionPoints(cost);
+            }
             return true;
         }
 
-        private void CompleteMove(
+        private bool CompleteMove(
             UnitRuntime unit,
             Vector2Int startCell,
             Vector2Int targetCell,
@@ -689,13 +786,31 @@ namespace BF.Game.Runtime.Battle.Managers
             bool refreshPlayerLegalActions,
             bool clearSelectionWhenActed)
         {
-            // 完成移动时先同步棋盘占用，再写回单位 Grid，保证后续寻路读取到一致状态。
+            if (_unitStateRules != null && unit.IsRuleBound)
+            {
+                if (!_unitStateRules.TryCompleteMove(
+                        unit.RuntimeId,
+                        new BFGridPosition(targetCell.x, targetCell.y),
+                        moveCost))
+                {
+                    Debug.LogWarning($"[BFBattleUnitManager] 规则移动被拒绝：{unit.Identity.DisplayName}");
+                    return false;
+                }
+
+                unit.RefreshRuleStateProjection();
+            }
+
+            // 规则位置和 AP 已经成功更新；这里仅同步棋盘适配与世界坐标表现。
             _boardManager.ReleaseCell(startCell, unit.RuntimeId);
             _boardManager.OccupyCell(targetCell, unit.RuntimeId);
-            unit.Grid.GridPosition = targetCell;
             unit.transform.position = (Vector3)_boardManager.CellToWorld(targetCell);
-            unit.Stats.ConsumeActionPoints(moveCost);
             unit.StateMachine.ChangeState(unit.StateMachine.IdleState);
+
+            if (_unitStateRules == null || !unit.IsRuleBound)
+            {
+                unit.Grid.GridPosition = targetCell;
+                unit.Stats.ConsumeActionPoints(moveCost);
+            }
 
             RaiseUnitActionEvent(unit, "Moved", $"{targetCell.x},{targetCell.y}", moveCost);
             Debug.Log($"[BFBattleUnitManager] {unit.Identity.DisplayName} moved {moveCost} cells to {targetCell}, AP left: {unit.Stats.RemainingActionPoints}");
@@ -711,16 +826,56 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             OnUnitMoveCompleted?.Invoke(unit);
+            return true;
+        }
+
+        /// <summary>
+        /// 恢复未提交移动的表现状态。
+        /// 规则状态未提交时，Transform 和表现状态必须回到移动开始位置；
+        /// 棋盘占用尚未切换，因此这里不反向修改 BoardManager。
+        /// </summary>
+        private void RestoreMovePresentation(UnitRuntime unit, Vector2Int startCell)
+        {
+            if (unit == null) return;
+
+            if (_unitStateRules != null && unit.IsRuleBound)
+            {
+                if (_unitStateRules.TryChangeActionState(
+                        unit.RuntimeId,
+                        BFUnit_ActionState.Idle))
+                {
+                    unit.RefreshRuleStateProjection();
+                }
+            }
+
+            if (unit.Stats.IsAlive)
+            {
+                if (_boardManager != null && unit.gameObject.activeInHierarchy)
+                {
+                    unit.transform.position = (Vector3)_boardManager.CellToWorld(startCell);
+                }
+
+                unit.StateMachine.ChangeState(unit.StateMachine.IdleState);
+            }
         }
 
         private void RestoreInterruptedMove()
         {
-            if (_activeMovingUnit == null || _boardManager == null) return;
-            if (!_activeMovingUnit.Stats.IsAlive) return;
-
-            _activeMovingUnit.transform.position = (Vector3)_boardManager.CellToWorld(_activeMovingUnit.Grid.GridPosition);
-            _activeMovingUnit.StateMachine.ChangeState(_activeMovingUnit.StateMachine.IdleState);
+            var unit = _activeMovingUnit;
             _activeMovingUnit = null;
+            if (unit == null || _boardManager == null) return;
+            if (!unit.Stats.IsAlive) return;
+
+            if (_unitStateRules != null && unit.IsRuleBound
+                && _unitStateRules.TryChangeActionState(
+                    unit.RuntimeId,
+                    BFUnit_ActionState.Idle))
+            {
+                unit.RefreshRuleStateProjection();
+            }
+
+            unit.transform.position = (Vector3)_boardManager.CellToWorld(unit.Grid.GridPosition);
+            unit.StateMachine.ChangeState(unit.StateMachine.IdleState);
         }
 
         private void FinishEnemyTurn()

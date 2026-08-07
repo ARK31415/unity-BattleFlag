@@ -154,6 +154,12 @@ namespace BF.Game.Runtime.Battle.Presentation
             {
                 _resolutionManager.TryResolveQueuedAttack(_runtime);
             }
+            else if (_resolutionManager.HasPendingAttack(_runtime))
+            {
+                // 目标可能在命中帧前死亡，Combat 会主动清空本地上下文；
+                // 仍需让结算层消费 pending attack 并释放动作生命周期。
+                _resolutionManager.TryResolveQueuedAttack(_runtime);
+            }
         }
 
         /// <summary>

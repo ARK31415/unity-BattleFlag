@@ -96,13 +96,17 @@ namespace BF.Game.Battle.Domain
             EnsureNotDisposed();
             if (State != BFBattleSessionState.Running)
                 throw new InvalidOperationException($"Cannot set a battle result in state {State}.");
-            _context.SetResult(result ?? throw new ArgumentNullException(nameof(result)));
+            if (result == null) throw new ArgumentNullException(nameof(result));
+            if (!string.Equals(result.BattleId, Context.BattleId, StringComparison.Ordinal))
+                throw new ArgumentException("战斗结果的 BattleId 与当前 Session 不一致。", nameof(result));
+
+            _context.SetResult(result);
         }
 
         /// <summary>
         /// 在规则状态更新完成后同步推进阶段、回合和轮次。
         /// </summary>
-        public void UpdateProgress(BFBattlePhase phase, int turnNumber, int roundNumber)
+        internal void UpdateProgress(BFBattlePhase phase, int turnNumber, int roundNumber)
         {
             EnsureNotDisposed();
             _context.SetCurrentPhase(phase);
@@ -133,7 +137,7 @@ namespace BF.Game.Battle.Domain
             if (!result.HasResult)
                 throw new ArgumentException("战斗结果必须已经完成计算。", nameof(result));
 
-            _context.SetResult(result);
+            SetResult(result);
             State = BFBattleSessionState.Completed;
         }
 

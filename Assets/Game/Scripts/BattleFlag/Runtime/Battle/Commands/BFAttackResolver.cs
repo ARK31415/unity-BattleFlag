@@ -1,3 +1,4 @@
+using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
 
@@ -9,6 +10,19 @@ namespace BF.Game.Runtime.Battle.Commands
     /// </summary>
     public class BFAttackResolver
     {
+        private readonly BFUnitStateRules _unitStateRules;
+
+        /// <summary>
+        /// 创建攻击结算协作者。
+        /// </summary>
+        /// <param name="unitStateRules">
+        /// 当前战斗会话的单位规则入口；为空时仅保留未绑定 Runtime 的旧兼容路径。
+        /// </param>
+        public BFAttackResolver(BFUnitStateRules unitStateRules = null)
+        {
+            _unitStateRules = unitStateRules;
+        }
+
         /// <summary>
         /// 结算攻击并返回结果。
         /// </summary>
@@ -20,8 +34,6 @@ namespace BF.Game.Runtime.Battle.Commands
                 return default;
             }
 
-            // 结算层只通过 Stats 查询存活并通过 UnitRuntime 的伤害入口应用结果，
-            // 保持 HP 写入、受伤事件和死亡状态切换集中在单位生命周期边界内。
             if (!context.Target.Stats.IsAlive)
             {
                 Debug.LogWarning("[BFAttackResolver] 目标已死亡，无法结算。");
@@ -29,10 +41,30 @@ namespace BF.Game.Runtime.Battle.Commands
             }
 
             int finalDamage = Mathf.Max(0, context.BaseAttack);
-            
-            context.Target.ApplyResolvedDamage(finalDamage);
-            
-            bool targetWasKilled = !context.Target.Stats.IsAlive;
+
+            bool targetWasKilled;
+            if (context.Target.IsRuleBound)
+            {
+                if (_unitStateRules == null || !_unitStateRules.TryApplyDamage(
+                        context.Target.RuntimeId,
+                        finalDamage,
+                        out targetWasKilled))
+                {
+                    Debug.LogWarning("[BFAttackResolver] 规则伤害入口拒绝了本次攻击。");
+                    return default;
+                }
+
+                // 规则状态成功更新后，才把结果投影到 Runtime 并触发表现反馈。
+                context.Target.RefreshRuleStateProjection();
+                context.Target.ApplyRuleDamagePresentation(targetWasKilled);
+            }
+            else
+            {
+                // 旧场景单位没有 Session 绑定时保留原有兼容行为。
+                context.Target.ApplyResolvedDamage(finalDamage);
+                targetWasKilled = !context.Target.Stats.IsAlive;
+            }
+
             int targetRemainingHp = context.Target.Stats.CurrentHP;
 
             return new BFAttackResolveResult(

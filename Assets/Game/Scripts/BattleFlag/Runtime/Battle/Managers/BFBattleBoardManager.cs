@@ -79,8 +79,23 @@ namespace BF.Game.Runtime.Battle.Managers
 
             foreach (var unit in units)
             {
-                Vector2Int cell = WorldToCell(unit.transform.position);
-                unit.Grid.GridPosition = cell;
+                // 已绑定单位的规则位置来自 Domain；Transform 只能被投影到该位置，
+                // 不能再反向覆盖 BFUnitState.GridPosition。
+                Vector2Int cell;
+                if (unit.IsRuleBound)
+                {
+                    cell = new Vector2Int(
+                        unit.RuleState.GridPosition.X,
+                        unit.RuleState.GridPosition.Y);
+                    unit.RefreshRuleStateProjection();
+                }
+                else
+                {
+                    // 未绑定的旧场景单位保留初始化兼容路径；正式战斗由 Factory 提供规则坐标。
+                    cell = WorldToCell(unit.transform.position);
+                    unit.Grid.InitializeSpawnPosition(cell);
+                }
+
                 unit.transform.position = (Vector3)CellToWorld(cell);
                 unit.MovementHandler = this;
                 OccupyCell(cell, unit.RuntimeId);

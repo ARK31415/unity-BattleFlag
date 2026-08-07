@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle.Commands;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
+using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
 
 namespace BF.Game.Runtime.Battle.Managers
 {
@@ -17,6 +19,8 @@ namespace BF.Game.Runtime.Battle.Managers
         private BFAttackResolver _attackResolver;
         private BFBuffResolver _buffResolver;
         private BFTriggerResolver _triggerResolver;
+        private DomainBattleSession _battleSession;
+        private BFUnitStateRules _unitStateRules;
 
         private readonly Dictionary<UnitRuntime, BFAttackContext> _pendingAttacks = new();
         private readonly HashSet<UnitRuntime> _awaitingDeathVisualCleanup = new();
@@ -28,6 +32,21 @@ namespace BF.Game.Runtime.Battle.Managers
             _attackResolver = new BFAttackResolver();
             _buffResolver = new BFBuffResolver();
             _triggerResolver = new BFTriggerResolver();
+        }
+
+        /// <summary>
+        /// 将结算协调器绑定到当前战斗会话，并为攻击结算注入对应的单位规则入口。
+        /// </summary>
+        /// <param name="session">当前战斗会话。</param>
+        public void SetBattleSession(DomainBattleSession session)
+        {
+            if (_battleSession != null && _battleSession != session)
+                throw new System.InvalidOperationException(
+                    "BFBattleResolutionManager is already attached to another battle session.");
+
+            _battleSession = session;
+            _unitStateRules = session == null ? null : new BFUnitStateRules(session.Context);
+            _attackResolver = new BFAttackResolver(_unitStateRules);
         }
 
         /// <summary>
@@ -89,6 +108,9 @@ namespace BF.Game.Runtime.Battle.Managers
             if (!_pendingAttacks.TryGetValue(attacker, out var context))
             {
                 Debug.LogWarning("[BFBattleResolutionManager] 攻击者无待结算攻击。");
+                // 上下文不同步（如 pending 已被异常清理）时仍要释放攻击表现生命周期，
+                // 防止攻击者停留在 Attack 状态并阻塞动作锁。
+                _unitManager?.HandleAttackResolutionFailed(attacker);
                 return false;
             }
 
@@ -103,11 +125,21 @@ namespace BF.Game.Runtime.Battle.Managers
             {
                 Debug.LogWarning("[BFBattleResolutionManager] 目标已死亡，清理待结算攻击。");
                 _pendingAttacks.Remove(attacker);
+                _unitManager?.HandleAttackResolutionFailed(attacker);
                 return false;
             }
 
             var result = _attackResolver.Resolve(context);
             _pendingAttacks.Remove(attacker);
+
+            // 规则拒绝时返回默认结果。失败路径必须释放表现攻击生命周期，
+            // 且不能继续发布攻击成功事实。
+            if (result.Attacker == null || result.Target == null)
+            {
+                Debug.LogWarning("[BFBattleResolutionManager] 攻击规则结算失败，未生成有效结果。");
+                _unitManager?.HandleAttackResolutionFailed(attacker);
+                return false;
+            }
 
             Debug.Log($"[BFBattleResolutionManager] 攻击结算：{result.Attacker.Identity.DisplayName} -> {result.Target.Identity.DisplayName}，伤害 {result.FinalDamage}，目标剩余 HP {result.TargetRemainingHp}");
 

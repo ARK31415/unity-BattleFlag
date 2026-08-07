@@ -133,14 +133,19 @@ namespace BF.Game.Runtime.Battle.Units
         }
 
         /// <summary>
-        /// 进入战斗时重置单位战斗资源并回到 Idle。
+        /// 进入战斗时初始化表现生命周期并回到 Idle。
         ///
-        /// 只负责触发生命周期，不直接写 HP/AP 字段；具体数值仍由 Stats 组件维护。
+        /// 未绑定规则状态的旧场景单位仍保留本地资源初始化兼容行为；
+        /// 已绑定规则状态的单位只读取规则投影，不能在此处重置 HP/AP。
         /// </summary>
         public void BeginBattle()
         {
             InitializeRuntime();
-            Stats.ResetBattleResources();
+            if (!IsRuleBound)
+            {
+                Stats.ResetBattleResources();
+            }
+
             StateMachine.ChangeState(StateMachine.IdleState);
         }
 
@@ -167,6 +172,9 @@ namespace BF.Game.Runtime.Battle.Units
             _unityBinding = unityBinding;
             _unitHandle = handle;
             Definition = definition;
+            Grid.InitializeSpawnPosition(new Vector2Int(
+                state.GridPosition.X,
+                state.GridPosition.Y));
             RefreshRuleStateProjection(displayName);
         }
 
@@ -177,7 +185,7 @@ namespace BF.Game.Runtime.Battle.Units
 
             Identity.InitializeFromRuleState(_ruleState, displayName ?? Identity.DisplayName);
             Stats.InitializeFromRuleState(_ruleState.Attributes, _combatProjection);
-            Grid.InitializeSpawnPosition(new Vector2Int(
+            Grid.SetGridPosition(new Vector2Int(
                 _ruleState.GridPosition.X,
                 _ruleState.GridPosition.Y));
             ApplyUnityBinding(_unityBinding);
@@ -198,7 +206,10 @@ namespace BF.Game.Runtime.Battle.Units
         /// </summary>
         public void BeginTurn()
         {
-            Stats.ResetTurnActions();
+            if (!IsRuleBound)
+            {
+                Stats.ResetTurnActions();
+            }
         }
 
         /// <summary>
@@ -217,6 +228,7 @@ namespace BF.Game.Runtime.Battle.Units
         /// <param name="damage">待应用的伤害值；非正数不会触发受伤或死亡事件。</param>
         public void TakeDamage(int damage)
         {
+            if (IsRuleBound) return;
             ApplyDamage(damage);
         }
 
@@ -228,7 +240,29 @@ namespace BF.Game.Runtime.Battle.Units
         /// <param name="finalDamage">已经完成公式计算和修正后的最终伤害。</param>
         public void ApplyResolvedDamage(int finalDamage)
         {
+            if (IsRuleBound) return;
             ApplyDamage(finalDamage);
+        }
+
+        /// <summary>
+        /// 将已由规则层完成的伤害结果转换为表现反馈。
+        ///
+        /// 该入口只触发受伤/死亡表现，不写入规则状态或 Runtime 数值，
+        /// 由调用方在规则成功后先刷新 <see cref="RefreshRuleStateProjection" />。
+        /// </summary>
+        /// <param name="wasKilled">规则层是否判定本次伤害致死。</param>
+        public void ApplyRuleDamagePresentation(bool wasKilled)
+        {
+            if (!IsRuleBound) return;
+
+            if (wasKilled)
+            {
+                DeathStarted?.Invoke(this);
+                StateMachine.ChangeState(StateMachine.DeadState);
+                return;
+            }
+
+            HurtReceived?.Invoke(this);
         }
 
         /// <summary>
@@ -365,7 +399,10 @@ namespace BF.Game.Runtime.Battle.Units
             if (binding == null) return;
             if (_animator == null || binding.AnimatorController == null) return;
 
-            _animator.runtimeAnimatorController = binding.AnimatorController;
+            if (_animator.runtimeAnimatorController != binding.AnimatorController)
+            {
+                _animator.runtimeAnimatorController = binding.AnimatorController;
+            }
         }
 
         /// <summary>
