@@ -12,21 +12,21 @@ namespace BF.Game.Battle.Domain.Events
         /// 创建单位击败事件。
         /// </summary>
         /// <param name="battleId">本场战斗的唯一标识。</param>
-        /// <param name="unitId">被击败的单位 ID。</param>
+        /// <param name="runtimeId">被击败的单位 RuntimeId。</param>
         /// <param name="faction">被击败单位所属阵营。</param>
-        /// <param name="defeatedByUnitId">造成击败的单位 ID；无明确来源时为空字符串。</param>
+        /// <param name="defeatedByRuntimeId">造成击败的单位 RuntimeId；无明确来源时为空字符串。</param>
         /// <param name="turnNumber">发生击败时的回合编号。</param>
         public BFUnitDefeatedEvent(
             string battleId,
-            string unitId,
+            string runtimeId,
             BFUnitFaction faction,
-            string defeatedByUnitId,
+            string defeatedByRuntimeId,
             int turnNumber)
         {
             BattleId = battleId ?? string.Empty;
-            UnitId = unitId ?? string.Empty;
+            RuntimeId = runtimeId ?? string.Empty;
             Faction = faction;
-            DefeatedByUnitId = defeatedByUnitId ?? string.Empty;
+            DefeatedByRuntimeId = defeatedByRuntimeId ?? string.Empty;
             TurnNumber = turnNumber;
         }
 
@@ -36,9 +36,9 @@ namespace BF.Game.Battle.Domain.Events
         public string BattleId { get; }
 
         /// <summary>
-        /// 被击败的单位 ID。
+        /// 被击败的单位 RuntimeId。
         /// </summary>
-        public string UnitId { get; }
+        public string RuntimeId { get; }
 
         /// <summary>
         /// 被击败单位所属阵营。
@@ -46,9 +46,9 @@ namespace BF.Game.Battle.Domain.Events
         public BFUnitFaction Faction { get; }
 
         /// <summary>
-        /// 造成击败的单位 ID；无明确来源时为空字符串。
+        /// 造成击败的单位 RuntimeId；无明确来源时为空字符串。
         /// </summary>
-        public string DefeatedByUnitId { get; }
+        public string DefeatedByRuntimeId { get; }
 
         /// <summary>
         /// 发生击败时的回合编号。

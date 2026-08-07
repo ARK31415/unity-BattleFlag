@@ -1,5 +1,5 @@
 using BF.Game.Battle.Domain.Events;
-using BF.Game.Runtime.Battle;
+using BF.Game.Battle.Domain;
 using BF.Game.Runtime.Battle.Events;
 using NUnit.Framework;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace BF.Game.Tests.EditMode.Battle.Events
             {
                 var received = default(BFUnitEventData);
                 unitChannel.Register(data => received = data);
-                using var session = new BFBattleSession(new BFBattleContext { BattleId = "battle-1" });
+                using var session = new BFBattleSession(new BFBattleContext("battle-1"));
                 using var adapter = new BFBattleEventToSOAdapter(session, null, null, unitChannel);
 
                 session.Start();
@@ -46,7 +46,7 @@ namespace BF.Game.Tests.EditMode.Battle.Events
                     receivedCount++;
                     received = data;
                 });
-                using var session = new BFBattleSession(new BFBattleContext { BattleId = "battle-1" });
+                using var session = new BFBattleSession(new BFBattleContext("battle-1"));
                 using var adapter = new BFBattleEventToSOAdapter(session, null, turnChannel, null);
 
                 session.Start();
@@ -72,7 +72,7 @@ namespace BF.Game.Tests.EditMode.Battle.Events
             {
                 var receivedCount = 0;
                 battleChannel.Register(_ => receivedCount++);
-                using var session = new BFBattleSession(new BFBattleContext { BattleId = "battle-1" });
+                using var session = new BFBattleSession(new BFBattleContext("battle-1"));
                 var adapter = new BFBattleEventToSOAdapter(session, battleChannel, null, null);
                 session.Start();
                 adapter.Dispose();

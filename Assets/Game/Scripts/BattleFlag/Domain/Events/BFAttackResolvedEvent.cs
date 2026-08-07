@@ -11,24 +11,24 @@ namespace BF.Game.Battle.Domain.Events
         /// 创建攻击结算完成事件。
         /// </summary>
         /// <param name="battleId">本场战斗的唯一标识。</param>
-        /// <param name="attackerId">发起攻击的单位 ID。</param>
-        /// <param name="targetId">承受攻击的单位 ID。</param>
+        /// <param name="attackerRuntimeId">发起攻击的单位 RuntimeId。</param>
+        /// <param name="targetRuntimeId">承受攻击的单位 RuntimeId。</param>
         /// <param name="finalDamage">规则结算后的最终伤害值。</param>
         /// <param name="targetRemainingHp">结算完成后目标单位的剩余生命值。</param>
         /// <param name="targetWasDefeated">目标单位是否在本次结算中被击败。</param>
         /// <param name="turnNumber">发生本次攻击时的回合编号。</param>
         public BFAttackResolvedEvent(
             string battleId,
-            string attackerId,
-            string targetId,
+            string attackerRuntimeId,
+            string targetRuntimeId,
             int finalDamage,
             int targetRemainingHp,
             bool targetWasDefeated,
             int turnNumber)
         {
             BattleId = battleId ?? string.Empty;
-            AttackerId = attackerId ?? string.Empty;
-            TargetId = targetId ?? string.Empty;
+            AttackerRuntimeId = attackerRuntimeId ?? string.Empty;
+            TargetRuntimeId = targetRuntimeId ?? string.Empty;
             FinalDamage = finalDamage;
             TargetRemainingHp = targetRemainingHp;
             TargetWasDefeated = targetWasDefeated;
@@ -41,14 +41,14 @@ namespace BF.Game.Battle.Domain.Events
         public string BattleId { get; }
 
         /// <summary>
-        /// 发起攻击的单位 ID。
+        /// 发起攻击的单位 RuntimeId。
         /// </summary>
-        public string AttackerId { get; }
+        public string AttackerRuntimeId { get; }
 
         /// <summary>
-        /// 承受攻击的单位 ID。
+        /// 承受攻击的单位 RuntimeId。
         /// </summary>
-        public string TargetId { get; }
+        public string TargetRuntimeId { get; }
 
         /// <summary>
         /// 规则结算后的最终伤害值。

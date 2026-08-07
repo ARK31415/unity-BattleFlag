@@ -45,7 +45,7 @@ namespace BF.Game.Runtime.Battle.Data
 
             if (prefab == null)
             {
-                error = $"No unit prefab configured for {definition.UnitId}.";
+                error = $"No unit prefab configured for {definition.ProfileId}.";
                 return false;
             }
 

@@ -161,7 +161,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
             _unitEventChannel?.Raise(new BFUnitEventData
             {
-                UnitId = unit.UnitId,
+                UnitId = unit.RuntimeId,
                 EventType = "Selected"
             });
 
@@ -184,7 +184,7 @@ namespace BF.Game.Runtime.Battle.Managers
             OnUnitDeselected?.Invoke(old);
             _unitEventChannel?.Raise(new BFUnitEventData
             {
-                UnitId = old.UnitId,
+                UnitId = old.RuntimeId,
                 EventType = "Deselected"
             });
         }
@@ -231,7 +231,7 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             _isActionLocked = true;
-            RaiseUnitActionEvent(SelectedUnit, "Attacked", target.UnitId, attackCost);
+            RaiseUnitActionEvent(SelectedUnit, "Attacked", target.RuntimeId, attackCost);
             Debug.Log($"[BFBattleUnitManager] {SelectedUnit.Identity.DisplayName} 发起攻击 -> {target.Identity.DisplayName}, AP 剩余: {SelectedUnit.Stats.RemainingActionPoints}");
             return true;
         }
@@ -250,7 +250,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
             var waitedUnit = SelectedUnit;
             waitedUnit.Stats.ConsumeActionPoints(waitedUnit.Stats.RemainingActionPoints);
-            RaiseUnitActionEvent(waitedUnit, "Waited", waitedUnit.UnitId, 0);
+            RaiseUnitActionEvent(waitedUnit, "Waited", waitedUnit.RuntimeId, 0);
             DeselectUnitIgnoringLock();
             _turnManager?.RefreshPlayerLegalActions();
             Debug.Log($"[BFBattleUnitManager] {waitedUnit.Identity.DisplayName} 等待并结束本单位行动。");
@@ -268,7 +268,7 @@ namespace BF.Game.Runtime.Battle.Managers
             return _boardManager.GetReachableCells(
                 SelectedUnit.Grid.GridPosition,
                 SelectedUnit.Stats.RemainingActionPoints,
-                SelectedUnit.UnitId);
+                SelectedUnit.RuntimeId);
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace BF.Game.Runtime.Battle.Managers
                 var reachable = _boardManager.GetReachableCells(
                     unit.Grid.GridPosition,
                     unit.Stats.RemainingActionPoints,
-                    unit.UnitId);
+                    unit.RuntimeId);
                 if (reachable.Count > 0) return true;
 
                 if (unit.Stats.RemainingActionPoints < unit.Stats.AttackCost) continue;
@@ -385,9 +385,9 @@ namespace BF.Game.Runtime.Battle.Managers
             {
                 _unitEventChannel?.Raise(new BFUnitEventData
                 {
-                    UnitId = result.Target.UnitId,
+                    UnitId = result.Target.RuntimeId,
                     EventType = "Damaged",
-                    TargetId = result.Attacker.UnitId,
+                    TargetId = result.Attacker.RuntimeId,
                     Value = result.FinalDamage
                 });
 
@@ -395,7 +395,7 @@ namespace BF.Game.Runtime.Battle.Managers
                 {
                     _unitEventChannel?.Raise(new BFUnitEventData
                     {
-                        UnitId = result.Target.UnitId,
+                        UnitId = result.Target.RuntimeId,
                         EventType = "Killed"
                     });
                 }
@@ -422,8 +422,8 @@ namespace BF.Game.Runtime.Battle.Managers
             {
                 _battleSession.Publish(new BFAttackResolvedEvent(
                     _battleSession.Context.BattleId,
-                    result.Attacker.UnitId,
-                    result.Target.UnitId,
+                    result.Attacker.RuntimeId,
+                    result.Target.RuntimeId,
                     result.FinalDamage,
                     result.TargetRemainingHp,
                     result.TargetWasKilled,
@@ -433,9 +433,9 @@ namespace BF.Game.Runtime.Battle.Managers
                 {
                     _battleSession.Publish(new BFUnitDefeatedEvent(
                         _battleSession.Context.BattleId,
-                        result.Target.UnitId,
+                        result.Target.RuntimeId,
                         ToDomainFaction(result.Target.Identity.Faction),
-                        result.Attacker.UnitId,
+                        result.Attacker.RuntimeId,
                         _battleSession.Context.TurnNumber));
                 }
             }
@@ -504,11 +504,11 @@ namespace BF.Game.Runtime.Battle.Managers
                 var reachable = _boardManager.GetReachableCells(
                     enemy.Grid.GridPosition,
                     enemy.Stats.RemainingActionPoints,
-                    enemy.UnitId);
+                    enemy.RuntimeId);
                 if (reachable.Count > 0)
                 {
                     var best = FindBestReachableCell(reachable, nearest.Grid.GridPosition);
-                    var path = _boardManager.FindPath(enemy.Grid.GridPosition, best, enemy.UnitId);
+                    var path = _boardManager.FindPath(enemy.Grid.GridPosition, best, enemy.RuntimeId);
                     if (path.Count > 0)
                     {
                         yield return MoveUnitAlongPathCoroutine(
@@ -626,7 +626,7 @@ namespace BF.Game.Runtime.Battle.Managers
             path = null;
             if (unit == null || _boardManager == null) return false;
 
-            path = _boardManager.FindPath(unit.Grid.GridPosition, targetCell, unit.UnitId);
+            path = _boardManager.FindPath(unit.Grid.GridPosition, targetCell, unit.RuntimeId);
             if (path.Count == 0)
             {
                 Debug.LogWarning($"[BFBattleUnitManager] 目标格子 {targetCell} 不可达。");
@@ -690,8 +690,8 @@ namespace BF.Game.Runtime.Battle.Managers
             bool clearSelectionWhenActed)
         {
             // 完成移动时先同步棋盘占用，再写回单位 Grid，保证后续寻路读取到一致状态。
-            _boardManager.ReleaseCell(startCell, unit.UnitId);
-            _boardManager.OccupyCell(targetCell, unit.UnitId);
+            _boardManager.ReleaseCell(startCell, unit.RuntimeId);
+            _boardManager.OccupyCell(targetCell, unit.RuntimeId);
             unit.Grid.GridPosition = targetCell;
             unit.transform.position = (Vector3)_boardManager.CellToWorld(targetCell);
             unit.Stats.ConsumeActionPoints(moveCost);
@@ -774,7 +774,7 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             _unitEventChannel?.Raise(new BFUnitEventData
             {
-                UnitId = unit.UnitId,
+                UnitId = unit.RuntimeId,
                 EventType = eventType,
                 TargetId = targetId,
                 Value = value
@@ -790,7 +790,7 @@ namespace BF.Game.Runtime.Battle.Managers
             OnUnitDeselected?.Invoke(old);
             _unitEventChannel?.Raise(new BFUnitEventData
             {
-                UnitId = old.UnitId,
+                UnitId = old.RuntimeId,
                 EventType = "Deselected"
             });
         }

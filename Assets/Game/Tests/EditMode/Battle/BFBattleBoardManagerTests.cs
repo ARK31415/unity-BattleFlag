@@ -1,3 +1,9 @@
+using DomainUnitFaction = BF.Game.Battle.Domain.Events.BFUnitFaction;
+using DomainUnitRole = BF.Game.Battle.Domain.Units.BFUnitRole;
+using DomainUnitTier = BF.Game.Battle.Domain.Units.BFUnitTier;
+using BF.Game.Battle.Domain.Units;
+using BF.Game.Runtime.Battle.Data;
+using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
 using NUnit.Framework;
@@ -113,6 +119,19 @@ namespace BF.Game.Tests.EditMode.Battle
             var unitObject = new GameObject("Unit");
             unitObject.transform.position = new Vector3(1f, 1f, 0f);
             var unit = unitObject.AddComponent<UnitRuntime>();
+            unit.BindRuleState(
+                new BFUnitState(
+                    "profile-test",
+                    "runtime-test",
+                    DomainUnitFaction.Player,
+                    DomainUnitRole.Warrior,
+                    DomainUnitTier.Normal,
+                    new BFUnitAttributes(20, 5, 5),
+                    new BFGridPosition(1, 1)),
+                BFUnitStatBlock.Default,
+                null,
+                "Test Unit",
+                new BFBattleUnitHandle("battle-test", "runtime-test"));
 
             manager.SnapUnitsToGrid(new List<UnitRuntime> { unit });
 

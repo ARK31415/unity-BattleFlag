@@ -40,7 +40,7 @@ namespace BF.Game.Runtime.Battle.Factory
                 return false;
 
             var config = definition.ImportedConfig;
-            if (config == null || string.IsNullOrWhiteSpace(config.UnitId))
+            if (config == null || string.IsNullOrWhiteSpace(config.ProfileId))
             {
                 error = "Unit ProfileId is missing.";
                 return false;
@@ -48,7 +48,7 @@ namespace BF.Game.Runtime.Battle.Factory
 
             if (entry.UnitLevel < 1)
             {
-                error = $"Unit {config.UnitId} has invalid UnitLevel {entry.UnitLevel}.";
+                error = $"Unit {config.ProfileId} has invalid UnitLevel {entry.UnitLevel}.";
                 return false;
             }
 
@@ -59,7 +59,7 @@ namespace BF.Game.Runtime.Battle.Factory
             var faction = ToDomainFaction(entry.ResolveFaction(config.DefaultFaction));
             if (faction == BFUnitFaction.None)
             {
-                error = $"Unit {config.UnitId} has no valid faction.";
+                error = $"Unit {config.ProfileId} has no valid faction.";
                 return false;
             }
 
@@ -69,7 +69,7 @@ namespace BF.Game.Runtime.Battle.Factory
                 stats.Attack);
 
             request = new BFBattleUnitCreateRequest(
-                config.UnitId,
+                config.ProfileId,
                 faction,
                 ToDomainRole(config.Role),
                 config.Tier,

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using BF.Game.Battle.Domain.Events;
-using BF.Game.Runtime.Battle;
 using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
 
 namespace BF.Game.Runtime.Battle.Events
@@ -30,29 +29,6 @@ namespace BF.Game.Runtime.Battle.Events
         /// <exception cref="ArgumentNullException">当 <paramref name="session" /> 为空时抛出。</exception>
         public BFBattleEventToSOAdapter(
             DomainBattleSession session,
-            BFBattleEventSO battleEventChannel,
-            BFTurnEventSO turnEventChannel,
-            BFUnitEventSO unitEventChannel)
-        {
-            if (session == null) throw new ArgumentNullException(nameof(session));
-
-            _subscriptions.Add(session.Subscribe<BFBattleStartedEvent>(eventData =>
-                RaiseBattleStarted(battleEventChannel, eventData)));
-            _subscriptions.Add(session.Subscribe<BFBattlePhaseChangedEvent>(eventData =>
-                RaisePhaseChanged(turnEventChannel, eventData)));
-            _subscriptions.Add(session.Subscribe<BFAttackResolvedEvent>(eventData =>
-                RaiseAttackResolved(unitEventChannel, eventData)));
-            _subscriptions.Add(session.Subscribe<BFUnitDefeatedEvent>(eventData =>
-                RaiseUnitDefeated(unitEventChannel, eventData)));
-            _subscriptions.Add(session.Subscribe<BFBattleCompletedEvent>(eventData =>
-                RaiseBattleCompleted(battleEventChannel, eventData)));
-        }
-
-        /// <summary>
-        /// 兼容旧 Runtime Session 的构造入口，供尚未迁移的测试和旧代码继续使用。
-        /// </summary>
-        public BFBattleEventToSOAdapter(
-            BFBattleSession session,
             BFBattleEventSO battleEventChannel,
             BFTurnEventSO turnEventChannel,
             BFUnitEventSO unitEventChannel)
@@ -140,9 +116,9 @@ namespace BF.Game.Runtime.Battle.Events
             channel?.Raise(new BFUnitEventData
             {
                 EventType = "Damaged",
-                UnitId = eventData.TargetId,
-                // 兼容旧 SO 合同：TargetId 实际保存攻击者 ID。
-                TargetId = eventData.AttackerId,
+                // 兼容旧 SO 合同：UnitId 保存承受伤害的 RuntimeId，TargetId 保存攻击者 RuntimeId。
+                UnitId = eventData.TargetRuntimeId,
+                TargetId = eventData.AttackerRuntimeId,
                 Value = eventData.FinalDamage
             });
         }
@@ -157,7 +133,7 @@ namespace BF.Game.Runtime.Battle.Events
             channel?.Raise(new BFUnitEventData
             {
                 EventType = "Killed",
-                UnitId = eventData.UnitId
+                UnitId = eventData.RuntimeId
             });
         }
 

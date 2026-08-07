@@ -3,7 +3,7 @@ using UnityEngine;
 namespace BF.Game.Runtime.Battle.Units
 {
     /// <summary>
-    /// 单位表现状态基类。
+    /// 单位表现状态基类（BFUnit_PresentationState）。
     /// 采用四段式生命周期：OnEnter / LogicUpdate / PhysicsUpdate / OnExit。
     /// 基类禁止引用具体子类名与动画名。
     /// </summary>
@@ -71,21 +71,4 @@ namespace BF.Game.Runtime.Battle.Units
         BFUnit_PresentationState CurrentState { get; }
     }
 
-    /// <summary>
-    /// 旧状态基类兼容类型。
-    /// 新代码必须使用 <see cref="BFUnit_PresentationState"/>。
-    /// </summary>
-    [System.Obsolete("Use BFUnit_PresentationState instead.")]
-    public abstract class BaseUnitState : BFUnit_PresentationState
-    {
-    }
-
-    /// <summary>
-    /// 旧状态机接口兼容类型。
-    /// 新代码必须使用 <see cref="IBFUnit_PresentationStateMachine"/>。
-    /// </summary>
-    [System.Obsolete("Use IBFUnit_PresentationStateMachine instead.")]
-    public interface IUnitStateMachine : IBFUnit_PresentationStateMachine
-    {
-    }
 }

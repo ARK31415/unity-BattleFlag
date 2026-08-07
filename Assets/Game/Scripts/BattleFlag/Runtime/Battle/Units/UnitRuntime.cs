@@ -62,9 +62,6 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>单位表现状态机入口，只承载 Idle、Move、Attack、Dead 等表现状态。</summary>
         public BFUnit_PresentationStateMachineRuntime StateMachine => EnsureStateMachine();
 
-        /// <summary>兼容用的单位实例 ID；绑定规则状态后由 RuntimeId 提供，未绑定时才回退为对象名。</summary>
-        public string UnitId => Identity.UnitId;
-
         /// <summary>当前绑定的 RuntimeId；未绑定规则状态时为空。</summary>
         public string RuntimeId => _unitHandle?.RuntimeId;
 
@@ -145,32 +142,6 @@ namespace BF.Game.Runtime.Battle.Units
             InitializeRuntime();
             Stats.ResetBattleResources();
             StateMachine.ChangeState(StateMachine.IdleState);
-        }
-
-        /// <summary>
-        /// 使用单位定义和生成上下文初始化运行时子组件。
-        /// </summary>
-        public void InitializeFromDefinition(BFUnitDefinitionSO definition, BFUnitSpawnContext spawnContext)
-        {
-            if (definition == null)
-            {
-                Debug.LogError("[UnitRuntime] Cannot initialize from a missing unit definition.", this);
-                return;
-            }
-
-            if (!definition.ValidateConfiguration(out string error))
-            {
-                Debug.LogError($"[UnitRuntime] {error}", this);
-                return;
-            }
-
-            Definition = definition;
-            InitializeRuntime();
-
-            Identity.InitializeFromConfig(definition.ImportedConfig, spawnContext.Faction);
-            Stats.InitializeBaseStats(definition.GetBaseStats(), resetResources: true);
-            Grid.InitializeSpawnPosition(spawnContext.GridPosition);
-            ApplyUnityBinding(definition.UnityBinding);
         }
 
         /// <summary>

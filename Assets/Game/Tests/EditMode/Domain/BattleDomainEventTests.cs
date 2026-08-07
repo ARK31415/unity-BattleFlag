@@ -18,8 +18,8 @@ namespace BF.Game.Tests.EditMode.Domain
                 2);
 
             Assert.That(eventData.BattleId, Is.EqualTo("battle-1"));
-            Assert.That(eventData.AttackerId, Is.EqualTo("attacker-1"));
-            Assert.That(eventData.TargetId, Is.EqualTo("target-1"));
+            Assert.That(eventData.AttackerRuntimeId, Is.EqualTo("attacker-1"));
+            Assert.That(eventData.TargetRuntimeId, Is.EqualTo("target-1"));
             Assert.That(eventData.FinalDamage, Is.EqualTo(7));
             Assert.That(eventData.TargetRemainingHp, Is.EqualTo(13));
             Assert.That(eventData.TargetWasDefeated, Is.True);
@@ -36,9 +36,9 @@ namespace BF.Game.Tests.EditMode.Domain
                 "player-1",
                 3);
 
-            Assert.That(eventData.UnitId, Is.EqualTo("enemy-1"));
+            Assert.That(eventData.RuntimeId, Is.EqualTo("enemy-1"));
             Assert.That(eventData.Faction, Is.EqualTo(BFUnitFaction.Enemy));
-            Assert.That(eventData.DefeatedByUnitId, Is.EqualTo("player-1"));
+            Assert.That(eventData.DefeatedByRuntimeId, Is.EqualTo("player-1"));
             Assert.That(eventData.TurnNumber, Is.EqualTo(3));
         }
 
@@ -54,11 +54,11 @@ namespace BF.Game.Tests.EditMode.Domain
             Assert.That(started.BattleId, Is.Empty);
             Assert.That(phaseChanged.BattleId, Is.Empty);
             Assert.That(attack.BattleId, Is.Empty);
-            Assert.That(attack.AttackerId, Is.Empty);
-            Assert.That(attack.TargetId, Is.Empty);
+            Assert.That(attack.AttackerRuntimeId, Is.Empty);
+            Assert.That(attack.TargetRuntimeId, Is.Empty);
             Assert.That(defeated.BattleId, Is.Empty);
-            Assert.That(defeated.UnitId, Is.Empty);
-            Assert.That(defeated.DefeatedByUnitId, Is.Empty);
+            Assert.That(defeated.RuntimeId, Is.Empty);
+            Assert.That(defeated.DefeatedByRuntimeId, Is.Empty);
             Assert.That(completed.BattleId, Is.Empty);
         }
     }

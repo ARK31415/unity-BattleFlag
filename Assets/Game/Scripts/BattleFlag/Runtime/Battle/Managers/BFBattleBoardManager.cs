@@ -83,7 +83,7 @@ namespace BF.Game.Runtime.Battle.Managers
                 unit.Grid.GridPosition = cell;
                 unit.transform.position = (Vector3)CellToWorld(cell);
                 unit.MovementHandler = this;
-                OccupyCell(cell, unit.UnitId);
+                OccupyCell(cell, unit.RuntimeId);
             }
             Debug.Log($"[BFBattleBoardManager] Snapped {units.Count} units to grid");
         }

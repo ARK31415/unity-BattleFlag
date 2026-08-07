@@ -1,5 +1,5 @@
 using BF.Game.Battle.Domain.Events;
-using BF.Game.Runtime.Battle;
+using BF.Game.Battle.Domain;
 using NUnit.Framework;
 
 namespace BF.Game.Tests.EditMode.Battle
@@ -9,7 +9,7 @@ namespace BF.Game.Tests.EditMode.Battle
         [Test]
         public void Created_AllowsSubscriptionButRejectsPublish()
         {
-            using var session = new BFBattleSession(new BFBattleContext());
+            using var session = new BFBattleSession(new BFBattleContext("battle-1"));
             session.Subscribe<BFBattleStartedEvent>(_ => { });
 
             Assert.Throws<System.InvalidOperationException>(() =>
@@ -19,7 +19,7 @@ namespace BF.Game.Tests.EditMode.Battle
         [Test]
         public void Running_AllowsPublishAndReceivesEvent()
         {
-            using var session = new BFBattleSession(new BFBattleContext());
+            using var session = new BFBattleSession(new BFBattleContext("battle-1"));
             var received = false;
             session.Subscribe<BFBattleStartedEvent>(eventData => received = eventData.BattleId == "battle-1");
 
@@ -32,11 +32,11 @@ namespace BF.Game.Tests.EditMode.Battle
         [Test]
         public void Completed_AllowsUnsubscribeButRejectsSubscribeAndPublish()
         {
-            using var session = new BFBattleSession(new BFBattleContext());
+            using var session = new BFBattleSession(new BFBattleContext("battle-1"));
             System.Action<BFBattleStartedEvent> listener = _ => { };
             session.Subscribe(listener);
             session.Start();
-            session.Complete();
+            session.Complete(BattleResult.Victory("battle-1", 1));
 
             Assert.DoesNotThrow(() => session.Unsubscribe(listener));
             Assert.Throws<System.InvalidOperationException>(() => session.Subscribe<BFBattleStartedEvent>(_ => { }));
@@ -47,14 +47,13 @@ namespace BF.Game.Tests.EditMode.Battle
         [Test]
         public void Dispose_IsIdempotentAndRejectsFurtherUse()
         {
-            var context = new BFBattleContext();
-            context.Units.Add(null);
+            var context = new BFBattleContext("battle-1");
             var session = new BFBattleSession(context);
             session.Dispose();
             session.Dispose();
 
             Assert.That(session.State, Is.EqualTo(BFBattleSessionState.Disposed));
-            Assert.That(context.Units, Is.Null);
+            Assert.Throws<System.ObjectDisposedException>(() => _ = context.Units);
             Assert.Throws<System.ObjectDisposedException>(() => _ = session.Context);
             Assert.Throws<System.ObjectDisposedException>(() => session.Publish(1));
             Assert.Throws<System.ObjectDisposedException>(() => session.Subscribe<int>(_ => { }));

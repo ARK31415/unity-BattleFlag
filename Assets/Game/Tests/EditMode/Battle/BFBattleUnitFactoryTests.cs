@@ -359,7 +359,7 @@ namespace BF.Game.Tests.EditMode.Battle
         }
 
         private BFUnitImportedConfigSO CreateImportedConfig(
-            string unitId,
+            string profileId,
             string displayName,
             UnitFaction faction,
             RuntimeUnitRole role,
@@ -367,7 +367,7 @@ namespace BF.Game.Tests.EditMode.Battle
         {
             var config = CreateScriptableObject<BFUnitImportedConfigSO>();
             var serializedObject = new SerializedObject(config);
-            serializedObject.FindProperty("_unitId").stringValue = unitId;
+            serializedObject.FindProperty("_profileId").stringValue = profileId;
             serializedObject.FindProperty("_displayName").stringValue = displayName;
             serializedObject.FindProperty("_defaultFaction").intValue = (int)faction;
             serializedObject.FindProperty("_role").intValue = (int)role;
