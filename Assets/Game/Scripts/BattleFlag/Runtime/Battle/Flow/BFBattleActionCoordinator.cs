@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BF.Game.Battle.Domain;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Domain.Units;
+using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle.Commands;
 using BF.Game.Runtime.Battle.Managers;
@@ -30,6 +31,7 @@ namespace BF.Game.Runtime.Battle.Flow
 
         private DomainBattleSession _battleSession;
         private BFUnitStateRules _unitStateRules;
+        private BFBattleBoardRules _boardRules;
         private Coroutine _activeAttackWait;
         private UnitRuntime _activeAttackUnit;
 
@@ -52,6 +54,12 @@ namespace BF.Game.Runtime.Battle.Flow
             _resolutionManager?.SetActionCoordinator(this);
         }
 
+        /// <summary>绑定当前战斗会话唯一的棋盘规则服务。</summary>
+        public void SetBoardRules(BFBattleBoardRules boardRules)
+        {
+            _boardRules = boardRules;
+        }
+
         /// <summary>查询指定单位当前规则 AP 内可达的表现格。</summary>
         public List<Vector2Int> GetReachableCellsForUnit(UnitRuntime unit)
         {
@@ -59,10 +67,30 @@ namespace BF.Game.Runtime.Battle.Flow
                 return new List<Vector2Int>();
 
             var position = unit.RuleState.GridPosition;
-            return _boardManager.GetReachableCells(
+            var candidates = _boardManager.GetReachableCells(
                 new Vector2Int(position.X, position.Y),
                 unit.RuleState.Attributes.RemainingActionPoints,
                 unit.RuntimeId);
+            if (_boardRules == null)
+                return new List<Vector2Int>();
+
+            var validCells = new List<Vector2Int>(candidates.Count);
+            foreach (var candidate in candidates)
+            {
+                var candidatePath = _boardManager.FindPath(
+                    new Vector2Int(position.X, position.Y),
+                    candidate,
+                    unit.RuntimeId);
+                var validation = _boardRules.ValidateCandidatePath(
+                    unit.RuntimeId,
+                    new BFGridPosition(candidate.x, candidate.y),
+                    ToRulePath(candidatePath));
+                if (validation.Succeeded &&
+                    validation.ActionPointCost <= unit.RuleState.Attributes.RemainingActionPoints)
+                    validCells.Add(candidate);
+            }
+
+            return validCells;
         }
 
         /// <summary>查询当前选中玩家单位可攻击的敌方表现对象。</summary>
@@ -457,6 +485,15 @@ namespace BF.Game.Runtime.Battle.Flow
         private static int GetManhattanDistance(BFGridPosition first, BFGridPosition second)
         {
             return Mathf.Abs(first.X - second.X) + Mathf.Abs(first.Y - second.Y);
+        }
+
+        private static List<BFGridPosition> ToRulePath(IReadOnlyList<Vector2Int> path)
+        {
+            var rulePath = new List<BFGridPosition>(path.Count);
+            for (var index = 0; index < path.Count; index++)
+                rulePath.Add(new BFGridPosition(path[index].x, path[index].y));
+
+            return rulePath;
         }
 
         private void OnDisable()

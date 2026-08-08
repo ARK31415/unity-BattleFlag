@@ -109,6 +109,75 @@ namespace BF.Game.Tests.EditMode.Battle
         }
 
         [Test]
+        public void CreateEncounter_RejectsOutOfBoundsSpawnBeforeCreatingRuntime()
+        {
+            var board = CreateScannedBoard(4, 4);
+            var prefab = CreateUnitPrefab("DefaultUnitPrefab");
+            var definition = CreateDefinition(
+                CreateImportedConfig(
+                    "unit_out_of_bounds",
+                    "越界单位",
+                    UnitFaction.Player,
+                    RuntimeUnitRole.Warrior,
+                    BFUnitStatBlock.Default),
+                CreateUnityBinding());
+            var encounter = CreateEncounter(definition, new Vector2Int(-1, 0), UnitFaction.None, 1);
+            var factoryConfig = CreateFactoryConfig(prefab);
+            var provider = new RecordingRuntimeProvider();
+            _session = new BFBattleSession(new BFBattleContext("battle_out_of_bounds_test"));
+            var registry = new BFUnitRegistry(_session.Context.BattleId);
+            _factory = new BFBattleUnitFactory(
+                _session,
+                registry,
+                factoryConfig,
+                board,
+                null,
+                provider);
+
+            var result = _factory.CreateEncounter(encounter);
+
+            Assert.That(result.Succeeded, Is.False);
+            Assert.That(provider.CreateCount, Is.EqualTo(0));
+            Assert.That(_session.Context.Units, Is.Empty);
+            Assert.That(registry.Count, Is.Zero);
+        }
+
+        [Test]
+        public void CreateEncounter_RejectsStaticBlockedSpawnBeforeCreatingRuntime()
+        {
+            var board = CreateScannedBoard(4, 4);
+            board.Grid.GetNode(1, 1).Walkable = false;
+            var prefab = CreateUnitPrefab("DefaultUnitPrefab");
+            var definition = CreateDefinition(
+                CreateImportedConfig(
+                    "unit_static_block",
+                    "阻挡单位",
+                    UnitFaction.Player,
+                    RuntimeUnitRole.Warrior,
+                    BFUnitStatBlock.Default),
+                CreateUnityBinding());
+            var encounter = CreateEncounter(definition, new Vector2Int(1, 1), UnitFaction.None, 1);
+            var factoryConfig = CreateFactoryConfig(prefab);
+            var provider = new RecordingRuntimeProvider();
+            _session = new BFBattleSession(new BFBattleContext("battle_static_block_test"));
+            var registry = new BFUnitRegistry(_session.Context.BattleId);
+            _factory = new BFBattleUnitFactory(
+                _session,
+                registry,
+                factoryConfig,
+                board,
+                null,
+                provider);
+
+            var result = _factory.CreateEncounter(encounter);
+
+            Assert.That(result.Succeeded, Is.False);
+            Assert.That(provider.CreateCount, Is.EqualTo(0));
+            Assert.That(_session.Context.Units, Is.Empty);
+            Assert.That(registry.Count, Is.Zero);
+        }
+
+        [Test]
         public void CreateEncounter_WhenRuntimeCreationFails_RollsBackAllRuleAndBoardState()
         {
             var board = CreateScannedBoard(4, 4);

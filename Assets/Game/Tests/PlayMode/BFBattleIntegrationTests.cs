@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Domain.Units;
+using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle;
 using BF.Game.Runtime.Battle.AI;
 using BF.Game.Runtime.Battle.Events;
@@ -104,6 +105,20 @@ namespace BF.Game.Tests.PlayMode
             Assert.That(_completedEvents.Count, Is.EqualTo(1));
             Assert.That(_soDamagedCount, Is.EqualTo(_attackEvents.Count));
             Assert.That(_soKilledCount, Is.EqualTo(_defeatedEvents.Count));
+
+            foreach (var unit in _battleRoot.UnitManager.AllUnits)
+            {
+                if (unit == null || unit.RuleState.IsAlive) continue;
+
+                var deadCell = new Vector2Int(
+                    unit.RuleState.GridPosition.X,
+                    unit.RuleState.GridPosition.Y);
+                Assert.That(_battleRoot.BoardManager.GetOccupant(deadCell), Is.Null);
+                Assert.That(
+                    _session.Context.TryGetUnit(unit.RuntimeId, out var retainedState),
+                    Is.True);
+                Assert.That(retainedState, Is.SameAs(unit.RuleState));
+            }
 
             Assert.That(_session.State, Is.EqualTo(BFBattleSessionState.Completed));
             Assert.That(_completedCallbackState, Is.EqualTo(BFBattleSessionState.Running));
@@ -234,6 +249,50 @@ namespace BF.Game.Tests.PlayMode
             Assert.That(player.RuleState.ActionState, Is.EqualTo(BFUnit_ActionState.Idle));
             Assert.That(_battleRoot.UnitManager.SelectedUnit, Is.Null);
             Assert.That(_battleRoot.UnitManager.IsActionLocked, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator DefaultBattle_RejectsStaleCandidatePathWithoutRuleCommit()
+        {
+            var player = _battleRoot.UnitManager.GetAliveUnitsByFaction(UnitFaction.Player)[0];
+            var movementCoordinator = _battleRoot.UnitManager.GetComponent<BFBattleMovementCoordinator>();
+            Assert.That(movementCoordinator, Is.Not.Null);
+            Assert.That(_battleRoot.UnitManager.TrySelectUnit(player), Is.True);
+
+            var start = player.RuleState.GridPosition;
+            var startCell = new Vector2Int(start.X, start.Y);
+            var reachableCells = _battleRoot.UnitManager.GetReachableCellsForSelected();
+            Assert.That(reachableCells, Is.Not.Empty, "默认战斗场景没有可用于路径复验的移动目标。");
+            var targetCell = reachableCells[0];
+            var target = new BFGridPosition(targetCell.x, targetCell.y);
+            var enemy = _battleRoot.UnitManager.GetAliveUnitsByFaction(UnitFaction.Enemy)[0];
+            var enemyStart = enemy.RuleState.GridPosition;
+            var apBefore = player.RuleState.Attributes.RemainingActionPoints;
+            var actionStateBefore = player.RuleState.ActionState;
+            var movedEventCount = 0;
+            var subscription = _session.Subscribe<BFUnitMovedEvent>(_ => movedEventCount++);
+            var unitRules = new BFUnitStateRules(_session.Context);
+
+            // 移动查询通过后，在表现期间改变规则占用；提交阶段必须重新验证候选路径并拒绝。
+            LogAssert.Expect(
+                LogType.Warning,
+                new System.Text.RegularExpressions.Regex("候选路径被棋盘规则拒绝"));
+            Assert.That(_battleRoot.UnitManager.TryMoveUnit(targetCell), Is.True);
+            Assert.That(unitRules.TrySetGridPosition(enemy.RuntimeId, target), Is.True);
+            yield return WaitForActionUnlocked();
+
+            subscription.Dispose();
+            Assert.That(unitRules.TrySetGridPosition(enemy.RuntimeId, enemyStart), Is.True);
+
+            Assert.That(player.RuleState.GridPosition, Is.EqualTo(start));
+            Assert.That(player.RuleState.Attributes.RemainingActionPoints, Is.EqualTo(apBefore));
+            Assert.That(player.RuleState.ActionState, Is.EqualTo(actionStateBefore));
+            Assert.That(movedEventCount, Is.EqualTo(0));
+            Assert.That(_battleRoot.BoardManager.GetOccupant(startCell), Is.EqualTo(player.RuntimeId));
+            Assert.That(_battleRoot.BoardManager.GetOccupant(targetCell), Is.Null);
+            Assert.That(
+                _battleRoot.BoardManager.GetOccupant(new Vector2Int(enemyStart.X, enemyStart.Y)),
+                Is.EqualTo(enemy.RuntimeId));
         }
 
         [UnityTest]

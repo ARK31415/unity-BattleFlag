@@ -13,6 +13,7 @@ namespace BF.Game.Battle.Domain
     public sealed class BFBattleSession : IDisposable
     {
         private readonly BFBattleContext _context;
+        private readonly IDisposable _boardRulesLifetime;
         private readonly BFEventSubscriptionGroup _subscriptions = new();
         private int _nextRuntimeNumber = 1;
         private bool _isDisposed;
@@ -20,8 +21,22 @@ namespace BF.Game.Battle.Domain
         /// <summary>创建处于 Created 状态的战斗 Session。</summary>
         /// <param name="context">本场战斗的纯规则上下文。</param>
         public BFBattleSession(BFBattleContext context)
+            : this(context, null)
+        {
+        }
+
+        /// <summary>
+        /// 创建处于 Created 状态并托管棋盘规则服务生命周期的战斗 Session。
+        ///
+        /// Domain 程序集只依赖 IDisposable，避免反向引用 Rules 程序集；具体棋盘规则
+        /// 实现由组合根创建并注入，Session 只负责与 Context 同时释放其生命周期。
+        /// </summary>
+        /// <param name="context">本场战斗的纯规则上下文。</param>
+        /// <param name="boardRulesLifetime">本场棋盘规则服务的生命周期对象。</param>
+        public BFBattleSession(BFBattleContext context, IDisposable boardRulesLifetime)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _boardRulesLifetime = boardRulesLifetime;
             EventBus = new BFScopedEventBus();
             State = BFBattleSessionState.Created;
         }
@@ -166,6 +181,7 @@ namespace BF.Game.Battle.Domain
             _isDisposed = true;
             _subscriptions.Dispose();
             EventBus.Dispose();
+            _boardRulesLifetime?.Dispose();
             _context.Dispose();
             State = BFBattleSessionState.Disposed;
         }

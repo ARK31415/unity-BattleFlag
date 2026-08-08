@@ -17,6 +17,7 @@ namespace BF.Game.Runtime.Battle.Managers
         [Header("Dependencies")]
         [SerializeField] private BFBattleUnitManager _unitManager;
         [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
+        [SerializeField] private BFBattleBoardManager _boardManager;
 
         private BFAttackResolver _attackResolver;
         private BFBuffResolver _buffResolver;
@@ -59,6 +60,12 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             _unitManager = unitManager;
             _actionCoordinator = unitManager != null ? unitManager.ActionCoordinator : null;
+        }
+
+        /// <summary>绑定棋盘适配器，用于逻辑死亡后立即释放棋盘镜像占用。</summary>
+        public void SetBoardManager(BFBattleBoardManager boardManager)
+        {
+            _boardManager = boardManager;
         }
 
         /// <summary>绑定统一行动协调器，避免结算结果回流到混合单位管理器。</summary>
@@ -166,6 +173,17 @@ namespace BF.Game.Runtime.Battle.Managers
 
             if (result.TargetWasKilled)
             {
+                // 逻辑死亡已在伤害入口完成；棋盘规则上此刻立即释放占用，
+                // 视觉对象仍可继续播放死亡动画并延迟隐藏。
+                if (_boardManager == null ||
+                    !_boardManager.TryReleaseUnitOccupancy(result.Target.RuntimeId))
+                {
+                    Debug.LogError(
+                        $"[BFBattleResolutionManager] 逻辑死亡后棋盘占用释放失败：{result.Target.RuntimeId}。",
+                        this);
+                    _unitManager?.MarkBoardSyncFaultForCoordinator();
+                }
+
                 // 逻辑死亡已在伤害入口完成，这里只登记等待死亡动画完成后的视觉清理。
                 _awaitingDeathVisualCleanup.Add(result.Target);
             }

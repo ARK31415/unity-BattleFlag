@@ -1,6 +1,7 @@
 using BF.Game.Battle.Domain;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Domain.Units;
+using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.Managers;
@@ -199,19 +200,15 @@ namespace BF.Game.Tests.EditMode.Battle
         public void CompleteMove_BoardSyncFailure_KeepsRuleCommitAndReportsNoPresentationSuccess()
         {
             var battle = CreateBattle(out var unit, out var state, out var session, out var manager);
-            var blockerState = CreateTargetState(battle.Context, "runtime-blocker", new BFGridPosition(1, 1));
-            var blocker = CreateUnit("Blocker");
-            blocker.BindRuleState(
-                blockerState,
-                null,
-                "Blocker",
-                new BFBattleUnitHandle("action-test", blockerState.RuntimeId));
-            _createdObjects.Add(blocker.gameObject);
 
             var board = CreateScannedBoard(3, 3);
             manager.SetBoardForTest(board);
+            using var boardRules = new BFBattleBoardRules(
+                board.ExportTopologySnapshot(),
+                battle.Context);
+            manager.SetBoardRules(boardRules);
             Assert.That(board.TryOccupyCell(new Vector2Int(0, 0), state.RuntimeId), Is.True);
-            Assert.That(board.TryOccupyCell(new Vector2Int(1, 1), blockerState.RuntimeId), Is.True);
+            Assert.That(board.TryOccupyCell(new Vector2Int(1, 1), "runtime-blocker"), Is.True);
             manager.RegisterUnit(unit);
             unit.MovementHandler = board;
 
@@ -228,7 +225,12 @@ namespace BF.Game.Tests.EditMode.Battle
                 unit,
                 new Vector2Int(0, 0),
                 new Vector2Int(1, 1),
-                1,
+                2,
+                new[]
+                {
+                    new Vector2Int(1, 0),
+                    new Vector2Int(1, 1)
+                },
                 refreshPlayerLegalActions: false,
                 clearSelectionWhenActed: false,
                 out var boardSyncFailed);
@@ -236,14 +238,14 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(committed, Is.True);
             Assert.That(boardSyncFailed, Is.True);
             Assert.That(state.GridPosition, Is.EqualTo(new BFGridPosition(1, 1)));
-            Assert.That(state.Attributes.RemainingActionPoints, Is.EqualTo(4));
+            Assert.That(state.Attributes.RemainingActionPoints, Is.EqualTo(3));
             Assert.That(movedCount, Is.EqualTo(1));
             Assert.That(moveCompletedCount, Is.EqualTo(0));
             Assert.That(manager.TrySelectUnit(unit), Is.False);
             Assert.That(manager.IsBoardSyncFaulted, Is.True);
             Assert.That(manager.TryRecoverBoardSync(), Is.False);
             Assert.That(board.ReleaseCell(new Vector2Int(0, 0), state.RuntimeId), Is.True);
-            Assert.That(board.ReleaseCell(new Vector2Int(1, 1), blockerState.RuntimeId), Is.True);
+            Assert.That(board.ReleaseCell(new Vector2Int(1, 1), "runtime-blocker"), Is.True);
             Assert.That(board.TryOccupyCell(new Vector2Int(1, 1), state.RuntimeId), Is.True);
             Assert.That(manager.TryRecoverBoardSync(), Is.True);
             Assert.That(manager.IsBoardSyncFaulted, Is.False);
@@ -257,6 +259,10 @@ namespace BF.Game.Tests.EditMode.Battle
             var battle = CreateBattle(out var unit, out var state, out var session, out var manager);
             var board = CreateScannedBoard(3, 3);
             manager.SetBoardForTest(board);
+            using var boardRules = new BFBattleBoardRules(
+                board.ExportTopologySnapshot(),
+                battle.Context);
+            manager.SetBoardRules(boardRules);
             Assert.That(board.TryOccupyCell(new Vector2Int(0, 0), state.RuntimeId), Is.True);
             manager.RegisterUnit(unit);
             unit.MovementHandler = board;
@@ -271,6 +277,7 @@ namespace BF.Game.Tests.EditMode.Battle
                 new Vector2Int(0, 0),
                 new Vector2Int(1, 0),
                 1,
+                new[] { new Vector2Int(1, 0) },
                 refreshPlayerLegalActions: false,
                 clearSelectionWhenActed: false,
                 out var boardSyncFailed);

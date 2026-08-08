@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BF.Game.Battle.Domain;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Domain.Units;
+using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Presentation;
@@ -30,6 +31,7 @@ namespace BF.Game.Runtime.Battle.Flow
         private UnitRuntime _activeMovingUnit;
         private DomainBattleSession _battleSession;
         private BFUnitStateRules _unitStateRules;
+        private BFBattleBoardRules _boardRules;
 
         /// <summary>指示当前是否有移动表现正在执行。</summary>
         public bool IsMoving => _activeMoveCoroutine != null;
@@ -50,11 +52,18 @@ namespace BF.Game.Runtime.Battle.Flow
             _unitStateRules = session == null ? null : new BFUnitStateRules(session.Context);
         }
 
+        /// <summary>绑定当前战斗会话唯一的棋盘规则服务。</summary>
+        public void SetBoardRules(BFBattleBoardRules boardRules)
+        {
+            _boardRules = boardRules;
+        }
+
         /// <summary>查询并校验当前规则 AP 内可提交的移动路径。</summary>
         public bool TryGetMovePath(UnitRuntime unit, Vector2Int targetCell, out List<Vector2Int> path)
         {
             path = null;
             if (_boardManager == null || _battleSession == null ||
+                _boardRules == null ||
                 _battleSession.State != BFBattleSessionState.Running ||
                 !_unitManager.IsCurrentSessionUnit(unit) || !unit.RuleState.IsAlive)
                 return false;
@@ -63,7 +72,15 @@ namespace BF.Game.Runtime.Battle.Flow
                 new Vector2Int(unit.RuleState.GridPosition.X, unit.RuleState.GridPosition.Y),
                 targetCell,
                 unit.RuntimeId);
-            return path.Count > 0 && path.Count <= unit.RuleState.Attributes.RemainingActionPoints;
+            if (path.Count == 0) return false;
+
+            var rulePath = ToRulePath(path);
+            var validation = _boardRules.ValidateCandidatePath(
+                unit.RuntimeId,
+                new BFGridPosition(targetCell.x, targetCell.y),
+                rulePath);
+            return validation.Succeeded &&
+                   validation.ActionPointCost <= unit.RuleState.Attributes.RemainingActionPoints;
         }
 
         /// <summary>
@@ -204,6 +221,7 @@ namespace BF.Game.Runtime.Battle.Flow
                     startCell,
                     previousCell,
                     path.Count,
+                    path,
                     refreshPlayerLegalActions,
                     clearSelectionWhenActed,
                     out var boardSyncFailed);
@@ -242,10 +260,65 @@ namespace BF.Game.Runtime.Battle.Flow
             bool clearSelectionWhenActed,
             out bool boardSyncFailed)
         {
+            if (_boardRules == null)
+            {
+                boardSyncFailed = false;
+                return false;
+            }
+
+            return CompleteMove(
+                unit,
+                startCell,
+                targetCell,
+                moveCost,
+                null,
+                refreshPlayerLegalActions,
+                clearSelectionWhenActed,
+                out boardSyncFailed);
+        }
+
+        /// <summary>
+        /// 使用 A* 候选路径提交移动；候选路径在规则提交前再次验证，防止表现期间
+        /// 棋盘状态变化后仍然写入非法位置。
+        /// </summary>
+        internal bool CompleteMove(
+            UnitRuntime unit,
+            Vector2Int startCell,
+            Vector2Int targetCell,
+            int moveCost,
+            IReadOnlyList<Vector2Int> candidatePath,
+            bool refreshPlayerLegalActions,
+            bool clearSelectionWhenActed,
+            out bool boardSyncFailed)
+        {
             boardSyncFailed = false;
             if (unit == null || _unitStateRules == null || _battleSession == null ||
                 _battleSession.State != BFBattleSessionState.Running)
                 return false;
+            if (_boardRules == null)
+                return false;
+
+            var expectedStart = unit.RuleState.GridPosition;
+            if (expectedStart.X != startCell.x || expectedStart.Y != startCell.y)
+            {
+                Debug.LogWarning(
+                    $"[BFBattleMovementCoordinator] 移动起点与规则位置不一致：{unit.RuntimeId}。");
+                return false;
+            }
+
+            if (candidatePath == null)
+                return false;
+
+            var validation = _boardRules.ValidateCandidatePath(
+                unit.RuntimeId,
+                new BFGridPosition(targetCell.x, targetCell.y),
+                ToRulePath(candidatePath));
+            if (!validation.Succeeded || validation.ActionPointCost != moveCost)
+            {
+                Debug.LogWarning(
+                    $"[BFBattleMovementCoordinator] 候选路径被棋盘规则拒绝：{validation.FailureReason}");
+                return false;
+            }
 
             var result = _unitStateRules.TryMove(new MoveRequest(
                 unit.RuntimeId,
@@ -318,6 +391,15 @@ namespace BF.Game.Runtime.Battle.Flow
                 result.ToGridPosition.Value,
                 moveCost,
                 _battleSession.Context.TurnNumber));
+        }
+
+        private static List<BFGridPosition> ToRulePath(IReadOnlyList<Vector2Int> path)
+        {
+            var rulePath = new List<BFGridPosition>(path.Count);
+            for (var index = 0; index < path.Count; index++)
+                rulePath.Add(new BFGridPosition(path[index].x, path[index].y));
+
+            return rulePath;
         }
     }
 }

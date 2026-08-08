@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Cameras;
 using BF.Game.Runtime.Battle.Data;
@@ -168,14 +169,23 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             var battleContext = new DomainBattleContext(battleId);
-            _battleSession = new DomainBattleSession(battleContext);
+            var topology = _boardManager.ExportTopologySnapshot();
+            if (topology == null)
+            {
+                Debug.LogError("[BFBattleRoot] 无法导入棋盘规则拓扑，无法创建 BattleSession。", this);
+                return;
+            }
+
+            var boardRules = new BFBattleBoardRules(topology, battleContext);
+            _battleSession = new DomainBattleSession(battleContext, boardRules);
             _unitRegistry = new BFUnitRegistry(battleContext.BattleId);
             _unitFactory = new BFBattleUnitFactory(
                 _battleSession,
                 _unitRegistry,
                 _factoryConfig,
                 _boardManager,
-                transform);
+                transform,
+                boardRules: boardRules);
 
             var creationResult = _unitFactory.CreateEncounter(_encounter);
             if (!creationResult.Succeeded)
@@ -199,7 +209,9 @@ namespace BF.Game.Runtime.Battle.Managers
             // RegisterUnit 不接受脱离 Session 的规则单位，避免出现半初始化战斗。
             _turnManager.SetBattleSession(_battleSession);
             _unitManager.SetBattleSession(_battleSession);
+            _unitManager.SetBoardRules(boardRules);
             _resolutionManager.SetBattleSession(_battleSession);
+            _resolutionManager.SetBoardManager(_boardManager);
 
             // Factory 已经使用 Encounter 的规则坐标完成棋盘占用；这里仅注入结果列表。
             foreach (var unit in units)

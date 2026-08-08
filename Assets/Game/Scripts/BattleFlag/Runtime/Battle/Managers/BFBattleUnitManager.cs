@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BF.Game.Battle.Domain;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Domain.Units;
+using BF.Game.Battle.Rules.Battle;
 using BF.Game.Runtime.Battle.AI;
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.Flow;
@@ -47,6 +48,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
         private bool _isActionLocked;
         private DomainBattleSession _battleSession;
+        private BFBattleBoardRules _boardRules;
         private bool _boardSyncFaulted;
 
         /// <summary>战场上所有通过当前 BattleSession 注册的单位 Runtime。</summary>
@@ -131,8 +133,10 @@ namespace BF.Game.Runtime.Battle.Managers
                 _turnManager,
                 _boardManager);
             _actionCoordinator.SetBattleSession(_battleSession);
+            _actionCoordinator.SetBoardRules(_boardRules);
             _movementCoordinator.SetDependencies(this, _boardManager);
             _movementCoordinator.SetBattleSession(_battleSession);
+            _movementCoordinator.SetBoardRules(_boardRules);
             _enemyActionController.SetDependencies(
                 this,
                 _actionCoordinator,
@@ -183,6 +187,21 @@ namespace BF.Game.Runtime.Battle.Managers
 
                 AllUnits.Clear();
             }
+        }
+
+        /// <summary>注入当前战斗会话唯一的棋盘规则服务。</summary>
+        public void SetBoardRules(BFBattleBoardRules boardRules)
+        {
+            if (boardRules != null && _battleSession != null &&
+                !boardRules.IsBoundTo(_battleSession.Context))
+            {
+                throw new InvalidOperationException(
+                    "BFBattleBoardRules 必须绑定到同一个 BattleSession Context。");
+            }
+
+            _boardRules = boardRules;
+            _actionCoordinator?.SetBoardRules(boardRules);
+            _movementCoordinator?.SetBoardRules(boardRules);
         }
 
         /// <summary>测试辅助：注入棋盘管理器引用。</summary>
@@ -411,6 +430,34 @@ namespace BF.Game.Runtime.Battle.Managers
                 startCell,
                 targetCell,
                 moveCost,
+                refreshPlayerLegalActions,
+                clearSelectionWhenActed,
+                out boardSyncFailed);
+        }
+
+        /// <summary>
+        /// 由移动协调器提交带有 A* 候选路径的移动规则结果。
+        ///
+        /// 候选路径只作为适配层输入，最终仍由棋盘规则服务重新验证；该重载保留在
+        /// 内部门面中，便于流程测试验证非法候选路径不会绕过规则提交。
+        /// </summary>
+        internal bool CompleteMove(
+            UnitRuntime unit,
+            Vector2Int startCell,
+            Vector2Int targetCell,
+            int moveCost,
+            IReadOnlyList<Vector2Int> candidatePath,
+            bool refreshPlayerLegalActions,
+            bool clearSelectionWhenActed,
+            out bool boardSyncFailed)
+        {
+            boardSyncFailed = false;
+            return _movementCoordinator != null && _movementCoordinator.CompleteMove(
+                unit,
+                startCell,
+                targetCell,
+                moveCost,
+                candidatePath,
                 refreshPlayerLegalActions,
                 clearSelectionWhenActed,
                 out boardSyncFailed);

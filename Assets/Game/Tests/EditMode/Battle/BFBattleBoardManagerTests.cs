@@ -101,6 +101,40 @@ namespace BF.Game.Tests.EditMode.Battle
         }
 
         [Test]
+        public void PrepareForBattle_ExportsStaticBlockedCellsWithoutConfusingDynamicOccupancy()
+        {
+            var boardObject = new GameObject("Board");
+            var astar = boardObject.AddComponent<AstarPath>();
+            var grid = astar.data.AddGraph(typeof(GridGraph)) as GridGraph;
+            Assert.That(grid, Is.Not.Null);
+            grid.SetDimensions(3, 3, 1f);
+            grid.is2D = true;
+            grid.collision.use2D = true;
+            grid.collision.heightCheck = false;
+            astar.Scan();
+            grid.GetNode(1, 1).Walkable = false;
+
+            var manager = boardObject.AddComponent<BFBattleBoardManager>();
+            InvokeAwake(manager);
+
+            var snapshot = manager.ExportTopologySnapshot();
+
+            Assert.That(snapshot, Is.Not.Null);
+            Assert.That(snapshot.Width, Is.EqualTo(3));
+            Assert.That(snapshot.Height, Is.EqualTo(3));
+            Assert.That(
+                snapshot.IsBlocked(new BFGridPosition(1, 1)),
+                Is.True);
+            Assert.That(manager.IsCellOccupied(new Vector2Int(1, 1)), Is.True);
+            Assert.That(manager.TryOccupyCell(new Vector2Int(1, 1), "unit"), Is.False);
+
+            Assert.That(manager.TryOccupyCell(new Vector2Int(0, 0), "unit"), Is.True);
+            Assert.That(manager.ReleaseCell(new Vector2Int(0, 0), "unit"), Is.True);
+            Assert.That(manager.IsCellOccupied(new Vector2Int(0, 0)), Is.False);
+            Assert.That(manager.IsCellOccupied(new Vector2Int(1, 1)), Is.True);
+        }
+
+        [Test]
         public void SnapUnitsToGrid_ScansBeforeApplyingOccupancy()
         {
             var boardObject = new GameObject("Board");
@@ -190,6 +224,17 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(releaseCell.Invoke(manager, new object[] { new Vector2Int(0, 0), "other" }), Is.EqualTo(false));
             Assert.That(manager.IsCellOccupied(new Vector2Int(0, 0)), Is.True);
             Assert.That(releaseCell.Invoke(manager, new object[] { new Vector2Int(0, 0), "unit" }), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void TryReleaseUnitOccupancyFindsMirrorCellByRuntimeId()
+        {
+            var manager = CreateScannedBoard(3, 3);
+            Assert.That(manager.TryOccupyCell(new Vector2Int(2, 2), "unit"), Is.True);
+
+            Assert.That(manager.TryReleaseUnitOccupancy("other"), Is.False);
+            Assert.That(manager.TryReleaseUnitOccupancy("unit"), Is.True);
+            Assert.That(manager.IsCellOccupied(new Vector2Int(2, 2)), Is.False);
         }
 
         [Test]

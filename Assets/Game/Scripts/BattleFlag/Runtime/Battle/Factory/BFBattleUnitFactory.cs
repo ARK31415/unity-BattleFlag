@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BF.Game.Battle.Domain;
 using BF.Game.Battle.Domain.Units;
+using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle.Data;
 using BF.Game.Runtime.Battle.Managers;
@@ -24,6 +25,8 @@ namespace BF.Game.Runtime.Battle.Factory
         private readonly BFUnitRegistry _registry;
         private readonly BFUnitFactoryConfigSO _factoryConfig;
         private readonly BFBattleBoardManager _boardManager;
+        private readonly BFBattleBoardRules _boardRules;
+        private readonly bool _ownsBoardRules;
         private readonly Transform _unitParent;
         private readonly IBFUnitRuntimeProvider _runtimeProvider;
         private readonly BFUnitDefinitionResolver _definitionResolver = new();
@@ -39,7 +42,8 @@ namespace BF.Game.Runtime.Battle.Factory
             BFUnitFactoryConfigSO factoryConfig,
             BFBattleBoardManager boardManager,
             Transform unitParent,
-            IBFUnitRuntimeProvider runtimeProvider = null)
+            IBFUnitRuntimeProvider runtimeProvider = null,
+            BFBattleBoardRules boardRules = null)
         {
             _session = session ?? throw new ArgumentNullException(nameof(session));
             _registry = registry ?? throw new ArgumentNullException(nameof(registry));
@@ -47,6 +51,27 @@ namespace BF.Game.Runtime.Battle.Factory
             _boardManager = boardManager ?? throw new ArgumentNullException(nameof(boardManager));
             _unitParent = unitParent;
             _runtimeProvider = runtimeProvider ?? new BFUnityUnitRuntimeProvider();
+
+            if (boardRules != null)
+            {
+                if (!boardRules.IsBoundTo(_session.Context))
+                    throw new ArgumentException(
+                        "BFBattleBoardRules 必须绑定到同一个 BattleSession Context。",
+                        nameof(boardRules));
+
+                _boardRules = boardRules;
+            }
+            else
+            {
+                var topology = _boardManager.ExportTopologySnapshot();
+                if (topology == null)
+                    throw new InvalidOperationException("无法从棋盘管理器导入棋盘规则拓扑。");
+
+                // 保留旧测试/调用方的构造兼容性；正式战斗由 Root 创建并由 Session 托管
+                // 唯一的棋盘规则服务，再通过构造参数注入这里。
+                _boardRules = new BFBattleBoardRules(topology, _session.Context);
+                _ownsBoardRules = true;
+            }
         }
 
         /// <inheritdoc />
@@ -194,6 +219,8 @@ namespace BF.Game.Runtime.Battle.Factory
             if (_isDisposed) return;
 
             RollbackCreatedUnits();
+            if (_ownsBoardRules)
+                _boardRules.Dispose();
             _isDisposed = true;
         }
 
@@ -212,21 +239,11 @@ namespace BF.Game.Runtime.Battle.Factory
 
         private bool ValidatePosition(BFGridPosition position, out string error)
         {
-            var cell = new Vector2Int(position.X, position.Y);
-            if (!_boardManager.IsCellInBounds(cell))
-            {
-                error = $"Grid position {position.X},{position.Y} is outside the battle board.";
-                return false;
-            }
-
-            if (_boardManager.IsCellOccupied(cell))
-            {
-                error = $"Grid position {position.X},{position.Y} is already occupied.";
-                return false;
-            }
-
-            error = string.Empty;
-            return true;
+            var validation = _boardRules.ValidateSpawnPosition(position);
+            error = validation.Succeeded
+                ? string.Empty
+                : $"Grid position {position.X},{position.Y} is invalid: {validation.FailureReason}";
+            return validation.Succeeded;
         }
 
         /// <summary>
@@ -250,7 +267,7 @@ namespace BF.Game.Runtime.Battle.Factory
             bool occupied)
         {
             if (occupied && state != null)
-                _boardManager.ReleaseCell(new Vector2Int(state.GridPosition.X, state.GridPosition.Y), handle.RuntimeId);
+                _boardManager.TryReleaseUnitOccupancy(handle.RuntimeId);
             if (registeredInRegistry)
                 _registry.TryUnregister(handle);
             if (runtime != null)
@@ -271,9 +288,7 @@ namespace BF.Game.Runtime.Battle.Factory
                 var created = _createdUnits[index];
                 if (_session.Context.TryGetUnit(created.Handle.RuntimeId, out var state))
                 {
-                    _boardManager.ReleaseCell(
-                        new Vector2Int(state.GridPosition.X, state.GridPosition.Y),
-                        created.Handle.RuntimeId);
+                    _boardManager.TryReleaseUnitOccupancy(created.Handle.RuntimeId);
                     _session.Context.TryRemoveUnit(created.Handle.RuntimeId);
                 }
 

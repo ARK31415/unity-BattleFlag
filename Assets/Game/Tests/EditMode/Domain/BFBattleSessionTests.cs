@@ -1,4 +1,7 @@
+using BF.Game.Battle.Domain;
 using BF.Game.Battle.Domain.Events;
+using BF.Game.Battle.Rules.Battle;
+using BF.Game.Battle.Domain.Units;
 using NUnit.Framework;
 
 namespace BF.Game.Tests.EditMode.Domain
@@ -61,6 +64,22 @@ namespace BF.Game.Tests.EditMode.Domain
             Assert.That(session.State, Is.EqualTo(BF.Game.Battle.Domain.BFBattleSessionState.Disposed));
             Assert.Throws<System.ObjectDisposedException>(() => _ = session.Context);
             Assert.Throws<System.ObjectDisposedException>(() => session.Start());
+        }
+
+        [Test]
+        public void DisposeAlsoDisposesInjectedBoardRulesLifetime()
+        {
+            var context = new BF.Game.Battle.Domain.BFBattleContext("battle-board-lifetime");
+            var boardRules = new BFBattleBoardRules(
+                new BFBoardTopologySnapshot(2, 2, null),
+                context);
+            var session = new BF.Game.Battle.Domain.BFBattleSession(context, boardRules);
+
+            session.Dispose();
+
+            Assert.Throws<System.ObjectDisposedException>(
+                () => boardRules.ValidateSpawnPosition(new BFGridPosition(0, 0)));
+            Assert.DoesNotThrow(session.Dispose);
         }
     }
 }
