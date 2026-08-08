@@ -244,7 +244,7 @@ namespace BF.Game.Tests.EditMode.Rules
             Assert.That(result.TargetWasKilled, Is.False);
             Assert.That(attacker.Attributes.RemainingActionPoints, Is.EqualTo(3));
             Assert.That(target.Attributes.CurrentHP, Is.EqualTo(12));
-            Assert.That(attacker.ActionState, Is.EqualTo(BFUnit_ActionState.Attack));
+            Assert.That(attacker.ActionState, Is.EqualTo(BFUnit_ActionState.Idle));
         }
 
         [Test]

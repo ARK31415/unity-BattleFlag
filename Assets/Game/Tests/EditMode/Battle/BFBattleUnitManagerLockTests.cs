@@ -37,8 +37,9 @@ namespace BF.Game.Tests.EditMode.Battle
         [Test]
         public void TrySelectUnit_ReturnsFalseWhileActionLocked()
         {
-            var manager = CreateManager();
-            var unit = CreatePlayerUnit("Player");
+            var fixture = CreateBattle();
+            var manager = fixture.Manager;
+            var unit = fixture.Unit;
             SetActionLocked(manager, true);
 
             bool selected = manager.TrySelectUnit(unit);
@@ -50,8 +51,9 @@ namespace BF.Game.Tests.EditMode.Battle
         [Test]
         public void DeselectUnit_KeepsSelectionWhileActionLocked()
         {
-            var manager = CreateManager();
-            var unit = CreatePlayerUnit("Player");
+            var fixture = CreateBattle();
+            var manager = fixture.Manager;
+            var unit = fixture.Unit;
             Assert.That(manager.TrySelectUnit(unit), Is.True);
             SetActionLocked(manager, true);
 
@@ -60,17 +62,9 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(manager.SelectedUnit, Is.SameAs(unit));
         }
 
-        private static BFBattleUnitManager CreateManager()
+        private static BattleFixture CreateBattle()
         {
-            return new GameObject("UnitManager").AddComponent<BFBattleUnitManager>();
-        }
-
-        private static UnitRuntime CreatePlayerUnit(string name)
-        {
-            var gameObject = new GameObject(name);
-            var unit = gameObject.AddComponent<UnitRuntime>();
-            unit.Identity.Faction = UnitFaction.Player;
-
+            var manager = new GameObject("UnitManager").AddComponent<BFBattleUnitManager>();
             var context = new BFBattleContext("lock-test");
             var state = new DomainBFUnitState(
                 "profile-lock",
@@ -82,12 +76,44 @@ namespace BF.Game.Tests.EditMode.Battle
                 new DomainBFUnitAttributes(20, 5, 8),
                 new DomainBFGridPosition(1, 2));
             Assert.That(context.TryRegisterUnit(state), Is.True);
+            var session = new BFBattleSession(context);
+            session.Start();
+
+            var turnManager = new GameObject("LockTest.TurnManager").AddComponent<BFBattleTurnManager>();
+            SetPrivateField(manager, "_turnManager", turnManager);
+            SetPrivateField(turnManager, "_unitManager", manager);
+            turnManager.SetBattleSession(session);
+
+            var gameObject = new GameObject("Player");
+            var unit = gameObject.AddComponent<UnitRuntime>();
             unit.BindRuleState(
                 state,
                 null,
-                name,
+                "Player",
                 new BFBattleUnitHandle("lock-test", state.RuntimeId));
-            return unit;
+            manager.SetBattleSession(session);
+            manager.RegisterUnit(unit);
+            turnManager.StartBattle();
+            return new BattleFixture(manager, unit);
+        }
+
+        private static void SetPrivateField(object target, string fieldName, object value)
+        {
+            var field = target.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.That(field, Is.Not.Null, $"Missing private test dependency field: {fieldName}");
+            field.SetValue(target, value);
+        }
+
+        private readonly struct BattleFixture
+        {
+            public BattleFixture(BFBattleUnitManager manager, UnitRuntime unit)
+            {
+                Manager = manager;
+                Unit = unit;
+            }
+
+            public BFBattleUnitManager Manager { get; }
+            public UnitRuntime Unit { get; }
         }
 
         private static void SetActionLocked(BFBattleUnitManager manager, bool value)

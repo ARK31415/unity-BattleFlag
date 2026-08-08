@@ -32,7 +32,7 @@ namespace BF.Game.Runtime.Battle.Commands
                 return BFAttackResolveResult.Failure("攻击者或目标为空。");
             }
 
-            if (!context.Target.Stats.IsAlive)
+            if (!context.Target.IsRuleBound || !context.Target.RuleState.IsAlive)
             {
                 Debug.LogWarning("[BFAttackResolver] 目标已死亡，无法结算。");
                 return BFAttackResolveResult.Failure("目标已经死亡。");

@@ -44,6 +44,11 @@ namespace BF.Game.Tests.EditMode.Battle
             {
                 UnityEngine.Object.DestroyImmediate(astar.gameObject);
             }
+
+            foreach (var turnManager in UnityEngine.Object.FindObjectsByType<BFBattleTurnManager>(FindObjectsSortMode.None))
+            {
+                UnityEngine.Object.DestroyImmediate(turnManager.gameObject);
+            }
         }
 
         [Test]
@@ -340,7 +345,10 @@ namespace BF.Game.Tests.EditMode.Battle
             session = new BFBattleSession(context);
             session.Start();
             manager = CreateManager();
-            manager.SetBattleSession(session);
+            var turnManager = new GameObject("ActionTest.TurnManager").AddComponent<BFBattleTurnManager>();
+            SetPrivateField(manager, "_turnManager", turnManager);
+            SetPrivateField(turnManager, "_unitManager", manager);
+            turnManager.SetBattleSession(session);
 
             unit = CreateUnit("Attacker");
             unit.BindRuleState(
@@ -348,7 +356,19 @@ namespace BF.Game.Tests.EditMode.Battle
                 null,
                 "Attacker",
                 new BFBattleUnitHandle("action-test", state.RuntimeId));
+            manager.SetBattleSession(session);
+            manager.RegisterUnit(unit);
+            turnManager.StartBattle();
             return new BattleFixture(context, session);
+        }
+
+        private static void SetPrivateField(object target, string fieldName, object value)
+        {
+            var field = target.GetType().GetField(
+                fieldName,
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            Assert.That(field, Is.Not.Null, $"Missing private test dependency field: {fieldName}");
+            field.SetValue(target, value);
         }
 
         private static BFUnitState CreateTargetState(

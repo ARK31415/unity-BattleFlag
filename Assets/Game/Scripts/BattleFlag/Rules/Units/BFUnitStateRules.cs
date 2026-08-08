@@ -150,6 +150,12 @@ namespace BF.Game.Battle.Rules.Units
             var previousAttackPoints = attacker.Attributes.RemainingActionPoints;
             var previousTargetHealth = target.Attributes.CurrentHP;
 
+            // 攻击结算命令同时结束攻击者的规则行动状态；适配层只刷新投影，
+            // 不在规则结果成立后再次写入状态。
+            if (!attacker.TryChangeActionState(BFUnit_ActionState.Idle))
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "攻击者无法结束攻击状态。");
+
             attacker.Attributes.SetRemainingActionPoints(previousAttackPoints - request.ActionPointCost);
             target.Attributes.SetCurrentHP(System.Math.Max(0, previousTargetHealth - damage));
             var wasKilled = !target.IsAlive;
@@ -158,6 +164,7 @@ namespace BF.Game.Battle.Rules.Units
             {
                 attacker.Attributes.SetRemainingActionPoints(previousAttackPoints);
                 target.Attributes.SetCurrentHP(previousTargetHealth);
+                attacker.TryChangeActionState(BFUnit_ActionState.Attack);
                 return AttackResult.Failure(
                     request.AttackerRuntimeId, request.TargetRuntimeId, "死亡状态切换失败，已回滚。");
             }

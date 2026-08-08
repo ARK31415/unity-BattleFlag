@@ -68,6 +68,8 @@ namespace BF.Game.Battle.Rules.Battle
         public void CompleteBattle(BattleResult result)
         {
             if (result == null) throw new ArgumentNullException(nameof(result));
+            if (_session.State != BFBattleSessionState.Running || _session.Context.Result != null)
+                return;
             if (!string.Equals(result.BattleId, _session.Context.BattleId, StringComparison.Ordinal))
                 throw new ArgumentException("战斗结果的 BattleId 与当前 Session 不一致。", nameof(result));
 

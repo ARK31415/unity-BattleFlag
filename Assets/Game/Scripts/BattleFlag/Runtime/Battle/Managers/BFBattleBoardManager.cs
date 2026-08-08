@@ -71,6 +71,17 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
+        /// 在战斗工厂创建 Encounter 单位前，显式准备场景棋盘。
+        ///
+        /// BattleRoot 与本组件的 Start 顺序不应成为棋盘坐标校验的隐式前提；
+        /// 工厂只允许在该方法成功后验证格子边界与占用状态。
+        /// </summary>
+        public bool PrepareForBattle()
+        {
+            return EnsureGridReady();
+        }
+
+        /// <summary>
         /// 将场景中的单位对齐到棋盘格子上（由 BFBattleRoot 在初始化流程中调用）。
         /// </summary>
         public void SnapUnitsToGrid(List<UnitRuntime> units)

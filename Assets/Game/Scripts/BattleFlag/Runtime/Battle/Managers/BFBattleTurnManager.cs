@@ -153,6 +153,15 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             Debug.Log($"[BFBattleTurnManager] Phase: {oldPhase} → {newPhase}");
+
+            // 先提交规则阶段/回合，再刷新 Runtime 资源和表现提示；订阅者读取到的
+            // Context 与阶段事件必须已经处于同一份新状态。
+            if (!_battleProgressRules.TryUpdateProgress(
+                    ToDomainPhase(newPhase),
+                    nextTurnNumber,
+                    nextRoundNumber))
+                return;
+
             switch (newPhase)
             {
                 case BattlePhase.PlayerTurn:
@@ -166,11 +175,6 @@ namespace BF.Game.Runtime.Battle.Managers
                 case BattlePhase.Resolution:
                     break;
             }
-
-            _battleProgressRules.TryUpdateProgress(
-                ToDomainPhase(newPhase),
-                nextTurnNumber,
-                nextRoundNumber);
 
             // 保留旧 C# 观察者，但现在回调读取到的是更新后的阶段与回合数据。
             OnPhaseChanged?.Invoke(oldPhase, newPhase);

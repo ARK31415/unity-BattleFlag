@@ -159,6 +159,14 @@ namespace BF.Game.Runtime.Battle.Managers
 
             // EncounterId 是配置身份，BattleId 是本次运行的会话身份，不能直接复用。
             var battleId = $"{_encounter.EncounterId}_{Guid.NewGuid():N}";
+            // Root 的 Start 可能先于 BoardManager.Start；先准备 A*，再让 Factory
+            // 校验 Encounter 坐标，避免合法单位被误判为越界。
+            if (!_boardManager.PrepareForBattle())
+            {
+                Debug.LogError("[BFBattleRoot] Battle board is not ready for unit creation.", this);
+                return;
+            }
+
             var battleContext = new DomainBattleContext(battleId);
             _battleSession = new DomainBattleSession(battleContext);
             _unitRegistry = new BFUnitRegistry(battleContext.BattleId);

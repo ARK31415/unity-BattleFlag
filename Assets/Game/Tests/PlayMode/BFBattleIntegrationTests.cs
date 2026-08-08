@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Domain.Units;
 using BF.Game.Runtime.Battle;
+using BF.Game.Runtime.Battle.AI;
 using BF.Game.Runtime.Battle.Events;
+using BF.Game.Runtime.Battle.Flow;
+using BF.Game.Runtime.Battle.Input;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
 using NUnit.Framework;
@@ -111,6 +114,10 @@ namespace BF.Game.Tests.PlayMode
                 _completedEvents[0].WinnerFaction,
                 Is.EqualTo(_completedCallbackResult.WinnerFaction));
 
+            // 胜负协调器必须具备幂等性：完成后的重复评估不能再次发布完成事实。
+            _battleRoot.UnitManager.CheckBattleEndCondition();
+            Assert.That(_completedEvents.Count, Is.EqualTo(1));
+
             var finalAttackIndex = FindLastDefeatingAttackIndex();
             var defeatedIndex = FindNextEventIndex(SessionEventKind.UnitDefeated, finalAttackIndex);
             var completedIndex = FindNextEventIndex(SessionEventKind.BattleCompleted, defeatedIndex);
@@ -167,6 +174,90 @@ namespace BF.Game.Tests.PlayMode
             Assert.That(player.RuleState.ActionState, Is.EqualTo(BFUnit_ActionState.Idle));
             Assert.That(target.RuleState.Attributes.CurrentHP, Is.EqualTo(targetHpBefore));
             Assert.That(_attackEvents.Count, Is.EqualTo(attackEventCountBefore));
+        }
+
+        [UnityTest]
+        public IEnumerator DisablingAttackTargetBeforeHit_ClearsAttackerActionLifecycle()
+        {
+            var attacker = _battleRoot.UnitManager.GetAliveUnitsByFaction(UnitFaction.Player)[0];
+            Assert.That(_battleRoot.UnitManager.TrySelectUnit(attacker), Is.True);
+
+            var target = ChooseAttackableTarget();
+            if (target == null)
+            {
+                var destination = ChooseMoveDestination(attacker);
+                if (destination.HasValue)
+                {
+                    Assert.That(_battleRoot.UnitManager.TryMoveUnit(destination.Value), Is.True);
+                    yield return WaitForActionUnlocked();
+                }
+
+                _battleRoot.TurnManager.EndTurn();
+                yield return WaitForPlayerTurnOrCompletion();
+                Assert.That(_battleRoot.UnitManager.TrySelectUnit(attacker), Is.True);
+                target = ChooseAttackableTarget();
+            }
+
+            Assert.That(target, Is.Not.Null, "玩家单位无法进入攻击范围。");
+
+            var apBefore = attacker.RuleState.Attributes.RemainingActionPoints;
+            var targetHpBefore = target.RuleState.Attributes.CurrentHP;
+            var attackEventCountBefore = _attackEvents.Count;
+
+            Assert.That(_battleRoot.UnitManager.TryAttack(target), Is.True);
+
+            // 目标在命中帧前被禁用时，必须清理攻击者的 pending attack、动作状态和行动锁。
+            target.gameObject.SetActive(false);
+            yield return WaitUntil(
+                () => !_battleRoot.UnitManager.IsActionLocked || _session.State != BFBattleSessionState.Running,
+                ActionTimeoutFrames,
+                "禁用攻击目标后动作锁未释放。");
+
+            Assert.That(attacker.RuleState.Attributes.RemainingActionPoints, Is.EqualTo(apBefore));
+            Assert.That(attacker.RuleState.ActionState, Is.EqualTo(BFUnit_ActionState.Idle));
+            Assert.That(attacker.Combat.HasQueuedAttack, Is.False);
+            Assert.That(target.RuleState.Attributes.CurrentHP, Is.EqualTo(targetHpBefore));
+            Assert.That(_attackEvents.Count, Is.EqualTo(attackEventCountBefore));
+        }
+
+        [UnityTest]
+        public IEnumerator WaitWithRemainingActionPoints_UsesUnifiedActionCoordinator()
+        {
+            var player = _battleRoot.UnitManager.GetAliveUnitsByFaction(UnitFaction.Player)[0];
+            Assert.That(player.RuleState.Attributes.RemainingActionPoints, Is.GreaterThan(0));
+            Assert.That(_battleRoot.UnitManager.TrySelectUnit(player), Is.True);
+
+            Assert.That(_battleRoot.UnitManager.TryWaitSelectedUnit(), Is.True);
+            yield return null;
+
+            Assert.That(player.RuleState.Attributes.RemainingActionPoints, Is.EqualTo(0));
+            Assert.That(player.RuleState.ActionState, Is.EqualTo(BFUnit_ActionState.Idle));
+            Assert.That(_battleRoot.UnitManager.SelectedUnit, Is.Null);
+            Assert.That(_battleRoot.UnitManager.IsActionLocked, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator EndingPlayerTurn_ExecutesEnemyActionBeforeReturning()
+        {
+            var enemy = _battleRoot.UnitManager.GetAliveUnitsByFaction(UnitFaction.Enemy)[0];
+            var enemyActionController = _battleRoot.UnitManager.GetComponent<BFBattleEnemyActionController>();
+            var startPosition = enemy.RuleState.GridPosition;
+            var startActionPoints = enemy.RuleState.Attributes.RemainingActionPoints;
+
+            _battleRoot.TurnManager.EndTurn();
+
+            yield return WaitUntil(
+                () => _battleRoot.TurnManager.CurrentPhase == BattlePhase.PlayerTurn &&
+                      !_battleRoot.UnitManager.IsActionLocked,
+                ActionTimeoutFrames,
+                "敌方回合没有返回玩家回合。");
+
+            var moved = enemy.RuleState.GridPosition != startPosition;
+            var spentActionPoints = enemy.RuleState.Attributes.RemainingActionPoints < startActionPoints;
+            Assert.That(moved || spentActionPoints, Is.True,
+                "敌方回合立即返回玩家回合，但敌方没有执行任何移动或行动点消耗。");
+            Assert.That(enemyActionController.IsExecuting, Is.False,
+                "敌方回合已经结束，但 AI 执行状态仍未清理。");
         }
 
         private UnitRuntime ChooseAttackableTarget()
@@ -281,6 +372,14 @@ namespace BF.Game.Tests.PlayMode
             Assert.That(_battleRoot.TurnManager, Is.Not.Null, "Turn manager was not resolved.");
             Assert.That(_battleRoot.ResolutionManager, Is.Not.Null, "Resolution manager was not resolved.");
             Assert.That(_battleRoot.BattleSession.State, Is.EqualTo(BFBattleSessionState.Running));
+
+            Assert.That(_battleRoot.UnitManager.GetComponent<BFBattleSelectionController>(), Is.Not.Null);
+            Assert.That(_battleRoot.UnitManager.GetComponent<BFBattleActionCoordinator>(), Is.Not.Null);
+            Assert.That(_battleRoot.UnitManager.GetComponent<BFBattleMovementCoordinator>(), Is.Not.Null);
+            Assert.That(_battleRoot.UnitManager.GetComponent<BFBattleEnemyActionController>(), Is.Not.Null);
+            Assert.That(_battleRoot.UnitManager.GetComponent<BFBattleOutcomeCoordinator>(), Is.Not.Null);
+            Assert.That(_battleRoot.UnitManager.ActionCoordinator, Is.SameAs(
+                _battleRoot.UnitManager.GetComponent<BFBattleActionCoordinator>()));
 
             _session = _battleRoot.BattleSession;
             RegisterSessionObservers(_session);
