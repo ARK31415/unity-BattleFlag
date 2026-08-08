@@ -128,7 +128,6 @@ namespace BF.Game.Tests.EditMode.Battle
                     DomainUnitTier.Normal,
                     new BFUnitAttributes(20, 5, 5),
                     new BFGridPosition(1, 1)),
-                BFUnitStatBlock.Default,
                 null,
                 "Test Unit",
                 new BFBattleUnitHandle("battle-test", "runtime-test"));
@@ -174,6 +173,40 @@ namespace BF.Game.Tests.EditMode.Battle
             List<Vector2Int> path = manager.FindPath(start, occupiedTarget, "unit");
 
             Assert.That(path, Is.Empty);
+        }
+
+        [Test]
+        public void ReleaseCellReportsMissingOrMismatchedOccupant()
+        {
+            var manager = CreateScannedBoard(3, 3);
+            var releaseCell = typeof(BFBattleBoardManager).GetMethod(
+                "ReleaseCell",
+                BindingFlags.Instance | BindingFlags.Public);
+            Assert.That(releaseCell, Is.Not.Null);
+            Assert.That(releaseCell.ReturnType, Is.EqualTo(typeof(bool)));
+
+            Assert.That(releaseCell.Invoke(manager, new object[] { new Vector2Int(0, 0), "unit" }), Is.EqualTo(false));
+            Assert.That(manager.TryOccupyCell(new Vector2Int(0, 0), "unit"), Is.True);
+            Assert.That(releaseCell.Invoke(manager, new object[] { new Vector2Int(0, 0), "other" }), Is.EqualTo(false));
+            Assert.That(manager.IsCellOccupied(new Vector2Int(0, 0)), Is.True);
+            Assert.That(releaseCell.Invoke(manager, new object[] { new Vector2Int(0, 0), "unit" }), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void HasExactUnitOccupancy_RejectsStaleDynamicOccupant()
+        {
+            var manager = CreateScannedBoard(3, 3);
+            Assert.That(manager.TryOccupyCell(new Vector2Int(0, 0), "unit"), Is.True);
+            Assert.That(manager.TryOccupyCell(new Vector2Int(1, 1), "stale"), Is.True);
+
+            var expected = new Dictionary<Vector2Int, string>
+            {
+                [new Vector2Int(0, 0)] = "unit"
+            };
+
+            Assert.That(manager.HasExactUnitOccupancy(expected), Is.False);
+            Assert.That(manager.ReleaseCell(new Vector2Int(1, 1), "stale"), Is.True);
+            Assert.That(manager.HasExactUnitOccupancy(expected), Is.True);
         }
 
         private static void InvokeAwake(BFBattleBoardManager manager)

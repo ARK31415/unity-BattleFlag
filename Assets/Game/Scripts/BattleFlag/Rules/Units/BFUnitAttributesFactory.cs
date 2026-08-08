@@ -13,9 +13,16 @@ namespace BF.Game.Battle.Rules.Units
         public BFUnitAttributes Create(
             int baseMaxHP,
             int baseMaxActionPoints,
-            int baseAttackPower)
+            int baseAttackPower,
+            int baseAttackRange = 1,
+            int baseAttackCost = 2)
         {
-            return new BFUnitAttributes(baseMaxHP, baseMaxActionPoints, baseAttackPower);
+            return new BFUnitAttributes(
+                baseMaxHP,
+                baseMaxActionPoints,
+                baseAttackPower,
+                baseAttackRange: baseAttackRange,
+                baseAttackCost: baseAttackCost);
         }
     }
 }

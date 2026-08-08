@@ -98,7 +98,6 @@ namespace BF.Game.Tests.EditMode.Battle
             _createdObjects.Add(foreignRuntime.gameObject);
             foreignRuntime.BindRuleState(
                 state,
-                BFUnitStatBlock.Default,
                 definition.UnityBinding,
                 "foreign runtime",
                 foreignHandle,

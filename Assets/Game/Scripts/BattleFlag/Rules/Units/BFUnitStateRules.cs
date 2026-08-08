@@ -7,7 +7,8 @@ namespace BF.Game.Battle.Rules.Units
     /// 单位规则状态的受控修改入口。
     ///
     /// 该类型只依赖纯 C# Domain，不负责 Unity 表现、动画或事件适配。
-    /// 调用方应先在适配层完成目标选择和外部输入转换，再由本类型执行规则状态修改。
+    /// 行动入口统一使用强类型 Request / Result 表达成功与失败；
+    /// 其余资源操作保留 bool 入口，不作为行动提交合同。
     /// </summary>
     public sealed class BFUnitStateRules
     {
@@ -18,6 +19,175 @@ namespace BF.Game.Battle.Rules.Units
         public BFUnitStateRules(BFBattleContext context)
         {
             _context = context ?? throw new System.ArgumentNullException(nameof(context));
+        }
+
+        /// <summary>
+        /// 尝试提交一次移动。
+        ///
+        /// 位置、AP 和行动状态作为同一个规则命令完成；任一不变量失败时恢复原位置、
+        /// 原 AP 和原行动状态，不留下部分更新。
+        /// </summary>
+        /// <param name="request">移动请求。</param>
+        /// <returns>包含规则提交结果的移动结果。</returns>
+        public MoveResult TryMove(MoveRequest request)
+        {
+            if (!TryGetAliveUnit(request.RuntimeId, out var unit))
+                return MoveResult.Failure(request.RuntimeId, "单位不存在或已死亡。");
+            if (unit.Attributes.RemainingActionPoints < request.ActionPointCost)
+                return MoveResult.Failure(request.RuntimeId, "剩余行动点不足。");
+
+            var previousPosition = unit.GridPosition;
+            var previousActionPoints = unit.Attributes.RemainingActionPoints;
+            var previousActionState = unit.ActionState;
+
+            unit.Attributes.SetRemainingActionPoints(previousActionPoints - request.ActionPointCost);
+            unit.SetGridPosition(request.TargetGridPosition);
+            if (!unit.TryChangeActionState(BFUnit_ActionState.Idle))
+            {
+                unit.Attributes.SetRemainingActionPoints(previousActionPoints);
+                unit.SetGridPosition(previousPosition);
+                unit.TryChangeActionState(previousActionState);
+                return MoveResult.Failure(request.RuntimeId, "行动状态切换失败，已回滚。");
+            }
+
+            return MoveResult.Success(
+                request.RuntimeId,
+                previousPosition,
+                request.TargetGridPosition,
+                request.ActionPointCost,
+                unit.Attributes.RemainingActionPoints);
+        }
+
+        /// <summary>
+        /// 尝试开始一次规则攻击。
+        ///
+        /// 攻击请求由规则层校验攻击者、目标、阵营、攻击范围、攻击资源和当前行动状态；
+        /// 攻击开始阶段只锁定攻击行动状态，不消耗 AP，AP 消耗在 <see cref="TryResolveAttack" /> 中提交。
+        /// </summary>
+        /// <param name="request">攻击请求。</param>
+        /// <returns>包含规则校验结果与锁定状态的攻击结果。</returns>
+        public AttackResult TryStartAttack(AttackRequest request)
+        {
+            if (!TryGetAliveUnit(request.AttackerRuntimeId, out var attacker))
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "攻击者不存在或已死亡。");
+            if (!_context.TryGetUnit(request.TargetRuntimeId, out var target) || !target.IsAlive)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "目标不存在或已死亡。");
+            if (attacker.Faction == target.Faction)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "不能攻击同阵营单位。");
+            if (attacker.ActionState != BFUnit_ActionState.Idle)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "攻击者必须处于待机状态。");
+            if (request.ActionPointCost != attacker.Attributes.EffectiveAttackCost)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "攻击消耗必须与规则攻击成本一致。");
+            if (attacker.Attributes.RemainingActionPoints < request.ActionPointCost)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "剩余行动点不足。");
+            if (ManhattanDistance(attacker.GridPosition, target.GridPosition) >
+                attacker.Attributes.EffectiveAttackRange)
+            {
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "目标超出攻击范围。");
+            }
+
+            if (!attacker.TryChangeActionState(BFUnit_ActionState.Attack))
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "行动状态切换失败。");
+
+            return AttackResult.Success(
+                request.AttackerRuntimeId,
+                request.TargetRuntimeId,
+                request.ActionPointCost,
+                0,
+                target.Attributes.CurrentHP,
+                false);
+        }
+
+        /// <summary>
+        /// 尝试提交一次命中后的攻击结算。
+        ///
+        /// 攻击者必须处于规则 Attack 状态；攻击者 AP 消耗、目标伤害和死亡状态作为同一个
+        /// 规则命令提交，伤害值由攻击者规则攻击力决定。任一不变量失败时恢复攻击者 AP 和
+        /// 目标 HP，不留下部分修改。
+        /// </summary>
+        /// <param name="request">攻击请求。</param>
+        /// <returns>包含结算结果的攻击结果。</returns>
+        public AttackResult TryResolveAttack(AttackRequest request)
+        {
+            if (!TryGetAliveUnit(request.AttackerRuntimeId, out var attacker))
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "攻击者不存在或已死亡。");
+            if (!TryGetAliveUnit(request.TargetRuntimeId, out var target))
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "目标不存在或已死亡。");
+            if (attacker.ActionState != BFUnit_ActionState.Attack)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "攻击者不在攻击状态。");
+            if (attacker.Faction == target.Faction)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "不能攻击同阵营单位。");
+            if (request.ActionPointCost != attacker.Attributes.EffectiveAttackCost)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "攻击消耗必须与规则攻击成本一致。");
+            if (attacker.Attributes.RemainingActionPoints < request.ActionPointCost)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "剩余行动点不足。");
+            if (ManhattanDistance(attacker.GridPosition, target.GridPosition) >
+                attacker.Attributes.EffectiveAttackRange)
+            {
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "目标超出攻击范围。");
+            }
+
+            var damage = System.Math.Max(0, attacker.Attributes.EffectiveAttackPower);
+            if (damage <= 0)
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "攻击力为 0，无法造成伤害。");
+
+            var previousAttackPoints = attacker.Attributes.RemainingActionPoints;
+            var previousTargetHealth = target.Attributes.CurrentHP;
+
+            attacker.Attributes.SetRemainingActionPoints(previousAttackPoints - request.ActionPointCost);
+            target.Attributes.SetCurrentHP(System.Math.Max(0, previousTargetHealth - damage));
+            var wasKilled = !target.IsAlive;
+
+            if (wasKilled && !target.TryChangeActionState(BFUnit_ActionState.Dead))
+            {
+                attacker.Attributes.SetRemainingActionPoints(previousAttackPoints);
+                target.Attributes.SetCurrentHP(previousTargetHealth);
+                return AttackResult.Failure(
+                    request.AttackerRuntimeId, request.TargetRuntimeId, "死亡状态切换失败，已回滚。");
+            }
+
+            return AttackResult.Success(
+                request.AttackerRuntimeId,
+                request.TargetRuntimeId,
+                request.ActionPointCost,
+                damage,
+                target.Attributes.CurrentHP,
+                wasKilled);
+        }
+
+        /// <summary>
+        /// 尝试提交一次等待。
+        ///
+        /// 只有剩余 AP 大于 0 时允许等待；成功后将剩余 AP 结算为 0 并结束当前单位行动。
+        /// 剩余 AP 为 0 时返回失败，不能返回成功。
+        /// </summary>
+        /// <param name="request">等待请求。</param>
+        /// <returns>等待结果。</returns>
+        public WaitResult TryWait(WaitRequest request)
+        {
+            if (!TryGetAliveUnit(request.RuntimeId, out var unit))
+                return WaitResult.Failure(request.RuntimeId, "单位不存在或已死亡。");
+            if (unit.Attributes.RemainingActionPoints <= 0)
+                return WaitResult.Failure(request.RuntimeId, "剩余行动点为 0，不能等待。");
+
+            unit.Attributes.SetRemainingActionPoints(0);
+            return WaitResult.Success(request.RuntimeId);
         }
 
         /// <summary>
@@ -54,31 +224,6 @@ namespace BF.Game.Battle.Rules.Units
         }
 
         /// <summary>
-        /// 尝试开始一次规则攻击，并原子地消耗攻击 AP、进入 Attack 状态。
-        /// </summary>
-        /// <param name="runtimeId">攻击者运行时身份。</param>
-        /// <param name="actionPointCost">本次攻击消耗的 AP。</param>
-        /// <returns>true 表示攻击规则命令已经成功开始。</returns>
-        public bool TryStartAttack(string runtimeId, int actionPointCost)
-        {
-            if (actionPointCost <= 0 || !TryGetAliveUnit(runtimeId, out var unit)) return false;
-            if (unit.Attributes.RemainingActionPoints < actionPointCost) return false;
-
-            var previousActionPoints = unit.Attributes.RemainingActionPoints;
-            var previousActionState = unit.ActionState;
-            unit.Attributes.SetRemainingActionPoints(previousActionPoints - actionPointCost);
-
-            if (!unit.TryChangeActionState(BFUnit_ActionState.Attack))
-            {
-                unit.Attributes.SetRemainingActionPoints(previousActionPoints);
-                unit.TryChangeActionState(previousActionState);
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// 尝试应用一次直接伤害。
         ///
         /// 伤害使生命值归零时，同步进入不可逆的规则 Dead 状态。
@@ -102,41 +247,6 @@ namespace BF.Game.Battle.Rules.Units
                 // 保证规则入口具有原子性：状态切换失败时回滚此前的 HP 写入。
                 unit.Attributes.SetCurrentHP(previousHealth);
                 wasKilled = false;
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// 尝试完成一次规则移动。
-        ///
-        /// 位置、AP 和行动状态必须作为同一个规则命令完成；任一不变量失败时，
-        /// 入口会恢复原位置、原 AP 和原行动状态，不留下部分更新。
-        /// </summary>
-        /// <param name="runtimeId">单位运行时身份。</param>
-        /// <param name="gridPosition">移动完成后的规则网格位置。</param>
-        /// <param name="actionPointCost">本次移动消耗的 AP。</param>
-        /// <returns>true 表示规则移动完成。</returns>
-        public bool TryCompleteMove(
-            string runtimeId,
-            BFGridPosition gridPosition,
-            int actionPointCost)
-        {
-            if (actionPointCost <= 0 || !TryGetAliveUnit(runtimeId, out var unit)) return false;
-            if (unit.Attributes.RemainingActionPoints < actionPointCost) return false;
-
-            var previousPosition = unit.GridPosition;
-            var previousActionPoints = unit.Attributes.RemainingActionPoints;
-            var previousActionState = unit.ActionState;
-
-            unit.Attributes.SetRemainingActionPoints(previousActionPoints - actionPointCost);
-            unit.SetGridPosition(gridPosition);
-            if (!unit.TryChangeActionState(BFUnit_ActionState.Idle))
-            {
-                unit.Attributes.SetRemainingActionPoints(previousActionPoints);
-                unit.SetGridPosition(previousPosition);
-                unit.TryChangeActionState(previousActionState);
                 return false;
             }
 
@@ -174,6 +284,11 @@ namespace BF.Game.Battle.Rules.Units
             }
 
             return true;
+        }
+
+        private static int ManhattanDistance(BFGridPosition first, BFGridPosition second)
+        {
+            return System.Math.Abs(first.X - second.X) + System.Math.Abs(first.Y - second.Y);
         }
     }
 }

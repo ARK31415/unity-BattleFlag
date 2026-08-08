@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using BF.Game.Battle.Domain.Events;
+using BF.Game.Battle.Domain.Units;
 using BF.Game.Runtime.Battle;
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.Managers;
@@ -123,6 +124,55 @@ namespace BF.Game.Tests.PlayMode
 
             Assert.That(_session.State, Is.EqualTo(BFBattleSessionState.Disposed));
             Assert.Throws<ObjectDisposedException>(() => _ = context.Units);
+        }
+
+        [UnityTest]
+        public IEnumerator DisablingUnitBeforeHit_DoesNotConsumeActionPointsOrDealDamage()
+        {
+            var player = _battleRoot.UnitManager.GetAliveUnitsByFaction(UnitFaction.Player)[0];
+            Assert.That(_battleRoot.UnitManager.TrySelectUnit(player), Is.True);
+
+            var target = ChooseAttackableTarget();
+            if (target == null)
+            {
+                var destination = ChooseMoveDestination(player);
+                if (destination.HasValue)
+                {
+                    Assert.That(_battleRoot.UnitManager.TryMoveUnit(destination.Value), Is.True);
+                    yield return WaitForActionUnlocked();
+                }
+
+                // 移动消耗 AP 后可能不足以攻击；结束回合让 AP 重置，下一回合直接攻击。
+                _battleRoot.TurnManager.EndTurn();
+                yield return WaitForPlayerTurnOrCompletion();
+                Assert.That(_battleRoot.UnitManager.TrySelectUnit(player), Is.True);
+                target = ChooseAttackableTarget();
+            }
+
+            Assert.That(target, Is.Not.Null, "玩家单位无法进入攻击范围。");
+            var apBefore = player.RuleState.Attributes.RemainingActionPoints;
+            var targetHpBefore = target.RuleState.Attributes.CurrentHP;
+            var attackEventCountBefore = _attackEvents.Count;
+
+            Assert.That(_battleRoot.UnitManager.TryAttack(target), Is.True);
+
+            // 命中前禁用攻击单位：攻击上下文被清理，AP 不消耗、不造成伤害、不发布攻击事实。
+            player.gameObject.SetActive(false);
+            yield return WaitUntil(
+                () => !_battleRoot.UnitManager.IsActionLocked || _session.State != BFBattleSessionState.Running,
+                ActionTimeoutFrames,
+                "禁用攻击单位后动作锁未释放。");
+
+            Assert.That(player.RuleState.Attributes.RemainingActionPoints, Is.EqualTo(apBefore));
+            Assert.That(player.RuleState.ActionState, Is.EqualTo(BFUnit_ActionState.Idle));
+            Assert.That(target.RuleState.Attributes.CurrentHP, Is.EqualTo(targetHpBefore));
+            Assert.That(_attackEvents.Count, Is.EqualTo(attackEventCountBefore));
+        }
+
+        private UnitRuntime ChooseAttackableTarget()
+        {
+            var targets = _battleRoot.UnitManager.GetAttackableTargets();
+            return targets.Count > 0 ? ChooseTarget(targets) : null;
         }
 
         [UnityTest]

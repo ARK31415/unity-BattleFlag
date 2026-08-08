@@ -5,6 +5,7 @@
         "BF.Game.Runtime",
         "BF.Game.Eventing",
         "BF.Game.Battle.Domain",
+        "BF.Game.Battle.Rules",
         "BF.Game.InputActions"
     ],
     "includePlatforms": [],

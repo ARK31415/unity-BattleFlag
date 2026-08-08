@@ -29,7 +29,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
         private void Awake()
         {
-            _attackResolver = new BFAttackResolver();
+            _attackResolver = null;
             _buffResolver = new BFBuffResolver();
             _triggerResolver = new BFTriggerResolver();
         }
@@ -129,14 +129,22 @@ namespace BF.Game.Runtime.Battle.Managers
                 return false;
             }
 
+            if (_attackResolver == null)
+            {
+                Debug.LogWarning("[BFBattleResolutionManager] 未绑定 BattleSession，无法进行攻击结算。");
+                _pendingAttacks.Remove(attacker);
+                _unitManager?.HandleAttackResolutionFailed(attacker);
+                return false;
+            }
+
             var result = _attackResolver.Resolve(context);
             _pendingAttacks.Remove(attacker);
 
-            // 规则拒绝时返回默认结果。失败路径必须释放表现攻击生命周期，
+            // 规则拒绝时返回明确失败结果。失败路径必须释放表现攻击生命周期，
             // 且不能继续发布攻击成功事实。
-            if (result.Attacker == null || result.Target == null)
+            if (!result.Succeeded)
             {
-                Debug.LogWarning("[BFBattleResolutionManager] 攻击规则结算失败，未生成有效结果。");
+                Debug.LogWarning($"[BFBattleResolutionManager] 攻击规则结算失败：{result.FailureReason}");
                 _unitManager?.HandleAttackResolutionFailed(attacker);
                 return false;
             }

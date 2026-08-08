@@ -15,12 +15,10 @@ namespace BF.Game.Runtime.Battle.Commands
         /// <summary>
         /// 创建攻击结算协作者。
         /// </summary>
-        /// <param name="unitStateRules">
-        /// 当前战斗会话的单位规则入口；为空时仅保留未绑定 Runtime 的旧兼容路径。
-        /// </param>
-        public BFAttackResolver(BFUnitStateRules unitStateRules = null)
+        /// <param name="unitStateRules">当前战斗会话的单位规则入口。</param>
+        public BFAttackResolver(BFUnitStateRules unitStateRules)
         {
-            _unitStateRules = unitStateRules;
+            _unitStateRules = unitStateRules ?? throw new System.ArgumentNullException(nameof(unitStateRules));
         }
 
         /// <summary>
@@ -31,48 +29,45 @@ namespace BF.Game.Runtime.Battle.Commands
             if (context.Attacker == null || context.Target == null)
             {
                 Debug.LogWarning("[BFAttackResolver] 攻击者或目标为空，无法结算。");
-                return default;
+                return BFAttackResolveResult.Failure("攻击者或目标为空。");
             }
 
             if (!context.Target.Stats.IsAlive)
             {
                 Debug.LogWarning("[BFAttackResolver] 目标已死亡，无法结算。");
-                return default;
+                return BFAttackResolveResult.Failure("目标已经死亡。");
             }
 
-            int finalDamage = Mathf.Max(0, context.BaseAttack);
-
-            bool targetWasKilled;
-            if (context.Target.IsRuleBound)
+            // 正式战斗单位必须绑定规则状态；未绑定单位不能进入规则结算。
+            if (!context.Target.IsRuleBound || !context.Attacker.IsRuleBound)
             {
-                if (_unitStateRules == null || !_unitStateRules.TryApplyDamage(
-                        context.Target.RuntimeId,
-                        finalDamage,
-                        out targetWasKilled))
-                {
-                    Debug.LogWarning("[BFAttackResolver] 规则伤害入口拒绝了本次攻击。");
-                    return default;
-                }
-
-                // 规则状态成功更新后，才把结果投影到 Runtime 并触发表现反馈。
-                context.Target.RefreshRuleStateProjection();
-                context.Target.ApplyRuleDamagePresentation(targetWasKilled);
+                Debug.LogWarning("[BFAttackResolver] 攻击者或目标未绑定规则状态，无法结算。");
+                return BFAttackResolveResult.Failure("攻击者或目标未绑定规则状态。");
             }
-            else
+
+            // 攻击者 AP、目标伤害和死亡状态由规则入口作为单个命令提交；
+            // 伤害值由规则攻击力决定，提交成功后统一刷新投影并触发表现反馈。
+            var attackResult = _unitStateRules.TryResolveAttack(
+                new AttackRequest(
+                    context.Attacker.RuntimeId,
+                    context.Target.RuntimeId,
+                    context.AttackCost));
+            if (!attackResult.Succeeded)
             {
-                // 旧场景单位没有 Session 绑定时保留原有兼容行为。
-                context.Target.ApplyResolvedDamage(finalDamage);
-                targetWasKilled = !context.Target.Stats.IsAlive;
+                Debug.LogWarning($"[BFAttackResolver] 攻击规则结算被拒绝：{attackResult.FailureReason}");
+                return BFAttackResolveResult.Failure(attackResult.FailureReason);
             }
 
-            int targetRemainingHp = context.Target.Stats.CurrentHP;
+            context.Attacker.RefreshRuleStateProjection();
+            context.Target.RefreshRuleStateProjection();
+            context.Target.ApplyRuleDamagePresentation(attackResult.TargetWasKilled);
 
-            return new BFAttackResolveResult(
+            return BFAttackResolveResult.Success(
                 context.Attacker,
                 context.Target,
-                finalDamage,
-                targetWasKilled,
-                targetRemainingHp
+                attackResult.Damage,
+                attackResult.TargetWasKilled,
+                attackResult.TargetRemainingHp
             );
         }
     }

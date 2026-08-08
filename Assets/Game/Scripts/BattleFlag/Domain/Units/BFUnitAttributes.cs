@@ -26,20 +26,28 @@ namespace BF.Game.Battle.Domain.Units
         /// <param name="baseAttackPower">基础攻击力白值。</param>
         /// <param name="currentHP">可选的初始当前生命值。</param>
         /// <param name="remainingActionPoints">可选的初始剩余行动点。</param>
+        /// <param name="baseAttackRange">基础攻击范围（曼哈顿距离口径）。</param>
+        /// <param name="baseAttackCost">基础攻击消耗行动点。</param>
         public BFUnitAttributes(
             int baseMaxHP,
             int baseMaxActionPoints,
             int baseAttackPower,
             int? currentHP = null,
-            int? remainingActionPoints = null)
+            int? remainingActionPoints = null,
+            int baseAttackRange = 1,
+            int baseAttackCost = 2)
         {
             ValidateBaseValue(baseMaxHP, nameof(baseMaxHP));
             ValidateBaseValue(baseMaxActionPoints, nameof(baseMaxActionPoints));
             ValidateBaseValue(baseAttackPower, nameof(baseAttackPower));
+            ValidateBaseValue(baseAttackRange, nameof(baseAttackRange));
+            ValidateBaseValue(baseAttackCost, nameof(baseAttackCost));
 
             BaseMaxHP = baseMaxHP;
             BaseMaxActionPoints = baseMaxActionPoints;
             BaseAttackPower = baseAttackPower;
+            BaseAttackRange = baseAttackRange;
+            BaseAttackCost = baseAttackCost;
             _currentHP = Clamp(currentHP ?? EffectiveMaxHP, 0, EffectiveMaxHP);
             _remainingActionPoints = Clamp(
                 remainingActionPoints ?? EffectiveMaxActionPoints,
@@ -80,6 +88,18 @@ namespace BF.Game.Battle.Domain.Units
 
         /// <summary>计算得到的最终攻击力。</summary>
         public int EffectiveAttackPower => CalculateEffectiveValue(BaseAttackPower, BonusAttackPower);
+
+        /// <summary>攻击范围基础白值（曼哈顿距离口径）。</summary>
+        public int BaseAttackRange { get; }
+
+        /// <summary>攻击消耗行动点基础白值。</summary>
+        public int BaseAttackCost { get; }
+
+        /// <summary>计算得到的最终攻击范围；本阶段暂无修正来源。</summary>
+        public int EffectiveAttackRange => BaseAttackRange;
+
+        /// <summary>计算得到的最终攻击消耗；本阶段暂无修正来源。</summary>
+        public int EffectiveAttackCost => BaseAttackCost;
 
         /// <summary>当前生命值大于 0 时表示单位仍然存活。</summary>
         public bool IsAlive => CurrentHP > 0;

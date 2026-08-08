@@ -79,22 +79,14 @@ namespace BF.Game.Runtime.Battle.Managers
 
             foreach (var unit in units)
             {
-                // 已绑定单位的规则位置来自 Domain；Transform 只能被投影到该位置，
-                // 不能再反向覆盖 BFUnitState.GridPosition。
-                Vector2Int cell;
-                if (unit.IsRuleBound)
-                {
-                    cell = new Vector2Int(
-                        unit.RuleState.GridPosition.X,
-                        unit.RuleState.GridPosition.Y);
-                    unit.RefreshRuleStateProjection();
-                }
-                else
-                {
-                    // 未绑定的旧场景单位保留初始化兼容路径；正式战斗由 Factory 提供规则坐标。
-                    cell = WorldToCell(unit.transform.position);
-                    unit.Grid.InitializeSpawnPosition(cell);
-                }
+                // 正式战斗单位必须绑定规则状态；规则位置来自 Domain，Transform 只能被投影到该位置，
+                // 不能反向覆盖 BFUnitState.GridPosition，也不允许未绑定单位进入正式棋盘占用。
+                if (unit == null || !unit.IsRuleBound) continue;
+
+                var cell = new Vector2Int(
+                    unit.RuleState.GridPosition.X,
+                    unit.RuleState.GridPosition.Y);
+                unit.RefreshRuleStateProjection();
 
                 unit.transform.position = (Vector3)CellToWorld(cell);
                 unit.MovementHandler = this;
@@ -180,6 +172,37 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
+        /// 验证棋盘的动态单位占用是否与规则层提供的期望快照完全一致。
+        ///
+        /// 该检查只比较动态单位占用，不会把 A* 网格中的静态障碍误判为单位。
+        /// 期望快照不应包含死亡单位；因此死亡单位残留占用、未知 RuntimeId、
+        /// 额外占用和占用位置不一致都会验证失败。
+        /// </summary>
+        /// <param name="expectedOccupants">规则层存活单位的格子与 RuntimeId 快照。</param>
+        /// <returns>棋盘动态占用与期望快照完全一致时返回 true。</returns>
+        public bool HasExactUnitOccupancy(IReadOnlyDictionary<Vector2Int, string> expectedOccupants)
+        {
+            if (_grid == null || expectedOccupants == null || _occupants.Count != expectedOccupants.Count)
+                return false;
+
+            foreach (var expected in expectedOccupants)
+            {
+                if (string.IsNullOrWhiteSpace(expected.Value) || !IsCellInBounds(expected.Key))
+                    return false;
+
+                if (!_occupants.TryGetValue(expected.Key, out var actualId) ||
+                    !string.Equals(actualId, expected.Value, System.StringComparison.Ordinal))
+                    return false;
+
+                var node = _grid.GetNode(expected.Key.x, expected.Key.y);
+                if (node == null || node.Walkable)
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 尝试以 RuntimeId 占用一个可用棋盘格。
         /// </summary>
         public bool TryOccupyCell(Vector2Int cell, string runtimeId)
@@ -205,16 +228,45 @@ namespace BF.Game.Runtime.Battle.Managers
             TryOccupyCell(cell, uid);
         }
 
-        public void ReleaseCell(Vector2Int cell, string uid)
+        public bool ReleaseCell(Vector2Int cell, string uid)
         {
-            if (_grid == null || !IsCellInBounds(cell)) return;
-            if (!_occupants.TryGetValue(cell, out var occupantId)) return;
+            if (_grid == null || !IsCellInBounds(cell)) return false;
+            if (!_occupants.TryGetValue(cell, out var occupantId)) return false;
             if (!string.IsNullOrWhiteSpace(uid) && !string.Equals(uid, occupantId, System.StringComparison.Ordinal))
-                return;
+                return false;
 
             _occupants.Remove(cell);
             var node = _grid.GetNode(cell.x, cell.y);
             if (node != null) node.Walkable = true;
+            return true;
+        }
+
+        /// <summary>
+        /// 原子地迁移一个单位的棋盘占用。
+        /// 目标格校验失败时不会释放起点占用；实际迁移发生异常时尝试恢复起点，
+        /// 由调用方将无法恢复的情况视为适配层一致性故障。
+        /// </summary>
+        public bool TryMoveOccupancy(Vector2Int from, Vector2Int to, string uid)
+        {
+            if (from == to)
+                return _occupants.TryGetValue(from, out var currentId) &&
+                       string.Equals(currentId, uid, System.StringComparison.Ordinal);
+            if (_grid == null || !IsCellInBounds(from) || !IsCellInBounds(to) || string.IsNullOrWhiteSpace(uid))
+                return false;
+            if (!_occupants.TryGetValue(from, out var occupantId) ||
+                !string.Equals(occupantId, uid, System.StringComparison.Ordinal))
+                return false;
+            if (IsCellOccupied(to)) return false;
+
+            var targetNode = _grid.GetNode(to.x, to.y);
+            if (targetNode == null || !targetNode.Walkable) return false;
+            if (!ReleaseCell(from, uid)) return false;
+
+            if (TryOccupyCell(to, uid)) return true;
+
+            // 目标占用在预检后仍失败，尽量恢复旧占用；调用方仍需停止表现流程。
+            TryOccupyCell(from, uid);
+            return false;
         }
 
         // ============================================================

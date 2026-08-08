@@ -1,5 +1,14 @@
+using BF.Game.Battle.Domain;
+using BF.Game.Battle.Rules.Units;
+using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
+using DomainBFGridPosition = BF.Game.Battle.Domain.Units.BFGridPosition;
+using DomainBFUnitAttributes = BF.Game.Battle.Domain.Units.BFUnitAttributes;
+using DomainBFUnitFaction = BF.Game.Battle.Domain.Events.BFUnitFaction;
+using DomainBFUnitRole = BF.Game.Battle.Domain.Units.BFUnitRole;
+using DomainBFUnitState = BF.Game.Battle.Domain.Units.BFUnitState;
+using DomainBFUnitTier = BF.Game.Battle.Domain.Units.BFUnitTier;
 using NUnit.Framework;
 using System.Reflection;
 using UnityEngine;
@@ -61,7 +70,23 @@ namespace BF.Game.Tests.EditMode.Battle
             var gameObject = new GameObject(name);
             var unit = gameObject.AddComponent<UnitRuntime>();
             unit.Identity.Faction = UnitFaction.Player;
-            unit.BeginBattle();
+
+            var context = new BFBattleContext("lock-test");
+            var state = new DomainBFUnitState(
+                "profile-lock",
+                "runtime-lock",
+                DomainBFUnitFaction.Player,
+                DomainBFUnitRole.Warrior,
+                DomainBFUnitTier.Normal,
+                1,
+                new DomainBFUnitAttributes(20, 5, 8),
+                new DomainBFGridPosition(1, 2));
+            Assert.That(context.TryRegisterUnit(state), Is.True);
+            unit.BindRuleState(
+                state,
+                null,
+                name,
+                new BFBattleUnitHandle("lock-test", state.RuntimeId));
             return unit;
         }
 

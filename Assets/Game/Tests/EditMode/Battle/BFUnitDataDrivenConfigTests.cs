@@ -67,7 +67,6 @@ namespace BF.Game.Tests.EditMode.Battle
 
             unit.BindRuleState(
                 state,
-                BFUnitStatBlock.Default,
                 CreateUnityBinding(),
                 "先锋",
                 handle);

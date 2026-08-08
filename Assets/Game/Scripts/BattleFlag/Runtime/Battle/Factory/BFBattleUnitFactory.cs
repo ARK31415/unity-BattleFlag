@@ -96,7 +96,6 @@ namespace BF.Game.Runtime.Battle.Factory
                         handle,
                         state,
                         runtime,
-                        request.CombatStats,
                         request.UnityBinding,
                         request.DisplayName,
                         request.Definition,

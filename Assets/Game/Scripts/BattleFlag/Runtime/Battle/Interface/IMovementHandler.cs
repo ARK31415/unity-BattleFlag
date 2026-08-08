@@ -43,6 +43,6 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>
         /// 当单位离开格子时调用，释放占用状态。
         /// </summary>
-        void ReleaseCell(Vector2Int cell, string unitId);
+        bool ReleaseCell(Vector2Int cell, string unitId);
     }
 }

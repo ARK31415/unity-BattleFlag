@@ -41,6 +41,10 @@ namespace BF.Game.Runtime.Battle.Events
                 RaisePhaseChanged(turnEventChannel, eventData)));
             _subscriptions.Add(session.Subscribe<BFAttackResolvedEvent>(eventData =>
                 RaiseAttackResolved(unitEventChannel, eventData)));
+            _subscriptions.Add(session.Subscribe<BFUnitMovedEvent>(eventData =>
+                RaiseUnitMoved(unitEventChannel, eventData)));
+            _subscriptions.Add(session.Subscribe<BFUnitWaitedEvent>(eventData =>
+                RaiseUnitWaited(unitEventChannel, eventData)));
             _subscriptions.Add(session.Subscribe<BFUnitDefeatedEvent>(eventData =>
                 RaiseUnitDefeated(unitEventChannel, eventData)));
             _subscriptions.Add(session.Subscribe<BFBattleCompletedEvent>(eventData =>
@@ -120,6 +124,36 @@ namespace BF.Game.Runtime.Battle.Events
                 UnitId = eventData.TargetRuntimeId,
                 TargetId = eventData.AttackerRuntimeId,
                 Value = eventData.FinalDamage
+            });
+        }
+
+        /// <summary>
+        /// 将移动提交领域事件转换为旧单位 SO 移动事件。
+        /// </summary>
+        /// <param name="channel">目标 SO 通道。</param>
+        /// <param name="eventData">移动提交领域事件数据。</param>
+        private static void RaiseUnitMoved(BFUnitEventSO channel, BFUnitMovedEvent eventData)
+        {
+            channel?.Raise(new BFUnitEventData
+            {
+                EventType = "Moved",
+                UnitId = eventData.RuntimeId,
+                TargetId = $"{eventData.ToGridPosition.X},{eventData.ToGridPosition.Y}",
+                Value = eventData.ActionPointCost
+            });
+        }
+
+        /// <summary>
+        /// 将等待提交领域事件转换为旧单位 SO 等待事件。
+        /// </summary>
+        /// <param name="channel">目标 SO 通道。</param>
+        /// <param name="eventData">等待提交领域事件数据。</param>
+        private static void RaiseUnitWaited(BFUnitEventSO channel, BFUnitWaitedEvent eventData)
+        {
+            channel?.Raise(new BFUnitEventData
+            {
+                EventType = "Waited",
+                UnitId = eventData.RuntimeId
             });
         }
 

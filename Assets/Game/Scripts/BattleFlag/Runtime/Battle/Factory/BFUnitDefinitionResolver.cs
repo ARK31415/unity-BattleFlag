@@ -66,7 +66,9 @@ namespace BF.Game.Runtime.Battle.Factory
             var attributes = _attributesFactory.Create(
                 stats.MaxHP,
                 stats.MaxActionPoints,
-                stats.Attack);
+                stats.Attack,
+                stats.AttackRange,
+                stats.AttackCost);
 
             request = new BFBattleUnitCreateRequest(
                 config.ProfileId,
@@ -77,7 +79,6 @@ namespace BF.Game.Runtime.Battle.Factory
                 attributes,
                 new BFGridPosition(entry.GridPosition.x, entry.GridPosition.y),
                 definition,
-                stats,
                 definition.UnityBinding,
                 config.DisplayName);
             error = string.Empty;

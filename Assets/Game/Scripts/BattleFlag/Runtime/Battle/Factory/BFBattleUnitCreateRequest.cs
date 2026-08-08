@@ -22,7 +22,6 @@ namespace BF.Game.Runtime.Battle.Factory
             BFUnitAttributes attributes,
             BFGridPosition gridPosition,
             BFUnitDefinitionSO definition,
-            BFUnitStatBlock combatStats,
             BFUnitUnityBindingSO unityBinding,
             string displayName)
         {
@@ -43,7 +42,6 @@ namespace BF.Game.Runtime.Battle.Factory
             Attributes = attributes ?? throw new ArgumentNullException(nameof(attributes));
             GridPosition = gridPosition;
             Definition = definition;
-            CombatStats = combatStats;
             UnityBinding = unityBinding;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? profileId : displayName;
         }
@@ -71,9 +69,6 @@ namespace BF.Game.Runtime.Battle.Factory
 
         /// <summary>Unity 单位定义配置。</summary>
         public BFUnitDefinitionSO Definition { get; }
-
-        /// <summary>表现层仍需读取的攻击范围、攻击消耗等兼容数据。</summary>
-        public BFUnitStatBlock CombatStats { get; }
 
         /// <summary>表现资源绑定配置。</summary>
         public BFUnitUnityBindingSO UnityBinding { get; }

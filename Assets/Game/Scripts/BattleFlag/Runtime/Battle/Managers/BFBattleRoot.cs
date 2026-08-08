@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Cameras;
 using BF.Game.Runtime.Battle.Data;
@@ -143,10 +142,11 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             Debug.Log("[BFBattleRoot] Initializing battle...");
 
-            if (_encounter == null || _factoryConfig == null || _boardManager == null)
+            if (_encounter == null || _factoryConfig == null || _boardManager == null ||
+                _unitManager == null || _turnManager == null || _resolutionManager == null)
             {
                 Debug.LogError(
-                    "[BFBattleRoot] Encounter、FactoryConfig 或 BoardManager 缺失，无法初始化战斗。",
+                    "[BFBattleRoot] Encounter、FactoryConfig、BoardManager、UnitManager、TurnManager 或 ResolutionManager 缺失，无法初始化战斗。",
                     this);
                 return;
             }
@@ -187,17 +187,20 @@ namespace BF.Game.Runtime.Battle.Managers
                 units.Add(unit);
             }
 
+            // 先把正式管理器绑定到本次 BattleSession，再注册 Factory 创建的单位。
+            // RegisterUnit 不接受脱离 Session 的规则单位，避免出现半初始化战斗。
+            _turnManager.SetBattleSession(_battleSession);
+            _unitManager.SetBattleSession(_battleSession);
+            _resolutionManager.SetBattleSession(_battleSession);
+
             // Factory 已经使用 Encounter 的规则坐标完成棋盘占用；这里仅注入结果列表。
             foreach (var unit in units)
             {
-                _unitManager?.RegisterUnit(unit);
+                _unitManager.RegisterUnit(unit);
             }
 
             // Step 4: 确保结算层能访问 UnitManager
-            if (_resolutionManager != null && _unitManager != null)
-            {
-                _resolutionManager.SetUnitManager(_unitManager);
-            }
+            _resolutionManager.SetUnitManager(_unitManager);
 
             // 动画命中帧依赖结算层引用；显式注入到每个单位的动画表现器，
             // 避免运行期通过全局查找建立隐式依赖。
@@ -209,9 +212,6 @@ namespace BF.Game.Runtime.Battle.Managers
                 presenter?.SetResolutionManager(_resolutionManager);
             }
 
-            _turnManager?.SetBattleSession(_battleSession);
-            _unitManager?.SetBattleSession(_battleSession);
-            _resolutionManager?.SetBattleSession(_battleSession);
             _battleEventAdapter = new BFBattleEventToSOAdapter(
                 _battleSession,
                 _battleEventChannel,
@@ -219,14 +219,7 @@ namespace BF.Game.Runtime.Battle.Managers
                 _unitEventChannel);
 
             // 由战斗进度规则统一启动 Session 并发布战斗开始事实，Root 只负责组装。
-            if (_turnManager != null)
-            {
-                _turnManager.StartBattle();
-            }
-            else
-            {
-                new BFBattleProgressRules(_battleSession).StartBattle();
-            }
+            _turnManager.StartBattle();
 
             // Step 6: 等待常驻 UI 场景就绪后打开战斗 HUD。
             // BFPersistent 可能比战斗场景晚一帧完成加载，不能只在 Awake 中查找一次。

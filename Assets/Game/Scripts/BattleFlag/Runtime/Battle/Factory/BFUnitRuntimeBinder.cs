@@ -17,7 +17,6 @@ namespace BF.Game.Runtime.Battle.Factory
             BFBattleUnitHandle handle,
             BFUnitState state,
             UnitRuntime runtime,
-            BFUnitStatBlock combatStats,
             BFUnitUnityBindingSO unityBinding,
             string displayName,
             BFUnitDefinitionSO definition,
@@ -47,7 +46,7 @@ namespace BF.Game.Runtime.Battle.Factory
                 return false;
             }
 
-            runtime.BindRuleState(state, combatStats, unityBinding, displayName, handle, definition);
+            runtime.BindRuleState(state, unityBinding, displayName, handle, definition);
             error = string.Empty;
             return true;
         }
