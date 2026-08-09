@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using BF.Game.Runtime.Battle.Managers;
-using BF.Game.Runtime.Battle.Units;
+using BF.Game.Runtime.Battle.Query;
 
 namespace BF.Game.Runtime.UI.Battle.HUD.Commands
 {
@@ -10,6 +10,9 @@ namespace BF.Game.Runtime.UI.Battle.HUD.Commands
     /// </summary>
     public interface IBattleHudCommandProvider
     {
-        IReadOnlyList<BattleHudCommandViewModel> GetCommands(UnitRuntime unit, BFBattleTurnManager turnManager);
+        IReadOnlyList<BattleHudCommandViewModel> GetCommands(
+            BFUnitViewSnapshot unit,
+            bool hasUnit,
+            BFBattleTurnManager turnManager);
     }
 }

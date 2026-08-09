@@ -29,7 +29,7 @@ namespace BF.Game.Runtime.Battle.Units
         ///
         /// 若上一段攻击尚未被消费，本方法会返回 false，避免覆盖命中帧等待中的上下文。
         /// </summary>
-        /// <param name="target">攻击目标，调用前应由 UnitManager 完成阵营、距离和 AP 校验。</param>
+        /// <param name="target">攻击目标，调用前应由行动协调器完成阵营、距离和 AP 校验。</param>
         /// <returns>true 表示攻击上下文已成功记录。</returns>
         public bool BeginQueuedAttack(UnitRuntime target)
         {

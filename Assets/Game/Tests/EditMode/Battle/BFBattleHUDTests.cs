@@ -67,6 +67,17 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(resultText.text, Is.EqualTo("DEFEAT"));
         }
 
+        [Test]
+        public void BattleHudView_RefreshesSelectedUnitBarForDamagedUnitEvent()
+        {
+            MethodInfo method = typeof(BattleHudView).GetMethod(
+                "ShouldRefreshForUnitEvent",
+                BindingFlags.Static | BindingFlags.NonPublic);
+
+            Assert.That(method, Is.Not.Null);
+            Assert.That(method.Invoke(null, new object[] { "Damaged" }), Is.EqualTo(true));
+        }
+
         private static GameObject CreateCanvas(string name)
         {
             var go = new GameObject(name);

@@ -22,8 +22,8 @@ namespace BF.Game.Runtime.Battle.Data
         public BFUnitUnityBindingSO UnityBinding => _unityBinding;
         /// <summary>成长表。</summary>
         public BFUnitProgressionTableSO ProgressionTable => _progressionTable;
-        /// <summary>单位 ID，从 ImportedConfig 读取。</summary>
-        public string UnitId => _importedConfig != null ? _importedConfig.UnitId : string.Empty;
+        /// <summary>单位配置身份，从 ImportedConfig 读取。</summary>
+        public string ProfileId => _importedConfig != null ? _importedConfig.ProfileId : string.Empty;
         /// <summary>显示名，从 ImportedConfig 读取。</summary>
         public string DisplayName => _importedConfig != null ? _importedConfig.DisplayName : string.Empty;
 

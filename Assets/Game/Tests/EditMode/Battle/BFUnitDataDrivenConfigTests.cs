@@ -1,10 +1,18 @@
 using System.Collections.Generic;
+using BF.Game.Battle.Domain;
+using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Data;
+using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using DomainBFGridPosition = BF.Game.Battle.Domain.Units.BFGridPosition;
+using DomainBFUnitAttributes = BF.Game.Battle.Domain.Units.BFUnitAttributes;
+using DomainBFUnitRole = BF.Game.Battle.Domain.Units.BFUnitRole;
+using DomainBFUnitState = BF.Game.Battle.Domain.Units.BFUnitState;
+using DomainBFUnitTier = BF.Game.Battle.Domain.Units.BFUnitTier;
 
 namespace BF.Game.Tests.EditMode.Battle
 {
@@ -36,36 +44,39 @@ namespace BF.Game.Tests.EditMode.Battle
             var binding = CreateUnityBinding();
             var definition = CreateDefinition(config, binding);
 
-            Assert.That(definition.UnitId, Is.EqualTo("warrior_001"));
+            Assert.That(definition.ProfileId, Is.EqualTo("warrior_001"));
             Assert.That(definition.DisplayName, Is.EqualTo("先锋"));
             Assert.That(definition.ImportedConfig, Is.SameAs(config));
             Assert.That(definition.UnityBinding, Is.SameAs(binding));
         }
 
         [Test]
-        public void InitializeFromDefinition_AppliesConfigToRuntimeComponents()
+        public void UnbindRuleState_ClearsProjectedRuntimeIdentity()
         {
-            var stats = new BFUnitStatBlock(34, 9, 2, 3, 6);
-            var config = CreateImportedConfig("mage_001", "法师", UnitFaction.Player, BFUnitRole.Mage, stats);
-            var definition = CreateDefinition(config, CreateUnityBinding());
-            var unit = CreateUnit("Runtime Unit");
+            var unit = CreateUnit("Reusable Unit");
+            var state = new DomainBFUnitState(
+                "profile_001",
+                "runtime_001",
+                BFUnitFaction.Player,
+                DomainBFUnitRole.Warrior,
+                DomainBFUnitTier.Normal,
+                1,
+                new DomainBFUnitAttributes(20, 5, 8),
+                new DomainBFGridPosition(1, 2));
+            var handle = new BFBattleUnitHandle("battle_001", "runtime_001");
 
-            unit.InitializeFromDefinition(definition, new BFUnitSpawnContext(new Vector2Int(2, 3), UnitFaction.Enemy));
+            unit.BindRuleState(
+                state,
+                CreateUnityBinding(),
+                "先锋",
+                handle);
+            unit.UnbindRuleState();
 
-            Assert.That(unit.Definition, Is.SameAs(definition));
-            Assert.That(unit.Identity.UnitId, Is.EqualTo("mage_001"));
-            Assert.That(unit.Identity.DisplayName, Is.EqualTo("法师"));
-            Assert.That(unit.Identity.Faction, Is.EqualTo(UnitFaction.Enemy));
-            Assert.That(unit.Identity.Role, Is.EqualTo(BFUnitRole.Mage));
-            Assert.That(unit.Stats.MaxHP, Is.EqualTo(34));
-            Assert.That(unit.Stats.CurrentHP, Is.EqualTo(34));
-            Assert.That(unit.Stats.Attack, Is.EqualTo(9));
-            Assert.That(unit.Stats.AttackRange, Is.EqualTo(2));
-            Assert.That(unit.Stats.AttackCost, Is.EqualTo(3));
-            Assert.That(unit.Stats.MaxActionPoints, Is.EqualTo(6));
-            Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(6));
-            Assert.That(unit.Grid.GridPosition, Is.EqualTo(new Vector2Int(2, 3)));
-            Assert.That(unit.Grid.SpawnGridPosition, Is.EqualTo(new Vector2Int(2, 3)));
+            Assert.That(unit.IsRuleBound, Is.False);
+            Assert.That(unit.RuntimeId, Is.Null);
+            Assert.That(unit.BattleId, Is.Null);
+            Assert.That(unit.Identity.RuntimeId, Is.Null);
+            Assert.That(unit.Identity.ProfileId, Is.Null);
         }
 
         [Test]
@@ -114,27 +125,6 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(error, Does.Contain("Unit Runtime Contract"));
         }
 
-        [Test]
-        public void Spawner_SpawnsEncounterAndInitializesUnit()
-        {
-            var defaultPrefab = CreateUnitPrefab("DefaultUnitPrefab");
-            var factoryConfig = CreateFactoryConfig(defaultPrefab);
-            var config = CreateImportedConfig("encounter_unit", "关卡单位", UnitFaction.Player, BFUnitRole.Mage, new BFUnitStatBlock(18, 7, 2, 3, 4));
-            var definition = CreateDefinition(config, CreateUnityBinding());
-            var encounter = CreateEncounter(definition, new Vector2Int(4, 1), UnitFaction.Enemy);
-            var spawner = CreateGameObject("Spawner").AddComponent<BFBattleUnitSpawner>();
-
-            bool spawned = spawner.SpawnEncounter(encounter, factoryConfig, null, out var units);
-
-            Assert.That(spawned, Is.True);
-            Assert.That(units, Has.Count.EqualTo(1));
-            Assert.That(units[0].Identity.UnitId, Is.EqualTo("encounter_unit"));
-            Assert.That(units[0].Identity.DisplayName, Is.EqualTo("关卡单位"));
-            Assert.That(units[0].Identity.Faction, Is.EqualTo(UnitFaction.Enemy));
-            Assert.That(units[0].Grid.GridPosition, Is.EqualTo(new Vector2Int(4, 1)));
-            Assert.That(units[0].Stats.Attack, Is.EqualTo(7));
-        }
-
         private T CreateScriptableObject<T>() where T : ScriptableObject
         {
             var asset = ScriptableObject.CreateInstance<T>();
@@ -161,11 +151,11 @@ namespace BF.Game.Tests.EditMode.Battle
             return prefab;
         }
 
-        private BFUnitImportedConfigSO CreateImportedConfig(string unitId, string displayName, UnitFaction faction, BFUnitRole role, BFUnitStatBlock stats)
+        private BFUnitImportedConfigSO CreateImportedConfig(string profileId, string displayName, UnitFaction faction, BFUnitRole role, BFUnitStatBlock stats)
         {
             var config = CreateScriptableObject<BFUnitImportedConfigSO>();
             var serializedObject = new SerializedObject(config);
-            serializedObject.FindProperty("_unitId").stringValue = unitId;
+            serializedObject.FindProperty("_profileId").stringValue = profileId;
             serializedObject.FindProperty("_displayName").stringValue = displayName;
             serializedObject.FindProperty("_defaultFaction").intValue = (int)faction;
             serializedObject.FindProperty("_role").intValue = (int)role;

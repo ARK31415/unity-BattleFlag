@@ -16,7 +16,7 @@ namespace BF.Game.Runtime.Battle.Events
         public string UnitId;
 
         /// <summary>
-        /// 事件类型：Moved, Attacked, Damaged, Killed, Selected, Deselected。
+        /// 事件类型：Moved, Damaged, Waited, Killed。
         /// </summary>
         public string EventType;
 

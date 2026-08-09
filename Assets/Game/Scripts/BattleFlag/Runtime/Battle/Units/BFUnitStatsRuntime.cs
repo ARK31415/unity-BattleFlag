@@ -1,4 +1,4 @@
-using BF.Game.Runtime.Battle.Data;
+using BF.Game.Battle.Domain.Units;
 using UnityEngine;
 
 namespace BF.Game.Runtime.Battle.Units
@@ -42,47 +42,39 @@ namespace BF.Game.Runtime.Battle.Units
             set => _maxHP = Mathf.Max(0, value);
         }
 
-        /// <summary>当前 HP，会被限制在 0 到 MaxHP 之间。</summary>
-        public int CurrentHP
-        {
-            get => _currentHP;
-            set => _currentHP = Mathf.Clamp(value, 0, Mathf.Max(0, _maxHP));
-        }
+        /// <summary>当前 HP 运行时投影值。</summary>
+        public int CurrentHP => _currentHP;
 
-        /// <summary>基础攻击力，当前由最小伤害公式直接读取。</summary>
+        /// <summary>基础攻击力投影。</summary>
         public int Attack
         {
             get => _attack;
             set => _attack = Mathf.Max(0, value);
         }
 
-        /// <summary>曼哈顿距离口径下的攻击范围。</summary>
+        /// <summary>曼哈顿距离口径下的攻击范围投影。</summary>
         public int AttackRange
         {
             get => _attackRange;
             set => _attackRange = Mathf.Max(0, value);
         }
 
-        /// <summary>发起一次攻击需要消耗的 AP。</summary>
+        /// <summary>发起一次攻击需要消耗的 AP 投影。</summary>
         public int AttackCost
         {
             get => _attackCost;
             set => _attackCost = Mathf.Max(0, value);
         }
 
-        /// <summary>每回合可恢复到的最大 AP。</summary>
+        /// <summary>每回合可恢复到的最大 AP 投影。</summary>
         public int MaxActionPoints
         {
             get => _maxActionPoints;
             set => _maxActionPoints = Mathf.Max(0, value);
         }
 
-        /// <summary>当前回合剩余 AP，会被限制在 0 到 MaxActionPoints 之间。</summary>
-        public int RemainingActionPoints
-        {
-            get => _remainingActionPoints;
-            set => _remainingActionPoints = Mathf.Clamp(value, 0, Mathf.Max(0, _maxActionPoints));
-        }
+        /// <summary>当前回合剩余 AP 运行时投影值。</summary>
+        public int RemainingActionPoints => _remainingActionPoints;
 
         /// <summary>本回合是否已行动（AP 耗尽）。</summary>
         public bool HasActed => _remainingActionPoints <= 0;
@@ -90,69 +82,20 @@ namespace BF.Game.Runtime.Battle.Units
         public bool IsAlive => _currentHP > 0;
 
         /// <summary>
-        /// 从配置计算结果写入干净 Base 白值。
+        /// 从规则属性投影当前有效属性和 HP/AP 资源。
+        /// 该方法只写入 Unity 表现投影，不会反向修改规则状态。
         /// </summary>
-        public void InitializeBaseStats(BFUnitStatBlock stats, bool resetResources)
+        public void InitializeFromRuleState(BFUnitAttributes attributes)
         {
-            MaxHP = stats.MaxHP;
-            Attack = stats.Attack;
-            AttackRange = stats.AttackRange;
-            AttackCost = stats.AttackCost;
-            MaxActionPoints = stats.MaxActionPoints;
+            if (attributes == null) return;
 
-            if (resetResources)
-            {
-                ResetBattleResources();
-            }
-        }
-
-        /// <summary>
-        /// 战斗开始时重置运行时资源。
-        ///
-        /// 该入口用于场景初始化，不用于属性加成变化；后续 MaxHP 变化默认不应自动影响 CurrentHP。
-        /// </summary>
-        public void ResetBattleResources()
-        {
-            _currentHP = _maxHP;
-            _remainingActionPoints = _maxActionPoints;
-        }
-
-        /// <summary>回合开始时恢复 AP，HP 不在回合切换中自动变化。</summary>
-        public void ResetTurnActions()
-        {
-            _remainingActionPoints = _maxActionPoints;
-        }
-
-        /// <summary>
-        /// 消耗 AP。
-        ///
-        /// 负数消耗会被视为 0，避免外部调用通过负数意外恢复行动点。
-        /// </summary>
-        /// <param name="amount">要消耗的行动点数。</param>
-        public void ConsumeActionPoints(int amount)
-        {
-            _remainingActionPoints = Mathf.Max(0, _remainingActionPoints - Mathf.Max(0, amount));
-        }
-
-        /// <summary>
-        /// 尝试应用伤害并返回是否致死。
-        ///
-        /// 非正数伤害或已死亡单位不会触发 HP 变化，调用方可据此避免播放受伤表现。
-        /// </summary>
-        /// <param name="damage">待应用伤害值。</param>
-        /// <param name="wasKilled">输出 true 表示本次伤害使单位从存活变为死亡。</param>
-        /// <returns>true 表示本次确实造成了正数伤害。</returns>
-        public bool TryApplyDamage(int damage, out bool wasKilled)
-        {
-            wasKilled = false;
-            if (!IsAlive) return false;
-
-            int appliedDamage = Mathf.Max(0, damage);
-            if (appliedDamage <= 0) return false;
-
-            _currentHP = Mathf.Max(0, _currentHP - appliedDamage);
-            wasKilled = !IsAlive;
-            return true;
+            MaxHP = attributes.EffectiveMaxHP;
+            Attack = attributes.EffectiveAttackPower;
+            AttackRange = attributes.EffectiveAttackRange;
+            AttackCost = attributes.EffectiveAttackCost;
+            MaxActionPoints = attributes.EffectiveMaxActionPoints;
+            _currentHP = attributes.CurrentHP;
+            _remainingActionPoints = attributes.RemainingActionPoints;
         }
     }
 }

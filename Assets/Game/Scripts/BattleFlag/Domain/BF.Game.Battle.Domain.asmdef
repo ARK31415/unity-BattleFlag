@@ -1,0 +1,12 @@
+{
+    "name": "BF.Game.Battle.Domain",
+    "rootNamespace": "BF.Game.Battle.Domain",
+    "references": [
+        "BF.Game.Eventing"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "autoReferenced": true,
+    "noEngineReferences": true
+}

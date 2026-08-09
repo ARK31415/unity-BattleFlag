@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 6487017083411791041}
   - component: {fileID: 3661341633070221849}
   - component: {fileID: 9118100872861395723}
-  - component: {fileID: 7927264167369796633}
   - component: {fileID: 3379262223827383986}
   - component: {fileID: 507170029582630202}
   - component: {fileID: 603986507207498562}
   - component: {fileID: 8275507414583375785}
   - component: {fileID: 6947273115003591187}
+  - component: {fileID: 3050891695408960665}
   m_Layer: 0
   m_Name: BFUnit_Default
   m_TagString: Untagged
@@ -53,7 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e99340fbebbdc48bc3823940b7bd63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Units.BFUnitIdentityRuntime
-  _unitId: 
+  _runtimeId: 
+  _profileId: 
   _displayName: 
   _faction: 0
   _role: 0
@@ -103,18 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd163b28003a254f967bc1ecc55e05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Units.BFUnitCombatRuntime
---- !u!114 &7927264167369796633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4138525032743316882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cea13719a183ae49858a954d8857bff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Units.BFUnitStateMachineRuntime
 --- !u!114 &3379262223827383986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,10 +120,10 @@ MonoBehaviour:
   _stats: {fileID: 6487017083411791041}
   _grid: {fileID: 3661341633070221849}
   _combat: {fileID: 9118100872861395723}
-  _stateMachine: {fileID: 7927264167369796633}
-  _spriteRenderer: {fileID: 0}
-  _animator: {fileID: 0}
-  _collider2D: {fileID: 0}
+  _stateMachine: {fileID: 3050891695408960665}
+  _spriteRenderer: {fileID: 507170029582630202}
+  _animator: {fileID: 8275507414583375785}
+  _collider2D: {fileID: 603986507207498562}
 --- !u!212 &507170029582630202
 SpriteRenderer:
   serializedVersion: 2
@@ -278,3 +267,15 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   _resolutionManager: {fileID: 0}
+--- !u!114 &3050891695408960665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138525032743316882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7ea516b011eb84d8fe7b970a833f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Units.BFUnit_PresentationStateMachineRuntime

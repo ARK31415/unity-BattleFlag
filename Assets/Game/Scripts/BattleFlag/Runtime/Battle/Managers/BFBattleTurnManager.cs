@@ -1,7 +1,13 @@
 using System;
-using BF.Game.Runtime.Battle.Events;
+using BF.Game.Battle.Domain;
+using BF.Game.Battle.Domain.Events;
+using BF.Game.Battle.Rules.Battle;
+using BF.Game.Runtime.Battle;
+using BF.Game.Runtime.Battle.AI;
+using BF.Game.Runtime.Battle.Flow;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
+using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
 
 namespace BF.Game.Runtime.Battle.Managers
 {
@@ -10,10 +16,19 @@ namespace BF.Game.Runtime.Battle.Managers
     /// </summary>
     public enum BattlePhase
     {
+        /// <summary>未进入有效阶段。</summary>
         None,
+
+        /// <summary>战斗初始化阶段。</summary>
         Init,
+
+        /// <summary>玩家行动阶段。</summary>
         PlayerTurn,
+
+        /// <summary>敌方行动阶段。</summary>
         EnemyTurn,
+
+        /// <summary>行动结果结算阶段。</summary>
         Resolution
     }
 
@@ -24,21 +39,34 @@ namespace BF.Game.Runtime.Battle.Managers
     /// </summary>
     public class BFBattleTurnManager : MonoBehaviour
     {
-        [Header("Event Channels")]
-        [SerializeField] private BFTurnEventSO _turnEventChannel;
-        [SerializeField] private BFBattleEventSO _battleEventChannel;
-
         [Header("Dependencies")]
-        [SerializeField] private BFBattleUnitManager _unitManager;
+        [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
+        [SerializeField] private BFBattleEnemyActionController _enemyActionController;
 
-        /// <summary>当前战斗阶段。</summary>
-        public BattlePhase CurrentPhase { get; private set; } = BattlePhase.None;
+        private DomainBattleSession _battleSession;
+        private BFBattleProgressRules _battleProgressRules;
 
-        /// <summary>当前回合编号（从 1 开始，每次 PlayerTurn 递增）。</summary>
-        public int TurnNumber { get; private set; }
+        /// <summary>
+        /// 当前战斗阶段；始终从当前 BattleSession 的 Context 投影读取。
+        /// </summary>
+        public BattlePhase CurrentPhase => _battleSession == null
+            ? BattlePhase.None
+            : FromDomainPhase(_battleSession.Context.CurrentPhase);
 
-        /// <summary>当前轮次编号（EnemyTurn → PlayerTurn 时递增）。</summary>
-        public int RoundNumber { get; private set; }
+        /// <summary>
+        /// 当前回合编号；绑定 Session 后以 Context 为唯一来源。
+        /// </summary>
+        public int TurnNumber => _battleSession == null ? 0 : _battleSession.Context.TurnNumber;
+
+        /// <summary>
+        /// 当前轮次编号；绑定 Session 后以 Context 为唯一来源。
+        /// </summary>
+        public int RoundNumber => _battleSession == null ? 0 : _battleSession.Context.RoundNumber;
+
+        /// <summary>
+        /// 指示回合管理器是否已经绑定战斗会话。
+        /// </summary>
+        public bool HasBattleSession => _battleSession != null;
 
         /// <summary>阶段变化事件（旧阶段, 新阶段）。</summary>
         public event Action<BattlePhase, BattlePhase> OnPhaseChanged;
@@ -49,12 +77,47 @@ namespace BF.Game.Runtime.Battle.Managers
         /// </summary>
         public event Action<bool> OnNoLegalActionChanged;
 
+        /// <summary>绑定阶段流程所需的行动和 AI 适配器。</summary>
+        public void SetDependencies(
+            BFBattleActionCoordinator actionCoordinator,
+            BFBattleEnemyActionController enemyActionController)
+        {
+            _actionCoordinator = actionCoordinator;
+            _enemyActionController = enemyActionController;
+        }
+
+        /// <summary>
+        /// 将回合管理器绑定到一个战斗会话。
+        ///
+        /// 同一个管理器可以重复绑定同一会话，但不能改绑到其他会话。
+        /// </summary>
+        /// <param name="session">要绑定的战斗会话。</param>
+        /// <exception cref="InvalidOperationException">当管理器已经绑定其他会话时抛出。</exception>
+        public void SetBattleSession(DomainBattleSession session)
+        {
+            if (_battleSession != null && _battleSession != session)
+                throw new InvalidOperationException("BFBattleTurnManager is already attached to another battle session.");
+
+            _battleSession = session;
+            _battleProgressRules = session == null ? null : new BFBattleProgressRules(session);
+        }
+
         /// <summary>启动战斗流程。</summary>
         public void StartBattle()
         {
-            TurnNumber = 0;
-            RoundNumber = 0;
+            if (_battleSession == null || _battleProgressRules == null)
+            {
+                Debug.LogWarning("[BFBattleTurnManager] Cannot start battle without a BattleSession.");
+                return;
+            }
+
             Debug.Log("[BFBattleTurnManager] Starting battle");
+
+            if (_battleSession.State == BF.Game.Battle.Domain.BFBattleSessionState.Created)
+            {
+                _battleProgressRules.StartBattle();
+            }
+
             TransitionTo(BattlePhase.Init);
             TransitionTo(BattlePhase.PlayerTurn);
         }
@@ -69,7 +132,7 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
-        /// 强制进入结算阶段（由 UnitManager 在全灭判定后调用）。
+        /// 强制进入结算阶段（由结果协调器在全灭判定后调用）。
         /// </summary>
         public void TransitionToResolution()
         {
@@ -81,61 +144,80 @@ namespace BF.Game.Runtime.Battle.Managers
         /// </summary>
         public void RefreshPlayerLegalActions()
         {
-            bool hasLegal = _unitManager != null && _unitManager.PlayerHasLegalAction();
+            bool hasLegal = _actionCoordinator != null && _actionCoordinator.PlayerHasLegalAction();
             OnNoLegalActionChanged?.Invoke(!hasLegal);
         }
 
         private void TransitionTo(BattlePhase newPhase)
         {
+            if (_battleSession == null || _battleProgressRules == null) return;
             if (CurrentPhase == newPhase && newPhase != BattlePhase.Init) return;
 
             var oldPhase = CurrentPhase;
-            CurrentPhase = newPhase;
+            var nextTurnNumber = TurnNumber;
+            var nextRoundNumber = RoundNumber;
+
+            if (newPhase == BattlePhase.PlayerTurn)
+            {
+                nextTurnNumber++;
+                if (oldPhase == BattlePhase.EnemyTurn)
+                    nextRoundNumber++;
+            }
+
             Debug.Log($"[BFBattleTurnManager] Phase: {oldPhase} → {newPhase}");
-            OnPhaseChanged?.Invoke(oldPhase, newPhase);
+
+            // 先提交规则阶段/回合，再刷新 Runtime 资源和表现提示；订阅者读取到的
+            // Context 与阶段事件必须已经处于同一份新状态。
+            if (!_battleProgressRules.TryUpdateProgress(
+                    ToDomainPhase(newPhase),
+                    nextTurnNumber,
+                    nextRoundNumber))
+                return;
 
             switch (newPhase)
             {
                 case BattlePhase.PlayerTurn:
-                    TurnNumber++;
-                    if (oldPhase == BattlePhase.EnemyTurn) RoundNumber++;
-                    _unitManager?.ResetAllUnitsForNewTurn();
-                    RaiseTurnEvent(BFTurnPhase.PlayerTurnStarted);
+                    _actionCoordinator?.ResetAllUnitsForNewTurn();
                     RefreshPlayerLegalActions();
                     break;
 
                 case BattlePhase.EnemyTurn:
-                    RaiseTurnEvent(BFTurnPhase.EnemyTurnStarted);
-                    _unitManager?.ExecuteEnemyTurn();
                     break;
 
                 case BattlePhase.Resolution:
-                    RaiseBattleEndEvent();
                     break;
             }
+
+            // 保留旧 C# 观察者，但现在回调读取到的是更新后的阶段与回合数据。
+            OnPhaseChanged?.Invoke(oldPhase, newPhase);
+
+            if (newPhase == BattlePhase.EnemyTurn)
+                _enemyActionController?.BeginTurn();
         }
 
-        private void RaiseTurnEvent(BFTurnPhase phase)
+        private static BFBattlePhase ToDomainPhase(BattlePhase phase)
         {
-            _turnEventChannel?.Raise(new BFTurnEventData
+            return phase switch
             {
-                Phase = phase,
-                TurnNumber = TurnNumber,
-                RoundNumber = RoundNumber
-            });
+                BattlePhase.Init => BFBattlePhase.Init,
+                BattlePhase.PlayerTurn => BFBattlePhase.PlayerTurn,
+                BattlePhase.EnemyTurn => BFBattlePhase.EnemyTurn,
+                BattlePhase.Resolution => BFBattlePhase.Resolution,
+                _ => BFBattlePhase.None
+            };
         }
 
-        private void RaiseBattleEndEvent()
+        private static BattlePhase FromDomainPhase(BFBattlePhase phase)
         {
-            var result = _unitManager?.Result;
-            if (_battleEventChannel == null || result == null) return;
-
-            _battleEventChannel.Raise(new BFBattleEventData
+            return phase switch
             {
-                EventType = result.IsPlayerVictory ? BFBattleEventType.Victory : BFBattleEventType.Defeat,
-                BattleId = result.BattleId ?? string.Empty,
-                WinnerFaction = result.WinnerFaction.ToString()
-            });
+                BFBattlePhase.Init => BattlePhase.Init,
+                BFBattlePhase.PlayerTurn => BattlePhase.PlayerTurn,
+                BFBattlePhase.EnemyTurn => BattlePhase.EnemyTurn,
+                BFBattlePhase.Resolution => BattlePhase.Resolution,
+                _ => BattlePhase.None
+            };
         }
+
     }
 }

@@ -29,7 +29,7 @@ namespace BF.Game.Runtime.Battle.Commands
         /// <summary>
         /// 从攻击者和目标创建结算快照。
         ///
-        /// 攻击数值从 attacker.Stats 读取，避免结算上下文继续依赖 UnitRuntime 旧业务直通 API。
+        /// 攻击数值从规则属性读取，避免结算上下文继续依赖 Runtime 组件作为规则事实来源。
         /// </summary>
         /// <param name="attacker">攻击发起者。</param>
         /// <param name="target">攻击目标。</param>
@@ -37,9 +37,10 @@ namespace BF.Game.Runtime.Battle.Commands
         {
             Attacker = attacker;
             Target = target;
-            AttackCost = attacker != null ? attacker.Stats.AttackCost : 0;
-            BaseAttack = attacker != null ? attacker.Stats.Attack : 0;
-            AttackRange = attacker != null ? attacker.Stats.AttackRange : 0;
+            var ruleAttributes = attacker?.RuleState?.Attributes;
+            AttackCost = ruleAttributes?.EffectiveAttackCost ?? 0;
+            BaseAttack = ruleAttributes?.EffectiveAttackPower ?? 0;
+            AttackRange = ruleAttributes?.EffectiveAttackRange ?? 0;
             Consumed = false;
         }
 

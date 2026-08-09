@@ -1,5 +1,7 @@
 using System;
+using BF.Game.Battle.Domain.Units;
 using BF.Game.Runtime.Battle.Data;
+using BF.Game.Runtime.Battle.Factory;
 using UnityEngine;
 
 namespace BF.Game.Runtime.Battle.Units
@@ -17,7 +19,7 @@ namespace BF.Game.Runtime.Battle.Units
     [RequireComponent(typeof(BFUnitStatsRuntime))]
     [RequireComponent(typeof(BFUnitGridRuntime))]
     [RequireComponent(typeof(BFUnitCombatRuntime))]
-    [RequireComponent(typeof(BFUnitStateMachineRuntime))]
+    [RequireComponent(typeof(BFUnit_PresentationStateMachineRuntime))]
     public class UnitRuntime : MonoBehaviour
     {
         [Header("Runtime Components")]
@@ -30,7 +32,11 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>单位攻击上下文子组件引用。</summary>
         [SerializeField] private BFUnitCombatRuntime _combat;
         /// <summary>单位状态机子组件引用。</summary>
-        [SerializeField] private BFUnitStateMachineRuntime _stateMachine;
+        [SerializeField] private BFUnit_PresentationStateMachineRuntime _stateMachine;
+
+        private BFUnitState _ruleState;
+        private BFUnitUnityBindingSO _unityBinding;
+        private BFBattleUnitHandle _unitHandle;
 
         [Header("Optional Visual Cleanup")]
         /// <summary>死亡动画完成后统一关闭的 SpriteRenderer；为空时只跳过对应清理。</summary>
@@ -52,11 +58,20 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>单位攻击上下文入口，负责动画命中帧前后的待结算攻击状态。</summary>
         public BFUnitCombatRuntime Combat => EnsureCombat();
 
-        /// <summary>单位正式逻辑状态机入口，只承载 Idle、Move、Attack、Dead 等逻辑状态。</summary>
-        public BFUnitStateMachineRuntime StateMachine => EnsureStateMachine();
+        /// <summary>单位表现状态机入口，只承载 Idle、Move、Attack、Dead 等表现状态。</summary>
+        public BFUnit_PresentationStateMachineRuntime StateMachine => EnsureStateMachine();
 
-        /// <summary>单位根 ID，当前沿用 GameObject 名称作为场景手摆阶段的实例标识。</summary>
-        public string UnitId => Identity.UnitId;
+        /// <summary>当前绑定的 RuntimeId；未绑定规则状态时为空。</summary>
+        public string RuntimeId => _unitHandle?.RuntimeId;
+
+        /// <summary>当前绑定的 BattleId；未绑定规则状态时为空。</summary>
+        public string BattleId => _unitHandle?.BattleId;
+
+        /// <summary>当前绑定的规则状态，只读暴露引用，修改仍由规则层负责。</summary>
+        public BFUnitState RuleState => _ruleState;
+
+        /// <summary>当前是否已完成规则状态绑定。</summary>
+        public bool IsRuleBound => _ruleState != null && _unitHandle != null;
 
         /// <summary>当前单位实例使用的数据定义；场景手摆单位可为空。</summary>
         public BFUnitDefinitionSO Definition { get; private set; }
@@ -69,6 +84,12 @@ namespace BF.Game.Runtime.Battle.Units
 
         /// <summary>进入逻辑死亡时广播给表现层，视觉清理仍等待死亡动画完成事件。</summary>
         public event Action<UnitRuntime> DeathStarted;
+
+        /// <summary>
+        /// Unity 对象被禁用时通知适配层。
+        /// 该通知不携带规则结果，规则状态恢复必须由订阅的管理器通过 Rules 完成。
+        /// </summary>
+        public event Action<UnitRuntime> Disabled;
 
         /// <summary>
         /// Inspector Reset 回调：自动补齐缺失的子组件。
@@ -87,7 +108,7 @@ namespace BF.Game.Runtime.Battle.Units
         }
 
         /// <summary>
-        /// 正式逻辑状态机由单位根统一驱动，状态数据本身归 StateMachine 组件。
+        /// 表现状态机由单位根统一驱动，表现状态数据本身归 StateMachine 组件。
         /// </summary>
         private void Update()
         {
@@ -100,6 +121,39 @@ namespace BF.Game.Runtime.Battle.Units
         private void FixedUpdate()
         {
             _stateMachine?.PhysicsUpdate();
+        }
+
+        /// <summary>
+        /// 单位自身被禁用时清理本地表现上下文。
+        ///
+        /// 命中前禁用只清理 Combat 上下文并把表现状态恢复为 Idle；已经由规则层提交的
+        /// AP、伤害和死亡结果不会回滚，规则状态恢复由适配层通过规则入口完成。
+        /// </summary>
+        private void OnDisable()
+        {
+            CleanupDisabledRuntime();
+            Disabled?.Invoke(this);
+        }
+
+        /// <summary>
+        /// 清理被禁用单位未完成的攻击上下文与表现状态。
+        ///
+        /// 该方法同时用于组件禁用回调与测试验证；规则状态的恢复由适配层负责，
+        /// Runtime 不会因此重新成为规则事实来源（Spec 3.2 6.6）。
+        /// </summary>
+        internal void CleanupDisabledRuntime()
+        {
+            if (_combat != null)
+            {
+                _combat.ClearQueuedAttack();
+            }
+
+            if (_stateMachine != null && Stats != null && Stats.IsAlive &&
+                _stateMachine.CurrentState != null &&
+                _stateMachine.CurrentState != _stateMachine.IdleState)
+            {
+                _stateMachine.ChangeState(_stateMachine.IdleState);
+            }
         }
 
         /// <summary>
@@ -117,79 +171,85 @@ namespace BF.Game.Runtime.Battle.Units
         }
 
         /// <summary>
-        /// 进入战斗时重置单位战斗资源并回到 Idle。
+        /// 进入战斗时初始化表现生命周期并回到 Idle。
         ///
-        /// 只负责触发生命周期，不直接写 HP/AP 字段；具体数值仍由 Stats 组件维护。
+        /// 正式战斗单位的 HP、AP 等规则数值只能来自规则状态投影，不能在此处重置。
         /// </summary>
         public void BeginBattle()
         {
             InitializeRuntime();
-            Stats.ResetBattleResources();
             StateMachine.ChangeState(StateMachine.IdleState);
         }
 
         /// <summary>
-        /// 使用单位定义和生成上下文初始化运行时子组件。
+        /// 接收规则状态并建立 Unity 表现投影。
+        /// 新 Factory 使用此方法，不再把 Unity 配置作为规则状态来源。
         /// </summary>
-        public void InitializeFromDefinition(BFUnitDefinitionSO definition, BFUnitSpawnContext spawnContext)
+        public void BindRuleState(
+            BFUnitState state,
+            BFUnitUnityBindingSO unityBinding,
+            string displayName,
+            BFBattleUnitHandle handle,
+            BFUnitDefinitionSO definition = null)
         {
-            if (definition == null)
-            {
-                Debug.LogError("[UnitRuntime] Cannot initialize from a missing unit definition.", this);
-                return;
-            }
+            if (state == null) throw new ArgumentNullException(nameof(state));
+            if (handle == null) throw new ArgumentNullException(nameof(handle));
+            if (!string.Equals(state.RuntimeId, handle.RuntimeId, StringComparison.Ordinal))
+                throw new ArgumentException("Rule state and handle RuntimeId do not match.", nameof(handle));
 
-            if (!definition.ValidateConfiguration(out string error))
-            {
-                Debug.LogError($"[UnitRuntime] {error}", this);
-                return;
-            }
-
-            Definition = definition;
             InitializeRuntime();
-
-            Identity.InitializeFromConfig(definition.ImportedConfig, spawnContext.Faction);
-            Stats.InitializeBaseStats(definition.GetBaseStats(), resetResources: true);
-            Grid.InitializeSpawnPosition(spawnContext.GridPosition);
-            ApplyUnityBinding(definition.UnityBinding);
+            _ruleState = state;
+            _unityBinding = unityBinding;
+            _unitHandle = handle;
+            Definition = definition;
+            Grid.InitializeSpawnPosition(new Vector2Int(
+                state.GridPosition.X,
+                state.GridPosition.Y));
+            RefreshRuleStateProjection(displayName);
         }
 
-        /// <summary>
-        /// 回合开始入口。当前只重置本回合 AP，后续本回合临时状态也应从这里统一下发。
-        /// </summary>
-        public void BeginTurn()
+        /// <summary>刷新规则状态到 Identity、Stats 和 Grid 的表现投影。</summary>
+        public void RefreshRuleStateProjection(string displayName = null)
         {
-            Stats.ResetTurnActions();
+            if (!IsRuleBound) return;
+
+            Identity.InitializeFromRuleState(_ruleState, displayName ?? Identity.DisplayName);
+            Stats.InitializeFromRuleState(_ruleState.Attributes);
+            Grid.SetGridPosition(new Vector2Int(
+                _ruleState.GridPosition.X,
+                _ruleState.GridPosition.Y));
+            ApplyUnityBinding(_unityBinding);
         }
 
-        /// <summary>
-        /// 回合结束入口。当前清理未完成的攻击上下文，避免跨回合残留待结算攻击。
-        /// </summary>
-        public void EndTurn()
+        /// <summary>解除规则状态与 Runtime 的绑定，不销毁 Unity 对象，并清理身份投影。</summary>
+        public void UnbindRuleState()
         {
-            Combat.ClearQueuedAttack();
+            _ruleState = null;
+            _unitHandle = null;
+            _unityBinding = null;
+            Definition = null;
+            Identity.ClearRuleIdentity();
         }
 
         /// <summary>
-        /// 对单位施加直接伤害。
+        /// 将已由规则层完成的伤害结果转换为表现反馈。
         ///
-        /// 规则层只关心伤害结果；HP 扣减由 Stats 处理，受伤或死亡事件由单位根统一广播给表现层。
+        /// 该入口只触发受伤/死亡表现，不写入规则状态或 Runtime 数值，
+        /// 由调用方在规则成功后先刷新 <see cref="RefreshRuleStateProjection" />。
         /// </summary>
-        /// <param name="damage">待应用的伤害值；非正数不会触发受伤或死亡事件。</param>
-        public void TakeDamage(int damage)
+        /// <param name="wasKilled">规则层是否判定本次伤害致死。</param>
+        public void ApplyRuleDamagePresentation(bool wasKilled)
         {
-            ApplyDamage(damage);
-        }
+            if (!IsRuleBound) return;
 
-        /// <summary>
-        /// 应用结算层计算后的最终伤害。
-        ///
-        /// 该入口保留给 BFAttackResolver 调用，避免结算层直接修改 Stats 内部字段。
-        /// </summary>
-        /// <param name="finalDamage">已经完成公式计算和修正后的最终伤害。</param>
-        public void ApplyResolvedDamage(int finalDamage)
-        {
-            ApplyDamage(finalDamage);
+            if (wasKilled)
+            {
+                DeathStarted?.Invoke(this);
+                StateMachine.ChangeState(StateMachine.DeadState);
+                return;
+            }
+
+            HurtReceived?.Invoke(this);
         }
 
         /// <summary>
@@ -213,27 +273,6 @@ namespace BF.Game.Runtime.Battle.Units
             }
 
             Debug.Log($"[UnitRuntime] {Identity.DisplayName} death visual cleanup finished.");
-        }
-
-        /// <summary>
-        /// 应用伤害的统一内部入口。
-        /// 尝试扣血，根据是否致死分别广播 HurtReceived 或 DeathStarted 事件，
-        /// 并触发状态切换。
-        /// </summary>
-        /// <param name="damage">待应用的伤害值。</param>
-        private void ApplyDamage(int damage)
-        {
-            if (!Stats.TryApplyDamage(damage, out bool wasKilled)) return;
-
-            if (wasKilled)
-            {
-                // 先通知表现层进入死亡动画，再切正式 Dead 状态，保持旧动画合同稳定。
-                DeathStarted?.Invoke(this);
-                StateMachine.ChangeState(StateMachine.DeadState);
-                return;
-            }
-
-            HurtReceived?.Invoke(this);
         }
 
         /// <summary>
@@ -275,7 +314,7 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>
         /// 确保 StateMachine 子组件已缓存并完成初始化，为空时自动补齐。
         /// </summary>
-        private BFUnitStateMachineRuntime EnsureStateMachine()
+        private BFUnit_PresentationStateMachineRuntime EnsureStateMachine()
         {
             if (_stateMachine == null) CacheRuntimeComponents(addIfMissing: true);
             _stateMachine.Initialize(this);
@@ -314,7 +353,7 @@ namespace BF.Game.Runtime.Battle.Units
             if (_stats == null) Debug.LogError("[UnitRuntime] Missing BFUnitStatsRuntime.", this);
             if (_grid == null) Debug.LogError("[UnitRuntime] Missing BFUnitGridRuntime.", this);
             if (_combat == null) Debug.LogError("[UnitRuntime] Missing BFUnitCombatRuntime.", this);
-            if (_stateMachine == null) Debug.LogError("[UnitRuntime] Missing BFUnitStateMachineRuntime.", this);
+            if (_stateMachine == null) Debug.LogError("[UnitRuntime] Missing BFUnit_PresentationStateMachineRuntime.", this);
         }
 
         /// <summary>
@@ -326,7 +365,10 @@ namespace BF.Game.Runtime.Battle.Units
             if (binding == null) return;
             if (_animator == null || binding.AnimatorController == null) return;
 
-            _animator.runtimeAnimatorController = binding.AnimatorController;
+            if (_animator.runtimeAnimatorController != binding.AnimatorController)
+            {
+                _animator.runtimeAnimatorController = binding.AnimatorController;
+            }
         }
 
         /// <summary>

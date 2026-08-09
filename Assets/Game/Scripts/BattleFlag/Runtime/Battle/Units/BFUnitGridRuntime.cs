@@ -21,12 +21,12 @@ namespace BF.Game.Runtime.Battle.Units
         /// <summary>是否已显式捕获出生格。</summary>
         [SerializeField] private bool _hasSpawnGridPosition;
 
-        /// <summary>单位当前所在格子；写入时会在首次设置时捕获出生格。</summary>
-        public Vector2Int GridPosition
-        {
-            get => _gridPosition;
-            set => SetGridPosition(value);
-        }
+        /// <summary>
+        /// 单位当前所在格子。
+        ///
+        /// 正式战斗的规则位置只能由规则状态投影写入，外部不能直接修改该值。
+        /// </summary>
+        public Vector2Int GridPosition => _gridPosition;
 
         /// <summary>单位出生格；若尚未显式捕获，则回退为当前格子。</summary>
         public Vector2Int SpawnGridPosition => _hasSpawnGridPosition ? _spawnGridPosition : _gridPosition;

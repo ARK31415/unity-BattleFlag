@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using BF.Game.Runtime.Battle.Flow;
+using BF.Game.Runtime.Battle.Input;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.Input;
@@ -22,7 +24,10 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         [Header("Managers")]
         [SerializeField] private BFBattleTurnManager _turnManager;
         [SerializeField] private BFBattleBoardManager _boardManager;
-        [SerializeField] private BFBattleUnitManager _unitManager;
+        [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
+        private IBFBattleActionGateway _actionGateway;
+        [SerializeField] private BFBattleSelectionCoordinator _selectionCoordinator;
+        [SerializeField] private BFBattleMovementCoordinator _movementCoordinator;
 
         [Header("Camera")]
         [SerializeField] private Camera _camera;
@@ -39,7 +44,27 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         private BattleInputMode _inputMode;
 
         public event Action CommandCancelRequested;
-        public event Action<UnitRuntime> AttackTargetSelected;
+        public event Action<string> AttackTargetSelected;
+
+        /// <summary>
+        /// 由战斗根节点注入本场会话的输入适配依赖。
+        /// 输入层只负责把 Unity 命中结果转换为 RuntimeId，再交给选择/行动协调器校验。
+        /// </summary>
+        public void SetDependencies(
+            BFBattleTurnManager turnManager,
+            BFBattleBoardManager boardManager,
+            BFBattleActionCoordinator actionCoordinator,
+            IBFBattleActionGateway actionGateway,
+            BFBattleSelectionCoordinator selectionCoordinator,
+            BFBattleMovementCoordinator movementCoordinator)
+        {
+            _turnManager = turnManager;
+            _boardManager = boardManager;
+            _actionCoordinator = actionCoordinator;
+            _actionGateway = actionGateway ?? actionCoordinator;
+            _selectionCoordinator = selectionCoordinator;
+            _movementCoordinator = movementCoordinator;
+        }
 
         private enum BattleInputMode
         {
@@ -60,10 +85,8 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void OnDestroy()
         {
-            if (_unitManager != null)
-            {
-                _unitManager.OnUnitMoveCompleted -= UnitManager_OnUnitMoveCompleted;
-            }
+            if (_movementCoordinator != null)
+                _movementCoordinator.MoveCompleted -= MovementCoordinator_OnMoveCompleted;
 
             DisposeInputSubscriptions();
         }
@@ -72,10 +95,8 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         {
             ResolveCrossSceneReferences();
 
-            if (_unitManager != null)
-            {
-                _unitManager.OnUnitMoveCompleted += UnitManager_OnUnitMoveCompleted;
-            }
+            if (_movementCoordinator != null)
+                _movementCoordinator.MoveCompleted += MovementCoordinator_OnMoveCompleted;
         }
 
         private void Update()
@@ -148,8 +169,8 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private bool CanHandleBattleInput()
         {
-            if (_turnManager == null || _unitManager == null) return false;
-            if (_unitManager.IsActionLocked) return false;
+            if (_turnManager == null || _actionCoordinator == null || _selectionCoordinator == null) return false;
+            if (_actionCoordinator.IsActionLocked) return false;
             return _turnManager.CurrentPhase == BattlePhase.PlayerTurn;
         }
 
@@ -216,10 +237,10 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
             if (_inputMode == BattleInputMode.AttackTarget)
             {
-                if (_unitManager.SelectedUnit != null &&
-                    unit.Identity.Faction != _unitManager.SelectedUnit.Identity.Faction)
+                if (_actionCoordinator.SelectedUnit != null &&
+                    unit.RuleState.Faction != _actionCoordinator.SelectedUnit.RuleState.Faction)
                 {
-                    AttackTargetSelected?.Invoke(unit);
+                    AttackTargetSelected?.Invoke(unit.RuntimeId);
                 }
                 return;
             }
@@ -229,10 +250,11 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void SelectUnit(UnitRuntime unit)
         {
-            if (unit == null || !unit.Stats.IsAlive) return;
-            if (!_unitManager.TrySelectUnit(unit)) return;
+            if (unit == null || !unit.IsRuleBound || !unit.RuleState.IsAlive) return;
+            if (!_selectionCoordinator.TrySelect(unit)) return;
 
-            bool canActWithSelectedUnit = unit.Identity.Faction == UnitFaction.Player && !unit.Stats.HasActed;
+            bool canActWithSelectedUnit = unit.RuleState.Faction == BF.Game.Battle.Domain.Events.BFUnitFaction.Player &&
+                                          unit.RuleState.Attributes.RemainingActionPoints > 0;
             if (!canActWithSelectedUnit)
             {
                 _inputMode = BattleInputMode.Selection;
@@ -247,13 +269,15 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void TryMoveToWorld(Vector3 worldPos)
         {
-            if (_inputMode != BattleInputMode.MoveTarget || _unitManager.SelectedUnit == null) return;
+            if (_inputMode != BattleInputMode.MoveTarget || _actionCoordinator.SelectedUnit == null) return;
 
             Vector2Int targetCell = _boardManager.WorldToCell(worldPos);
-            var reachable = _unitManager.GetReachableCellsForSelected();
+            var reachable = _actionCoordinator.GetReachableCellsForUnit(_actionCoordinator.SelectedUnit);
             if (!reachable.Contains(targetCell)) return;
 
-            if (!_unitManager.TryMoveUnit(targetCell)) return;
+            if (_actionGateway == null ||
+                !_actionGateway.TryMove(_selectionCoordinator.SelectedRuntimeId, targetCell))
+                return;
 
             _inputMode = BattleInputMode.Selection;
             _boardManager?.ResetCellColors();
@@ -261,15 +285,15 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         private void HighlightAttackTargets()
         {
-            var targets = _unitManager.GetAttackableTargets();
+            var targets = _actionCoordinator.GetAttackableTargets();
             _boardManager?.HighlightAttackTargets(targets);
         }
 
-        private void UnitManager_OnUnitMoveCompleted(UnitRuntime unit)
+        private void MovementCoordinator_OnMoveCompleted(UnitRuntime unit)
         {
-            if (_turnManager == null || _unitManager == null) return;
+            if (_turnManager == null || _actionCoordinator == null) return;
             if (_turnManager.CurrentPhase != BattlePhase.PlayerTurn) return;
-            if (_unitManager.SelectedUnit != unit) return;
+            if (_actionCoordinator.SelectedUnit != unit) return;
 
             _boardManager?.ResetCellColors();
             _inputMode = BattleInputMode.Selection;
@@ -277,9 +301,9 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         public void CancelSelection()
         {
-            if (_unitManager != null && _unitManager.IsActionLocked) return;
+            if (_actionCoordinator != null && _actionCoordinator.IsActionLocked) return;
 
-            _unitManager?.DeselectUnit();
+            _selectionCoordinator?.ClearSelection();
             _inputMode = BattleInputMode.Selection;
             _boardManager?.ResetCellColors();
         }
@@ -287,10 +311,10 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         public void BeginMoveCommand()
         {
             if (!CanHandleBattleInput()) return;
-            if (_unitManager?.SelectedUnit == null) return;
+            if (_actionCoordinator?.SelectedUnit == null) return;
 
-            var reachable = _unitManager.GetReachableCellsForSelected();
-            Debug.Log($"[Input] Move command for {_unitManager.SelectedUnit.Identity.DisplayName}, reachable: {reachable.Count}");
+            var reachable = _actionCoordinator.GetReachableCellsForUnit(_actionCoordinator.SelectedUnit);
+            Debug.Log($"[Input] Move command for {_actionCoordinator.SelectedUnit.Identity.DisplayName}, reachable: {reachable.Count}");
             _boardManager?.ResetCellColors();
             _boardManager?.HighlightCells(reachable,
                 _boardManager != null ? _boardManager.ReachableColor : new Color(1f, 0.92f, 0.2f, 0.75f));
@@ -300,7 +324,7 @@ namespace BF.Game.Runtime.Battle.PlayerInput
         public void BeginAttackTargetCommand()
         {
             if (!CanHandleBattleInput()) return;
-            if (_unitManager?.SelectedUnit == null) return;
+            if (_actionCoordinator?.SelectedUnit == null) return;
 
             _boardManager?.ResetCellColors();
             HighlightAttackTargets();
@@ -315,7 +339,7 @@ namespace BF.Game.Runtime.Battle.PlayerInput
 
         public void OnEndTurnClicked()
         {
-            if (_unitManager != null && _unitManager.IsActionLocked) return;
+            if (_actionCoordinator != null && _actionCoordinator.IsActionLocked) return;
 
             CancelSelection();
             _turnManager?.EndTurn();

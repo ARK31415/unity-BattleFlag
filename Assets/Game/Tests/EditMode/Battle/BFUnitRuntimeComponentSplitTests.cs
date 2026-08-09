@@ -1,5 +1,15 @@
 using BF.Game.Runtime.Battle.Commands;
+using BF.Game.Battle.Domain;
+using BF.Game.Battle.Rules.Units;
+using BF.Game.Runtime.Battle.Data;
+using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.Units;
+using DomainBFGridPosition = BF.Game.Battle.Domain.Units.BFGridPosition;
+using DomainBFUnitAttributes = BF.Game.Battle.Domain.Units.BFUnitAttributes;
+using DomainBFUnitFaction = BF.Game.Battle.Domain.Events.BFUnitFaction;
+using DomainBFUnitRole = BF.Game.Battle.Domain.Units.BFUnitRole;
+using DomainBFUnitState = BF.Game.Battle.Domain.Units.BFUnitState;
+using DomainBFUnitTier = BF.Game.Battle.Domain.Units.BFUnitTier;
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +49,7 @@ namespace BF.Game.Tests.EditMode.Battle
             unit.Stats.AttackRange = 2;
             unit.Stats.AttackCost = 3;
             unit.Stats.MaxActionPoints = 6;
-            unit.Grid.GridPosition = new Vector2Int(1, 5);
+            unit.Grid.SetGridPosition(new Vector2Int(1, 5));
 
             unit.BeginBattle();
 
@@ -47,43 +57,38 @@ namespace BF.Game.Tests.EditMode.Battle
             Assert.That(unit.Identity.Faction, Is.EqualTo(UnitFaction.Player));
             Assert.That(unit.Identity.Role, Is.EqualTo(BFUnitRole.Mage));
             Assert.That(unit.Stats.MaxHP, Is.EqualTo(24));
-            Assert.That(unit.Stats.CurrentHP, Is.EqualTo(24));
             Assert.That(unit.Stats.Attack, Is.EqualTo(11));
             Assert.That(unit.Stats.AttackRange, Is.EqualTo(2));
             Assert.That(unit.Stats.AttackCost, Is.EqualTo(3));
-            Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(6));
             Assert.That(unit.Grid.GridPosition, Is.EqualTo(new Vector2Int(1, 5)));
-            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitIdleState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<BFUnit_PresentationIdleState>());
         }
 
         [Test]
-        public void MaxHPChange_DoesNotImplicitlyHealCurrentHP()
+        public void ActionPoints_AreProjectedFromRuleStateAndNotWritableByRuntime()
         {
-            UnitRuntime unit = CreateUnit("HP Rule Test");
-            unit.Stats.MaxHP = 20;
-            unit.BeginBattle();
+            var context = new BFBattleContext("ap-projection-test");
+            var state = new DomainBFUnitState(
+                "profile-test",
+                "runtime-test",
+                DomainBFUnitFaction.Player,
+                DomainBFUnitRole.Warrior,
+                DomainBFUnitTier.Normal,
+                1,
+                new DomainBFUnitAttributes(20, 5, 8),
+                new DomainBFGridPosition(1, 2));
+            Assert.That(context.TryRegisterUnit(state), Is.True);
 
-            unit.Stats.CurrentHP = 8;
-            unit.Stats.MaxHP = 40;
+            var unit = CreateUnit("AP Test");
+            unit.BindRuleState(state, null, "AP Unit", new BFBattleUnitHandle("ap-projection-test", state.RuntimeId));
 
-            Assert.That(unit.Stats.CurrentHP, Is.EqualTo(8));
-            Assert.That(unit.Stats.MaxHP, Is.EqualTo(40));
-        }
+            Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(5));
 
-        [Test]
-        public void ActionPoints_AreOwnedByStatsRuntime()
-        {
-            UnitRuntime unit = CreateUnit("AP Test");
-            unit.Stats.MaxActionPoints = 6;
-            unit.BeginBattle();
+            var rules = new BFUnitStateRules(context);
+            Assert.That(rules.TryConsumeActionPoints(state.RuntimeId, 2), Is.True);
+            unit.RefreshRuleStateProjection();
 
-            unit.Stats.ConsumeActionPoints(2);
-
-            Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(4));
-
-            unit.BeginTurn();
-
-            Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(6));
+            Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(3));
             Assert.That(unit.Stats.HasActed, Is.False);
         }
 
@@ -117,11 +122,11 @@ namespace BF.Game.Tests.EditMode.Battle
 
             unit.StateMachine.ChangeState(unit.StateMachine.AttackState);
 
-            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitAttackState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<BFUnit_PresentationAttackState>());
 
             unit.StateMachine.ChangeState(unit.StateMachine.IdleState);
 
-            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<UnitIdleState>());
+            Assert.That(unit.StateMachine.CurrentState, Is.TypeOf<BFUnit_PresentationIdleState>());
         }
 
         [Test]
@@ -129,8 +134,8 @@ namespace BF.Game.Tests.EditMode.Battle
         {
             UnitRuntime unit = CreateUnit("Grid Test");
 
-            unit.Grid.GridPosition = new Vector2Int(2, 3);
-            unit.Grid.GridPosition = new Vector2Int(4, 5);
+            unit.Grid.SetGridPosition(new Vector2Int(2, 3));
+            unit.Grid.SetGridPosition(new Vector2Int(4, 5));
 
             Assert.That(unit.Grid.GridPosition, Is.EqualTo(new Vector2Int(4, 5)));
             Assert.That(unit.Grid.SpawnGridPosition, Is.EqualTo(new Vector2Int(2, 3)));
@@ -181,6 +186,45 @@ namespace BF.Game.Tests.EditMode.Battle
             {
                 Assert.That(type.GetMethod(methodName), Is.Null, methodName);
             }
+        }
+
+        [Test]
+        public void BoundRuleState_RefreshProjectsRuleChangesWithoutWritingBack()
+        {
+            var context = new BFBattleContext("projection-test");
+            var state = new DomainBFUnitState(
+                "profile-test",
+                "runtime-test",
+                DomainBFUnitFaction.Player,
+                DomainBFUnitRole.Warrior,
+                DomainBFUnitTier.Normal,
+                1,
+                new DomainBFUnitAttributes(20, 5, 8, 12, 3),
+                new DomainBFGridPosition(1, 2));
+            Assert.That(context.TryRegisterUnit(state), Is.True);
+
+            var unit = CreateUnit("Rule Projection Test");
+            unit.BindRuleState(
+                state,
+                null,
+                "Rule Unit",
+                new BFBattleUnitHandle("projection-test", state.RuntimeId));
+
+            var rules = new BFUnitStateRules(context);
+            Assert.That(rules.TryApplyDamage(state.RuntimeId, 4, out _), Is.True);
+            Assert.That(rules.TryConsumeActionPoints(state.RuntimeId, 2), Is.True);
+            Assert.That(
+                rules.TrySetGridPosition(state.RuntimeId, new DomainBFGridPosition(4, 7)),
+                Is.True);
+
+            unit.RefreshRuleStateProjection();
+
+            Assert.That(unit.Stats.CurrentHP, Is.EqualTo(state.Attributes.CurrentHP));
+            Assert.That(unit.Stats.RemainingActionPoints, Is.EqualTo(state.Attributes.RemainingActionPoints));
+            Assert.That(unit.Grid.GridPosition, Is.EqualTo(new Vector2Int(4, 7)));
+            Assert.That(unit.Grid.SpawnGridPosition, Is.EqualTo(new Vector2Int(1, 2)));
+            Assert.That(state.Attributes.CurrentHP, Is.EqualTo(8));
+            Assert.That(state.Attributes.RemainingActionPoints, Is.EqualTo(1));
         }
 
         private UnitRuntime CreateUnit(string name)

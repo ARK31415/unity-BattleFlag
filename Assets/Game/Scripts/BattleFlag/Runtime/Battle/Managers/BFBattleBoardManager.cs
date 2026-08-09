@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using BF.Game.Battle.Domain;
+using BF.Game.Battle.Domain.Units;
 using BF.Game.Runtime.Battle.Units;
 using Pathfinding;
 using UnityEngine;
@@ -24,6 +26,9 @@ namespace BF.Game.Runtime.Battle.Managers
 
         private GridGraph _grid;
         private readonly List<GameObject> _cellVisuals = new();
+        private readonly Dictionary<Vector2Int, string> _occupants = new();
+        private readonly HashSet<Vector2Int> _staticBlockedCells = new();
+        private bool _topologyCaptured;
         private static readonly Vector2Int[] NeighborOffsets =
         {
             new(1, 0),
@@ -35,6 +40,12 @@ namespace BF.Game.Runtime.Battle.Managers
         public GridGraph Grid => _grid;
         public int Width => _grid?.Width ?? 0;
         public int Height => _grid?.Depth ?? 0;
+
+        /// <summary>
+        /// 指示规则位置与 Unity/A* 动态占用是否曾发生不可自动恢复的不一致。
+        /// 故障状态属于棋盘适配层，不再由单位流程门面保存。
+        /// </summary>
+        public bool IsSyncFaulted { get; private set; }
 
         // ============================================================
         // 初始化
@@ -70,19 +81,78 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
+        /// 在战斗工厂创建 Encounter 单位前，显式准备场景棋盘。
+        ///
+        /// BattleRoot 与本组件的 Start 顺序不应成为棋盘坐标校验的隐式前提；
+        /// 工厂只允许在该方法成功后验证格子边界与占用状态。
+        /// </summary>
+        public bool PrepareForBattle()
+        {
+            if (!EnsureGridReady()) return false;
+
+            CaptureStaticTopology();
+            IsSyncFaulted = false;
+            return true;
+        }
+
+        /// <summary>记录规则结果已提交但棋盘镜像同步失败的适配层故障。</summary>
+        public void MarkSyncFault()
+        {
+            IsSyncFaulted = true;
+        }
+
+        /// <summary>
+        /// 使用规则层导出的存活单位占用快照恢复棋盘适配状态。
+        /// 该方法只解除已验证的故障标记，不修改规则位置或自动重建占用。
+        /// </summary>
+        public bool TryRecoverSync(IReadOnlyDictionary<Vector2Int, string> expectedOccupants)
+        {
+            if (!IsSyncFaulted || !HasExactUnitOccupancy(expectedOccupants))
+                return false;
+
+            IsSyncFaulted = false;
+            return true;
+        }
+
+        /// <summary>
+        /// 导出战斗开始时的纯规则棋盘静态拓扑。
+        ///
+        /// 该快照只包含边界与静态阻挡，不包含动态单位占用；动态占用由
+        /// BFBattleBoardRules 从 BFBattleContext 中的存活单位位置推导。
+        /// </summary>
+        public BFBoardTopologySnapshot ExportTopologySnapshot()
+        {
+            if (!PrepareForBattle())
+                return null;
+
+            var blockedCells = new List<BFGridPosition>(_staticBlockedCells.Count);
+            foreach (var cell in _staticBlockedCells)
+                blockedCells.Add(new BFGridPosition(cell.x, cell.y));
+
+            return new BFBoardTopologySnapshot(Width, Height, blockedCells);
+        }
+
+        /// <summary>
         /// 将场景中的单位对齐到棋盘格子上（由 BFBattleRoot 在初始化流程中调用）。
         /// </summary>
         public void SnapUnitsToGrid(List<UnitRuntime> units)
         {
-            if (!EnsureGridReady()) return;
+            if (!PrepareForBattle()) return;
 
             foreach (var unit in units)
             {
-                Vector2Int cell = WorldToCell(unit.transform.position);
-                unit.Grid.GridPosition = cell;
+                // 正式战斗单位必须绑定规则状态；规则位置来自 Domain，Transform 只能被投影到该位置，
+                // 不能反向覆盖 BFUnitState.GridPosition，也不允许未绑定单位进入正式棋盘占用。
+                if (unit == null || !unit.IsRuleBound) continue;
+
+                var cell = new Vector2Int(
+                    unit.RuleState.GridPosition.X,
+                    unit.RuleState.GridPosition.Y);
+                unit.RefreshRuleStateProjection();
+
                 unit.transform.position = (Vector3)CellToWorld(cell);
                 unit.MovementHandler = this;
-                OccupyCell(cell, unit.UnitId);
+                OccupyCell(cell, unit.RuntimeId);
             }
             Debug.Log($"[BFBattleBoardManager] Snapped {units.Count} units to grid");
         }
@@ -150,12 +220,73 @@ namespace BF.Game.Runtime.Battle.Managers
         public bool IsCellOccupied(Vector2Int cell)
         {
             if (_grid == null || !IsCellInBounds(cell)) return false;
+            if (_occupants.ContainsKey(cell)) return true;
+            if (_topologyCaptured) return _staticBlockedCells.Contains(cell);
             var node = _grid.GetNode(cell.x, cell.y);
             return node != null && !node.Walkable;
         }
 
         public string GetOccupant(Vector2Int cell)
-            => IsCellOccupied(cell) ? "occupied" : null;
+        {
+            if (_occupants.TryGetValue(cell, out var runtimeId))
+                return runtimeId;
+
+            return IsCellOccupied(cell) ? "occupied" : null;
+        }
+
+        /// <summary>
+        /// 验证棋盘的动态单位占用是否与规则层提供的期望快照完全一致。
+        ///
+        /// 该检查只比较动态单位占用，不会把 A* 网格中的静态障碍误判为单位。
+        /// 期望快照不应包含死亡单位；因此死亡单位残留占用、未知 RuntimeId、
+        /// 额外占用和占用位置不一致都会验证失败。
+        /// </summary>
+        /// <param name="expectedOccupants">规则层存活单位的格子与 RuntimeId 快照。</param>
+        /// <returns>棋盘动态占用与期望快照完全一致时返回 true。</returns>
+        public bool HasExactUnitOccupancy(IReadOnlyDictionary<Vector2Int, string> expectedOccupants)
+        {
+            if (_grid == null || expectedOccupants == null || _occupants.Count != expectedOccupants.Count)
+                return false;
+
+            foreach (var expected in expectedOccupants)
+            {
+                if (string.IsNullOrWhiteSpace(expected.Value) || !IsCellInBounds(expected.Key))
+                    return false;
+
+                if (!_occupants.TryGetValue(expected.Key, out var actualId) ||
+                    !string.Equals(actualId, expected.Value, System.StringComparison.Ordinal))
+                    return false;
+
+                var node = _grid.GetNode(expected.Key.x, expected.Key.y);
+                if (node == null || node.Walkable)
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 尝试以 RuntimeId 占用一个可用棋盘格。
+        /// </summary>
+        public bool TryOccupyCell(Vector2Int cell, string runtimeId)
+        {
+            if (_grid == null || !IsCellInBounds(cell) || string.IsNullOrWhiteSpace(runtimeId))
+                return false;
+            CaptureStaticTopology();
+            if (IsCellOccupied(cell)) return false;
+            foreach (var occupant in _occupants.Values)
+            {
+                if (string.Equals(occupant, runtimeId, System.StringComparison.Ordinal))
+                    return false;
+            }
+
+            var node = _grid.GetNode(cell.x, cell.y);
+            if (node == null || !node.Walkable) return false;
+
+            node.Walkable = false;
+            _occupants[cell] = runtimeId;
+            return true;
+        }
 
         // ============================================================
         // 占用管理（IMovementHandler）
@@ -163,16 +294,75 @@ namespace BF.Game.Runtime.Battle.Managers
 
         public void OccupyCell(Vector2Int cell, string uid)
         {
-            if (_grid == null || !IsCellInBounds(cell)) return;
-            var node = _grid.GetNode(cell.x, cell.y);
-            if (node != null) node.Walkable = false;
+            TryOccupyCell(cell, uid);
         }
 
-        public void ReleaseCell(Vector2Int cell, string uid)
+        public bool ReleaseCell(Vector2Int cell, string uid)
         {
-            if (_grid == null || !IsCellInBounds(cell)) return;
+            if (_grid == null || !IsCellInBounds(cell)) return false;
+            CaptureStaticTopology();
+            if (!_occupants.TryGetValue(cell, out var occupantId)) return false;
+            if (!string.IsNullOrWhiteSpace(uid) && !string.Equals(uid, occupantId, System.StringComparison.Ordinal))
+                return false;
+
+            _occupants.Remove(cell);
             var node = _grid.GetNode(cell.x, cell.y);
-            if (node != null) node.Walkable = true;
+            if (node != null)
+                node.Walkable = !_staticBlockedCells.Contains(cell);
+            return true;
+        }
+
+        /// <summary>
+        /// 按 RuntimeId 释放适配层棋盘镜像占用。
+        ///
+        /// 该入口用于创建回滚、对象禁用或规则位置与镜像暂时不一致时的清理；
+        /// 它只修改 Runtime/A* 镜像，不反向写入 Domain 规则位置。
+        /// </summary>
+        public bool TryReleaseUnitOccupancy(string runtimeId)
+        {
+            if (string.IsNullOrWhiteSpace(runtimeId)) return false;
+
+            Vector2Int occupiedCell = default;
+            var found = false;
+            foreach (var occupant in _occupants)
+            {
+                if (!string.Equals(occupant.Value, runtimeId, System.StringComparison.Ordinal))
+                    continue;
+
+                occupiedCell = occupant.Key;
+                found = true;
+                break;
+            }
+
+            return found && ReleaseCell(occupiedCell, runtimeId);
+        }
+
+        /// <summary>
+        /// 原子地迁移一个单位的棋盘占用。
+        /// 目标格校验失败时不会释放起点占用；实际迁移发生异常时尝试恢复起点，
+        /// 由调用方将无法恢复的情况视为适配层一致性故障。
+        /// </summary>
+        public bool TryMoveOccupancy(Vector2Int from, Vector2Int to, string uid)
+        {
+            if (from == to)
+                return _occupants.TryGetValue(from, out var currentId) &&
+                       string.Equals(currentId, uid, System.StringComparison.Ordinal);
+            if (_grid == null || !IsCellInBounds(from) || !IsCellInBounds(to) || string.IsNullOrWhiteSpace(uid))
+                return false;
+            if (!_occupants.TryGetValue(from, out var occupantId) ||
+                !string.Equals(occupantId, uid, System.StringComparison.Ordinal))
+                return false;
+            if (IsCellOccupied(to)) return false;
+
+            var targetNode = _grid.GetNode(to.x, to.y);
+            if (targetNode == null || !targetNode.Walkable) return false;
+            if (!ReleaseCell(from, uid)) return false;
+
+            if (TryOccupyCell(to, uid)) return true;
+
+            // 目标占用在预检后仍失败，尽量恢复旧占用；调用方仍需停止表现流程。
+            TryOccupyCell(from, uid);
+            return false;
         }
 
         // ============================================================
@@ -267,9 +457,34 @@ namespace BF.Game.Runtime.Battle.Managers
         {
             if (!IsCellInBounds(cell)) return false;
             if (cell == startCell) return true;
+            if (_occupants.ContainsKey(cell)) return false;
 
             var node = _grid.GetNode(cell.x, cell.y);
             return node != null && node.Walkable;
+        }
+
+        /// <summary>
+        /// 在任何动态单位占用写入前捕获 A* 网格的静态阻挡。
+        ///
+        /// 动态占用会暂时把 GridNode.Walkable 设为 false，因此必须保留单独的静态
+        /// 快照，释放单位时才能恢复正确的 Walkable 值而不覆盖地形阻挡。
+        /// </summary>
+        private void CaptureStaticTopology()
+        {
+            if (_topologyCaptured || _grid == null) return;
+
+            _staticBlockedCells.Clear();
+            for (var x = 0; x < Width; x++)
+            {
+                for (var y = 0; y < Height; y++)
+                {
+                    var node = _grid.GetNode(x, y);
+                    if (node != null && !node.Walkable)
+                        _staticBlockedCells.Add(new Vector2Int(x, y));
+                }
+            }
+
+            _topologyCaptured = true;
         }
 
         private static Vector2Int GetLowestScoreCell(List<Vector2Int> open, Dictionary<Vector2Int, int> gScore, Vector2Int target)

@@ -1,0 +1,12 @@
+{
+    "name": "BF.Game.Battle.Rules",
+    "rootNamespace": "BF.Game.Battle.Rules",
+    "references": [
+        "BF.Game.Battle.Domain"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "noEngineReferences": true,
+    "autoReferenced": true
+}
