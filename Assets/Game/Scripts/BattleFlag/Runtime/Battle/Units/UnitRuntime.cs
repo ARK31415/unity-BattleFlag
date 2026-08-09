@@ -127,7 +127,7 @@ namespace BF.Game.Runtime.Battle.Units
         /// 单位自身被禁用时清理本地表现上下文。
         ///
         /// 命中前禁用只清理 Combat 上下文并把表现状态恢复为 Idle；已经由规则层提交的
-        /// AP、伤害和死亡结果不会回滚，规则状态恢复由适配层（如 UnitManager）通过规则入口完成。
+        /// AP、伤害和死亡结果不会回滚，规则状态恢复由适配层通过规则入口完成。
         /// </summary>
         private void OnDisable()
         {

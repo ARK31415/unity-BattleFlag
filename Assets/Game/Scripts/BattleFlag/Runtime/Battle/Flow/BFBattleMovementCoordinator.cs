@@ -5,6 +5,8 @@ using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Domain.Units;
 using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Rules.Units;
+using BF.Game.Runtime.Battle.Factory;
+using BF.Game.Runtime.Battle.Input;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Presentation;
 using BF.Game.Runtime.Battle.Units;
@@ -18,31 +20,43 @@ namespace BF.Game.Runtime.Battle.Flow
     ///
     /// 负责移动协程、Transform 插值、朝向和表现中断清理；
     /// 规则位置、AP 和移动合法性由本协调器转交 Rules 处理；
-    /// BFBattleUnitManager 只保留迁移期门面转发。
+    /// 单位查询和行动锁由适配层合同注入，不依赖迁移期单位门面。
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class BFBattleMovementCoordinator : MonoBehaviour
     {
-        [SerializeField] private BFBattleUnitManager _unitManager;
         [SerializeField] private BFBattleBoardManager _boardManager;
+        [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
+        [SerializeField] private BFBattleSelectionController _selectionController;
+        [SerializeField] private BFBattleTurnManager _turnManager;
         [SerializeField] private float _secondsPerMoveCell = 0.2f;
 
         private Coroutine _activeMoveCoroutine;
         private UnitRuntime _activeMovingUnit;
         private DomainBattleSession _battleSession;
+        private IBFBattleRuntimeLookup _runtimeLookup;
         private BFUnitStateRules _unitStateRules;
         private BFBattleBoardRules _boardRules;
 
         /// <summary>指示当前是否有移动表现正在执行。</summary>
         public bool IsMoving => _activeMoveCoroutine != null;
 
+        /// <summary>移动表现完成时通知输入适配层；参数为 Runtime 投影。</summary>
+        public event System.Action<UnitRuntime> MoveCompleted;
+
         /// <summary>绑定移动表现所需的适配依赖。</summary>
         public void SetDependencies(
-            BFBattleUnitManager unitManager,
-            BFBattleBoardManager boardManager)
+            IBFBattleRuntimeLookup runtimeLookup,
+            BFBattleBoardManager boardManager,
+            BFBattleActionCoordinator actionCoordinator,
+            BFBattleSelectionController selectionController,
+            BFBattleTurnManager turnManager)
         {
-            _unitManager = unitManager;
+            _runtimeLookup = runtimeLookup;
             _boardManager = boardManager;
+            _actionCoordinator = actionCoordinator;
+            _selectionController = selectionController;
+            _turnManager = turnManager;
         }
 
         /// <summary>绑定当前战斗会话，使移动规则提交使用本场战斗的唯一规则状态。</summary>
@@ -65,7 +79,7 @@ namespace BF.Game.Runtime.Battle.Flow
             if (_boardManager == null || _battleSession == null ||
                 _boardRules == null ||
                 _battleSession.State != BFBattleSessionState.Running ||
-                !_unitManager.IsCurrentSessionUnit(unit) || !unit.RuleState.IsAlive)
+                !IsCurrentSessionUnit(unit) || !unit.RuleState.IsAlive)
                 return false;
 
             path = _boardManager.FindPath(
@@ -92,14 +106,14 @@ namespace BF.Game.Runtime.Battle.Flow
             bool refreshPlayerLegalActions,
             bool clearSelectionWhenActed)
         {
-            if (_unitManager == null || _boardManager == null || IsMoving ||
+            if (_runtimeLookup == null || _actionCoordinator == null || _boardManager == null || IsMoving ||
                 unit == null || !unit.IsRuleBound || !unit.RuleState.IsAlive ||
                 !unit.gameObject.activeInHierarchy)
                 return false;
             if (!TryGetMovePath(unit, targetCell, out var path))
                 return false;
 
-            _unitManager.SetActionLockedForCoordinator(true);
+            _actionCoordinator.SetActionLocked(true);
             _activeMovingUnit = unit;
             _activeMoveCoroutine = StartCoroutine(MoveUnitAlongPathCoroutine(
                 unit,
@@ -134,7 +148,7 @@ namespace BF.Game.Runtime.Battle.Flow
                     unit.RuleState.GridPosition.X,
                     unit.RuleState.GridPosition.Y));
 
-            _unitManager?.SetActionLockedForCoordinator(false);
+            _actionCoordinator?.SetActionLocked(false);
         }
 
         /// <summary>
@@ -244,7 +258,7 @@ namespace BF.Game.Runtime.Battle.Flow
                 _activeMovingUnit = null;
 
             _activeMoveCoroutine = null;
-            _unitManager?.SetActionLockedForCoordinator(false);
+            _actionCoordinator?.SetActionLocked(false);
         }
 
         /// <summary>
@@ -338,7 +352,7 @@ namespace BF.Game.Runtime.Battle.Flow
                 unit.transform.position = (Vector3)_boardManager.CellToWorld(targetCell);
                 unit.StateMachine.ChangeState(unit.StateMachine.IdleState);
                 PublishMovedEvent(result, unit.RuntimeId, moveCost);
-                _unitManager.MarkBoardSyncFaultForCoordinator();
+                _boardManager.MarkSyncFault();
                 boardSyncFailed = true;
                 return true;
             }
@@ -348,11 +362,11 @@ namespace BF.Game.Runtime.Battle.Flow
             PublishMovedEvent(result, unit.RuntimeId, moveCost);
 
             if (clearSelectionWhenActed && unit.RuleState.Attributes.RemainingActionPoints <= 0)
-                _unitManager.DeselectUnitIgnoringLockForCoordinator();
+                _selectionController?.ClearSelection();
             if (refreshPlayerLegalActions)
-                _unitManager.RefreshPlayerLegalActionsForCoordinator();
+                _turnManager?.RefreshPlayerLegalActions();
 
-            _unitManager.NotifyMoveCompletedForCoordinator(unit);
+            MoveCompleted?.Invoke(unit);
             return true;
         }
 
@@ -400,6 +414,15 @@ namespace BF.Game.Runtime.Battle.Flow
                 rulePath.Add(new BFGridPosition(path[index].x, path[index].y));
 
             return rulePath;
+        }
+
+        private bool IsCurrentSessionUnit(UnitRuntime unit)
+        {
+            return unit != null && unit.IsRuleBound && _runtimeLookup != null &&
+                   _battleSession != null &&
+                   string.Equals(unit.BattleId, _battleSession.Context.BattleId, System.StringComparison.Ordinal) &&
+                   _battleSession.Context.TryGetUnit(unit.RuntimeId, out var state) &&
+                   ReferenceEquals(state, unit.RuleState);
         }
     }
 }

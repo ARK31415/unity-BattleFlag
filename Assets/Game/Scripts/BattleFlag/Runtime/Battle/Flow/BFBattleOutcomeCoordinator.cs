@@ -2,6 +2,7 @@ using System;
 using BF.Game.Battle.Domain;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Rules.Battle;
+using BF.Game.Runtime.Battle.Input;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace BF.Game.Runtime.Battle.Flow
 
         private DomainBattleSession _battleSession;
         private BFBattleProgressRules _battleProgressRules;
+        private BFBattleSelectionController _selectionController;
         /// <summary>当前规则结果的表现投影；不在适配层保存第二份结果状态。</summary>
         public RuntimeBattleResult Result => ToRuntimeResult(_battleSession?.Context.Result);
 
@@ -32,12 +34,21 @@ namespace BF.Game.Runtime.Battle.Flow
 
         /// <summary>绑定胜负流程所需的规则会话和阶段依赖。</summary>
         public void SetDependencies(
-            BFBattleUnitManager unitManager,
             BFBattleTurnManager turnManager,
             DomainBattleSession battleSession)
         {
+            SetDependencies(turnManager, battleSession, null);
+        }
+
+        /// <summary>绑定胜负判定所需的规则会话和临时选择状态。</summary>
+        public void SetDependencies(
+            BFBattleTurnManager turnManager,
+            DomainBattleSession battleSession,
+            BFBattleSelectionController selectionController)
+        {
             _turnManager = turnManager;
             _battleSession = battleSession;
+            _selectionController = selectionController;
             _battleProgressRules = battleSession == null
                 ? null
                 : new BFBattleProgressRules(battleSession);
@@ -50,7 +61,7 @@ namespace BF.Game.Runtime.Battle.Flow
             if (_battleSession == null || _battleProgressRules == null)
             {
                 // 过渡门面原有测试和外部诊断使用该稳定前缀；职责已由本协调器实际执行。
-                Debug.LogWarning("[BFBattleUnitManager] Cannot evaluate battle end without a BattleSession.");
+                Debug.LogWarning("[BFBattleOutcomeCoordinator] Cannot evaluate battle end without a BattleSession.");
                 return;
             }
             if (_battleSession.State != BFBattleSessionState.Running ||
@@ -81,6 +92,8 @@ namespace BF.Game.Runtime.Battle.Flow
                 ? DomainBattleResult.Victory(battleId, totalTurns)
                 : DomainBattleResult.Defeat(battleId, totalTurns);
             _battleProgressRules.CompleteBattle(domainResult);
+            // 选择是表现/输入临时状态，不属于已完成的战斗；即使行动锁尚未释放也必须清理。
+            _selectionController?.ClearSelection();
             BattleEnded?.Invoke(Result);
         }
 

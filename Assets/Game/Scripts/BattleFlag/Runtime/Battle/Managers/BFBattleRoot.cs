@@ -7,8 +7,12 @@ using BF.Game.Runtime.Battle.Cameras;
 using BF.Game.Runtime.Battle.Data;
 using BF.Game.Runtime.Battle.Events;
 using BF.Game.Runtime.Battle.Factory;
+using BF.Game.Runtime.Battle.AI;
+using BF.Game.Runtime.Battle.Flow;
+using BF.Game.Runtime.Battle.Input;
 using BF.Game.Runtime.Battle.PlayerInput;
 using BF.Game.Runtime.Battle.Presentation;
+using BF.Game.Runtime.Battle.Query;
 using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.UI.Battle;
 using UnityEngine;
@@ -19,7 +23,7 @@ using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
 namespace BF.Game.Runtime.Battle.Managers
 {
     /// <summary>
-    /// 战斗场景根节点（MonoBehaviour）。装配三个 Manager（Board - UnitManager - TurnManager）、
+    /// 战斗场景根节点（MonoBehaviour）。装配战斗会话及其规则、适配与表现组件、
     /// 输入控制器，按顺序初始化，提供场景级入口。
     ///
     /// 职责边界：
@@ -35,11 +39,16 @@ namespace BF.Game.Runtime.Battle.Managers
         /// <summary>棋盘管理器。</summary>
         [SerializeField] private BFBattleBoardManager _boardManager;
         /// <summary>单位管理器。</summary>
-        [SerializeField] private BFBattleUnitManager _unitManager;
+        [SerializeField] private BFBattleSelectionController _selectionController;
         /// <summary>回合管理器。</summary>
         [SerializeField] private BFBattleTurnManager _turnManager;
         /// <summary>战斗结算管理器。</summary>
         [SerializeField] private BFBattleResolutionManager _resolutionManager;
+        [SerializeField] private BFBattleSelectionCoordinator _selectionCoordinator;
+        [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
+        [SerializeField] private BFBattleMovementCoordinator _movementCoordinator;
+        [SerializeField] private BFBattleEnemyActionController _enemyActionController;
+        [SerializeField] private BFBattleOutcomeCoordinator _outcomeCoordinator;
         [Header("Battle Creation")]
         /// <summary>默认战斗单位唯一创建来源。</summary>
         [SerializeField] private BFBattleEncounterSO _encounter;
@@ -56,6 +65,7 @@ namespace BF.Game.Runtime.Battle.Managers
 
         private DomainBattleSession _battleSession;
         private BFUnitRegistry _unitRegistry;
+        private BFBattleUnitQuery _unitQuery;
         private BFBattleUnitFactory _unitFactory;
         private BFBattleEventToSOAdapter _battleEventAdapter;
 
@@ -74,7 +84,13 @@ namespace BF.Game.Runtime.Battle.Managers
         public BFBattleBoardManager BoardManager => _boardManager;
 
         /// <summary>当前战斗场景使用的单位管理器。</summary>
-        public BFBattleUnitManager UnitManager => _unitManager;
+        public BFBattleSelectionController SelectionController => _selectionController;
+        public BFBattleSelectionCoordinator SelectionCoordinator => _selectionCoordinator;
+        public BFBattleActionCoordinator ActionCoordinator => _actionCoordinator;
+        public BFBattleMovementCoordinator MovementCoordinator => _movementCoordinator;
+        public BFBattleEnemyActionController EnemyActionController => _enemyActionController;
+        public BFBattleOutcomeCoordinator OutcomeCoordinator => _outcomeCoordinator;
+        public IBFBattleUnitQuery UnitQuery => _unitQuery;
 
         /// <summary>当前战斗场景使用的回合管理器。</summary>
         public BFBattleTurnManager TurnManager => _turnManager;
@@ -122,9 +138,14 @@ namespace BF.Game.Runtime.Battle.Managers
         private void ResolveMissingReferences()
         {
             if (_boardManager == null) _boardManager = GetComponentInChildren<BFBattleBoardManager>();
-            if (_unitManager == null) _unitManager = GetComponentInChildren<BFBattleUnitManager>();
             if (_turnManager == null) _turnManager = GetComponentInChildren<BFBattleTurnManager>();
             if (_resolutionManager == null) _resolutionManager = GetComponentInChildren<BFBattleResolutionManager>();
+            if (_selectionController == null) _selectionController = GetComponentInChildren<BFBattleSelectionController>();
+            if (_selectionCoordinator == null) _selectionCoordinator = GetComponentInChildren<BFBattleSelectionCoordinator>();
+            if (_actionCoordinator == null) _actionCoordinator = GetComponentInChildren<BFBattleActionCoordinator>();
+            if (_movementCoordinator == null) _movementCoordinator = GetComponentInChildren<BFBattleMovementCoordinator>();
+            if (_enemyActionController == null) _enemyActionController = GetComponentInChildren<BFBattleEnemyActionController>();
+            if (_outcomeCoordinator == null) _outcomeCoordinator = GetComponentInChildren<BFBattleOutcomeCoordinator>();
             if (_inputController == null) _inputController = GetComponentInChildren<BFBattleInputController>();
             if (_cameraController == null) _cameraController = FindFirstObjectByType<BFBattleCameraController>();
             // WitUIManager 位于常驻场景 BFPersistent，通过 FindFirstObjectByType 跨场景查找。
@@ -137,17 +158,19 @@ namespace BF.Game.Runtime.Battle.Managers
 
         /// <summary>
         /// 战斗初始化主流程：创建 Domain Session，使用 Factory 生成并绑定单位，
-        /// 再把 Factory 结果注入棋盘、UnitManager 和事件适配器。
+        /// 再把 Factory 结果注入棋盘、流程协调器和事件适配器。
         /// </summary>
         private void InitializeBattle()
         {
             Debug.Log("[BFBattleRoot] Initializing battle...");
 
             if (_encounter == null || _factoryConfig == null || _boardManager == null ||
-                _unitManager == null || _turnManager == null || _resolutionManager == null)
+                _turnManager == null || _resolutionManager == null || _selectionController == null ||
+                _selectionCoordinator == null || _actionCoordinator == null || _movementCoordinator == null ||
+                _enemyActionController == null || _outcomeCoordinator == null)
             {
                 Debug.LogError(
-                    "[BFBattleRoot] Encounter、FactoryConfig、BoardManager、UnitManager、TurnManager 或 ResolutionManager 缺失，无法初始化战斗。",
+                    "[BFBattleRoot] Battle creation or flow dependencies are missing; cannot initialize battle.",
                     this);
                 return;
             }
@@ -179,6 +202,7 @@ namespace BF.Game.Runtime.Battle.Managers
             var boardRules = new BFBattleBoardRules(topology, battleContext);
             _battleSession = new DomainBattleSession(battleContext, boardRules);
             _unitRegistry = new BFUnitRegistry(battleContext.BattleId);
+            _cameraController?.SetRuntimeLookup(_unitRegistry);
             _unitFactory = new BFBattleUnitFactory(
                 _battleSession,
                 _unitRegistry,
@@ -207,21 +231,58 @@ namespace BF.Game.Runtime.Battle.Managers
 
             // 先把正式管理器绑定到本次 BattleSession，再注册 Factory 创建的单位。
             // RegisterUnit 不接受脱离 Session 的规则单位，避免出现半初始化战斗。
+            _unitQuery = new BFBattleUnitQuery(_battleSession, _unitRegistry);
+            _turnManager.SetDependencies(_actionCoordinator, _enemyActionController);
             _turnManager.SetBattleSession(_battleSession);
-            _unitManager.SetBattleSession(_battleSession);
-            _unitManager.SetBoardRules(boardRules);
             _resolutionManager.SetBattleSession(_battleSession);
             _resolutionManager.SetBoardManager(_boardManager);
+            _resolutionManager.SetRuntimeUnits(units);
+            _outcomeCoordinator.SetDependencies(_turnManager, _battleSession, _selectionController);
+            _movementCoordinator.SetDependencies(
+                _unitRegistry,
+                _boardManager,
+                _actionCoordinator,
+                _selectionController,
+                _turnManager);
+            _movementCoordinator.SetBattleSession(_battleSession);
+            _movementCoordinator.SetBoardRules(boardRules);
+            _selectionCoordinator.SetDependencies(
+                _selectionController,
+                _unitRegistry,
+                _actionCoordinator,
+                _turnManager,
+                _boardManager,
+                _battleSession);
+            _selectionCoordinator.SetRuntimeUnits(units);
+            _enemyActionController.SetDependencies(
+                _actionCoordinator,
+                _movementCoordinator,
+                _turnManager,
+                _outcomeCoordinator,
+                _boardManager,
+                _unitQuery,
+                _battleSession);
+            _actionCoordinator.SetDependencies(
+                _movementCoordinator,
+                _resolutionManager,
+                _turnManager,
+                _boardManager,
+                _selectionController,
+                _unitRegistry,
+                _unitQuery,
+                _outcomeCoordinator,
+                _enemyActionController);
+            _actionCoordinator.SetBattleSession(_battleSession);
+            _actionCoordinator.SetBoardRules(boardRules);
+            _inputController?.SetDependencies(
+                _turnManager,
+                _boardManager,
+                _actionCoordinator,
+                _actionCoordinator,
+                _selectionCoordinator,
+                _movementCoordinator);
 
             // Factory 已经使用 Encounter 的规则坐标完成棋盘占用；这里仅注入结果列表。
-            foreach (var unit in units)
-            {
-                _unitManager.RegisterUnit(unit);
-            }
-
-            // Step 4: 确保结算层能访问 UnitManager
-            _resolutionManager.SetUnitManager(_unitManager);
-
             // 动画命中帧依赖结算层引用；显式注入到每个单位的动画表现器，
             // 避免运行期通过全局查找建立隐式依赖。
             foreach (var unit in units)
@@ -254,6 +315,8 @@ namespace BF.Game.Runtime.Battle.Managers
         /// </summary>
         private void OnDestroy()
         {
+            // HUD 由常驻场景持有，必须在释放 Session 前主动关闭，触发其 OnClosing 退订旧战斗上下文。
+            _uiManager?.Close("battle.hud");
             _battleEventAdapter?.Dispose();
             _battleEventAdapter = null;
             DisposeBattleServices();
@@ -308,7 +371,11 @@ namespace BF.Game.Runtime.Battle.Managers
                 BattleEventChannel = _battleEventChannel,
                 UnitEventChannel = _unitEventChannel,
                 TurnManager = _turnManager,
-                UnitManager = _unitManager,
+                ActionCoordinator = _actionCoordinator,
+                ActionGateway = _actionCoordinator,
+                SelectionController = _selectionController,
+                SelectionCoordinator = _selectionCoordinator,
+                UnitQuery = _unitQuery,
                 InputController = _inputController,
                 CameraFocusLock = _cameraController,
                 UIManager = _uiManager

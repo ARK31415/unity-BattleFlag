@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using BF.Game.Battle.Domain;
+using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.Flow;
 using BF.Game.Runtime.Battle.Managers;
+using BF.Game.Runtime.Battle.Query;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
+using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
 
 namespace BF.Game.Runtime.Battle.AI
 {
@@ -15,37 +19,48 @@ namespace BF.Game.Runtime.Battle.AI
     [DisallowMultipleComponent]
     public sealed class BFBattleEnemyActionController : MonoBehaviour
     {
-        [SerializeField] private BFBattleUnitManager _unitManager;
         [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
         [SerializeField] private BFBattleMovementCoordinator _movementCoordinator;
         [SerializeField] private BFBattleTurnManager _turnManager;
+        [SerializeField] private BFBattleOutcomeCoordinator _outcomeCoordinator;
+        [SerializeField] private BFBattleBoardManager _boardManager;
 
         private Coroutine _activeTurnCoroutine;
         private bool _isExecuting;
+        private DomainBattleSession _battleSession;
+        private BFBattleUnitQuery _unitQuery;
+        private IBFBattleActionGateway _actionGateway;
 
         /// <summary>指示敌方回合协程是否正在运行。</summary>
         public bool IsExecuting => _isExecuting;
 
         /// <summary>绑定敌方行动所需的适配依赖。</summary>
         public void SetDependencies(
-            BFBattleUnitManager unitManager,
             BFBattleActionCoordinator actionCoordinator,
             BFBattleMovementCoordinator movementCoordinator,
-            BFBattleTurnManager turnManager)
+            BFBattleTurnManager turnManager,
+            BFBattleOutcomeCoordinator outcomeCoordinator,
+            BFBattleBoardManager boardManager,
+            BFBattleUnitQuery unitQuery,
+            DomainBattleSession battleSession)
         {
-            _unitManager = unitManager;
             _actionCoordinator = actionCoordinator;
+            _actionGateway = actionCoordinator;
             _movementCoordinator = movementCoordinator;
             _turnManager = turnManager;
+            _outcomeCoordinator = outcomeCoordinator;
+            _boardManager = boardManager;
+            _unitQuery = unitQuery;
+            _battleSession = battleSession;
         }
 
         /// <summary>开始一次敌方回合行动。</summary>
         public void BeginTurn()
         {
-            if (_unitManager == null || _actionCoordinator == null || IsExecuting ||
-                !_unitManager.IsBattleRunning)
+            if (_actionCoordinator == null || IsExecuting ||
+                _battleSession == null || _battleSession.State != BFBattleSessionState.Running)
                 return;
-            if (_unitManager.IsBoardSyncFaulted || _unitManager.IsActionLocked)
+            if (_boardManager != null && _boardManager.IsSyncFaulted || _actionCoordinator.IsActionLocked)
                 return;
             if (_turnManager != null && _turnManager.CurrentPhase != BattlePhase.EnemyTurn)
                 return;
@@ -75,7 +90,7 @@ namespace BF.Game.Runtime.Battle.AI
             // 敌方回合可能正处于攻击命中帧等待；取消 AI 协程时必须同时
             // 清理行动协调器持有的 pending attack 与未提交的表现状态。
             _actionCoordinator?.CleanupInterruptedActions();
-            _unitManager?.SetActionLockedForCoordinator(false);
+            _actionCoordinator?.SetActionLocked(false);
         }
 
         private void OnDisable()
@@ -85,20 +100,21 @@ namespace BF.Game.Runtime.Battle.AI
 
         private IEnumerator ExecuteTurnCoroutine()
         {
-            _unitManager.SetActionLockedForCoordinator(true);
+            _actionCoordinator.SetActionLocked(true);
 
-            var enemies = _unitManager.GetAliveUnitsByFaction(UnitFaction.Enemy);
-            var players = _unitManager.GetAliveUnitsByFaction(UnitFaction.Player);
+            var enemies = _unitQuery?.GetAliveRuntimesByFaction(UnitFaction.Enemy) ?? new List<UnitRuntime>();
+            var players = _unitQuery?.GetAliveRuntimesByFaction(UnitFaction.Player) ?? new List<UnitRuntime>();
             if (enemies.Count == 0 || players.Count == 0)
             {
-                _unitManager.CheckBattleEndCondition();
+                _outcomeCoordinator?.Evaluate();
                 FinishTurn();
                 yield break;
             }
 
             foreach (var enemy in enemies)
             {
-                if (!_unitManager.IsBattleRunning || _unitManager.IsBoardSyncFaulted ||
+                if (_battleSession == null || _battleSession.State != BFBattleSessionState.Running ||
+                    _boardManager != null && _boardManager.IsSyncFaulted ||
                     enemy == null || !enemy.RuleState.IsAlive)
                     continue;
 
@@ -106,36 +122,37 @@ namespace BF.Game.Runtime.Battle.AI
                 if (nearest == null)
                     continue;
 
-                if (_actionCoordinator.TryAttack(enemy, nearest))
+                if (_actionGateway.TryAttack(enemy.RuntimeId, nearest.RuntimeId))
                 {
                     yield return _actionCoordinator.WaitForAttack(enemy);
-                    if (!_unitManager.IsBattleRunning)
+                    if (_battleSession == null || _battleSession.State != BFBattleSessionState.Running)
                         break;
                     continue;
                 }
 
-                var reachable = _unitManager.GetReachableCellsForUnit(enemy);
+                var reachable = _actionCoordinator.GetReachableCellsForUnit(enemy);
                 if (reachable.Count > 0)
                 {
                     var bestCell = FindBestReachableCell(
                         reachable,
                         new Vector2Int(nearest.RuleState.GridPosition.X, nearest.RuleState.GridPosition.Y));
-                    if (_actionCoordinator.TryMove(enemy, bestCell))
+                    if (_actionGateway.TryMove(enemy.RuntimeId, bestCell))
                         yield return _movementCoordinator.WaitForCompletion();
                 }
 
-                if (_unitManager.IsBoardSyncFaulted)
+                if (_boardManager != null && _boardManager.IsSyncFaulted)
                     break;
 
-                if (_unitManager.IsBattleRunning && enemy.RuleState.IsAlive && nearest.RuleState.IsAlive &&
-                    _actionCoordinator.TryAttack(enemy, nearest))
+                if (_battleSession != null && _battleSession.State == BFBattleSessionState.Running &&
+                    enemy.RuleState.IsAlive && nearest.RuleState.IsAlive &&
+                    _actionGateway.TryAttack(enemy.RuntimeId, nearest.RuntimeId))
                 {
                     yield return _actionCoordinator.WaitForAttack(enemy);
                 }
             }
 
-            if (_unitManager.IsBattleRunning)
-                _unitManager.CheckBattleEndCondition();
+            if (_battleSession != null && _battleSession.State == BFBattleSessionState.Running)
+                _outcomeCoordinator?.Evaluate();
             FinishTurn();
         }
 
@@ -143,10 +160,11 @@ namespace BF.Game.Runtime.Battle.AI
         {
             _activeTurnCoroutine = null;
             _isExecuting = false;
-            _unitManager.SetActionLockedForCoordinator(false);
+            _actionCoordinator?.SetActionLocked(false);
 
-            if (_unitManager.IsBattleRunning && !_unitManager.IsBoardSyncFaulted &&
-                (_unitManager.Result == null || !_unitManager.Result.HasResult))
+            if (_battleSession != null && _battleSession.State == BFBattleSessionState.Running &&
+                (_outcomeCoordinator?.Result == null || !_outcomeCoordinator.Result.HasResult) &&
+                (_boardManager == null || !_boardManager.IsSyncFaulted))
             {
                 _turnManager?.EndTurn();
             }

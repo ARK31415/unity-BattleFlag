@@ -3,6 +3,8 @@ using BF.Game.Battle.Domain;
 using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Rules.Battle;
 using BF.Game.Runtime.Battle;
+using BF.Game.Runtime.Battle.AI;
+using BF.Game.Runtime.Battle.Flow;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
 using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
@@ -38,7 +40,8 @@ namespace BF.Game.Runtime.Battle.Managers
     public class BFBattleTurnManager : MonoBehaviour
     {
         [Header("Dependencies")]
-        [SerializeField] private BFBattleUnitManager _unitManager;
+        [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
+        [SerializeField] private BFBattleEnemyActionController _enemyActionController;
 
         private DomainBattleSession _battleSession;
         private BFBattleProgressRules _battleProgressRules;
@@ -73,6 +76,15 @@ namespace BF.Game.Runtime.Battle.Managers
         /// Spec 第 6 节：高亮不等于自动结束回合。
         /// </summary>
         public event Action<bool> OnNoLegalActionChanged;
+
+        /// <summary>绑定阶段流程所需的行动和 AI 适配器。</summary>
+        public void SetDependencies(
+            BFBattleActionCoordinator actionCoordinator,
+            BFBattleEnemyActionController enemyActionController)
+        {
+            _actionCoordinator = actionCoordinator;
+            _enemyActionController = enemyActionController;
+        }
 
         /// <summary>
         /// 将回合管理器绑定到一个战斗会话。
@@ -120,7 +132,7 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
-        /// 强制进入结算阶段（由 UnitManager 在全灭判定后调用）。
+        /// 强制进入结算阶段（由结果协调器在全灭判定后调用）。
         /// </summary>
         public void TransitionToResolution()
         {
@@ -132,7 +144,7 @@ namespace BF.Game.Runtime.Battle.Managers
         /// </summary>
         public void RefreshPlayerLegalActions()
         {
-            bool hasLegal = _unitManager != null && _unitManager.PlayerHasLegalAction();
+            bool hasLegal = _actionCoordinator != null && _actionCoordinator.PlayerHasLegalAction();
             OnNoLegalActionChanged?.Invoke(!hasLegal);
         }
 
@@ -165,7 +177,7 @@ namespace BF.Game.Runtime.Battle.Managers
             switch (newPhase)
             {
                 case BattlePhase.PlayerTurn:
-                    _unitManager?.ResetAllUnitsForNewTurn();
+                    _actionCoordinator?.ResetAllUnitsForNewTurn();
                     RefreshPlayerLegalActions();
                     break;
 
@@ -180,7 +192,7 @@ namespace BF.Game.Runtime.Battle.Managers
             OnPhaseChanged?.Invoke(oldPhase, newPhase);
 
             if (newPhase == BattlePhase.EnemyTurn)
-                _unitManager?.ExecuteEnemyTurn();
+                _enemyActionController?.BeginTurn();
         }
 
         private static BFBattlePhase ToDomainPhase(BattlePhase phase)

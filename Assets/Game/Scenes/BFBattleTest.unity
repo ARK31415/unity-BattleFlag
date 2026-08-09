@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 282620375}
   - component: {fileID: 282620381}
   - component: {fileID: 282620380}
-  - component: {fileID: 282620379}
   - component: {fileID: 282620378}
   - component: {fileID: 282620382}
   - component: {fileID: 282620384}
@@ -139,6 +138,7 @@ GameObject:
   - component: {fileID: 282620387}
   - component: {fileID: 282620386}
   - component: {fileID: 282620385}
+  - component: {fileID: 282620390}
   m_Layer: 0
   m_Name: BFBattleRoot
   m_TagString: Untagged
@@ -175,30 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.PlayerInput.BFBattleInputController
   _turnManager: {fileID: 282620380}
   _boardManager: {fileID: 1133210495}
-  _unitManager: {fileID: 282620379}
   _camera: {fileID: 0}
   _inputManager: {fileID: 0}
---- !u!114 &282620379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282620373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b24f270a1aa18d4aa925f774ceea334, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Managers.BFBattleUnitManager
-  _unitEventChannel: {fileID: 11400000, guid: 12cf428f9e16f68448e0e37e2aa8a394, type: 2}
-  _boardManager: {fileID: 1133210495}
-  _turnManager: {fileID: 282620380}
-  _resolutionManager: {fileID: 282620382}
-  _selectionController: {fileID: 282620389}
-  _actionCoordinator: {fileID: 282620388}
-  _movementCoordinator: {fileID: 282620387}
-  _enemyActionController: {fileID: 282620386}
-  _outcomeCoordinator: {fileID: 282620385}
 --- !u!114 &282620380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8bff9591ed0274f94a94353596c674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Managers.BFBattleTurnManager
-  _unitManager: {fileID: 282620379}
 --- !u!114 &282620381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Managers.BFBattleRoot
   _boardManager: {fileID: 1133210495}
-  _unitManager: {fileID: 282620379}
   _turnManager: {fileID: 282620380}
   _resolutionManager: {fileID: 282620382}
   _encounter: {fileID: 11400000, guid: 1157e8d9119718c4a950e632fad88dae, type: 2}
@@ -248,7 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab982903504334f8bebcb1b1fb89ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Managers.BFBattleResolutionManager
-  _unitManager: {fileID: 282620379}
+  _actionCoordinator: {fileID: 0}
+  _boardManager: {fileID: 0}
 --- !u!225 &282620384
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -273,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63323ea0a8d5fc94cbf8578417ec96aa, type: 3}
   m_Name:
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Flow.BFBattleOutcomeCoordinator
+  _turnManager: {fileID: 0}
 --- !u!114 &282620386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dff224bfc07d404199643a8282ee1fb, type: 3}
   m_Name:
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.AI.BFBattleEnemyActionController
-  _unitManager: {fileID: 282620379}
   _actionCoordinator: {fileID: 282620388}
   _movementCoordinator: {fileID: 282620387}
   _turnManager: {fileID: 282620380}
@@ -301,7 +278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0616c27433121d8479754d56fe04239b, type: 3}
   m_Name:
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Flow.BFBattleMovementCoordinator
-  _unitManager: {fileID: 282620379}
   _boardManager: {fileID: 1133210495}
   _secondsPerMoveCell: 0.2
 --- !u!114 &282620388
@@ -316,7 +292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5525227a32f8604eb1b68a6f0a4da64, type: 3}
   m_Name:
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Flow.BFBattleActionCoordinator
-  _unitManager: {fileID: 282620379}
+  _movementCoordinator: {fileID: 0}
+  _boardManager: {fileID: 0}
+  _resolutionManager: {fileID: 0}
+  _turnManager: {fileID: 0}
 --- !u!114 &282620389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +308,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6477efb62c21d884792d8e76ac7dc778, type: 3}
   m_Name:
   m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Input.BFBattleSelectionController
+--- !u!114 &282620390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282620373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e573fb30db62794a9dddc6914f4515d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BF.Game.Runtime::BF.Game.Runtime.Battle.Input.BFBattleSelectionCoordinator
 --- !u!1 &304222118
 GameObject:
   m_ObjectHideFlags: 0

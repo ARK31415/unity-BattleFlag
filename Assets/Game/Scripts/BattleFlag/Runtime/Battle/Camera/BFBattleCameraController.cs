@@ -1,4 +1,5 @@
 using BF.Game.Runtime.Input;
+using BF.Game.Runtime.Battle.Factory;
 using BF.Game.Runtime.Battle.Units;
 using BF.Game.Runtime.UI.Battle.HUD.Camera;
 using Unity.Cinemachine;
@@ -53,6 +54,16 @@ namespace BF.Game.Runtime.Battle.Cameras
         private bool _loggedMissingInputManager;
         private bool _loggedMissingActions;
         private bool _loggedMissingBoundsCollider;
+        private IBFBattleRuntimeLookup _runtimeLookup;
+
+        /// <summary>
+        /// 绑定当前 BattleSession 的 Runtime 查询适配器。
+        /// 相机只在表现适配边界内将 RuntimeId 解析为 Unity Transform，HUD 不持有 UnitRuntime。
+        /// </summary>
+        public void SetRuntimeLookup(IBFBattleRuntimeLookup runtimeLookup)
+        {
+            _runtimeLookup = runtimeLookup;
+        }
 
         private void Reset()
         {
@@ -344,8 +355,11 @@ namespace BF.Game.Runtime.Battle.Cameras
         /// BattleHUD 进入攻击/技能子界面时调用。
         /// 相机立即聚焦到行动单位并锁住玩家平移/缩放输入，避免 HUD 子界面和画面中心割裂。
         /// </summary>
-        public void FocusAndLock(UnitRuntime unit)
+        public void FocusAndLock(string runtimeId)
         {
+            if (_runtimeLookup == null || !_runtimeLookup.TryGetRuntime(runtimeId, out var unit))
+                return;
+
             if (unit == null)
                 return;
 

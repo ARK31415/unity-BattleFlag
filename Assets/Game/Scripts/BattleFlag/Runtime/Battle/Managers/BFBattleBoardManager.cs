@@ -41,6 +41,12 @@ namespace BF.Game.Runtime.Battle.Managers
         public int Width => _grid?.Width ?? 0;
         public int Height => _grid?.Depth ?? 0;
 
+        /// <summary>
+        /// 指示规则位置与 Unity/A* 动态占用是否曾发生不可自动恢复的不一致。
+        /// 故障状态属于棋盘适配层，不再由单位流程门面保存。
+        /// </summary>
+        public bool IsSyncFaulted { get; private set; }
+
         // ============================================================
         // 初始化
         // ============================================================
@@ -85,6 +91,26 @@ namespace BF.Game.Runtime.Battle.Managers
             if (!EnsureGridReady()) return false;
 
             CaptureStaticTopology();
+            IsSyncFaulted = false;
+            return true;
+        }
+
+        /// <summary>记录规则结果已提交但棋盘镜像同步失败的适配层故障。</summary>
+        public void MarkSyncFault()
+        {
+            IsSyncFaulted = true;
+        }
+
+        /// <summary>
+        /// 使用规则层导出的存活单位占用快照恢复棋盘适配状态。
+        /// 该方法只解除已验证的故障标记，不修改规则位置或自动重建占用。
+        /// </summary>
+        public bool TryRecoverSync(IReadOnlyDictionary<Vector2Int, string> expectedOccupants)
+        {
+            if (!IsSyncFaulted || !HasExactUnitOccupancy(expectedOccupants))
+                return false;
+
+            IsSyncFaulted = false;
             return true;
         }
 

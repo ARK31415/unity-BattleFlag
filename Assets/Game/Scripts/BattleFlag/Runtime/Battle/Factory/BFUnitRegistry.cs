@@ -7,7 +7,7 @@ namespace BF.Game.Runtime.Battle.Factory
     /// <summary>
     /// 单个 BattleSession 内的 RuntimeId 到 Unity Runtime 索引。
     /// </summary>
-    public sealed class BFUnitRegistry : IDisposable
+    public sealed class BFUnitRegistry : IBFBattleRuntimeLookup, IDisposable
     {
         private readonly Dictionary<string, UnitRuntime> _runtimes = new();
         private bool _isDisposed;
@@ -34,6 +34,16 @@ namespace BF.Game.Runtime.Battle.Factory
             }
         }
 
+        /// <summary>当前会话已注册的 Runtime 集合，供适配层查询和协调器遍历。</summary>
+        public IReadOnlyCollection<UnitRuntime> Runtimes
+        {
+            get
+            {
+                EnsureNotDisposed();
+                return _runtimes.Values;
+            }
+        }
+
         /// <summary>
         /// 注册一个已经完成绑定的 Runtime。
         /// </summary>
@@ -47,7 +57,11 @@ namespace BF.Game.Runtime.Battle.Factory
             if (!string.Equals(runtime.BattleId, handle.BattleId, StringComparison.Ordinal))
                 return false;
 
-            return _runtimes.TryAdd(handle.RuntimeId, runtime);
+            if (!_runtimes.TryAdd(handle.RuntimeId, runtime))
+                return false;
+
+            runtime.Disabled += HandleRuntimeDisabled;
+            return true;
         }
 
         /// <summary>
@@ -62,20 +76,64 @@ namespace BF.Game.Runtime.Battle.Factory
                 return false;
             }
 
-            return _runtimes.TryGetValue(handle.RuntimeId, out runtime);
+            if (!_runtimes.TryGetValue(handle.RuntimeId, out runtime))
+                return false;
+
+            if (runtime == null || !runtime.gameObject.activeInHierarchy)
+            {
+                RemoveRuntime(handle.RuntimeId, runtime);
+                runtime = null;
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>按 RuntimeId 查询当前会话内的 Runtime。</summary>
+        public bool TryGetRuntime(string runtimeId, out UnitRuntime runtime)
+        {
+            EnsureNotDisposed();
+            if (string.IsNullOrWhiteSpace(runtimeId))
+            {
+                runtime = null;
+                return false;
+            }
+
+            if (!_runtimes.TryGetValue(runtimeId, out runtime))
+                return false;
+
+            if (runtime == null || !runtime.gameObject.activeInHierarchy)
+            {
+                RemoveRuntime(runtimeId, runtime);
+                runtime = null;
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>解除一个单位的注册关系。</summary>
         public bool TryUnregister(BFBattleUnitHandle handle)
         {
             EnsureNotDisposed();
-            return IsHandleInThisBattle(handle) && _runtimes.Remove(handle.RuntimeId);
+            if (!IsHandleInThisBattle(handle) ||
+                !_runtimes.TryGetValue(handle.RuntimeId, out var runtime))
+                return false;
+
+            RemoveRuntime(handle.RuntimeId, runtime);
+            return true;
         }
 
         /// <summary>清理当前会话内全部注册关系。</summary>
         public void Clear()
         {
             EnsureNotDisposed();
+            foreach (var runtime in _runtimes.Values)
+            {
+                if (runtime != null)
+                    runtime.Disabled -= HandleRuntimeDisabled;
+            }
+
             _runtimes.Clear();
         }
 
@@ -85,12 +143,38 @@ namespace BF.Game.Runtime.Battle.Factory
             if (_isDisposed) return;
 
             _isDisposed = true;
+            foreach (var runtime in _runtimes.Values)
+            {
+                if (runtime != null)
+                    runtime.Disabled -= HandleRuntimeDisabled;
+            }
+
             _runtimes.Clear();
         }
 
         private bool IsHandleInThisBattle(BFBattleUnitHandle handle)
         {
             return handle != null && string.Equals(handle.BattleId, BattleId, StringComparison.Ordinal);
+        }
+
+        private void HandleRuntimeDisabled(UnitRuntime runtime)
+        {
+            if (runtime == null || string.IsNullOrWhiteSpace(runtime.RuntimeId))
+                return;
+
+            if (_runtimes.TryGetValue(runtime.RuntimeId, out var registered) &&
+                ReferenceEquals(registered, runtime))
+            {
+                RemoveRuntime(runtime.RuntimeId, runtime);
+            }
+        }
+
+        private void RemoveRuntime(string runtimeId, UnitRuntime runtime)
+        {
+            if (runtime != null)
+                runtime.Disabled -= HandleRuntimeDisabled;
+
+            _runtimes.Remove(runtimeId);
         }
 
         private void EnsureNotDisposed()

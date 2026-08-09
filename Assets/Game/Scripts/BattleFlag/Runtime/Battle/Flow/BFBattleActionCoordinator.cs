@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using BF.Game.Battle.Domain;
@@ -5,8 +6,12 @@ using BF.Game.Battle.Domain.Events;
 using BF.Game.Battle.Domain.Units;
 using BF.Game.Battle.Rules.Battle;
 using BF.Game.Battle.Rules.Units;
+using BF.Game.Runtime.Battle.AI;
 using BF.Game.Runtime.Battle.Commands;
+using BF.Game.Runtime.Battle.Factory;
+using BF.Game.Runtime.Battle.Input;
 using BF.Game.Runtime.Battle.Managers;
+using BF.Game.Runtime.Battle.Query;
 using BF.Game.Runtime.Battle.Units;
 using UnityEngine;
 using DomainBattleSession = BF.Game.Battle.Domain.BFBattleSession;
@@ -21,36 +26,61 @@ namespace BF.Game.Runtime.Battle.Flow
     /// 规则校验和结算仍由 Rules 负责，本组件只协调适配层流程和生命周期。
     /// </summary>
     [DisallowMultipleComponent]
-    public sealed class BFBattleActionCoordinator : MonoBehaviour
+    public sealed class BFBattleActionCoordinator : MonoBehaviour, IBFBattleActionGateway
     {
-        [SerializeField] private BFBattleUnitManager _unitManager;
         [SerializeField] private BFBattleMovementCoordinator _movementCoordinator;
         [SerializeField] private BFBattleBoardManager _boardManager;
         [SerializeField] private BFBattleResolutionManager _resolutionManager;
         [SerializeField] private BFBattleTurnManager _turnManager;
+        [SerializeField] private BFBattleSelectionController _selectionController;
 
         private DomainBattleSession _battleSession;
+        private IBFBattleRuntimeLookup _runtimeLookup;
+        private BFBattleUnitQuery _unitQuery;
+        private BFBattleOutcomeCoordinator _outcomeCoordinator;
+        private BFBattleEnemyActionController _enemyActionController;
         private BFUnitStateRules _unitStateRules;
         private BFBattleBoardRules _boardRules;
         private Coroutine _activeAttackWait;
         private UnitRuntime _activeAttackUnit;
+        private bool _isActionLocked;
 
         /// <summary>当前是否存在正在执行的战斗行动。</summary>
-        public bool IsActionLocked => _unitManager != null && _unitManager.IsActionLocked;
+        public bool IsActionLocked => _isActionLocked;
+
+        /// <summary>当前选择对应的 Runtime；选择事实仍只由 SelectionController 保存。</summary>
+        public UnitRuntime SelectedUnit => ResolveSelectedUnit();
+
+        /// <summary>当前会话是否允许提交规则行动。</summary>
+        public bool IsBattleRunning => _battleSession != null &&
+                                       _battleSession.State == DomainSessionState.Running;
+
+        /// <summary>当前棋盘适配层是否处于同步故障状态。</summary>
+        public bool IsBoardSyncFaulted => _boardManager != null && _boardManager.IsSyncFaulted;
+
+        /// <summary>行动表现完成后通知输入适配层。</summary>
 
         /// <summary>绑定统一行动协调器及其适配依赖。</summary>
         public void SetDependencies(
-            BFBattleUnitManager unitManager,
             BFBattleMovementCoordinator movementCoordinator,
             BFBattleResolutionManager resolutionManager,
             BFBattleTurnManager turnManager,
-            BFBattleBoardManager boardManager)
+            BFBattleBoardManager boardManager,
+            BFBattleSelectionController selectionController,
+            IBFBattleRuntimeLookup runtimeLookup,
+            BFBattleUnitQuery unitQuery,
+            BFBattleOutcomeCoordinator outcomeCoordinator,
+            BFBattleEnemyActionController enemyActionController)
         {
-            _unitManager = unitManager;
             _movementCoordinator = movementCoordinator;
             _resolutionManager = resolutionManager;
             _turnManager = turnManager;
             _boardManager = boardManager;
+            _selectionController = selectionController;
+            _runtimeLookup = runtimeLookup;
+            _unitQuery = unitQuery;
+            _outcomeCoordinator = outcomeCoordinator;
+            _enemyActionController = enemyActionController;
             _resolutionManager?.SetActionCoordinator(this);
         }
 
@@ -63,7 +93,7 @@ namespace BF.Game.Runtime.Battle.Flow
         /// <summary>查询指定单位当前规则 AP 内可达的表现格。</summary>
         public List<Vector2Int> GetReachableCellsForUnit(UnitRuntime unit)
         {
-            if (_boardManager == null || !_unitManager.IsCurrentSessionUnit(unit))
+            if (_boardManager == null || !IsCurrentSessionUnit(unit))
                 return new List<Vector2Int>();
 
             var position = unit.RuleState.GridPosition;
@@ -97,13 +127,13 @@ namespace BF.Game.Runtime.Battle.Flow
         public List<UnitRuntime> GetAttackableTargets()
         {
             var targets = new List<UnitRuntime>();
-            var selected = _unitManager?.SelectedUnit;
-            if (selected == null || !_unitManager.IsCurrentSessionUnit(selected))
+            var selected = SelectedUnit;
+            if (selected == null || !IsCurrentSessionUnit(selected))
                 return targets;
 
             var position = selected.RuleState.GridPosition;
             var range = selected.RuleState.Attributes.EffectiveAttackRange;
-            foreach (var unit in _unitManager.GetAliveUnitsByFaction(UnitFaction.Enemy))
+            foreach (var unit in GetAliveUnitsByFaction(UnitFaction.Enemy))
             {
                 if (unit == selected) continue;
                 if (GetManhattanDistance(position, unit.RuleState.GridPosition) <= range)
@@ -116,11 +146,11 @@ namespace BF.Game.Runtime.Battle.Flow
         /// <summary>查询玩家是否仍有至少一个合法移动或攻击意图。</summary>
         public bool PlayerHasLegalAction()
         {
-            if (_boardManager == null || _unitManager == null)
+            if (_boardManager == null || _runtimeLookup == null)
                 return false;
 
-            var players = _unitManager.GetAliveUnitsByFaction(UnitFaction.Player);
-            var enemies = _unitManager.GetAliveUnitsByFaction(UnitFaction.Enemy);
+            var players = GetAliveUnitsByFaction(UnitFaction.Player);
+            var enemies = GetAliveUnitsByFaction(UnitFaction.Enemy);
             foreach (var unit in players)
             {
                 var attributes = unit.RuleState.Attributes;
@@ -142,12 +172,6 @@ namespace BF.Game.Runtime.Battle.Flow
             return false;
         }
 
-        /// <summary>兼容 EditMode 装配测试的单位门面注入入口。</summary>
-        public void SetUnitManager(BFBattleUnitManager unitManager)
-        {
-            _unitManager = unitManager;
-        }
-
         /// <summary>绑定当前战斗会话的规则行动入口。</summary>
         public void SetBattleSession(DomainBattleSession session)
         {
@@ -161,13 +185,13 @@ namespace BF.Game.Runtime.Battle.Flow
         /// </summary>
         public void ResetAllUnitsForNewTurn()
         {
-            if (_unitManager == null || _unitStateRules == null ||
+            if (_runtimeLookup == null || _unitStateRules == null ||
                 _battleSession == null || _battleSession.State != DomainSessionState.Running)
                 return;
 
-            foreach (var unit in _unitManager.AllUnits)
+            foreach (var unit in _runtimeLookup.Runtimes)
             {
-                if (!_unitManager.IsCurrentSessionUnit(unit))
+                if (!IsCurrentSessionUnit(unit))
                     continue;
 
                 if (_unitStateRules.TryResetTurnResources(unit.RuntimeId))
@@ -182,13 +206,13 @@ namespace BF.Game.Runtime.Battle.Flow
         {
             CleanupInterruptedAttack();
 
-            foreach (var unit in _unitManager?.AllUnits ?? new List<UnitRuntime>())
+            foreach (var unit in _runtimeLookup?.Runtimes ?? Array.Empty<UnitRuntime>())
             {
                 if (unit == null) continue;
 
                 unit.Combat.ClearQueuedAttack();
                 _resolutionManager?.ClearPendingAttack(unit);
-                if (_unitStateRules != null && _unitManager.IsCurrentSessionUnit(unit) &&
+                if (_unitStateRules != null && IsCurrentSessionUnit(unit) &&
                     unit.RuleState.ActionState == BFUnit_ActionState.Attack &&
                     _unitStateRules.TryChangeActionState(unit.RuntimeId, BFUnit_ActionState.Idle))
                 {
@@ -202,7 +226,7 @@ namespace BF.Game.Runtime.Battle.Flow
         /// <summary>设置由协调器拥有的表现行动锁。</summary>
         public void SetActionLocked(bool value)
         {
-            _unitManager?.SetActionLockedForCoordinator(value);
+            _isActionLocked = value;
         }
 
         /// <summary>
@@ -229,12 +253,11 @@ namespace BF.Game.Runtime.Battle.Flow
         /// <summary>将当前选择提交为移动行动。</summary>
         public bool TryMoveSelected(Vector2Int targetCell)
         {
-            if (_unitManager == null || _movementCoordinator == null ||
-                !CanPlayerAct(_unitManager.SelectedUnit))
+            if (_movementCoordinator == null || !CanPlayerAct(SelectedUnit))
                 return false;
 
             return _movementCoordinator.TryMove(
-                _unitManager.SelectedUnit,
+                SelectedUnit,
                 targetCell,
                 refreshPlayerLegalActions: true,
                 clearSelectionWhenActed: true);
@@ -243,25 +266,38 @@ namespace BF.Game.Runtime.Battle.Flow
         /// <summary>将当前选择提交为攻击行动。</summary>
         public bool TryAttackSelected(UnitRuntime target)
         {
-            if (_unitManager == null || !CanPlayerAct(_unitManager.SelectedUnit) ||
-                target == null || !_unitManager.IsCurrentSessionUnit(target) || !target.RuleState.IsAlive ||
-                target.Identity.Faction == _unitManager.SelectedUnit.Identity.Faction)
+            if (!CanPlayerAct(SelectedUnit) ||
+                target == null || !IsCurrentSessionUnit(target) || !target.RuleState.IsAlive ||
+                target.RuleState.Faction == SelectedUnit.RuleState.Faction)
                 return false;
 
-            return TryAttackInternal(_unitManager.SelectedUnit, target);
+            return TryAttackInternal(SelectedUnit, target);
+        }
+
+        /// <summary>
+        /// 通过 RuntimeId 提交当前玩家选中的攻击目标。
+        /// UI 与输入层只传递身份合同，由行动协调器在适配层内部解析 Runtime。
+        /// </summary>
+        public bool TryAttackSelected(string targetRuntimeId)
+        {
+            if (string.IsNullOrWhiteSpace(targetRuntimeId) || _runtimeLookup == null ||
+                !_runtimeLookup.TryGetRuntime(targetRuntimeId, out var target))
+                return false;
+
+            return TryAttackSelected(target);
         }
 
         /// <summary>将当前选择提交为等待行动。</summary>
         public bool TryWaitSelected()
         {
-            if (_unitManager == null || !CanPlayerAct(_unitManager.SelectedUnit))
+            if (!CanPlayerAct(SelectedUnit))
                 return false;
 
-            var unit = _unitManager.SelectedUnit;
+            var unit = SelectedUnit;
             if (!TryWaitInternal(unit))
                 return false;
 
-            _unitManager.DeselectUnitIgnoringLockForCoordinator();
+            _selectionController?.ClearSelection();
             _turnManager?.RefreshPlayerLegalActions();
             return true;
         }
@@ -269,7 +305,7 @@ namespace BF.Game.Runtime.Battle.Flow
         /// <summary>提交一个指定敌方单位的移动意图，供敌方 AI 使用。</summary>
         public bool TryMove(UnitRuntime unit, Vector2Int targetCell)
         {
-            if (_unitManager == null || _movementCoordinator == null || !CanEnemyAct(unit))
+            if (_movementCoordinator == null || !CanEnemyAct(unit))
                 return false;
 
             return _movementCoordinator.TryMove(
@@ -282,16 +318,85 @@ namespace BF.Game.Runtime.Battle.Flow
         /// <summary>提交一个指定敌方单位的攻击意图，供敌方 AI 使用。</summary>
         public bool TryAttack(UnitRuntime attacker, UnitRuntime target)
         {
-            return _unitManager != null && CanEnemyAct(attacker) &&
-                   target != null && _unitManager.IsCurrentSessionUnit(target) && target.RuleState.IsAlive &&
-                   target.Identity.Faction == UnitFaction.Player &&
+            return CanEnemyAct(attacker) &&
+                   target != null && IsCurrentSessionUnit(target) && target.RuleState.IsAlive &&
+                   target.RuleState.Faction == BFUnitFaction.Player &&
                    TryAttackInternal(attacker, target);
         }
 
         /// <summary>提交一个指定敌方单位的等待意图，供敌方 AI 使用。</summary>
         public bool TryWait(UnitRuntime unit)
         {
-            return _unitManager != null && CanEnemyAct(unit) && TryWaitInternal(unit);
+            return CanEnemyAct(unit) && TryWaitInternal(unit);
+        }
+
+        /// <summary>
+        /// 通过 RuntimeId 提交移动请求，供输入、HUD 或其他适配层消费者使用。
+        /// </summary>
+        public bool TryMove(string runtimeId, Vector2Int targetCell)
+        {
+            if (_runtimeLookup == null || !_runtimeLookup.TryGetRuntime(runtimeId, out var unit) ||
+                _movementCoordinator == null)
+                return false;
+
+            if (unit.RuleState.Faction == BFUnitFaction.Player)
+            {
+                if (!CanPlayerAct(unit))
+                    return false;
+
+                return _movementCoordinator.TryMove(
+                    unit,
+                    targetCell,
+                    refreshPlayerLegalActions: true,
+                    clearSelectionWhenActed: true);
+            }
+
+            return TryMove(unit, targetCell);
+        }
+
+        /// <summary>
+        /// 通过 RuntimeId 提交攻击请求，供输入、HUD、AI 或其他适配层消费者使用。
+        /// </summary>
+        public bool TryAttack(string attackerRuntimeId, string targetRuntimeId)
+        {
+            if (_runtimeLookup == null ||
+                !_runtimeLookup.TryGetRuntime(attackerRuntimeId, out var attacker) ||
+                !_runtimeLookup.TryGetRuntime(targetRuntimeId, out var target))
+                return false;
+
+            if (attacker.RuleState.Faction == BFUnitFaction.Player)
+            {
+                return CanPlayerAct(attacker) &&
+                       target.RuleState.IsAlive &&
+                       target.RuleState.Faction == BFUnitFaction.Enemy &&
+                       TryAttackInternal(attacker, target);
+            }
+
+            return TryAttack(attacker, target);
+        }
+
+        /// <summary>
+        /// 通过 RuntimeId 提交等待请求，供输入、HUD、AI 或其他适配层消费者使用。
+        /// </summary>
+        public bool TryWait(string runtimeId)
+        {
+            if (_runtimeLookup == null || !_runtimeLookup.TryGetRuntime(runtimeId, out var unit))
+                return false;
+
+            if (unit.RuleState.Faction == BFUnitFaction.Player)
+            {
+                if (!CanPlayerAct(unit) || !TryWaitInternal(unit))
+                    return false;
+
+                if (_selectionController != null &&
+                    string.Equals(_selectionController.SelectedRuntimeId, runtimeId, StringComparison.Ordinal))
+                    _selectionController.ClearSelection();
+
+                _turnManager?.RefreshPlayerLegalActions();
+                return true;
+            }
+
+            return TryWait(unit);
         }
 
         /// <summary>等待指定单位的攻击表现生命周期结束。</summary>
@@ -312,11 +417,11 @@ namespace BF.Game.Runtime.Battle.Flow
             if (result.Attacker.RuleState.IsAlive)
                 result.Attacker.StateMachine.ChangeState(result.Attacker.StateMachine.IdleState);
 
-            if (_unitManager.SelectedUnit != null &&
-                _unitManager.SelectedUnit.RuleState.Attributes.RemainingActionPoints <= 0)
-                _unitManager.DeselectUnitIgnoringLockForCoordinator();
+            if (SelectedUnit != null &&
+                SelectedUnit.RuleState.Attributes.RemainingActionPoints <= 0)
+                _selectionController?.ClearSelection();
 
-            SetActionLocked(_unitManager.EnemyActionControllerIsExecuting);
+            SetActionLocked(_enemyActionController != null && _enemyActionController.IsExecuting);
             _turnManager?.RefreshPlayerLegalActions();
 
             _battleSession?.Publish(new BFAttackResolvedEvent(
@@ -333,12 +438,12 @@ namespace BF.Game.Runtime.Battle.Flow
                 _battleSession?.Publish(new BFUnitDefeatedEvent(
                     _battleSession.Context.BattleId,
                     result.Target.RuntimeId,
-                    ToDomainFaction(result.Target.Identity.Faction),
+                    result.Target.RuleState.Faction,
                     result.Attacker.RuntimeId,
                     _battleSession.Context.TurnNumber));
             }
 
-            _unitManager.CheckBattleEndCondition();
+            _outcomeCoordinator?.Evaluate();
         }
 
         /// <summary>清理未产生规则结果的攻击。</summary>
@@ -356,16 +461,15 @@ namespace BF.Game.Runtime.Battle.Flow
             if (attacker.RuleState.IsAlive)
                 attacker.StateMachine.ChangeState(attacker.StateMachine.IdleState);
 
-            if (_unitManager != null)
-                SetActionLocked(_unitManager.EnemyActionControllerIsExecuting);
+            SetActionLocked(_enemyActionController != null && _enemyActionController.IsExecuting);
             _turnManager?.RefreshPlayerLegalActions();
         }
 
         private bool TryAttackInternal(UnitRuntime attacker, UnitRuntime target)
         {
-            if (_unitManager.IsBoardSyncFaulted || !CanAct(attacker) || target == null ||
-                !_unitManager.IsCurrentSessionUnit(target) || !target.RuleState.IsAlive ||
-                attacker.Identity.Faction == target.Identity.Faction)
+            if (IsBoardSyncFaulted || !CanAct(attacker) || target == null ||
+                !IsCurrentSessionUnit(target) || !target.RuleState.IsAlive ||
+                attacker.RuleState.Faction == target.RuleState.Faction)
                 return false;
 
             var cost = attacker.RuleState.Attributes.EffectiveAttackCost;
@@ -393,7 +497,7 @@ namespace BF.Game.Runtime.Battle.Flow
             attacker.RefreshRuleStateProjection();
             attacker.StateMachine.AttackState.SetTarget(target);
             attacker.StateMachine.ChangeState(attacker.StateMachine.AttackState);
-            _unitManager.RaiseUnitActionEventForCoordinator(attacker, "Attacked", target.RuntimeId, cost);
+            // 攻击开始只驱动表现，不发布领域结算事实；结算事实由命中帧路径发布。
             SetActionLocked(true);
             _activeAttackUnit = attacker;
             _activeAttackWait = StartCoroutine(WaitForAttackCompletionCoroutine(attacker));
@@ -418,23 +522,23 @@ namespace BF.Game.Runtime.Battle.Flow
 
         private bool CanPlayerAct(UnitRuntime unit)
         {
-            return CanAct(unit) && unit.Identity.Faction == UnitFaction.Player &&
+            return CanAct(unit) && unit.RuleState.Faction == BFUnitFaction.Player &&
                    _turnManager != null && _turnManager.CurrentPhase == BattlePhase.PlayerTurn;
         }
 
         private bool CanEnemyAct(UnitRuntime unit)
         {
-            return CanAct(unit) && unit.Identity.Faction == UnitFaction.Enemy &&
+            return CanAct(unit) && unit.RuleState.Faction == BFUnitFaction.Enemy &&
                    _turnManager != null && _turnManager.CurrentPhase == BattlePhase.EnemyTurn;
         }
 
         private bool CanAct(UnitRuntime unit)
         {
-            return _unitManager != null && _battleSession != null &&
+            return _battleSession != null && _runtimeLookup != null &&
                    _battleSession.State == DomainSessionState.Running &&
-                   !_unitManager.IsBoardSyncFaulted &&
-                   (!_unitManager.IsActionLocked || _unitManager.EnemyActionControllerIsExecuting) &&
-                   _unitManager.IsCurrentSessionUnit(unit) &&
+                   !IsBoardSyncFaulted &&
+                   (!IsActionLocked || (_enemyActionController != null && _enemyActionController.IsExecuting)) &&
+                   IsCurrentSessionUnit(unit) &&
                    unit.RuleState.IsAlive && unit.gameObject.activeInHierarchy &&
                    unit.RuleState.Attributes.RemainingActionPoints > 0;
         }
@@ -472,14 +576,34 @@ namespace BF.Game.Runtime.Battle.Flow
             _activeAttackWait = null;
         }
 
-        private static BFUnitFaction ToDomainFaction(UnitFaction faction)
+        /// <summary>获取当前会话内仍存活且属于指定阵营的 Runtime。</summary>
+        private List<UnitRuntime> GetAliveUnitsByFaction(UnitFaction faction)
         {
-            return faction switch
-            {
-                UnitFaction.Player => BFUnitFaction.Player,
-                UnitFaction.Enemy => BFUnitFaction.Enemy,
-                _ => BFUnitFaction.None
-            };
+            return _unitQuery != null
+                ? _unitQuery.GetAliveRuntimesByFaction(faction)
+                : new List<UnitRuntime>();
+        }
+
+        /// <summary>验证 Runtime 是否属于当前 BattleSession 且仍绑定其规则状态实例。</summary>
+        private bool IsCurrentSessionUnit(UnitRuntime unit)
+        {
+            return unit != null && unit.IsRuleBound && _runtimeLookup != null &&
+                   _battleSession != null &&
+                   string.Equals(unit.BattleId, _battleSession.Context.BattleId, StringComparison.Ordinal) &&
+                   _battleSession.Context.TryGetUnit(unit.RuntimeId, out var state) &&
+                   ReferenceEquals(state, unit.RuleState);
+        }
+
+        private UnitRuntime ResolveSelectedUnit()
+        {
+            var runtimeId = _selectionController?.SelectedRuntimeId;
+            if (string.IsNullOrWhiteSpace(runtimeId) || _runtimeLookup == null ||
+                !_runtimeLookup.TryGetRuntime(runtimeId, out var runtime) ||
+                runtime == null || !runtime.gameObject.activeInHierarchy ||
+                !IsCurrentSessionUnit(runtime) || !runtime.RuleState.IsAlive)
+                return null;
+
+            return runtime;
         }
 
         private static int GetManhattanDistance(BFGridPosition first, BFGridPosition second)

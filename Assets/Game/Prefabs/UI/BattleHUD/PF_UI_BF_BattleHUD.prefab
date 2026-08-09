@@ -75,7 +75,6 @@ MonoBehaviour:
   _battleEventChannel: {fileID: 0}
   _unitEventChannel: {fileID: 0}
   _turnManager: {fileID: 0}
-  _unitManager: {fileID: 0}
   _inputController: {fileID: 0}
 --- !u!1 &2566931490410305060
 GameObject:

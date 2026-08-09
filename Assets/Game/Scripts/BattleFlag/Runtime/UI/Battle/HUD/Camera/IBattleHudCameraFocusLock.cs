@@ -1,5 +1,3 @@
-using BF.Game.Runtime.Battle.Units;
-
 namespace BF.Game.Runtime.UI.Battle.HUD.Camera
 {
     /// <summary>
@@ -8,7 +6,11 @@ namespace BF.Game.Runtime.UI.Battle.HUD.Camera
     /// </summary>
     public interface IBattleHudCameraFocusLock
     {
-        void FocusAndLock(UnitRuntime unit);
+        /// <summary>
+        /// 通过表现侧可识别的 RuntimeId 聚焦单位。
+        /// HUD 不直接接收或传递 UnitRuntime；RuntimeId 到 Unity 对象的解析由适配层实现。
+        /// </summary>
+        void FocusAndLock(string runtimeId);
         void ReleaseLock();
     }
 }

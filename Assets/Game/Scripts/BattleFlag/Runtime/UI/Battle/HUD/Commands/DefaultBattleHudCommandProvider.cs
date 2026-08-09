@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using BF.Game.Battle.Domain.Events;
 using BF.Game.Runtime.Battle.Managers;
-using BF.Game.Runtime.Battle.Units;
+using BF.Game.Runtime.Battle.Query;
 
 namespace BF.Game.Runtime.UI.Battle.HUD.Commands
 {
@@ -17,16 +18,19 @@ namespace BF.Game.Runtime.UI.Battle.HUD.Commands
 
         private static readonly BattleHudCommandViewModel[] EmptyCommands = { };
 
-        public IReadOnlyList<BattleHudCommandViewModel> GetCommands(UnitRuntime unit, BFBattleTurnManager turnManager)
+        public IReadOnlyList<BattleHudCommandViewModel> GetCommands(
+            BFUnitViewSnapshot unit,
+            bool hasUnit,
+            BFBattleTurnManager turnManager)
         {
-            if (unit == null)
+            if (!hasUnit)
                 return EmptyCommands;
 
             bool isPlayerTurn = turnManager == null || turnManager.CurrentPhase == BattlePhase.PlayerTurn;
             bool canAct = isPlayerTurn &&
-                          unit.Identity.Faction == UnitFaction.Player &&
-                          unit.Stats.IsAlive &&
-                          !unit.Stats.HasActed;
+                          unit.Faction == BFUnitFaction.Player &&
+                          unit.IsAlive &&
+                          !unit.HasActed;
 
             return new[]
             {

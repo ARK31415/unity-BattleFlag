@@ -1,4 +1,5 @@
-using BF.Game.Runtime.Battle.Units;
+using BF.Game.Battle.Domain.Events;
+using BF.Game.Runtime.Battle.Query;
 using UnityEngine;
 using UnityEngine.UI;
 using Wit.Framework.UI;
@@ -14,7 +15,7 @@ namespace BF.Game.Runtime.UI.Battle
     /// - 底部：ATK 等纯数值属性独立一组，不使用 Bar 控件。
     ///
     /// 不负责：
-    /// - 不自行查找 BFBattleUnitManager 或其他全局 Manager。
+        /// - 不自行查找战斗流程组件或其他全局 Manager。
     /// - 不修改单位状态，只做纯展示。
     /// - 状态效果图标本次不实现，后续 Spec 再加。
     /// </summary>
@@ -128,19 +129,17 @@ namespace BF.Game.Runtime.UI.Battle
         public float HPRatio => MaxHP > 0 ? (float)CurrentHP / MaxHP : 0f;
         public float APRatio => MaxActionPoints > 0 ? (float)RemainingActionPoints / MaxActionPoints : 0f;
 
-        public static UnitInfoWidgetData FromUnit(UnitRuntime unit)
+        /// <summary>从规则状态表现快照创建 Widget 数据，不读取 UnitRuntime 业务字段。</summary>
+        public static UnitInfoWidgetData FromSnapshot(BFUnitViewSnapshot snapshot)
         {
-            var identity = unit.Identity;
-            var stats = unit.Stats;
-            var faction = unit.Identity.Faction;
             return new UnitInfoWidgetData(
-                identity.DisplayName,
-                stats.CurrentHP,
-                stats.MaxHP,
-                stats.Attack,
-                stats.RemainingActionPoints,
-                stats.MaxActionPoints,
-                faction == UnitFaction.Player);
+                snapshot.DisplayName,
+                snapshot.CurrentHP,
+                snapshot.MaxHP,
+                snapshot.Attack,
+                snapshot.RemainingActionPoints,
+                snapshot.MaxActionPoints,
+                snapshot.Faction == BFUnitFaction.Player);
         }
     }
 }

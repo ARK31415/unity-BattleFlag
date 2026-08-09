@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using BF.Game.Runtime.Battle;
 using BF.Game.Runtime.Battle.Events;
+using BF.Game.Runtime.Battle.Flow;
+using BF.Game.Runtime.Battle.Input;
 using BF.Game.Runtime.Battle.Managers;
 using BF.Game.Runtime.Battle.PlayerInput;
-using BF.Game.Runtime.Battle.Units;
+using BF.Game.Runtime.Battle.Query;
 using BF.Game.Runtime.UI.Battle.HUD.Camera;
 using BF.Game.Runtime.UI.Battle.HUD.CommandSubmenu;
 using BF.Game.Runtime.UI.Battle.HUD.Commands;
@@ -36,14 +38,18 @@ namespace BF.Game.Runtime.UI.Battle
 
         [Header("Managers")]
         [SerializeField] private BFBattleTurnManager _turnManager;
-        [SerializeField] private BFBattleUnitManager _unitManager;
+        [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
+        [SerializeField] private BFBattleSelectionController _selectionController;
+        [SerializeField] private BFBattleSelectionCoordinator _selectionCoordinator;
         [SerializeField] private BFBattleInputController _inputController;
 
+        private IBFBattleUnitQuery _unitQuery;
+        private IBFBattleActionGateway _actionGateway;
         private readonly IBattleHudCommandProvider _commandProvider = new DefaultBattleHudCommandProvider();
         private readonly List<BattleHudActionViewModel> _mockActions = new();
         private WitUIManager _uiManager;
         private IBattleHudCameraFocusLock _cameraFocusLock;
-        private UnitRuntime _selectedTarget;
+        private string _selectedTargetRuntimeId;
         private string _resultPopupKey = "battle.result";
         private bool _isSubscribed;
         private bool _hasShownBattleResult;
@@ -67,6 +73,10 @@ namespace BF.Game.Runtime.UI.Battle
 
         protected override void OnClosing()
         {
+            // HUD 可能在攻击/技能子菜单打开时因战斗场景销毁而关闭，必须先释放表现侧临时状态。
+            // 相机属于常驻场景对象，不能依赖正常的返回/确认路径释放锁定。
+            ClearTransientPresentationState();
+
             if (!_isSubscribed) return;
 
             if (_endTurnControl != null) _endTurnControl.Clicked -= OnEndTurnClicked;
@@ -94,11 +104,8 @@ namespace BF.Game.Runtime.UI.Battle
                 _turnManager.OnNoLegalActionChanged -= OnNoLegalActionChanged;
             }
 
-            if (_unitManager != null)
-            {
-                _unitManager.OnUnitSelected -= OnUnitSelected;
-                _unitManager.OnUnitDeselected -= OnUnitDeselected;
-            }
+            if (_selectionController != null)
+                _selectionController.SelectionChanged -= OnSelectionChanged;
 
             _isSubscribed = false;
         }
@@ -119,7 +126,8 @@ namespace BF.Game.Runtime.UI.Battle
 
                 case DefaultBattleHudCommandProvider.WaitCommandId:
                     _selectedUnitBar?.SetSelectedCommand(commandId);
-                    _unitManager?.TryWaitSelectedUnit();
+                    if (_actionGateway != null && _selectionController != null)
+                        _actionGateway.TryWait(_selectionController.SelectedRuntimeId);
                     break;
 
                 case DefaultBattleHudCommandProvider.UnitDetailsCommandId:
@@ -136,7 +144,11 @@ namespace BF.Game.Runtime.UI.Battle
             _battleEventChannel = context.BattleEventChannel != null ? context.BattleEventChannel : _battleEventChannel;
             _unitEventChannel = context.UnitEventChannel != null ? context.UnitEventChannel : _unitEventChannel;
             _turnManager = context.TurnManager != null ? context.TurnManager : _turnManager;
-            _unitManager = context.UnitManager != null ? context.UnitManager : _unitManager;
+            _actionCoordinator = context.ActionCoordinator != null ? context.ActionCoordinator : _actionCoordinator;
+            _actionGateway = context.ActionGateway ?? _actionCoordinator;
+            _selectionController = context.SelectionController != null ? context.SelectionController : _selectionController;
+            _selectionCoordinator = context.SelectionCoordinator != null ? context.SelectionCoordinator : _selectionCoordinator;
+            _unitQuery = context.UnitQuery ?? _unitQuery;
             _inputController = context.InputController != null ? context.InputController : _inputController;
             _cameraFocusLock = context.CameraFocusLock ?? _cameraFocusLock;
             _uiManager = context.UIManager != null ? context.UIManager : _uiManager;
@@ -174,11 +186,8 @@ namespace BF.Game.Runtime.UI.Battle
                 _turnManager.OnNoLegalActionChanged += OnNoLegalActionChanged;
             }
 
-            if (_unitManager != null)
-            {
-                _unitManager.OnUnitSelected += OnUnitSelected;
-                _unitManager.OnUnitDeselected += OnUnitDeselected;
-            }
+            if (_selectionController != null)
+                _selectionController.SelectionChanged += OnSelectionChanged;
 
             _isSubscribed = true;
         }
@@ -189,7 +198,7 @@ namespace BF.Game.Runtime.UI.Battle
             {
                 _currentTurnNumber = _turnManager.TurnNumber;
                 _currentPhase = _turnManager.CurrentPhase;
-                _noLegalActions = _unitManager != null && !_unitManager.PlayerHasLegalAction();
+                _noLegalActions = _actionCoordinator != null && !_actionCoordinator.PlayerHasLegalAction();
             }
 
             _commandSubmenu?.Hide();
@@ -199,13 +208,6 @@ namespace BF.Game.Runtime.UI.Battle
             RefreshSelectedUnitBar();
             RefreshPhaseHint();
 
-            if (_unitManager?.Result != null && _unitManager.Result.HasResult)
-            {
-                _currentPhase = BattlePhase.Resolution;
-                CloseCommandSubmenu(releaseCamera: true);
-                RefreshPhaseHint();
-                ShowResult(_unitManager.Result);
-            }
         }
 
         private void OnTurnEvent(BFTurnEventData data)
@@ -220,7 +222,7 @@ namespace BF.Game.Runtime.UI.Battle
                 _currentPhase = BattlePhase.Resolution;
                 CloseCommandSubmenu(releaseCamera: true);
                 RefreshPhaseHint();
-                ShowResult(_unitManager?.Result ??
+                ShowResult(
                            BattleResult.Victory(data.BattleId, _turnManager != null ? _turnManager.TurnNumber : 0));
             }
             else if (data.EventType == BFBattleEventType.Defeat)
@@ -228,28 +230,27 @@ namespace BF.Game.Runtime.UI.Battle
                 _currentPhase = BattlePhase.Resolution;
                 CloseCommandSubmenu(releaseCamera: true);
                 RefreshPhaseHint();
-                ShowResult(_unitManager?.Result ??
+                ShowResult(
                            BattleResult.Defeat(data.BattleId, _turnManager != null ? _turnManager.TurnNumber : 0));
             }
         }
 
         private void OnUnitEvent(BFUnitEventData data)
         {
-            if (data.EventType == "Moved" || data.EventType == "Attacked" || data.EventType == "Waited")
+            if (ShouldRefreshForUnitEvent(data.EventType))
                 RefreshSelectedUnitBar();
         }
 
-        private void OnUnitSelected(UnitRuntime unit)
+        private static bool ShouldRefreshForUnitEvent(string eventType)
+        {
+            return eventType == "Moved" || eventType == "Damaged" || eventType == "Waited";
+        }
+
+        private void OnSelectionChanged(string runtimeId)
         {
             if (_commandSubmenu != null && _commandSubmenu.CurrentStage != CommandSubmenuView.Stage.Hidden)
                 CloseCommandSubmenu(releaseCamera: true);
 
-            RefreshSelectedUnitBar();
-        }
-
-        private void OnUnitDeselected(UnitRuntime unit)
-        {
-            CloseCommandSubmenu(releaseCamera: true);
             RefreshSelectedUnitBar();
         }
 
@@ -274,13 +275,12 @@ namespace BF.Game.Runtime.UI.Battle
 
         private void OpenActionSelect()
         {
-            var selectedUnit = _unitManager?.SelectedUnit;
-            if (selectedUnit == null) return;
+            if (!TryGetSelectedSnapshot(out var selectedUnit)) return;
 
-            _selectedTarget = null;
+            _selectedTargetRuntimeId = null;
             _selectedUnitBar?.Hide();
             _battleModeHint?.Hide();
-            _cameraFocusLock?.FocusAndLock(selectedUnit);
+            _cameraFocusLock?.FocusAndLock(selectedUnit.RuntimeId);
             _inputController?.ExitCommandTargeting();
             _commandSubmenu?.ShowActionSelect(BuildMockActions(selectedUnit));
         }
@@ -308,23 +308,27 @@ namespace BF.Game.Runtime.UI.Battle
                 if (!_commandSubmenu.TryGetSelectedAction(out var action) || !action.IsEnabled)
                     return;
 
-                _selectedTarget = null;
+                _selectedTargetRuntimeId = null;
                 _commandSubmenu.ShowTargetSelect();
                 _battleModeHint?.Show("选择目标");
                 _inputController?.BeginAttackTargetCommand();
                 return;
             }
 
-            if (_commandSubmenu.CurrentStage == CommandSubmenuView.Stage.TargetSelect && _selectedTarget != null)
+            if (_commandSubmenu.CurrentStage == CommandSubmenuView.Stage.TargetSelect &&
+                !string.IsNullOrWhiteSpace(_selectedTargetRuntimeId))
             {
-                if (_unitManager != null && _unitManager.TryAttack(_selectedTarget))
+                if (_actionGateway != null && _selectionController != null &&
+                    _actionGateway.TryAttack(
+                        _selectionController.SelectedRuntimeId,
+                        _selectedTargetRuntimeId))
                     CloseCommandSubmenu(releaseCamera: true);
             }
         }
 
         private void OnCommandActionSelected(string actionId)
         {
-            _selectedTarget = null;
+            _selectedTargetRuntimeId = null;
         }
 
         private void OnInputCommandCancelRequested()
@@ -333,26 +337,25 @@ namespace BF.Game.Runtime.UI.Battle
                 ReturnToActionSelect();
         }
 
-        private void OnAttackTargetSelected(UnitRuntime target)
+        private void OnAttackTargetSelected(string runtimeId)
         {
             if (_commandSubmenu == null || _commandSubmenu.CurrentStage != CommandSubmenuView.Stage.TargetSelect)
                 return;
 
-            _selectedTarget = target;
-            _commandSubmenu.SetConfirmInteractable(_selectedTarget != null);
+            _selectedTargetRuntimeId = runtimeId;
+            _commandSubmenu.SetConfirmInteractable(!string.IsNullOrWhiteSpace(runtimeId));
         }
 
         private void ReturnToActionSelect()
         {
-            var selectedUnit = _unitManager?.SelectedUnit;
-            if (selectedUnit == null)
+            if (!TryGetSelectedSnapshot(out var selectedUnit))
             {
                 CloseCommandSubmenu(releaseCamera: true);
                 RefreshSelectedUnitBar();
                 return;
             }
 
-            _selectedTarget = null;
+            _selectedTargetRuntimeId = null;
             _inputController?.ExitCommandTargeting();
             _battleModeHint?.Hide();
             _commandSubmenu?.ShowActionSelect(BuildMockActions(selectedUnit));
@@ -360,12 +363,24 @@ namespace BF.Game.Runtime.UI.Battle
 
         private void CloseCommandSubmenu(bool releaseCamera)
         {
-            _selectedTarget = null;
+            _selectedTargetRuntimeId = null;
             _inputController?.ExitCommandTargeting();
             _commandSubmenu?.Hide();
             _battleModeHint?.Hide();
             if (releaseCamera)
                 _cameraFocusLock?.ReleaseLock();
+        }
+
+        /// <summary>
+        /// 清理 HUD 关闭时的表现侧临时状态。
+        /// 不调用战斗输入或棋盘适配器，避免常驻 HUD 在旧战斗对象销毁后访问失效引用。
+        /// </summary>
+        private void ClearTransientPresentationState()
+        {
+            _selectedTargetRuntimeId = null;
+            _commandSubmenu?.Hide();
+            _battleModeHint?.Hide();
+            _cameraFocusLock?.ReleaseLock();
         }
 
         private void RefreshSelectedUnitBar()
@@ -377,12 +392,17 @@ namespace BF.Game.Runtime.UI.Battle
                 return;
             }
 
-            var selectedUnit = _unitManager?.SelectedUnit;
-            bool canShow = selectedUnit != null &&
+            if (!TryGetSelectedSnapshot(out var selectedUnit))
+            {
+                _selectedUnitBar.Hide();
+                return;
+            }
+
+            bool canShow =
                            _currentPhase == BattlePhase.PlayerTurn &&
-                           selectedUnit.Identity.Faction == UnitFaction.Player &&
-                           selectedUnit.Stats.IsAlive &&
-                           !selectedUnit.Stats.HasActed;
+                           selectedUnit.Faction == BF.Game.Battle.Domain.Events.BFUnitFaction.Player &&
+                           selectedUnit.IsAlive &&
+                           !selectedUnit.HasActed;
 
             if (!canShow)
             {
@@ -390,7 +410,7 @@ namespace BF.Game.Runtime.UI.Battle
                 return;
             }
 
-            _selectedUnitBar.Show(_commandProvider.GetCommands(selectedUnit, _turnManager), Execute);
+            _selectedUnitBar.Show(_commandProvider.GetCommands(selectedUnit, true, _turnManager), Execute);
         }
 
         private void RefreshTurnBanner()
@@ -424,17 +444,15 @@ namespace BF.Game.Runtime.UI.Battle
             }
         }
 
-        private IReadOnlyList<BattleHudActionViewModel> BuildMockActions(UnitRuntime selectedUnit)
+        private IReadOnlyList<BattleHudActionViewModel> BuildMockActions(BFUnitViewSnapshot selectedUnit)
         {
             _mockActions.Clear();
-            bool canAttack = selectedUnit != null && selectedUnit.Stats.RemainingActionPoints >= selectedUnit.Stats.AttackCost;
+            bool canAttack = selectedUnit.RemainingActionPoints >= selectedUnit.AttackCost;
             _mockActions.Add(new BattleHudActionViewModel(
                 "basic_attack",
                 "普通攻击",
                 "对攻击范围内的敌方单位发动一次基础攻击。",
-                selectedUnit != null
-                    ? $"效果：造成 {selectedUnit.Stats.Attack} 点基础伤害。消耗：{selectedUnit.Stats.AttackCost} AP。范围：{selectedUnit.Stats.AttackRange} 格。"
-                    : "效果：无。",
+                $"效果：造成 {selectedUnit.Attack} 点基础伤害。消耗：{selectedUnit.AttackCost} AP。范围：{selectedUnit.AttackRange} 格。",
                 canAttack,
                 "AP 不足，无法发动普通攻击。"));
 
@@ -454,10 +472,17 @@ namespace BF.Game.Runtime.UI.Battle
 
         private void LogUnitDetailsCommand()
         {
-            var unitName = _unitManager?.SelectedUnit != null
-                ? _unitManager.SelectedUnit.Identity.DisplayName
-                : "None";
+            var unitName = TryGetSelectedSnapshot(out var snapshot) ? snapshot.DisplayName : "None";
             Debug.Log($"[BattleHUD] Unit details command selected: {unitName}");
+        }
+
+        private bool TryGetSelectedSnapshot(out BFUnitViewSnapshot snapshot)
+        {
+            snapshot = default;
+            var runtimeId = _selectionController?.SelectedRuntimeId;
+            return _unitQuery != null &&
+                   !string.IsNullOrWhiteSpace(runtimeId) &&
+                   _unitQuery.TryGetSnapshot(runtimeId, out snapshot);
         }
 
         private void ShowResult(BattleResult result)

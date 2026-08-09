@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BF.Game.Battle.Rules.Units;
 using BF.Game.Runtime.Battle.Commands;
@@ -15,7 +16,6 @@ namespace BF.Game.Runtime.Battle.Managers
     public class BFBattleResolutionManager : MonoBehaviour
     {
         [Header("Dependencies")]
-        [SerializeField] private BFBattleUnitManager _unitManager;
         [SerializeField] private BFBattleActionCoordinator _actionCoordinator;
         [SerializeField] private BFBattleBoardManager _boardManager;
 
@@ -28,6 +28,7 @@ namespace BF.Game.Runtime.Battle.Managers
         private readonly Dictionary<UnitRuntime, BFAttackContext> _pendingAttacks = new();
         private readonly HashSet<UnitRuntime> _awaitingDeathVisualCleanup = new();
         private readonly List<UnitRuntime> _attackersToClearBuffer = new();
+        private readonly List<UnitRuntime> _subscribedUnits = new();
 
         public bool IsAwaitingDeathVisualCleanup => _awaitingDeathVisualCleanup.Count > 0;
 
@@ -54,12 +55,19 @@ namespace BF.Game.Runtime.Battle.Managers
         }
 
         /// <summary>
-        /// 设置 UnitManager 引用（由 BFBattleRoot 在初始化时调用）。
+        /// 绑定本场 Runtime 生命周期，用于单位禁用时清理待结算攻击。
         /// </summary>
-        public void SetUnitManager(BFBattleUnitManager unitManager)
+        public void SetRuntimeUnits(IEnumerable<UnitRuntime> units)
         {
-            _unitManager = unitManager;
-            _actionCoordinator = unitManager != null ? unitManager.ActionCoordinator : null;
+            UnsubscribeRuntimeUnits();
+            if (units == null) return;
+
+            foreach (var unit in units)
+            {
+                if (unit == null) continue;
+                unit.Disabled += HandleUnitDisabled;
+                _subscribedUnits.Add(unit);
+            }
         }
 
         /// <summary>绑定棋盘适配器，用于逻辑死亡后立即释放棋盘镜像占用。</summary>
@@ -181,7 +189,7 @@ namespace BF.Game.Runtime.Battle.Managers
                     Debug.LogError(
                         $"[BFBattleResolutionManager] 逻辑死亡后棋盘占用释放失败：{result.Target.RuntimeId}。",
                         this);
-                    _unitManager?.MarkBoardSyncFaultForCoordinator();
+                    _boardManager?.MarkSyncFault();
                 }
 
                 // 逻辑死亡已在伤害入口完成，这里只登记等待死亡动画完成后的视觉清理。
@@ -258,6 +266,32 @@ namespace BF.Game.Runtime.Battle.Managers
             }
 
             _attackersToClearBuffer.Clear();
+        }
+
+        private void HandleUnitDisabled(UnitRuntime unit)
+        {
+            if (unit == null) return;
+
+            // 单位禁用只影响以它为攻击者或目标的待结算攻击。
+            // 不能调用全场 CleanupInterruptedActions，否则一个单位的表现生命周期
+            // 会清理其他单位仍在等待命中帧的攻击，导致合法攻击遗漏结算事件。
+            ClearPendingAttacksInvolving(unit);
+        }
+
+        private void OnDestroy()
+        {
+            UnsubscribeRuntimeUnits();
+        }
+
+        private void UnsubscribeRuntimeUnits()
+        {
+            foreach (var unit in _subscribedUnits)
+            {
+                if (unit != null)
+                    unit.Disabled -= HandleUnitDisabled;
+            }
+
+            _subscribedUnits.Clear();
         }
     }
 }
